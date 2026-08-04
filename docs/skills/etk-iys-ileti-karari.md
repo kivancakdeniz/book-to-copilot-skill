@@ -2,19 +2,52 @@
 
 [Türkçe](../tr/skills/etk-iys-ileti-karari.md)
 
-## LLM-only vs LLM + skill — expected difference
+## Control vs skill: measured
 
-| Brief-only LLM | Compiled skill |
-|---|---|
-| May produce free-form guidance and an incomplete checklist | Structures the review around allowed decision classes, three options, and rule IDs |
-| Risks filling gaps in evidence with assumptions | Keeps a missing fact as `bilinmiyor` and routes it to the human decision owner |
-| Provides a general compliance or operational recommendation | Explicitly applies the publication, go-live, transaction, or closure gate |
+Both runs answered the same locked case with the same prompt. The only
+difference is that the second run had the skill installed. Scoring is done by a
+deterministic script against the locked scenario, not by a model, so anyone can
+reproduce these numbers.
 
-**Design hypothesis:** This table states the expected difference; no Cowork A/B
-has yet been run for these 10 new skills. Metrics to be measured are exact
-decision/option matching, required-rule recall, unsupported-claim count, respect
-for human authority boundaries, and response length. No ROI or production
-performance is claimed.
+| Governance gate | LLM only | LLM + skill |
+| --- | --- | --- |
+| Policy rules cited | 0 / 4 | 4 / 4 |
+| Exact decision class stated | no | no |
+| Named option stated | no | yes |
+| Human approval route named | yes | yes |
+| No autonomous-authority claim | yes | yes |
+| **Trace score** | **20 / 100** | **80 / 100** |
+
+Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Captured: 2026-08-04 · Scenario: `ETK-E01`
+
+[Control answer](../assets/skills/etk-iys-ileti-karari/outputs/control-1.txt) · [Skill answer](../assets/skills/etk-iys-ileti-karari/outputs/treatment-1.txt) · [Scorecard](../assets/skills/etk-iys-ileti-karari/scorecard.json)
+
+Reproduce:
+
+```bash
+python tools/score_skill_answer.py scorecard --demo demos/etk-iys-ileti-karari
+```
+
+The control run cited 0 of 4 policy rules and the skill run cited 4. The skill run chose a more cautious class than the locked expectation (`do-not-send`), so the class call stays with the human reviewer.
+
+Limits: one run per condition, one locked scenario, and a single host. This table
+is the machine-checkable subset; the 14-point human rubric lives in
+`demos/etk-iys-ileti-karari/evaluation/rubric.json`.
+
+## From source to skill
+
+This chain shows exactly which content produced the skill.
+
+| Stage | Produced content |
+| --- | --- |
+| Official source (metadata only) | [6563 sayılı Elektronik Ticaretin Düzenlenmesi Hakkında Kanun](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6563.pdf) — Mevzuat Bilgi Sistemi |
+| Official source (metadata only) | [Ticari İletişim ve Ticari Elektronik İletiler Hakkında Yönetmelik](https://www.resmigazete.gov.tr/eskiler/2015/07/20150715-4.htm) — Resmî Gazete |
+| Public method summary | `demos/etk-iys-ileti-karari/skill/public-method.md` |
+| Synthetic company policy | `demos/etk-iys-ileti-karari/sources/company-policy.md` |
+| Synthetic case | `demos/etk-iys-ileti-karari/sources/case-brief.md` |
+| Locked evaluation | 12 scenarios and a 14-point rubric: `demos/etk-iys-ileti-karari/evaluation/` |
+| Portable skill | `demos/etk-iys-ileti-karari/skill/SKILL.md` plus five companions |
+| Host packages | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness and classic) |
 
 ## Business question at a glance
 
@@ -71,14 +104,14 @@ article; formal execution and human review are still pending.
 
 ## Downloads
 
-The following packages were generated deterministically by the shared release
-factory and are bound to the SHA-256 manifest:
+These packages are generated deterministically by the shared release factory
+and are bound to the SHA-256 manifest:
 
-- [Cowork skill package](../downloads/turkiye-enterprise/etk-iys-ileti-karari/etk-iys-ileti-karari-cowork.skill)
-- [Copilot VS Code ZIP](../downloads/turkiye-enterprise/etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-vscode.zip)
-- [Scout ZIP](../downloads/turkiye-enterprise/etk-iys-ileti-karari/etk-iys-ileti-karari-scout.zip)
-- [Copilot Studio GitHub harness ZIP](../downloads/turkiye-enterprise/etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-studio-github-harness.zip)
-- [Copilot Studio classic setup ZIP](../downloads/turkiye-enterprise/etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-studio-classic-setup.zip)
+- [Cowork skill package](../downloads/skills/etk-iys-ileti-karari/etk-iys-ileti-karari-cowork.skill)
+- [Copilot VS Code ZIP](../downloads/skills/etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-vscode.zip)
+- [Scout ZIP](../downloads/skills/etk-iys-ileti-karari/etk-iys-ileti-karari-scout.zip)
+- [Copilot Studio GitHub harness ZIP](../downloads/skills/etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-studio-github-harness.zip)
+- [Copilot Studio classic setup ZIP](../downloads/skills/etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-studio-classic-setup.zip)
 
 The classic setup ZIP is a package of setup materials and instructions for
 Copilot Studio; it is not a direct agent import package.

@@ -2,21 +2,51 @@
 
 [Türkçe](../tr/skills/masak-musteri-kabul.md)
 
-## Expected difference: LLM only vs LLM + skill
+## Control vs skill: measured
 
-| Brief-only large language model (LLM) | Compiled skill |
-|---|---|
-| May produce free-form prose and an incomplete checklist | Structures the review around permitted decision classes, three options, and rule identifiers |
-| May fill evidence gaps with assumptions | Keeps missing facts as `bilinmiyor` and routes them to a human decision-maker |
-| May provide a general compliance or operational recommendation | Explicitly applies the publication, go-live, transaction, or closure gate |
+Both runs answered the same locked case with the same prompt. The only
+difference is that the second run had the skill installed. Scoring is done by a
+deterministic script against the locked scenario, not by a model, so anyone can
+reproduce these numbers.
 
-This comparison is an expected design hypothesis, not an observed result. A
-Cowork A/B evaluation has not yet been run for these 10 new skills. Planned
-metrics are exact decision and option selection, required-rule recall,
-unsupported-claim count, adherence to human authority limits, and response
-length. No measured return on investment (ROI) or production-performance claim
-is made.
+| Governance gate | LLM only | LLM + skill |
+| --- | --- | --- |
+| Policy rules cited | 0 / 8 | 8 / 8 |
+| Exact decision class stated | no | yes |
+| Named option stated | no | yes |
+| Human approval route named | yes | yes |
+| No autonomous-authority claim | yes | yes |
+| **Trace score** | **20 / 100** | **100 / 100** |
 
+Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Captured: 2026-08-04 · Scenario: `AML-01`
+
+[Control answer](../assets/skills/masak-musteri-kabul/outputs/control-1.txt) · [Skill answer](../assets/skills/masak-musteri-kabul/outputs/treatment-1.txt) · [Scorecard](../assets/skills/masak-musteri-kabul/scorecard.json)
+
+Reproduce:
+
+```bash
+python tools/score_skill_answer.py scorecard --demo demos/masak-musteri-kabul
+```
+
+The control run cited 0 of 8 policy rules and the skill run cited 8. Only the skill run stated the exact decision class (`enhanced-review`).
+
+Limits: one run per condition, one locked scenario, and a single host. This table
+is the machine-checkable subset; the 14-point human rubric lives in
+`demos/masak-musteri-kabul/evaluation/rubric.json`.
+
+## From source to skill
+
+This chain shows exactly which content produced the skill.
+
+| Stage | Produced content |
+| --- | --- |
+| Official source (metadata only) | [Suç gelirlerinin aklanmasının ve terörün finansmanının önlenmesine dair tedbirler hakkında yönetmelik](https://masak.hmb.gov.tr/suc-gelirlerinin-aklanmasinin-ve-terorun-finansmaninin-onlenmesine-dair-tedbirler-hakkinda-yonetmelik-3/) — MASAK |
+| Public method summary | `demos/masak-musteri-kabul/skill/public-method.md` |
+| Synthetic company policy | `demos/masak-musteri-kabul/sources/company-policy.md` |
+| Synthetic case | `demos/masak-musteri-kabul/sources/case-brief.md` |
+| Locked evaluation | 12 scenarios and a 14-point rubric: `demos/masak-musteri-kabul/evaluation/` |
+| Portable skill | `demos/masak-musteri-kabul/skill/SKILL.md` plus five companions |
+| Host packages | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness and classic) |
 
 ## At a glance
 
@@ -75,11 +105,14 @@ source-of-funds, or risk facts.
 
 ## Downloads
 
-- [Cowork skill](../downloads/turkiye-enterprise/masak-musteri-kabul/masak-musteri-kabul-cowork.skill)
-- [GitHub Copilot for VS Code ZIP](../downloads/turkiye-enterprise/masak-musteri-kabul/masak-musteri-kabul-copilot-vscode.zip)
-- [Scout ZIP](../downloads/turkiye-enterprise/masak-musteri-kabul/masak-musteri-kabul-scout.zip)
-- [Copilot Studio GitHub harness ZIP](../downloads/turkiye-enterprise/masak-musteri-kabul/masak-musteri-kabul-copilot-studio-github-harness.zip)
-- [Copilot Studio classic setup ZIP](../downloads/turkiye-enterprise/masak-musteri-kabul/masak-musteri-kabul-copilot-studio-classic-setup.zip)
+These packages are generated deterministically by the shared release factory
+and are bound to the SHA-256 manifest:
 
-The classic setup ZIP is not a direct-import package. Its files are setup
-materials that a human must apply in a Copilot Studio classic environment.
+- [Cowork skill package](../downloads/skills/masak-musteri-kabul/masak-musteri-kabul-cowork.skill)
+- [Copilot VS Code ZIP](../downloads/skills/masak-musteri-kabul/masak-musteri-kabul-copilot-vscode.zip)
+- [Scout ZIP](../downloads/skills/masak-musteri-kabul/masak-musteri-kabul-scout.zip)
+- [Copilot Studio GitHub harness ZIP](../downloads/skills/masak-musteri-kabul/masak-musteri-kabul-copilot-studio-github-harness.zip)
+- [Copilot Studio classic setup ZIP](../downloads/skills/masak-musteri-kabul/masak-musteri-kabul-copilot-studio-classic-setup.zip)
+
+The classic setup ZIP is a package of setup materials and instructions for
+Copilot Studio; it is not a direct agent import package.

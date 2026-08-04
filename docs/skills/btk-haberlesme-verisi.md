@@ -2,19 +2,51 @@
 
 [Türkçe](../tr/skills/btk-haberlesme-verisi.md)
 
-## Expected difference: LLM only vs LLM + skill
+## Control vs skill: measured
 
-| Brief-only LLM | Compiled skill |
-|---|---|
-| May produce free-form guidance or an incomplete checklist | Structures the review around permitted decision classes, three action options, and rule identifiers |
-| May fill evidence gaps with assumptions | Keeps missing facts `unknown` and routes them to the authorized human decision-makers |
-| May offer a general compliance or operational recommendation | Applies an explicit gate for processing, campaign activation, redesign, or escalation |
+Both runs answered the same locked case with the same prompt. The only
+difference is that the second run had the skill installed. Scoring is done by a
+deterministic script against the locked scenario, not by a model, so anyone can
+reproduce these numbers.
 
-This comparison is an expected design hypothesis, not an evaluation result. The
-Cowork A/B comparison has not been run, and all 12 locked scenarios below are
-pending execution and scoring. Metrics to measure are exact decision-class and
-option matches, required-rule recall, unsupported-claim count, respect for human
-authority boundaries, and response length.
+| Governance gate | LLM only | LLM + skill |
+| --- | --- | --- |
+| Policy rules cited | 0 / 7 | 7 / 7 |
+| Exact decision class stated | no | no |
+| Named option stated | yes | yes |
+| Human approval route named | yes | yes |
+| No autonomous-authority claim | yes | yes |
+| **Trace score** | **40 / 100** | **80 / 100** |
+
+Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Captured: 2026-08-04 · Scenario: `BTK-01`
+
+[Control answer](../assets/skills/btk-haberlesme-verisi/outputs/control-1.txt) · [Skill answer](../assets/skills/btk-haberlesme-verisi/outputs/treatment-1.txt) · [Scorecard](../assets/skills/btk-haberlesme-verisi/scorecard.json)
+
+Reproduce:
+
+```bash
+python tools/score_skill_answer.py scorecard --demo demos/btk-haberlesme-verisi
+```
+
+The control run cited 0 of 7 policy rules and the skill run cited 7. The skill run chose a more cautious class than the locked expectation (`stop-processing`), so the class call stays with the human reviewer.
+
+Limits: one run per condition, one locked scenario, and a single host. This table
+is the machine-checkable subset; the 14-point human rubric lives in
+`demos/btk-haberlesme-verisi/evaluation/rubric.json`.
+
+## From source to skill
+
+This chain shows exactly which content produced the skill.
+
+| Stage | Produced content |
+| --- | --- |
+| Official source (metadata only) | [Elektronik Haberleşme Sektöründe Kişisel Verilerin İşlenmesi ve Gizliliğin Korunmasına İlişkin Yönetmelik](https://www.resmigazete.gov.tr/eskiler/2020/12/20201204-13.htm) — Bilgi Teknolojileri ve İletişim Kurumu / T.C. Resmî Gazete |
+| Public method summary | `demos/btk-haberlesme-verisi/skill/public-method.md` |
+| Synthetic company policy | `demos/btk-haberlesme-verisi/sources/company-policy.md` |
+| Synthetic case | `demos/btk-haberlesme-verisi/sources/case-brief.md` |
+| Locked evaluation | 12 scenarios and a 14-point rubric: `demos/btk-haberlesme-verisi/evaluation/` |
+| Portable skill | `demos/btk-haberlesme-verisi/skill/SKILL.md` plus five companions |
+| Host packages | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness and classic) |
 
 ## At a glance
 
@@ -97,11 +129,14 @@ comparative performance results.
 
 ## Downloads
 
-- [Cowork skill](../downloads/turkiye-enterprise/btk-haberlesme-verisi/btk-haberlesme-verisi-cowork.skill)
-- [GitHub Copilot for VS Code ZIP](../downloads/turkiye-enterprise/btk-haberlesme-verisi/btk-haberlesme-verisi-copilot-vscode.zip)
-- [Scout ZIP](../downloads/turkiye-enterprise/btk-haberlesme-verisi/btk-haberlesme-verisi-scout.zip)
-- [Copilot Studio GitHub harness ZIP](../downloads/turkiye-enterprise/btk-haberlesme-verisi/btk-haberlesme-verisi-copilot-studio-github-harness.zip)
-- [Copilot Studio classic setup ZIP](../downloads/turkiye-enterprise/btk-haberlesme-verisi/btk-haberlesme-verisi-copilot-studio-classic-setup.zip)
+These packages are generated deterministically by the shared release factory
+and are bound to the SHA-256 manifest:
 
-The classic setup ZIP is not a direct-import package. Its files are setup
-materials that a human must apply in a Copilot Studio classic environment.
+- [Cowork skill package](../downloads/skills/btk-haberlesme-verisi/btk-haberlesme-verisi-cowork.skill)
+- [Copilot VS Code ZIP](../downloads/skills/btk-haberlesme-verisi/btk-haberlesme-verisi-copilot-vscode.zip)
+- [Scout ZIP](../downloads/skills/btk-haberlesme-verisi/btk-haberlesme-verisi-scout.zip)
+- [Copilot Studio GitHub harness ZIP](../downloads/skills/btk-haberlesme-verisi/btk-haberlesme-verisi-copilot-studio-github-harness.zip)
+- [Copilot Studio classic setup ZIP](../downloads/skills/btk-haberlesme-verisi/btk-haberlesme-verisi-copilot-studio-classic-setup.zip)
+
+The classic setup ZIP is a package of setup materials and instructions for
+Copilot Studio; it is not a direct agent import package.

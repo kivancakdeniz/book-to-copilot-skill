@@ -6,7 +6,7 @@
 - Permission to upload a custom skill
 - A clean demo browser profile or window
 - The packaged `marketing-claims-review-copilot.skill`
-- The fictional `campaign-brief.md` attachment
+- The fictional `case-brief.md` attachment
 - Control and treatment text from `DEMO-PROMPTS.md`
 
 Use synthetic demo data only. Do not substitute a real campaign, influencer,
@@ -20,7 +20,7 @@ packager. From the Studio workspace root, first run
 
 ```bash
 .venv/bin/python tools/package_cowork_skill.py \
-  demos/marketing-claims-review/cowork/skill \
+  demos/marketing-claims-review/skill \
   dist/cowork/marketing-claims-review-copilot.skill
 ```
 
@@ -45,7 +45,7 @@ Cowork stores uploaded custom skills in OneDrive. Upload only reviewed packages.
 
 1. Start a fresh signed-in Cowork conversation.
 2. Confirm the custom skill is absent from the conversation workspace.
-3. Attach only the fictional `campaign-brief.md`.
+3. Attach only the fictional `case-brief.md`.
 4. Paste the control prompt exactly.
 5. Retain the first complete response and record the run conditions.
 

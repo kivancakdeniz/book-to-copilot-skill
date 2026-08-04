@@ -2,31 +2,51 @@
 
 [English](../../skills/titck-ilac-tanitimi.md)
 
-## LLM only vs LLM + skill - beklenen fark
+## Kontrol ve skill: ölçülen
 
-| Brief-only LLM | Derlenmiş skill |
-|---|---|
-| Serbest anlatım ve eksik kontrol listesi üretebilir | İzinli karar sınıfları, üç seçenek ve kural kimlikleriyle yapılandırır |
-| Eksik kanıtı varsayım ile doldurma riski taşır | Eksik olguyu `bilinmiyor` tutar ve insan karar sahibine yönlendirir |
-| Genel bir uyum veya operasyon önerisi verir | Yayın, canlıya geçiş, işlem veya kapanış kapısını açıkça uygular |
+İki çalıştırma aynı kilitli vakayı aynı istemle yanıtladı. Tek fark, ikinci
+çalıştırmada skill'in kurulu olmasıdır. Puanlama modele değil, kilitli senaryoya
+bakan deterministik bir betiğe dayanır; sayıları herkes yeniden üretebilir.
 
-Bu tablo tasarım hipotezidir; bu 10 yeni skill için Cowork A/B henüz
-çalıştırılmadı. Ölçülecek metrikler: exact karar/seçenek, gerekli kural geri
-çağırma, desteksiz iddia sayısı, insan yetki sınırı ve yanıt uzunluğu. ROI veya
-üretim performansı iddia edilmez.
+| Yönetişim kapısı | Yalnız LLM | LLM + skill |
+| --- | --- | --- |
+| Atıf yapılan politika kuralı | 0 / 7 | 7 / 7 |
+| Tam karar sınıfı yazıldı | hayır | evet |
+| Adlandırılmış seçenek yazıldı | evet | evet |
+| İnsan onay rotası adlandırıldı | evet | evet |
+| Otonom yetki iddiası yok | evet | evet |
+| **İz puanı** | **40 / 100** | **100 / 100** |
 
+Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Tarih: 2026-08-04 · Senaryo: `TTK-01`
 
-Kurgusal reçeteli bir ürün için tüketiciye açık Instagram kreatifi hazırlanıyor.
-Kreatifte ürün adı, fayda ifadesi ve "Şimdi doktoruna sor" çağrısı var; hesap
-herkese açık ve sağlık meslek mensuplarına özel erişim kontrolü bulunmuyor.
+[Kontrol yanıtı](../../assets/skills/titck-ilac-tanitimi/outputs/control-1.txt) · [Skill yanıtı](../../assets/skills/titck-ilac-tanitimi/outputs/treatment-1.txt) · [Skor kartı](../../assets/skills/titck-ilac-tanitimi/scorecard.json)
 
-Bu Türkçe skill, bir yayın eylemi yapmak yerine Medical, Regulatory ve Legal
-insan incelemesine izlenebilir bir taslak hazırlar. Kilitli başlangıç sonucu
-`do-not-publish`, önerilen seçenek `professional-channel-review`dır. Bu seçenek
-ayrı profesyonel materyali veya yayını onaylamaz. Çıktı hukuki, mühendislik veya
-tıbbi tavsiye değildir; Copilot onaylamaz, yayımlamaz, hedeflemez, içeriği
-kaldırmaz veya kampanyayı durdurmaz. Yetkili insanlar karar verir ve eylemleri
-yürütür.
+Yeniden üretmek için:
+
+```bash
+python tools/score_skill_answer.py scorecard --demo demos/titck-ilac-tanitimi
+```
+
+Kontrol çalıştırması 7 politika kuralının 0 tanesine atıf yaptı skill çalıştırması 7 tanesine atıf yaptı. Tam karar sınıfını (`do-not-publish`) yalnız skill çalıştırması yazdı.
+
+Sınır: koşul başına tek çalıştırma, tek kilitli senaryo ve tek host. Bu tablo
+makine ile denetlenebilir alt kümedir; 14 puanlık insan rubriği
+`demos/titck-ilac-tanitimi/evaluation/rubric.json` dosyasındadır.
+
+## Kaynaktan skill'e
+
+Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
+
+| Aşama | Üretilen içerik |
+| --- | --- |
+| Resmî kaynak (yalnız metadata) | [Beşerî Tıbbi Ürünlerin Tanıtım Faaliyetleri Hakkında Yönetmelik](https://www.titck.gov.tr/mevzuat/beseri-tibbi-urunlerin-tanitim-faaliyetleri-hakkinda-yonetmelik-27122018172726) — Türkiye İlaç ve Tıbbî Cihaz Kurumu (TİTCK) |
+| Resmî kaynak (yalnız metadata) | [Beşerî Tıbbi Ürünlerin Tanıtım Faaliyetleri Hakkında Yönetmelik - Resmî Gazete yayımı](https://www.resmigazete.gov.tr/eskiler/2015/07/20150703-2.htm) — T.C. Resmî Gazete |
+| Kamuya açık yöntem özeti | `demos/titck-ilac-tanitimi/skill/public-method.md` |
+| Sentetik şirket politikası | `demos/titck-ilac-tanitimi/sources/company-policy.md` |
+| Sentetik vaka | `demos/titck-ilac-tanitimi/sources/case-brief.md` |
+| Kilitli değerlendirme | 12 senaryo ve 14 puanlık rubrik: `demos/titck-ilac-tanitimi/evaluation/` |
+| Taşınabilir skill | `demos/titck-ilac-tanitimi/skill/SKILL.md` ve beş destek dosyası |
+| Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
 ## Ne denetlenir?
 
@@ -54,11 +74,11 @@ sentetiktir.
 
 ## İndir
 
-- [Microsoft 365 Copilot Cowork skill](../../downloads/turkiye-enterprise/titck-ilac-tanitimi/titck-ilac-tanitimi-cowork.skill)
-- [GitHub Copilot for VS Code paketi](../../downloads/turkiye-enterprise/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-vscode.zip)
-- [Scout paketi](../../downloads/turkiye-enterprise/titck-ilac-tanitimi/titck-ilac-tanitimi-scout.zip)
-- [Copilot Studio GitHub harness paketi](../../downloads/turkiye-enterprise/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-github-harness.zip)
-- [Copilot Studio classic kurulum paketi](../../downloads/turkiye-enterprise/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-classic-setup.zip)
+- [Microsoft 365 Copilot Cowork skill](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-cowork.skill)
+- [GitHub Copilot for VS Code paketi](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-vscode.zip)
+- [Scout paketi](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-scout.zip)
+- [Copilot Studio GitHub harness paketi](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-github-harness.zip)
+- [Copilot Studio classic kurulum paketi](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-classic-setup.zip)
 
 !!! warning "Copilot Studio classic kurulumu"
 
@@ -73,3 +93,17 @@ Demo tam 12 kilitli senaryo, beş karar sınıfı, üç seçenek ve her puan dü
 çapalanmış azami 14 puanlık rubrik kullanır. Donmuş prompt; ürün statüsü, tıbbi
 kanıt, kapsam, hedefleme, erişim, tarih veya yetki uydurmayı ve sohbet dışı eser,
 yayın ya da operasyonel eylem üretmeyi yasaklar.
+
+## İndirmeler
+
+Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
+SHA-256 manifestine bağlanmıştır:
+
+- [Cowork skill paketi](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-cowork.skill)
+- [Copilot VS Code ZIP](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-vscode.zip)
+- [Scout ZIP](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-scout.zip)
+- [Copilot Studio GitHub harness ZIP](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-github-harness.zip)
+- [Copilot Studio classic setup ZIP](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-classic-setup.zip)
+
+Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
+doğrudan ajan içe aktarma paketi değildir.

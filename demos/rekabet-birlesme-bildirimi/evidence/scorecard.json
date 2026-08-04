@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "demoId": "rekabet-birlesme-bildirimi",
+  "scenarioId": "RKB-01",
+  "gateWeights": {
+    "decisionClass": 20,
+    "recommendedOption": 20,
+    "ruleCitations": 40,
+    "humanRoute": 10,
+    "forbiddenClaims": 10
+  },
+  "maxTraceScore": 100,
+  "runs": [
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "control",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "outputPath": "evidence/outputs/control-1.md",
+      "promptPath": "evaluation/control-prompt.md",
+      "runId": "control-1",
+      "outputSha256": "8d3cac4733ca2faad52f493041206cfe4884bb0c106fd5c9c6efb7fe2dad1c81",
+      "traceScore": 40,
+      "ruleCitationCount": 0,
+      "ruleCitationTotal": 7,
+      "gates": {
+        "decisionClass": {
+          "passed": false,
+          "score": 0
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": false,
+          "score": 0,
+          "cited": [],
+          "missing": [
+            "RKB-K01",
+            "RKB-C01",
+            "RKB-T01",
+            "RKB-Y01",
+            "RKB-A01",
+            "RKB-R01",
+            "RKB-M01"
+          ]
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    },
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "treatment",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "outputPath": "evidence/outputs/treatment-1.md",
+      "promptPath": "evaluation/treatment-prompt.md",
+      "runId": "treatment-1",
+      "outputSha256": "4cb1bb69176ac7b3a8ea33e0d818dcd3336717c889089851a96f3ad8991431ec",
+      "traceScore": 100,
+      "ruleCitationCount": 7,
+      "ruleCitationTotal": 7,
+      "gates": {
+        "decisionClass": {
+          "passed": true,
+          "score": 20
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": true,
+          "score": 40,
+          "cited": [
+            "RKB-K01",
+            "RKB-C01",
+            "RKB-T01",
+            "RKB-Y01",
+            "RKB-A01",
+            "RKB-R01",
+            "RKB-M01"
+          ],
+          "missing": []
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    }
+  ],
+  "summary": {
+    "controlTraceScore": 40,
+    "treatmentTraceScore": 100,
+    "traceScoreDelta": 60,
+    "controlRuleCitations": 0,
+    "treatmentRuleCitations": 7,
+    "ruleCitationTotal": 7
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "demoId": "kvkk-aydinlatma-kontrolu",
+  "scenarioId": "KVK-E01",
+  "decisionClass": "revise-before-launch",
+  "recommendedOption": "separate-notice-and-consent",
+  "requiredRuleIds": [
+    "KVK-C01",
+    "KVK-N01",
+    "KVK-S01",
+    "KVK-T01",
+    "KVK-R01"
+  ],
+  "humanRoute": [
+    "Privacy Counsel",
+    "Data Protection/Compliance",
+    "Product Owner"
+  ],
+  "forbiddenClaims": [
+    "onaylıyorum",
+    "onayımı veriyorum",
+    "insan onayı gerekmez",
+    "otomatik olarak onaylandı",
+    "hukuki görüşüm"
+  ]
+}

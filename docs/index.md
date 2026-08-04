@@ -15,9 +15,19 @@ decision methods, enterprise rules, provenance, and human approval boundaries.
 </p>
 
 [Get started](guide.md){ .md-button .md-button--primary }
-[Investment Committee demo](INVESTMENT-COMMITTEE-DEMO.md){ .md-button }
-[Marketing Claims Review demo](MARKETING-CLAIMS-REVIEW-DEMO.md){ .md-button }
-[10-skill catalog](skills/index.md){ .md-button }
+[12-skill catalog](skills/index.md){ .md-button }
+[How the skills are proved](#control-vs-skill-measured-on-12-skills){ .md-button }
+
+## What this project is for
+
+This downstream exists to answer one question with evidence: **does compiling
+approved guidance into an Agent Skill actually change what an assistant produces
+on a real enterprise decision?**
+
+To answer it, the project ships twelve worked decisions at the intersection of
+Türkiye regulation and enterprise operations, runs each one twice, scores both
+runs with a deterministic script, and exports the result to Microsoft 365 Copilot
+Cowork, GitHub Copilot, Microsoft Scout, and Copilot Studio.
 
 ## Upstream and independence
 
@@ -38,44 +48,48 @@ deterministic packages, and evaluation materials.
 - The output is a decision record with explicit gates, provenance, and human
   approval boundaries, not a larger prompt.
 
-## LLM only vs compiled skill
+## Control vs skill, measured on 12 skills
 
-| At a glance | LLM only | LLM + compiled skill |
+Every skill in the catalog was tested the same way. The same locked case, the
+same prompt, one difference: the skill was installed for the second run. Both
+answers are scored by `tools/score_skill_answer.py`, which checks the answer
+against the locked scenario. No model grades the result, so anyone can rerun the
+scoring and get the same numbers.
+
+| Measured across all 12 skills | LLM only | LLM + skill |
 |---|---|---|
-| Business direction | Often sensible | Usually the same sensible direction |
-| Decision form | Free prose | Controlled decision class and structured rows |
-| Rules and evidence | Brief-level references | Rule IDs, evidence IDs, and method sources |
-| Human authority | Generic or inferred | Named roles and explicit approval gates |
+| Mean trace score | 33 / 100 | 95 / 100 |
+| Skills citing zero policy rules | 12 of 12 | 0 of 12 |
+| Skills stating the exact decision class | 0 of 12 | 9 of 12 |
+| Raw answers published | 12 | 12 |
 
-## Current proof
+The control runs are not incompetent. They usually reach a sensible business
+direction. What they cannot do is cite the company rule identifiers, state the
+exact allowed decision class, and route the decision to the named human owner,
+because none of that reaches the model without the skill.
 
-The [Investment Committee demo](INVESTMENT-COMMITTEE-DEMO.md) retains two
-brief-only controls and two explicit-skill treatments. All four chose phased
-automation; the treatments added the exact decision class, policy gates,
-authority route, and traceable sources.
+!!! warning "What this does and does not prove"
 
-The [Marketing Claims Review demo](MARKETING-CLAIMS-REVIEW-DEMO.md) retains a
-model-matched Claude Opus 4.8 control/treatment pair plus a separate Auto
-treatment. Both sides chose the evidence-bounded campaign; skill-assisted runs
-added the exact class, seven auditable rows, rule/evidence mapping, and release
-controls.
-
-!!! warning "What this proves"
-
-    These are signed-in Cowork UX observations, not causal A/B evidence. The
-    treatment prompts explicitly invoked skills and included references that the
-    controls did not receive. Raw first responses, screenshots, manifests, and
-    preliminary rubric rehearsals are published; fixed-model evaluation and
-    blinded human review remain pending.
+    This is a per-skill, single-run comparison against locked scenarios, not a
+    causal benchmark. Each skill has one control run and one skill run on one
+    host, and the treatment run legitimately receives the company policy that
+    the control never sees. Three of the twelve skill runs chose a more cautious
+    decision class than the locked expectation, which is published rather than
+    hidden. The two founding demos additionally carry Microsoft 365 Copilot
+    Cowork screenshots and manifests as host-level UX evidence.
 
 ## Catalog status
 
-The [Türkiye enterprise catalog](skills/index.md) contains **10 new,
-evaluation-ready demos** across privacy, marketing, finance, safety, health,
-payments, and telecom. Their **50 host packages are ready**: five deterministic,
-byte-identical package formats per skill. No Cowork A/B has been run for these 10
-demos, so the catalog makes no claim about model effect, production performance,
-or ROI.
+The [catalog](skills/index.md) contains **12 skills** across privacy, messaging,
+e-commerce, financial crime, banking, competition, safety, health, payments,
+telecom, capital allocation, and advertising review. Each ships 12 locked
+scenarios, a 14-point rubric, a synthetic company policy, official-source
+metadata, a raw control answer, a raw skill answer, and a deterministic
+scorecard.
+
+**60 host packages are published**: five deterministic, byte-identical formats
+per skill for Cowork, GitHub Copilot in VS Code, Microsoft Scout, and Copilot
+Studio (GitHub harness and classic setup).
 
 ## Reference
 

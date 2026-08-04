@@ -1,35 +1,40 @@
-# Türkiye enterprise decision skill catalog
+# Enterprise decision skill catalog
 
 [Türkçe](../tr/skills/index.md)
 
-This catalog lists source skills built by one release factory for 10 enterprise
-decision scenarios in Türkiye. All 10 demos are **ready for source validation
-and evaluation**. Each includes 12 locked scenarios, a 14-point rubric, synthetic
-company policy, and official-source metadata. No Microsoft 365 Copilot Cowork
-A/B has been run for these demos, so the catalog makes no claim about model
-effect, production performance, or ROI.
+This catalog lists 12 enterprise decision skills built by one release
+factory. Each skill ships 12 locked scenarios, a 14-point rubric, a synthetic
+company policy, and official-source metadata.
 
-The release contains 50 downloadable packages across five host formats. They
-were generated deterministically and verified byte-identical after a clean
+For every skill the same case was answered twice: once without the skill and
+once with it installed. The deterministic trace score averaged 33/100
+for the model alone and 95/100 with the skill. Policy-rule citations
+were zero in all 12 control runs. This is not a claim about production
+performance, ROI, or regulatory compliance.
+
+The release contains 60 downloadable packages across five host formats.
+They are generated deterministically and verified byte-identical after a clean
 rebuild.
 
-[SHA256SUMS](../downloads/turkiye-enterprise/SHA256SUMS) ·
-[Third-party notices](../downloads/turkiye-enterprise/THIRD_PARTY_NOTICES.md)
+[SHA256SUMS](../downloads/skills/SHA256SUMS) ·
+[Third-party notices](../downloads/skills/THIRD_PARTY_NOTICES.md)
 
 ## Catalog
 
-| Skill | Domain | Target team | Value in one sentence | Status |
-|---|---|---|---|---|
-| [KVKK privacy notice review](kvkk-aydinlatma-kontrolu.md) | Data protection | Privacy, Compliance, Product | Connects notice, consent, and transfer gaps to a human release gate. | Release |
-| [ETK/IYS message decision](etk-iys-ileti-karari.md) | Commercial electronic messaging | CRM, Compliance, Legal | Reviews campaign audiences through person-channel evidence and suppression gates. | Release |
-| [Discount price review](indirimli-fiyat-denetimi.md) | E-commerce and consumer law | E-commerce, Pricing, Compliance | Joins price history and campaign claims in a traceable release decision. | Release |
-| [MASAK customer acceptance](masak-musteri-kabul.md) | Financial crime prevention | AML, Compliance, Customer Acceptance | Routes identity, beneficial-owner, and source-of-funds gaps to human review. | Release |
-| [BDDK remote customer onboarding](bddk-uzaktan-musteri-edinimi.md) | Banking | Digital Banking, Security, Compliance, Legal | Tests remote onboarding against evidence, control, and go-live gates. | Release |
-| [Competition merger notification](rekabet-birlesme-bildirimi.md) | Mergers and acquisitions | M&A, Finance, Competition Law | Separates preliminary calculation signals from the legal filing decision and closing gate. | Release |
-| [Occupational safety risk assessment](isg-risk-degerlendirme.md) | Occupational health and safety | OHS, Operations, Maintenance, Engineering | Makes change risks visible through participation, control, and commissioning evidence. | Release |
-| [TİTCK medicine promotion](titck-ilac-tanitimi.md) | Pharmaceutical and health communication | Medical, Regulatory, Legal, Marketing | Connects product status, audience, and channel access to human release review. | Release |
-| [Crypto payment gate](kripto-odeme-kapisi.md) | Payment services and crypto-assets | Payments, Compliance, Legal, Product | Reviews a crypto function's role in the payment flow through product-boundary and launch gates. | Release |
-| [BTK communications data](btk-haberlesme-verisi.md) | Telecom and privacy | Telecom Compliance, Privacy, DPO, CRM | Constrains location and traffic-data use through purpose, consent, and retention gates. | Release |
+| Skill | Domain | Target team | Value in one sentence | LLM only | LLM + skill |
+|---|---|---|---|---|---|
+| [KVKK privacy notice review](kvkk-aydinlatma-kontrolu.md) | Data protection | Privacy, compliance, and product teams | Connects notice, consent, and transfer gaps to a human release gate. | 10/100 | 100/100 |
+| [Commercial message decision (ETK/IYS)](etk-iys-ileti-karari.md) | Commercial electronic messaging | CRM, compliance, and legal teams | Reviews a campaign audience against person-channel evidence and a suppression gate. | 20/100 | 80/100 |
+| [Discount price claim review](indirimli-fiyat-denetimi.md) | E-commerce and consumer law | E-commerce, pricing, and compliance teams | Meets price history and campaign claims in a traceable release decision. | 20/100 | 100/100 |
+| [AML customer acceptance (MASAK)](masak-musteri-kabul.md) | Financial crime prevention | AML, compliance, and onboarding teams | Routes identity, beneficial-owner, and source-of-funds gaps to human review. | 20/100 | 100/100 |
+| [Remote customer onboarding (BDDK)](bddk-uzaktan-musteri-edinimi.md) | Banking | Digital banking, security, compliance, and legal teams | Tests a remote onboarding flow against evidence, control, and go-live gates. | 40/100 | 80/100 |
+| [Merger notification review](rekabet-birlesme-bildirimi.md) | Mergers and acquisitions | M&A, finance, and competition law teams | Separates preliminary indicators from the legal notification and closing gate. | 40/100 | 100/100 |
+| [OHS risk assessment: from change to commissioning gate](isg-risk-degerlendirme.md) | Occupational health and safety | OHS, operations, maintenance, and engineering teams | Makes change risk visible through participation, control, and commissioning evidence. | 40/100 | 100/100 |
+| [Pharmaceutical promotion review: audience and release gate](titck-ilac-tanitimi.md) | Pharmaceutical and health communication | Medical, regulatory, legal, and marketing teams | Ties product status, audience, and channel reach to a human release review. | 40/100 | 100/100 |
+| [Crypto payment gateway review](kripto-odeme-kapisi.md) | Payment services and crypto assets | Payments, compliance, legal, and product teams | Reviews the role of crypto in a payment flow against product and launch gates. | 40/100 | 100/100 |
+| [Telecom communication data review](btk-haberlesme-verisi.md) | Telecom and privacy | Telecom compliance, privacy, DPO, and CRM teams | Bounds location and traffic data use by purpose, consent, and retention gates. | 40/100 | 80/100 |
+| [Investment committee appraisal](investment-committee.md) | Capital allocation | CFO, COO, CIO, and investment committee members | Turns a capital brief into a gated, evidence-cited committee decision card. | 40/100 | 100/100 |
+| [Marketing claims review](marketing-claims-review.md) | Marketing and advertising compliance | Marketing, legal, and compliance teams | Checks advertising claims against substantiation, disclosure, and release controls. | 40/100 | 100/100 |
 
 ## Source and license boundary
 

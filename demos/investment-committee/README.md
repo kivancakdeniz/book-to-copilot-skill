@@ -27,9 +27,9 @@ of the phased option.
 ```text
 sources/
   source-manifest.json
-  asteria-capital-allocation-policy.md
+  company-policy.md
   warehouse-automation-options.md
-  investment-committee-brief.md
+  case-brief.md
 evaluation/
   chat-only-prompt.md
   chat-only-treatment-prompt.md

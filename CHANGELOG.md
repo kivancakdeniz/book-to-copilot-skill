@@ -10,8 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - **Markdown section-index detection** — local anchor lists with at least three
   links that resolve to real ATX headings are recognized as a table of contents.
-  External-link lists remain excluded. The behavior was discovered and verified
-  through the pinned *The Art of Command Line* Copilot E2E experiment.
+  External-link lists remain excluded.
 - **Investment Committee enterprise demo** — an OGL-attributed Green Book 2026
   source manifest, fictional Asteria capital policy and warehouse options, 12
   locked scenarios, scoring rubric, Cowork custom skill, presenter kit, and

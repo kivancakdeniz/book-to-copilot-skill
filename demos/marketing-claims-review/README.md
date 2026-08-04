@@ -32,7 +32,7 @@ the Product Evidence Owner.
 ```text
 sources/       Public-source manifest and fictional Lumena source pack
 evaluation/    Cowork prompts, formal prompt, locked rubric, and 12 scenarios
-cowork/skill/  Six-file Cowork skill source
+skill/  Six-file Cowork skill source
 presenter/     Setup, prompts, checkpoints, talk track, and objections
 ```
 

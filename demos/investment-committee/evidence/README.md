@@ -20,3 +20,11 @@ source terms permit the intended use. Repository MIT terms cover authored
 annotations and metadata in this folder only; third-party UI and marks retain
 their owners' rights. See the root `THIRD_PARTY_NOTICES.md` and
 `docs/RESPONSIBLE-USE.md`.
+## Package name history
+
+The Cowork screenshots and `metadata/cowork-runs.json` in this folder were
+captured while the uploaded package still used the earlier skill name
+(`investment-committee-copilot`). The shipped skill now uses the canonical catalog slug, so a
+freshly built package will not match the historical package hash recorded here.
+The recorded hash is kept as provenance for the runs that were actually
+executed, not as a checksum for the current download.

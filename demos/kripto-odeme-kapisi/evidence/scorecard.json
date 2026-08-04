@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "demoId": "kripto-odeme-kapisi",
+  "scenarioId": "KRP-01",
+  "gateWeights": {
+    "decisionClass": 20,
+    "recommendedOption": 20,
+    "ruleCitations": 40,
+    "humanRoute": 10,
+    "forbiddenClaims": 10
+  },
+  "maxTraceScore": 100,
+  "runs": [
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "control",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "outputPath": "evidence/outputs/control-1.md",
+      "promptPath": "evaluation/control-prompt.md",
+      "runId": "control-1",
+      "outputSha256": "55600c52d718538bde70c080057e9d0fb188494f5f1d69f03f17f18f1910865b",
+      "traceScore": 40,
+      "ruleCitationCount": 0,
+      "ruleCitationTotal": 6,
+      "gates": {
+        "decisionClass": {
+          "passed": false,
+          "score": 0
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": false,
+          "score": 0,
+          "cited": [],
+          "missing": [
+            "KRP-A01",
+            "KRP-O01",
+            "KRP-I01",
+            "KRP-Y01",
+            "KRP-R01",
+            "KRP-M01"
+          ]
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    },
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "treatment",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "outputPath": "evidence/outputs/treatment-1.md",
+      "promptPath": "evaluation/treatment-prompt.md",
+      "runId": "treatment-1",
+      "outputSha256": "ca33f9ef293c9e14972f5939fa06fcf6e30ab0969317fadb30a132f5fae8079b",
+      "traceScore": 100,
+      "ruleCitationCount": 6,
+      "ruleCitationTotal": 6,
+      "gates": {
+        "decisionClass": {
+          "passed": true,
+          "score": 20
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": true,
+          "score": 40,
+          "cited": [
+            "KRP-A01",
+            "KRP-O01",
+            "KRP-I01",
+            "KRP-Y01",
+            "KRP-R01",
+            "KRP-M01"
+          ],
+          "missing": []
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    }
+  ],
+  "summary": {
+    "controlTraceScore": 40,
+    "treatmentTraceScore": 100,
+    "traceScoreDelta": 60,
+    "controlRuleCitations": 0,
+    "treatmentRuleCitations": 6,
+    "ruleCitationTotal": 6
+  }
+}

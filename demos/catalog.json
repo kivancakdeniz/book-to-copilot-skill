@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "1.0.0",
+  "entries": [
+    {
+      "id": "kvkk-aydinlatma-kontrolu",
+      "article": "docs/skills/kvkk-aydinlatma-kontrolu.md",
+      "articleTr": "docs/tr/skills/kvkk-aydinlatma-kontrolu.md",
+      "status": "release",
+      "en": {
+        "title": "KVKK privacy notice review",
+        "sector": "Data protection",
+        "audience": "Privacy, compliance, and product teams",
+        "oneLineValue": "Connects notice, consent, and transfer gaps to a human release gate."
+      },
+      "tr": {
+        "title": "KVKK aydınlatma kontrolü",
+        "sector": "Veri koruma",
+        "audience": "Privacy, Compliance ve ürün ekipleri",
+        "oneLineValue": "Aydınlatma, rıza ve aktarım boşluklarını insan yayın kapısına bağlar."
+      }
+    },
+    {
+      "id": "etk-iys-ileti-karari",
+      "article": "docs/skills/etk-iys-ileti-karari.md",
+      "articleTr": "docs/tr/skills/etk-iys-ileti-karari.md",
+      "status": "release",
+      "en": {
+        "title": "Commercial message decision (ETK/IYS)",
+        "sector": "Commercial electronic messaging",
+        "audience": "CRM, compliance, and legal teams",
+        "oneLineValue": "Reviews a campaign audience against person-channel evidence and a suppression gate."
+      },
+      "tr": {
+        "title": "ETK/IYS ileti kararı",
+        "sector": "Ticari elektronik ileti",
+        "audience": "CRM, Compliance ve Legal ekipleri",
+        "oneLineValue": "Kampanya kitlesini kişi-kanal kanıtı ve bastırma kapısıyla inceler."
+      }
+    },
+    {
+      "id": "indirimli-fiyat-denetimi",
+      "article": "docs/skills/indirimli-fiyat-denetimi.md",
+      "articleTr": "docs/tr/skills/indirimli-fiyat-denetimi.md",
+      "status": "release",
+      "en": {
+        "title": "Discount price claim review",
+        "sector": "E-commerce and consumer law",
+        "audience": "E-commerce, pricing, and compliance teams",
+        "oneLineValue": "Meets price history and campaign claims in a traceable release decision."
+      },
+      "tr": {
+        "title": "İndirimli fiyat denetimi",
+        "sector": "E-ticaret ve tüketici hukuku",
+        "audience": "E-ticaret, fiyatlandırma ve Compliance ekipleri",
+        "oneLineValue": "Fiyat geçmişi ile kampanya iddiasını izlenebilir bir yayın kararında buluşturur."
+      }
+    },
+    {
+      "id": "masak-musteri-kabul",
+      "article": "docs/skills/masak-musteri-kabul.md",
+      "articleTr": "docs/tr/skills/masak-musteri-kabul.md",
+      "status": "release",
+      "en": {
+        "title": "AML customer acceptance (MASAK)",
+        "sector": "Financial crime prevention",
+        "audience": "AML, compliance, and onboarding teams",
+        "oneLineValue": "Routes identity, beneficial-owner, and source-of-funds gaps to human review."
+      },
+      "tr": {
+        "title": "MASAK müşteri kabul",
+        "sector": "Finansal suçlarla mücadele",
+        "audience": "AML, Compliance ve müşteri kabul ekipleri",
+        "oneLineValue": "Kimlik, nihai faydalanıcı ve fon kaynağı boşluklarını insan incelemesine yönlendirir."
+      }
+    },
+    {
+      "id": "bddk-uzaktan-musteri-edinimi",
+      "article": "docs/skills/bddk-uzaktan-musteri-edinimi.md",
+      "articleTr": "docs/tr/skills/bddk-uzaktan-musteri-edinimi.md",
+      "status": "release",
+      "en": {
+        "title": "Remote customer onboarding (BDDK)",
+        "sector": "Banking",
+        "audience": "Digital banking, security, compliance, and legal teams",
+        "oneLineValue": "Tests a remote onboarding flow against evidence, control, and go-live gates."
+      },
+      "tr": {
+        "title": "BDDK uzaktan müşteri edinimi",
+        "sector": "Bankacılık",
+        "audience": "Dijital bankacılık, güvenlik, Uyum ve Hukuk ekipleri",
+        "oneLineValue": "Uzaktan edinim akışını kanıt, kontrol ve canlıya geçiş kapılarıyla sınar."
+      }
+    },
+    {
+      "id": "rekabet-birlesme-bildirimi",
+      "article": "docs/skills/rekabet-birlesme-bildirimi.md",
+      "articleTr": "docs/tr/skills/rekabet-birlesme-bildirimi.md",
+      "status": "release",
+      "en": {
+        "title": "Merger notification review",
+        "sector": "Mergers and acquisitions",
+        "audience": "M&A, finance, and competition law teams",
+        "oneLineValue": "Separates preliminary indicators from the legal notification and closing gate."
+      },
+      "tr": {
+        "title": "Rekabet birleşme bildirimi",
+        "sector": "Birleşme ve devralmalar",
+        "audience": "M&A, Finans ve Rekabet Hukuku ekipleri",
+        "oneLineValue": "Ön hesaplama göstergelerini hukuki bildirim kararı ve kapanış kapısından ayırır."
+      }
+    },
+    {
+      "id": "isg-risk-degerlendirme",
+      "article": "docs/skills/isg-risk-degerlendirme.md",
+      "articleTr": "docs/tr/skills/isg-risk-degerlendirme.md",
+      "status": "release",
+      "en": {
+        "title": "OHS risk assessment: from change to commissioning gate",
+        "sector": "Occupational health and safety",
+        "audience": "OHS, operations, maintenance, and engineering teams",
+        "oneLineValue": "Makes change risk visible through participation, control, and commissioning evidence."
+      },
+      "tr": {
+        "title": "İSG risk değerlendirmesi: değişiklikten devreye alma kapısına",
+        "sector": "İş sağlığı ve güvenliği",
+        "audience": "İSG, operasyon, bakım ve mühendislik ekipleri",
+        "oneLineValue": "Değişiklik risklerini katılım, kontrol ve devreye alma kanıtlarıyla görünür kılar."
+      }
+    },
+    {
+      "id": "titck-ilac-tanitimi",
+      "article": "docs/skills/titck-ilac-tanitimi.md",
+      "articleTr": "docs/tr/skills/titck-ilac-tanitimi.md",
+      "status": "release",
+      "en": {
+        "title": "Pharmaceutical promotion review: audience and release gate",
+        "sector": "Pharmaceutical and health communication",
+        "audience": "Medical, regulatory, legal, and marketing teams",
+        "oneLineValue": "Ties product status, audience, and channel reach to a human release review."
+      },
+      "tr": {
+        "title": "TİTCK ilaç tanıtımı: hedef kitle ve yayın kapısı",
+        "sector": "İlaç ve sağlık iletişimi",
+        "audience": "Medical, Regulatory, Legal ve pazarlama ekipleri",
+        "oneLineValue": "Ürün statüsü, hedef kitle ve kanal erişimini insan yayın incelemesine bağlar."
+      }
+    },
+    {
+      "id": "kripto-odeme-kapisi",
+      "article": "docs/skills/kripto-odeme-kapisi.md",
+      "articleTr": "docs/tr/skills/kripto-odeme-kapisi.md",
+      "status": "release",
+      "en": {
+        "title": "Crypto payment gateway review",
+        "sector": "Payment services and crypto assets",
+        "audience": "Payments, compliance, legal, and product teams",
+        "oneLineValue": "Reviews the role of crypto in a payment flow against product and launch gates."
+      },
+      "tr": {
+        "title": "Kripto ödeme kapısı",
+        "sector": "Ödeme hizmetleri ve kripto varlıklar",
+        "audience": "Payments, Compliance, Legal ve ürün ekipleri",
+        "oneLineValue": "Kripto işlevinin ödeme akışındaki rolünü ürün sınırı ve lansman kapısıyla inceler."
+      }
+    },
+    {
+      "id": "btk-haberlesme-verisi",
+      "article": "docs/skills/btk-haberlesme-verisi.md",
+      "articleTr": "docs/tr/skills/btk-haberlesme-verisi.md",
+      "status": "release",
+      "en": {
+        "title": "Telecom communication data review",
+        "sector": "Telecom and privacy",
+        "audience": "Telecom compliance, privacy, DPO, and CRM teams",
+        "oneLineValue": "Bounds location and traffic data use by purpose, consent, and retention gates."
+      },
+      "tr": {
+        "title": "BTK haberleşme verisi",
+        "sector": "Telekom ve mahremiyet",
+        "audience": "Telekom Compliance, Privacy, DPO ve CRM ekipleri",
+        "oneLineValue": "Konum ve trafik verisi kullanımını amaç, rıza ve saklama kapılarıyla sınırlar."
+      }
+    },
+    {
+      "id": "investment-committee",
+      "article": "docs/skills/investment-committee.md",
+      "articleTr": "docs/tr/skills/investment-committee.md",
+      "status": "release",
+      "en": {
+        "title": "Investment committee appraisal",
+        "sector": "Capital allocation",
+        "audience": "CFO, COO, CIO, and investment committee members",
+        "oneLineValue": "Turns a capital brief into a gated, evidence-cited committee decision card."
+      },
+      "tr": {
+        "title": "Yatırım komitesi değerlendirmesi",
+        "sector": "Sermaye tahsisi",
+        "audience": "CFO, COO, CIO ve yatırım komitesi üyeleri",
+        "oneLineValue": "Sermaye brifingini kapılı ve kanıt atıflı bir komite karar kartına dönüştürür."
+      }
+    },
+    {
+      "id": "marketing-claims-review",
+      "article": "docs/skills/marketing-claims-review.md",
+      "articleTr": "docs/tr/skills/marketing-claims-review.md",
+      "status": "release",
+      "en": {
+        "title": "Marketing claims review",
+        "sector": "Marketing and advertising compliance",
+        "audience": "Marketing, legal, and compliance teams",
+        "oneLineValue": "Checks advertising claims against substantiation, disclosure, and release controls."
+      },
+      "tr": {
+        "title": "Pazarlama iddiaları incelemesi",
+        "sector": "Pazarlama ve reklam uyumu",
+        "audience": "Pazarlama, Legal ve Compliance ekipleri",
+        "oneLineValue": "Reklam iddialarını dayanak, ifşa ve yayın kontrolleriyle sınar."
+      }
+    }
+  ]
+}

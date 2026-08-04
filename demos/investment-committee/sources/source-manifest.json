@@ -15,34 +15,38 @@
       "licenseUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
       "attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
       "role": "Public appraisal method; not Asteria policy",
-      "tracked": false
+      "type": "external-method",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuseBasis": "Open Government Licence v3.0 permits reuse with the required attribution.",
+      "reuseCaveat": "Only source metadata and a short attributed method summary are reused; verify the current official text and any third-party material named in the source."
     },
     {
       "id": "asteria-capital-policy",
       "title": "Asteria Capital Allocation Policy",
-      "publisher": "Fictional demo corpus",
-      "path": "asteria-capital-allocation-policy.md",
+      "path": "company-policy.md",
       "license": "MIT",
-      "role": "Synthetic company decision thresholds and authority matrix",
-      "tracked": true
+      "sha256": "ded3079abfaaa0802eaa11a798204d0cd1c36b2f848e848ae99c3705f0e01561",
+      "type": "synthetic-policy",
+      "synthetic": true
     },
     {
       "id": "warehouse-options",
       "title": "Northstar Warehouse Automation Options",
-      "publisher": "Fictional demo corpus",
       "path": "warehouse-automation-options.md",
       "license": "MIT",
-      "role": "Synthetic options and precomputed investment facts",
-      "tracked": true
+      "sha256": "2b4e0e583a17d54837c9196fb1dcb700b07c6b3eb02acaba3774b93cac561b5a",
+      "type": "synthetic-case",
+      "synthetic": true
     },
     {
       "id": "committee-brief",
       "title": "Investment Committee Brief IC-0247",
-      "publisher": "Fictional demo corpus",
-      "path": "investment-committee-brief.md",
+      "path": "case-brief.md",
       "license": "MIT",
-      "role": "Frozen scenario facts supplied to every experimental arm",
-      "tracked": true
+      "sha256": "82a20b05c3dc5a212142f1a5319b5a344fa89d6f1e02093dac879673734f76fa",
+      "type": "synthetic-case",
+      "synthetic": true
     }
   ]
 }

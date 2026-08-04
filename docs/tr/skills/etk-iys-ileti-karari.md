@@ -2,19 +2,51 @@
 
 [English](../../skills/etk-iys-ileti-karari.md)
 
-## LLM only vs LLM + skill - beklenen fark
+## Kontrol ve skill: ölçülen
 
-| Brief-only LLM | Derlenmiş skill |
-|---|---|
-| Serbest anlatım ve eksik kontrol listesi üretebilir | İzinli karar sınıfları, üç seçenek ve kural kimlikleriyle yapılandırır |
-| Eksik kanıtı varsayım ile doldurma riski taşır | Eksik olguyu `bilinmiyor` tutar ve insan karar sahibine yönlendirir |
-| Genel bir uyum veya operasyon önerisi verir | Yayın, canlıya geçiş, işlem veya kapanış kapısını açıkça uygular |
+İki çalıştırma aynı kilitli vakayı aynı istemle yanıtladı. Tek fark, ikinci
+çalıştırmada skill'in kurulu olmasıdır. Puanlama modele değil, kilitli senaryoya
+bakan deterministik bir betiğe dayanır; sayıları herkes yeniden üretebilir.
 
-Bu tablo tasarım hipotezidir; bu 10 yeni skill için Cowork A/B henüz
-çalıştırılmadı. Ölçülecek metrikler: exact karar/seçenek, gerekli kural geri
-çağırma, desteksiz iddia sayısı, insan yetki sınırı ve yanıt uzunluğu. ROI veya
-üretim performansı iddia edilmez.
+| Yönetişim kapısı | Yalnız LLM | LLM + skill |
+| --- | --- | --- |
+| Atıf yapılan politika kuralı | 0 / 4 | 4 / 4 |
+| Tam karar sınıfı yazıldı | hayır | hayır |
+| Adlandırılmış seçenek yazıldı | hayır | evet |
+| İnsan onay rotası adlandırıldı | evet | evet |
+| Otonom yetki iddiası yok | evet | evet |
+| **İz puanı** | **20 / 100** | **80 / 100** |
 
+Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Tarih: 2026-08-04 · Senaryo: `ETK-E01`
+
+[Kontrol yanıtı](../../assets/skills/etk-iys-ileti-karari/outputs/control-1.txt) · [Skill yanıtı](../../assets/skills/etk-iys-ileti-karari/outputs/treatment-1.txt) · [Skor kartı](../../assets/skills/etk-iys-ileti-karari/scorecard.json)
+
+Yeniden üretmek için:
+
+```bash
+python tools/score_skill_answer.py scorecard --demo demos/etk-iys-ileti-karari
+```
+
+Kontrol çalıştırması 4 politika kuralının 0 tanesine atıf yaptı skill çalıştırması 4 tanesine atıf yaptı. Skill çalıştırması kilitli beklenen sınıf (`do-not-send`) yerine daha temkinli bir sınıf seçti; sınıf çağrısı insan incelemesinde kalır.
+
+Sınır: koşul başına tek çalıştırma, tek kilitli senaryo ve tek host. Bu tablo
+makine ile denetlenebilir alt kümedir; 14 puanlık insan rubriği
+`demos/etk-iys-ileti-karari/evaluation/rubric.json` dosyasındadır.
+
+## Kaynaktan skill'e
+
+Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
+
+| Aşama | Üretilen içerik |
+| --- | --- |
+| Resmî kaynak (yalnız metadata) | [6563 sayılı Elektronik Ticaretin Düzenlenmesi Hakkında Kanun](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6563.pdf) — Mevzuat Bilgi Sistemi |
+| Resmî kaynak (yalnız metadata) | [Ticari İletişim ve Ticari Elektronik İletiler Hakkında Yönetmelik](https://www.resmigazete.gov.tr/eskiler/2015/07/20150715-4.htm) — Resmî Gazete |
+| Kamuya açık yöntem özeti | `demos/etk-iys-ileti-karari/skill/public-method.md` |
+| Sentetik şirket politikası | `demos/etk-iys-ileti-karari/sources/company-policy.md` |
+| Sentetik vaka | `demos/etk-iys-ileti-karari/sources/case-brief.md` |
+| Kilitli değerlendirme | 12 senaryo ve 14 puanlık rubrik: `demos/etk-iys-ileti-karari/evaluation/` |
+| Taşınabilir skill | `demos/etk-iys-ileti-karari/skill/SKILL.md` ve beş destek dosyası |
+| Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
 ## Bir bakışta iş sorusu
 
@@ -69,11 +101,11 @@ sunulmaz; biçimsel yürütme ve insan incelemesi beklenmektedir.
 Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
 SHA-256 manifestine bağlanmıştır:
 
-- [Cowork skill paketi](../../downloads/turkiye-enterprise/etk-iys-ileti-karari/etk-iys-ileti-karari-cowork.skill)
-- [Copilot VS Code ZIP](../../downloads/turkiye-enterprise/etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-vscode.zip)
-- [Scout ZIP](../../downloads/turkiye-enterprise/etk-iys-ileti-karari/etk-iys-ileti-karari-scout.zip)
-- [Copilot Studio GitHub harness ZIP](../../downloads/turkiye-enterprise/etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-studio-github-harness.zip)
-- [Copilot Studio classic setup ZIP](../../downloads/turkiye-enterprise/etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-studio-classic-setup.zip)
+- [Cowork skill paketi](../../downloads/skills/etk-iys-ileti-karari/etk-iys-ileti-karari-cowork.skill)
+- [Copilot VS Code ZIP](../../downloads/skills/etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-vscode.zip)
+- [Scout ZIP](../../downloads/skills/etk-iys-ileti-karari/etk-iys-ileti-karari-scout.zip)
+- [Copilot Studio GitHub harness ZIP](../../downloads/skills/etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-studio-github-harness.zip)
+- [Copilot Studio classic setup ZIP](../../downloads/skills/etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-studio-classic-setup.zip)
 
 Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
 doğrudan ajan içe aktarma paketi değildir.

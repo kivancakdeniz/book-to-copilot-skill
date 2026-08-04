@@ -1,35 +1,39 @@
-# Türkiye kurumsal karar skill kataloğu
+# Kurumsal karar skill kataloğu
 
 [English](../../skills/index.md)
 
-Bu katalog, Türkiye'deki on kurumsal karar senaryosu için ortak yayın üretim
-hattına bağlı kaynak skill'leri listeler. On demo **kaynak doğrulamasına ve
-değerlendirmeye hazırdır**: her biri 12 kilitli senaryo, 14 puanlık rubrik,
-sentetik şirket politikası ve resmî kaynak üst verisi taşır. Bu on demo için
-henüz Microsoft 365 Copilot Cowork A/B çalışması yapılmamıştır; katalog model
-etkisi, üretim performansı veya ROI sonucu iddia etmez.
+Bu katalog, tek bir yayın fabrikasıyla üretilen 12 kurumsal karar skill'ini
+listeler. Her skill 12 kilitli senaryo, 14 puanlık rubrik, sentetik şirket
+politikası ve resmî kaynak metadatası içerir.
 
-Beş çalışma ortamı biçiminde toplam 50 paket deterministik üretilmiş, temiz
-yeniden derleme ile bayt düzeyinde özdeş olduğu doğrulanmış ve indirilebilir hale
-getirilmiştir.
+Her skill için aynı vaka iki kez yanıtlandı: bir kez skill olmadan, bir kez
+skill kurulu. Deterministik iz puanı ortalaması yalnız LLM'de 33/100,
+LLM + skill'de 95/100 oldu. Politika kuralı atfı 12 kontrol
+çalıştırmasının hepsinde sıfırdı. Bu bir üretim performansı, ROI veya uygunluk
+iddiası değildir.
 
-[SHA256SUMS](../../downloads/turkiye-enterprise/SHA256SUMS) ·
-[Üçüncü taraf bildirimleri](../../downloads/turkiye-enterprise/THIRD_PARTY_NOTICES.md)
+Yayın, beş host biçiminde 60 indirilebilir paket içerir. Paketler
+deterministik üretilir ve temiz yeniden derlemede byte-identical doğrulanır.
+
+[SHA256SUMS](../../downloads/skills/SHA256SUMS) ·
+[Üçüncü taraf bildirimleri](../../downloads/skills/THIRD_PARTY_NOTICES.md)
 
 ## Katalog
 
-| Skill | Sektör | Hedef ekip | Tek cümlede değer | Durum |
-|---|---|---|---|---|
-| [KVKK aydınlatma kontrolü](kvkk-aydinlatma-kontrolu.md) | Veri koruma | Mahremiyet, Uyum, Ürün | Aydınlatma, rıza ve aktarım boşluklarını insan yayın kapısına bağlar. | Yayıma hazır |
-| [ETK/IYS ileti kararı](etk-iys-ileti-karari.md) | Ticari elektronik ileti | CRM, Uyum, Hukuk | Kampanya kitlesini kişi-kanal kanıtı ve bastırma kapısıyla inceler. | Yayıma hazır |
-| [İndirimli fiyat denetimi](indirimli-fiyat-denetimi.md) | E-ticaret ve tüketici hukuku | E-ticaret, Fiyatlandırma, Uyum | Fiyat geçmişi ile kampanya iddiasını izlenebilir bir yayın kararında buluşturur. | Yayıma hazır |
-| [MASAK müşteri kabul](masak-musteri-kabul.md) | Finansal suçlarla mücadele | AML, Uyum, Müşteri Kabul | Kimlik, nihai faydalanıcı ve fon kaynağı boşluklarını insan incelemesine yönlendirir. | Yayıma hazır |
-| [BDDK uzaktan müşteri edinimi](bddk-uzaktan-musteri-edinimi.md) | Bankacılık | Dijital Bankacılık, Güvenlik, Uyum, Hukuk | Uzaktan edinim akışını kanıt, kontrol ve canlıya geçiş kapılarıyla sınar. | Yayıma hazır |
-| [Rekabet birleşme bildirimi](rekabet-birlesme-bildirimi.md) | Birleşme ve devralmalar | M&A, Finans, Rekabet Hukuku | Ön hesaplama göstergelerini hukuki bildirim kararı ve kapanış kapısından ayırır. | Yayıma hazır |
-| [İSG risk değerlendirmesi](isg-risk-degerlendirme.md) | İş sağlığı ve güvenliği | İSG, Operasyon, Bakım, Mühendislik | Değişiklik risklerini katılım, kontrol ve devreye alma kanıtlarıyla görünür kılar. | Yayıma hazır |
-| [TİTCK ilaç tanıtımı](titck-ilac-tanitimi.md) | İlaç ve sağlık iletişimi | Tıbbi, Ruhsatlandırma, Hukuk, Pazarlama | Ürün statüsü, hedef kitle ve kanal erişimini insan yayın incelemesine bağlar. | Yayıma hazır |
-| [Kripto ödeme kapısı](kripto-odeme-kapisi.md) | Ödeme hizmetleri ve kripto varlıklar | Ödemeler, Uyum, Hukuk, Ürün | Kripto işlevinin ödeme akışındaki rolünü ürün sınırı ve lansman kapısıyla inceler. | Yayıma hazır |
-| [BTK haberleşme verisi](btk-haberlesme-verisi.md) | Telekom ve mahremiyet | Telekom Uyumu, Mahremiyet, DPO, CRM | Konum ve trafik verisi kullanımını amaç, rıza ve saklama kapılarıyla sınırlar. | Yayıma hazır |
+| Skill | Alan | Hedef ekip | Tek cümlede değer | Yalnız LLM | LLM + skill |
+|---|---|---|---|---|---|
+| [KVKK aydınlatma kontrolü](kvkk-aydinlatma-kontrolu.md) | Veri koruma | Privacy, Compliance ve ürün ekipleri | Aydınlatma, rıza ve aktarım boşluklarını insan yayın kapısına bağlar. | 10/100 | 100/100 |
+| [ETK/IYS ileti kararı](etk-iys-ileti-karari.md) | Ticari elektronik ileti | CRM, Compliance ve Legal ekipleri | Kampanya kitlesini kişi-kanal kanıtı ve bastırma kapısıyla inceler. | 20/100 | 80/100 |
+| [İndirimli fiyat denetimi](indirimli-fiyat-denetimi.md) | E-ticaret ve tüketici hukuku | E-ticaret, fiyatlandırma ve Compliance ekipleri | Fiyat geçmişi ile kampanya iddiasını izlenebilir bir yayın kararında buluşturur. | 20/100 | 100/100 |
+| [MASAK müşteri kabul](masak-musteri-kabul.md) | Finansal suçlarla mücadele | AML, Compliance ve müşteri kabul ekipleri | Kimlik, nihai faydalanıcı ve fon kaynağı boşluklarını insan incelemesine yönlendirir. | 20/100 | 100/100 |
+| [BDDK uzaktan müşteri edinimi](bddk-uzaktan-musteri-edinimi.md) | Bankacılık | Dijital bankacılık, güvenlik, Uyum ve Hukuk ekipleri | Uzaktan edinim akışını kanıt, kontrol ve canlıya geçiş kapılarıyla sınar. | 40/100 | 80/100 |
+| [Rekabet birleşme bildirimi](rekabet-birlesme-bildirimi.md) | Birleşme ve devralmalar | M&A, Finans ve Rekabet Hukuku ekipleri | Ön hesaplama göstergelerini hukuki bildirim kararı ve kapanış kapısından ayırır. | 40/100 | 100/100 |
+| [İSG risk değerlendirmesi: değişiklikten devreye alma kapısına](isg-risk-degerlendirme.md) | İş sağlığı ve güvenliği | İSG, operasyon, bakım ve mühendislik ekipleri | Değişiklik risklerini katılım, kontrol ve devreye alma kanıtlarıyla görünür kılar. | 40/100 | 100/100 |
+| [TİTCK ilaç tanıtımı: hedef kitle ve yayın kapısı](titck-ilac-tanitimi.md) | İlaç ve sağlık iletişimi | Medical, Regulatory, Legal ve pazarlama ekipleri | Ürün statüsü, hedef kitle ve kanal erişimini insan yayın incelemesine bağlar. | 40/100 | 100/100 |
+| [Kripto ödeme kapısı](kripto-odeme-kapisi.md) | Ödeme hizmetleri ve kripto varlıklar | Payments, Compliance, Legal ve ürün ekipleri | Kripto işlevinin ödeme akışındaki rolünü ürün sınırı ve lansman kapısıyla inceler. | 40/100 | 100/100 |
+| [BTK haberleşme verisi](btk-haberlesme-verisi.md) | Telekom ve mahremiyet | Telekom Compliance, Privacy, DPO ve CRM ekipleri | Konum ve trafik verisi kullanımını amaç, rıza ve saklama kapılarıyla sınırlar. | 40/100 | 80/100 |
+| [Yatırım komitesi değerlendirmesi](investment-committee.md) | Sermaye tahsisi | CFO, COO, CIO ve yatırım komitesi üyeleri | Sermaye brifingini kapılı ve kanıt atıflı bir komite karar kartına dönüştürür. | 40/100 | 100/100 |
+| [Pazarlama iddiaları incelemesi](marketing-claims-review.md) | Pazarlama ve reklam uyumu | Pazarlama, Legal ve Compliance ekipleri | Reklam iddialarını dayanak, ifşa ve yayın kontrolleriyle sınar. | 40/100 | 100/100 |
 
 ## Kaynak ve lisans sınırı
 

@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "demoId": "indirimli-fiyat-denetimi",
+  "scenarioId": "FYT-01",
+  "gateWeights": {
+    "decisionClass": 20,
+    "recommendedOption": 20,
+    "ruleCitations": 40,
+    "humanRoute": 10,
+    "forbiddenClaims": 10
+  },
+  "maxTraceScore": 100,
+  "runs": [
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "control",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "outputPath": "evidence/outputs/control-1.md",
+      "promptPath": "evaluation/control-prompt.md",
+      "runId": "control-1",
+      "outputSha256": "7a203bcd69d2edf0f8be47140742c1d28144c92de1a604f51d01a545bd58776e",
+      "traceScore": 20,
+      "ruleCitationCount": 0,
+      "ruleCitationTotal": 7,
+      "gates": {
+        "decisionClass": {
+          "passed": false,
+          "score": 0
+        },
+        "recommendedOption": {
+          "passed": false,
+          "score": 0
+        },
+        "ruleCitations": {
+          "passed": false,
+          "score": 0,
+          "cited": [],
+          "missing": [
+            "FYT-H01",
+            "FYT-B01",
+            "FYT-O01",
+            "FYT-C01",
+            "FYT-A01",
+            "FYT-R01",
+            "FYT-M01"
+          ]
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    },
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "treatment",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "outputPath": "evidence/outputs/treatment-1.md",
+      "promptPath": "evaluation/treatment-prompt.md",
+      "runId": "treatment-1",
+      "outputSha256": "4a4f830b0ecad6cbcc180a65f0823b8cba4ec867f37510ce34be9ef44ca6bb4e",
+      "traceScore": 100,
+      "ruleCitationCount": 7,
+      "ruleCitationTotal": 7,
+      "gates": {
+        "decisionClass": {
+          "passed": true,
+          "score": 20
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": true,
+          "score": 40,
+          "cited": [
+            "FYT-H01",
+            "FYT-B01",
+            "FYT-O01",
+            "FYT-C01",
+            "FYT-A01",
+            "FYT-R01",
+            "FYT-M01"
+          ],
+          "missing": []
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    }
+  ],
+  "summary": {
+    "controlTraceScore": 20,
+    "treatmentTraceScore": 100,
+    "traceScoreDelta": 80,
+    "controlRuleCitations": 0,
+    "treatmentRuleCitations": 7,
+    "ruleCitationTotal": 7
+  }
+}

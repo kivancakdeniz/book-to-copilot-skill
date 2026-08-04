@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "demoId": "bddk-uzaktan-musteri-edinimi",
+  "scenarioId": "BDK-01",
+  "gateWeights": {
+    "decisionClass": 20,
+    "recommendedOption": 20,
+    "ruleCitations": 40,
+    "humanRoute": 10,
+    "forbiddenClaims": 10
+  },
+  "maxTraceScore": 100,
+  "runs": [
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "control",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "outputPath": "evidence/outputs/control-1.md",
+      "promptPath": "evaluation/control-prompt.md",
+      "runId": "control-1",
+      "outputSha256": "01f76f67818faad0ccb50253f4a4e69e3704b76f08e0274af9fb53653ab7eccb",
+      "traceScore": 40,
+      "ruleCitationCount": 0,
+      "ruleCitationTotal": 7,
+      "gates": {
+        "decisionClass": {
+          "passed": false,
+          "score": 0
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": false,
+          "score": 0,
+          "cited": [],
+          "missing": [
+            "BDK-I01",
+            "BDK-V01",
+            "BDK-L01",
+            "BDK-K01",
+            "BDK-A01",
+            "BDK-R01",
+            "BDK-M01"
+          ]
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    },
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "treatment",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "outputPath": "evidence/outputs/treatment-1.md",
+      "promptPath": "evaluation/treatment-prompt.md",
+      "runId": "treatment-1",
+      "outputSha256": "d6bec1dd0118fa28fdb3468ef549f9cac898805931318d5583fad084c0416527",
+      "traceScore": 80,
+      "ruleCitationCount": 7,
+      "ruleCitationTotal": 7,
+      "gates": {
+        "decisionClass": {
+          "passed": false,
+          "score": 0
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": true,
+          "score": 40,
+          "cited": [
+            "BDK-I01",
+            "BDK-V01",
+            "BDK-L01",
+            "BDK-K01",
+            "BDK-A01",
+            "BDK-R01",
+            "BDK-M01"
+          ],
+          "missing": []
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    }
+  ],
+  "summary": {
+    "controlTraceScore": 40,
+    "treatmentTraceScore": 80,
+    "traceScoreDelta": 40,
+    "controlRuleCitations": 0,
+    "treatmentRuleCitations": 7,
+    "ruleCitationTotal": 7
+  }
+}

@@ -1,7 +1,7 @@
 # Demo prompts
 
 Use each prompt in a fresh signed-in Cowork conversation with the identical
-fictional `campaign-brief.md` attachment. Keep first responses. These runs show
+fictional `case-brief.md` attachment. Keep first responses. These runs show
 UX behavior only; they are not the formal benchmark.
 
 ## Control

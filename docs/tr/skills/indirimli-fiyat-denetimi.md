@@ -2,19 +2,50 @@
 
 [English](../../skills/indirimli-fiyat-denetimi.md)
 
-## LLM only vs LLM + skill - beklenen fark
+## Kontrol ve skill: ölçülen
 
-| Brief-only LLM | Derlenmiş skill |
-|---|---|
-| Serbest anlatım ve eksik kontrol listesi üretebilir | İzinli karar sınıfları, üç seçenek ve kural kimlikleriyle yapılandırır |
-| Eksik kanıtı varsayım ile doldurma riski taşır | Eksik olguyu `bilinmiyor` tutar ve insan karar sahibine yönlendirir |
-| Genel bir uyum veya operasyon önerisi verir | Yayın, canlıya geçiş, işlem veya kapanış kapısını açıkça uygular |
+İki çalıştırma aynı kilitli vakayı aynı istemle yanıtladı. Tek fark, ikinci
+çalıştırmada skill'in kurulu olmasıdır. Puanlama modele değil, kilitli senaryoya
+bakan deterministik bir betiğe dayanır; sayıları herkes yeniden üretebilir.
 
-Bu tablo tasarım hipotezidir; bu 10 yeni skill için Cowork A/B henüz
-çalıştırılmadı. Ölçülecek metrikler: exact karar/seçenek, gerekli kural geri
-çağırma, desteksiz iddia sayısı, insan yetki sınırı ve yanıt uzunluğu. ROI veya
-üretim performansı iddia edilmez.
+| Yönetişim kapısı | Yalnız LLM | LLM + skill |
+| --- | --- | --- |
+| Atıf yapılan politika kuralı | 0 / 7 | 7 / 7 |
+| Tam karar sınıfı yazıldı | hayır | evet |
+| Adlandırılmış seçenek yazıldı | hayır | evet |
+| İnsan onay rotası adlandırıldı | evet | evet |
+| Otonom yetki iddiası yok | evet | evet |
+| **İz puanı** | **20 / 100** | **100 / 100** |
 
+Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Tarih: 2026-08-04 · Senaryo: `FYT-01`
+
+[Kontrol yanıtı](../../assets/skills/indirimli-fiyat-denetimi/outputs/control-1.txt) · [Skill yanıtı](../../assets/skills/indirimli-fiyat-denetimi/outputs/treatment-1.txt) · [Skor kartı](../../assets/skills/indirimli-fiyat-denetimi/scorecard.json)
+
+Yeniden üretmek için:
+
+```bash
+python tools/score_skill_answer.py scorecard --demo demos/indirimli-fiyat-denetimi
+```
+
+Kontrol çalıştırması 7 politika kuralının 0 tanesine atıf yaptı skill çalıştırması 7 tanesine atıf yaptı. Tam karar sınıfını (`revise-price-claim`) yalnız skill çalıştırması yazdı.
+
+Sınır: koşul başına tek çalıştırma, tek kilitli senaryo ve tek host. Bu tablo
+makine ile denetlenebilir alt kümedir; 14 puanlık insan rubriği
+`demos/indirimli-fiyat-denetimi/evaluation/rubric.json` dosyasındadır.
+
+## Kaynaktan skill'e
+
+Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
+
+| Aşama | Üretilen içerik |
+| --- | --- |
+| Resmî kaynak (yalnız metadata) | [Fiyat bilgisi içeren reklamlar ile indirimli satış reklamları ve ticari uygulamaları hakkında kılavuz](https://tuketici.ticaret.gov.tr/haberler/fiyat-bilgisi-iceren-reklamlar-ile-indirimli-satis-reklamlari-ve-ticari-uygulamalari-hakkinda-kilavuz-guncellendi) — Ticaret Bakanlığı |
+| Kamuya açık yöntem özeti | `demos/indirimli-fiyat-denetimi/skill/public-method.md` |
+| Sentetik şirket politikası | `demos/indirimli-fiyat-denetimi/sources/company-policy.md` |
+| Sentetik vaka | `demos/indirimli-fiyat-denetimi/sources/case-brief.md` |
+| Kilitli değerlendirme | 12 senaryo ve 14 puanlık rubrik: `demos/indirimli-fiyat-denetimi/evaluation/` |
+| Taşınabilir skill | `demos/indirimli-fiyat-denetimi/skill/SKILL.md` ve beş destek dosyası |
+| Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
 ## Bir bakışta
 
@@ -57,10 +88,14 @@ Bu beceri hukuki görüş değildir. İnsanlar karar verir; kampanyayı onaylama
 
 ## İndirmeler
 
-- [Cowork skill](../../downloads/turkiye-enterprise/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-cowork.skill)
-- [GitHub Copilot for VS Code ZIP](../../downloads/turkiye-enterprise/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-vscode.zip)
-- [Scout ZIP](../../downloads/turkiye-enterprise/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-scout.zip)
-- [Copilot Studio GitHub harness ZIP](../../downloads/turkiye-enterprise/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-studio-github-harness.zip)
-- [Copilot Studio classic setup ZIP](../../downloads/turkiye-enterprise/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-studio-classic-setup.zip)
+Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
+SHA-256 manifestine bağlanmıştır:
 
-Classic setup ZIP doğrudan içe aktarım paketi değildir; dosyalar Copilot Studio classic ortamında insan tarafından uygulanacak kurulum malzemeleridir.
+- [Cowork skill paketi](../../downloads/skills/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-cowork.skill)
+- [Copilot VS Code ZIP](../../downloads/skills/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-vscode.zip)
+- [Scout ZIP](../../downloads/skills/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-scout.zip)
+- [Copilot Studio GitHub harness ZIP](../../downloads/skills/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-studio-github-harness.zip)
+- [Copilot Studio classic setup ZIP](../../downloads/skills/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-studio-classic-setup.zip)
+
+Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
+doğrudan ajan içe aktarma paketi değildir.

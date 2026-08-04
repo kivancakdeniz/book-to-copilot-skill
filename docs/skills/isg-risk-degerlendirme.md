@@ -2,17 +2,51 @@
 
 [Türkçe](../tr/skills/isg-risk-degerlendirme.md)
 
-## LLM only vs LLM + skill: expected difference
+## Control vs skill: measured
 
-| Brief-only LLM | Compiled skill |
-|---|---|
-| May produce an open-ended narrative or an incomplete checklist | Structures the review around the allowed decision classes, three options, and rule IDs |
-| May fill evidence gaps with assumptions | Keeps unsupported facts `bilinmiyor` and routes them to the human decision owner |
-| May offer a general compliance or operational recommendation | Applies an explicit commissioning, operation, or closure gate |
+Both runs answered the same locked case with the same prompt. The only
+difference is that the second run had the skill installed. Scoring is done by a
+deterministic script against the locked scenario, not by a model, so anyone can
+reproduce these numbers.
 
-This comparison is a design hypothesis only. Cowork A/B evaluation has not yet
-been run for these 10 new skills. No ROI, production-performance, or model-impact
-claim is made.
+| Governance gate | LLM only | LLM + skill |
+| --- | --- | --- |
+| Policy rules cited | 0 / 7 | 7 / 7 |
+| Exact decision class stated | no | yes |
+| Named option stated | yes | yes |
+| Human approval route named | yes | yes |
+| No autonomous-authority claim | yes | yes |
+| **Trace score** | **40 / 100** | **100 / 100** |
+
+Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Captured: 2026-08-04 · Scenario: `ISG-01`
+
+[Control answer](../assets/skills/isg-risk-degerlendirme/outputs/control-1.txt) · [Skill answer](../assets/skills/isg-risk-degerlendirme/outputs/treatment-1.txt) · [Scorecard](../assets/skills/isg-risk-degerlendirme/scorecard.json)
+
+Reproduce:
+
+```bash
+python tools/score_skill_answer.py scorecard --demo demos/isg-risk-degerlendirme
+```
+
+The control run cited 0 of 7 policy rules and the skill run cited 7. Only the skill run stated the exact decision class (`renew-assessment`).
+
+Limits: one run per condition, one locked scenario, and a single host. This table
+is the machine-checkable subset; the 14-point human rubric lives in
+`demos/isg-risk-degerlendirme/evaluation/rubric.json`.
+
+## From source to skill
+
+This chain shows exactly which content produced the skill.
+
+| Stage | Produced content |
+| --- | --- |
+| Official source (metadata only) | [İş Sağlığı ve Güvenliği Risk Değerlendirmesi Yönetmeliği](https://www.resmigazete.gov.tr/eskiler/2012/12/20121229-13.htm) — T.C. Resmî Gazete |
+| Public method summary | `demos/isg-risk-degerlendirme/skill/public-method.md` |
+| Synthetic company policy | `demos/isg-risk-degerlendirme/sources/company-policy.md` |
+| Synthetic case | `demos/isg-risk-degerlendirme/sources/case-brief.md` |
+| Locked evaluation | 12 scenarios and a 14-point rubric: `demos/isg-risk-degerlendirme/evaluation/` |
+| Portable skill | `demos/isg-risk-degerlendirme/skill/SKILL.md` plus five companions |
+| Host packages | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness and classic) |
 
 ## Scenario
 
@@ -75,19 +109,17 @@ The company policy, case, roles, and all operational records are synthetic.
 
 ## Downloads
 
-- [Microsoft 365 Copilot Cowork skill](../downloads/turkiye-enterprise/isg-risk-degerlendirme/isg-risk-degerlendirme-cowork.skill)
-- [GitHub Copilot for VS Code package](../downloads/turkiye-enterprise/isg-risk-degerlendirme/isg-risk-degerlendirme-copilot-vscode.zip)
-- [Scout package](../downloads/turkiye-enterprise/isg-risk-degerlendirme/isg-risk-degerlendirme-scout.zip)
-- [Copilot Studio GitHub harness package](../downloads/turkiye-enterprise/isg-risk-degerlendirme/isg-risk-degerlendirme-copilot-studio-github-harness.zip)
-- [Copilot Studio classic setup package](../downloads/turkiye-enterprise/isg-risk-degerlendirme/isg-risk-degerlendirme-copilot-studio-classic-setup.zip)
+These packages are generated deterministically by the shared release factory
+and are bound to the SHA-256 manifest:
 
-!!! warning "Copilot Studio classic setup"
+- [Cowork skill package](../downloads/skills/isg-risk-degerlendirme/isg-risk-degerlendirme-cowork.skill)
+- [Copilot VS Code ZIP](../downloads/skills/isg-risk-degerlendirme/isg-risk-degerlendirme-copilot-vscode.zip)
+- [Scout ZIP](../downloads/skills/isg-risk-degerlendirme/isg-risk-degerlendirme-scout.zip)
+- [Copilot Studio GitHub harness ZIP](../downloads/skills/isg-risk-degerlendirme/isg-risk-degerlendirme-copilot-studio-github-harness.zip)
+- [Copilot Studio classic setup ZIP](../downloads/skills/isg-risk-degerlendirme/isg-risk-degerlendirme-copilot-studio-classic-setup.zip)
 
-    The classic setup ZIP is guided manual setup material, not a directly
-    importable skill, agent, or solution, and it does not lock runtime behaviour.
-    A human must review and configure its instructions, knowledge sources,
-    connections, permissions, and publishing settings separately in the target
-    environment.
+The classic setup ZIP is a package of setup materials and instructions for
+Copilot Studio; it is not a direct agent import package.
 
 ## Evaluation status
 

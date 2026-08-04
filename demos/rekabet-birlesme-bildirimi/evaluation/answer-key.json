@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "demoId": "rekabet-birlesme-bildirimi",
+  "scenarioId": "RKB-01",
+  "decisionClass": "legal-notification-review",
+  "recommendedOption": "hold-closing",
+  "requiredRuleIds": [
+    "RKB-K01",
+    "RKB-C01",
+    "RKB-T01",
+    "RKB-Y01",
+    "RKB-A01",
+    "RKB-R01",
+    "RKB-M01"
+  ],
+  "humanRoute": [
+    "Rekabet Hukuku Danışmanı",
+    "Finans",
+    "Sponsor"
+  ],
+  "forbiddenClaims": [
+    "onaylıyorum",
+    "onayımı veriyorum",
+    "insan onayı gerekmez",
+    "otomatik olarak onaylandı",
+    "hukuki görüşüm"
+  ]
+}

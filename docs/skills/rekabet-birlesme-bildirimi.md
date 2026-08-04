@@ -2,30 +2,52 @@
 
 [Türkçe](../tr/skills/rekabet-birlesme-bildirimi.md)
 
-## Control vs skill-assisted LLM: expected difference only
+## Control vs skill: measured
 
-| Control: brief-only LLM | Skill-assisted LLM |
-|---|---|
-| May produce an open-ended narrative or an incomplete checklist | Structures the response around allowed decision classes, three options, and rule IDs |
-| May fill evidence gaps with assumptions | Keeps missing facts `unknown` and routes them to a human decision-maker |
-| May offer general compliance or operational guidance | Explicitly applies the publication, go-live, transaction, or closing gate |
+Both runs answered the same locked case with the same prompt. The only
+difference is that the second run had the skill installed. Scoring is done by a
+deterministic script against the locked scenario, not by a model, so anyone can
+reproduce these numbers.
 
-This comparison is a design hypothesis about the expected difference only.
-Cowork A/B execution for these 10 new skills, including the 12 locked scenarios
-and the 14-point rubric, is still pending. Planned metrics are exact decision
-and option match, required-rule recall, unsupported-claim count, observance of
-human authority, and response length. No ROI or production-performance claim is made.
+| Governance gate | LLM only | LLM + skill |
+| --- | --- | --- |
+| Policy rules cited | 0 / 7 | 7 / 7 |
+| Exact decision class stated | no | yes |
+| Named option stated | yes | yes |
+| Human approval route named | yes | yes |
+| No autonomous-authority claim | yes | yes |
+| **Trace score** | **40 / 100** | **100 / 100** |
 
-In a fictional acquisition, the transaction produces a lasting change of
-control. Finance supplied a precomputed turnover test, meaning a turnover
-calculation completed before the skill review, and labeled it `met`, meaning
-Finance's stated test condition was satisfied. The target's technology-
-undertaking status remains `unknown`, meaning the available evidence does not
-establish that status. Signing is imminent and the parties want to close. This
-portable skill structures the route to human counsel and the closing gate
-without calculating turnover or making the legal filing decision. Here,
-"filing" means submitting a formal merger notification to the competent
-authority.
+Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Captured: 2026-08-04 · Scenario: `RKB-01`
+
+[Control answer](../assets/skills/rekabet-birlesme-bildirimi/outputs/control-1.txt) · [Skill answer](../assets/skills/rekabet-birlesme-bildirimi/outputs/treatment-1.txt) · [Scorecard](../assets/skills/rekabet-birlesme-bildirimi/scorecard.json)
+
+Reproduce:
+
+```bash
+python tools/score_skill_answer.py scorecard --demo demos/rekabet-birlesme-bildirimi
+```
+
+The control run cited 0 of 7 policy rules and the skill run cited 7. Only the skill run stated the exact decision class (`legal-notification-review`).
+
+Limits: one run per condition, one locked scenario, and a single host. This table
+is the machine-checkable subset; the 14-point human rubric lives in
+`demos/rekabet-birlesme-bildirimi/evaluation/rubric.json`.
+
+## From source to skill
+
+This chain shows exactly which content produced the skill.
+
+| Stage | Produced content |
+| --- | --- |
+| Official source (metadata only) | [Birleşme ve Devralma Sayılan Haller ve Kontrol Kavramı Hakkında Kılavuz](https://www.rekabet.gov.tr/Dosya/kilavuzlar/birlesme-ve-devralma-sayilan-haller-ve-kontrol-kavrami-hakkinda-kilavuz.pdf) — Rekabet Kurumu |
+| Official source (metadata only) | [Birleşme ve Devralma İşlemlerinde Ciro Hesaplanmasına İlişkin Kılavuz](https://www.rekabet.gov.tr/Dosya/bd-ciro-kilavuzu-20260504120128549.pdf) — Rekabet Kurumu |
+| Public method summary | `demos/rekabet-birlesme-bildirimi/skill/public-method.md` |
+| Synthetic company policy | `demos/rekabet-birlesme-bildirimi/sources/company-policy.md` |
+| Synthetic case | `demos/rekabet-birlesme-bildirimi/sources/case-brief.md` |
+| Locked evaluation | 12 scenarios and a 14-point rubric: `demos/rekabet-birlesme-bildirimi/evaluation/` |
+| Portable skill | `demos/rekabet-birlesme-bildirimi/skill/SKILL.md` plus five companions |
+| Host packages | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness and classic) |
 
 ## Business impact at a glance
 
@@ -52,16 +74,17 @@ Humans make the final legal and transaction decisions.
 
 ## Downloads
 
-- [Cowork skill](../downloads/turkiye-enterprise/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-cowork.skill)
-- [GitHub Copilot for VS Code package](../downloads/turkiye-enterprise/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-vscode.zip)
-- [Scout package](../downloads/turkiye-enterprise/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-scout.zip)
-- [Copilot Studio GitHub harness package](../downloads/turkiye-enterprise/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-studio-github-harness.zip)
-- [Copilot Studio Classic setup package](../downloads/turkiye-enterprise/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-studio-classic-setup.zip)
+These packages are generated deterministically by the shared release factory
+and are bound to the SHA-256 manifest:
 
-The Copilot Studio Classic package is not a directly importable solution. It
-provides setup files and a mapping guide for human implementation in a Classic
-environment; permissions, connections, and publication settings must be
-verified separately after setup.
+- [Cowork skill package](../downloads/skills/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-cowork.skill)
+- [Copilot VS Code ZIP](../downloads/skills/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-vscode.zip)
+- [Scout ZIP](../downloads/skills/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-scout.zip)
+- [Copilot Studio GitHub harness ZIP](../downloads/skills/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-studio-github-harness.zip)
+- [Copilot Studio classic setup ZIP](../downloads/skills/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-studio-classic-setup.zip)
+
+The classic setup ZIP is a package of setup materials and instructions for
+Copilot Studio; it is not a direct agent import package.
 
 ## Evaluation
 

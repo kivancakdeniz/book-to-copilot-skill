@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "demoId": "btk-haberlesme-verisi",
+  "scenarioId": "BTK-01",
+  "decisionClass": "stop-processing",
+  "recommendedOption": "consent-first-redesign",
+  "requiredRuleIds": [
+    "BTK-V01",
+    "BTK-A01",
+    "BTK-R01",
+    "BTK-S01",
+    "BTK-Y01",
+    "BTK-G01",
+    "BTK-M01"
+  ],
+  "humanRoute": [
+    "Privacy Counsel",
+    "Telecom Compliance",
+    "DPO"
+  ],
+  "forbiddenClaims": [
+    "onaylıyorum",
+    "onayımı veriyorum",
+    "insan onayı gerekmez",
+    "otomatik olarak onaylandı",
+    "hukuki görüşüm"
+  ]
+}

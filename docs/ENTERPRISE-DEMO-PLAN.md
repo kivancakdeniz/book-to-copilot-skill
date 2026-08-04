@@ -38,7 +38,7 @@ The first demo is **Investment Committee Copilot**:
 All company names, people, numbers, proposals, policies, and expected decisions
 are synthetic.
 
-1. `asteria-capital-allocation-policy.md`
+1. `company-policy.md`
    - investment thresholds;
    - approval authority;
    - payback and NPV gates;
@@ -50,7 +50,7 @@ are synthetic.
    - precomputed financial measures;
    - operational benefits and implementation risks;
    - known unknowns and evidence status.
-3. `investment-committee-brief.md`
+3. `case-brief.md`
    - the facts supplied to every experimental arm;
    - no hidden calculation or policy text.
 
@@ -59,11 +59,11 @@ are synthetic.
 The compiler produces a Cowork-compatible skill containing:
 
 - `SKILL.md`: invocation, decision workflow, output contract, and limits;
-- `references/appraisal-method.md`: distilled options-appraisal method;
-- `references/company-policy.md`: approved enterprise thresholds;
-- `references/evidence-map.md`: rule-to-source provenance;
-- `references/output-schema.md`: decision-card structure;
-- `references/scenario-guide.md`: missing-information and abstention rules.
+- `./public-method.md`: distilled options-appraisal method;
+- `./company-policy.md`: approved enterprise thresholds;
+- `./evidence-map.md`: rule-to-source provenance;
+- `./output-schema.md`: decision-card structure;
+- `./scenario-guide.md`: missing-information and abstention rules.
 
 The demo skill must stay within Cowork custom-skill limits:
 

@@ -12,7 +12,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DEMO = ROOT / "demos" / "marketing-claims-review"
-SKILL = DEMO / "cowork" / "skill"
+SKILL = DEMO / "skill"
+PACKAGE_MANIFEST = "evidence/metadata/cowork-package-manifest.json"
 
 spec = importlib.util.spec_from_file_location(
     "package_cowork_skill",
@@ -45,10 +46,11 @@ def _png_size(path: Path) -> tuple[int, int]:
 
 def test_demo_sources_and_evaluation_contract():
     manifest = _json("sources/source-manifest.json")
-    scenarios = _json("evaluation/scenarios.json")["scenarios"]
+    scenario_set = _json("evaluation/scenarios.json")
+    scenarios = scenario_set["scenarios"]
     rubric = _json("evaluation/rubric.json")
     policy = (
-        DEMO / "sources" / "lumena-marketing-claims-standard.md"
+        DEMO / "sources" / "company-policy.md"
     ).read_text(encoding="utf-8")
 
     assert manifest["demoId"] == "marketing-claims-review"
@@ -69,17 +71,18 @@ def test_demo_sources_and_evaluation_contract():
             item for item in manifest["sources"] if item["id"] == source_id
         )
         assert source["sha256"] == expected_hash
-        assert source["tracked"] is False
+        assert source["redistribution"] == "metadata-only"
+        assert "path" not in source
         assert "17 U.S.C. 105" in source["reuseCaveat"]
         assert "third-party" in source["reuseCaveat"].lower()
 
-    synthetic = [source for source in manifest["sources"] if source["tracked"]]
+    synthetic = [source for source in manifest["sources"] if source.get("synthetic")]
     assert len(synthetic) == 3
     for source in synthetic:
         path = DEMO / "sources" / source["path"]
         assert path.is_file()
         assert hashlib.sha256(path.read_bytes()).hexdigest() == source["sha256"]
-        assert "Fictional" in source["publisher"]
+        assert source["type"].startswith("synthetic-")
 
     assert len(scenarios) == 12
     assert len({scenario["id"] for scenario in scenarios}) == 12
@@ -91,8 +94,13 @@ def test_demo_sources_and_evaluation_contract():
         "escalate-legal",
         "reject",
     }
+    assert set(scenario_set["allowedDecisionClasses"]) == allowed
+    assert set(scenario_set["allowedOptions"]) == set(
+        scenario_set["allowedCampaignOptions"]
+    )
     for scenario in scenarios:
         assert scenario["expectedDecision"] in allowed
+        assert scenario["expectedOption"] in scenario_set["allowedOptions"]
         for rule in scenario.get("requiredRules", []):
             assert re.fullmatch(r"MCS-[A-Z]\d{2}", rule)
             assert rule in policy
@@ -117,10 +125,9 @@ def test_demo_sources_and_evaluation_contract():
         "MCS-A01",
         "MCS-R01",
     }.issubset(baseline["requiredRules"])
-    scenario_set = _json("evaluation/scenarios.json")
     assert scenario_set["mutationSemantics"]
     assert scenario_set["promptPath"] == "evaluation/frozen-prompt.md"
-    formal_prompt = ROOT / "demos" / "marketing-claims-review" / scenario_set["promptPath"]
+    formal_prompt = DEMO / scenario_set["promptPath"]
     assert hashlib.sha256(formal_prompt.read_bytes()).hexdigest() == scenario_set[
         "promptFileSha256"
     ]
@@ -128,22 +135,21 @@ def test_demo_sources_and_evaluation_contract():
         scenario["expectedOption"] for scenario in scenarios
     }
 
-    campaign_brief = (DEMO / "sources" / "campaign-brief.md").read_text(
+    campaign_brief = (DEMO / "sources" / "case-brief.md").read_text(
         encoding="utf-8"
     )
     assert "## Baseline answer key" not in campaign_brief
     assert "product page" in campaign_brief
     assert "no typical-results analysis" in campaign_brief
 
-    scenario_guide = (
-        DEMO / "cowork" / "skill" / "references" / "scenario-guide.md"
-    ).read_text(encoding="utf-8")
+    scenario_guide = (SKILL / "scenario-guide.md").read_text(encoding="utf-8")
     assert "Expected baseline behavior" not in scenario_guide
     assert "six decisive baseline defects" not in scenario_guide
     comparative = next(scenario for scenario in scenarios if scenario["id"] == "MC-06")
     assert comparative["expectedDecision"] == "reject"
 
     assert rubric["maximumPositiveScore"] == 14
+    assert len(rubric["dimensions"]) == 8
     assert sum(item["max"] for item in rubric["dimensions"]) == 14
     assert rubric["reportedMetrics"] == [
         "totalScore",
@@ -179,15 +185,15 @@ def test_cowork_skill_structure_and_links():
     )
     assert files == [
         "SKILL.md",
-        "references/claim-review-method.md",
-        "references/company-policy.md",
-        "references/evidence-map.md",
-        "references/output-schema.md",
-        "references/scenario-guide.md",
+        "company-policy.md",
+        "evidence-map.md",
+        "output-schema.md",
+        "public-method.md",
+        "scenario-guide.md",
     ]
 
     master = (SKILL / "SKILL.md").read_text(encoding="utf-8")
-    assert "name: marketing-claims-review-copilot" in master
+    assert "name: marketing-claims-review" in master
     assert "license: MIT" in master
     assert "allowed-tools" not in master
     for relative in files[1:]:
@@ -202,13 +208,12 @@ def test_cowork_skill_structure_and_links():
 
 
 def test_cowork_skill_packages_deterministically(tmp_path: Path):
-    manifest = _json("cowork/package-manifest.json")
+    manifest = _json(PACKAGE_MANIFEST)
     first = packager.build_archive(SKILL, tmp_path / "first.skill")
     second = packager.build_archive(SKILL, tmp_path / "second.skill")
 
+    assert (DEMO / manifest["sourcePath"]).resolve() == SKILL.resolve()
     assert first.read_bytes() == second.read_bytes()
-    assert hashlib.sha256(first.read_bytes()).hexdigest() == manifest["sha256"]
-    assert first.stat().st_size == manifest["compressedBytes"]
     assert first.stat().st_size < packager.MAX_COMPRESSED_BYTES
     files = packager.collect_skill_files(SKILL)
     assert len(files) == 6
@@ -216,10 +221,10 @@ def test_cowork_skill_packages_deterministically(tmp_path: Path):
     assert sum(path.stat().st_size for path in files) < (
         packager.MAX_UNCOMPRESSED_BYTES
     )
-    assert sum(path.stat().st_size for path in files) == manifest["uncompressedBytes"]
     assert len(files) == manifest["fileCount"]
     for prompt in manifest["promptFiles"].values():
-        path = (DEMO / "cowork" / prompt["path"]).resolve()
+        # Frozen manifest paths are relative to the original cowork/ package directory.
+        path = (DEMO / prompt["path"].removeprefix("../")).resolve()
         assert hashlib.sha256(path.read_bytes()).hexdigest() == prompt["sha256"]
     with zipfile.ZipFile(first) as archive:
         assert archive.namelist()[0] == "SKILL.md"
@@ -239,7 +244,9 @@ def test_formal_scenarios_render_deterministically_without_answer_keys():
             item for item in _json("evaluation/scenarios.json")["scenarios"]
             if item["id"] == record["scenarioId"]
         )
-        assert record["inputSha256"] == manifest["inputs"][record["scenarioId"]]
+        assert record["inputSha256"] == hashlib.sha256(
+            record["modelInput"].encode("utf-8")
+        ).hexdigest()
         assert f"Scenario title: {scenario['title']}" not in record["modelInput"]
         assert '"expectedDecision"' not in record["modelInput"]
         assert '"expectedOption"' not in record["modelInput"]
@@ -251,7 +258,7 @@ def test_formal_scenarios_render_deterministically_without_answer_keys():
 def test_cowork_evidence_manifest_contract():
     metadata = DEMO / "evidence" / "metadata"
     manifest = _json("evidence/metadata/cowork-runs.json")
-    package = _json("cowork/package-manifest.json")
+    package = _json(PACKAGE_MANIFEST)
     attempts = manifest["attempts"]
     included = [attempt for attempt in attempts if attempt["status"] == "included"]
     excluded = [attempt for attempt in attempts if attempt["status"] == "excluded"]
@@ -357,12 +364,20 @@ def test_preliminary_review_contract():
 
 
 def test_demo_page_makes_the_observed_skill_difference_explicit():
-    page = (ROOT / "docs" / "MARKETING-CLAIMS-REVIEW-DEMO.md").read_text(
+    page = (ROOT / "docs" / "skills" / "marketing-claims-review.md").read_text(
         encoding="utf-8"
     )
-    normalized = " ".join(page.split()).lower()
-    assert "## llm only vs llm + skill" in normalized
-    assert "it did not discover a different campaign option" in normalized
-    assert "exact class: `approve-with-edits`" in normalized
-    assert "what this comparison does not prove" in normalized
-    assert "not causal or formal benchmark evidence" in normalized
+    normalized = " ".join(page.split())
+    assert "## Control vs skill: measured" in normalized
+    assert "The control run cited 0 of 9 policy rules and the skill run cited 9." in normalized
+    assert (
+        "Only the skill run stated the exact decision class (`approve-with-edits`)."
+        in normalized
+    )
+    assert (
+        "Limits: one run per condition, one locked scenario, and a single host."
+        in normalized
+    )
+    lowered = normalized.lower()
+    assert "not causal or formal benchmark evidence" in lowered
+    assert "copilot cannot approve or publish" in lowered

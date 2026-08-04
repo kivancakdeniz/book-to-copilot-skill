@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "demoId": "titck-ilac-tanitimi",
+  "scenarioId": "TTK-01",
+  "decisionClass": "do-not-publish",
+  "recommendedOption": "professional-channel-review",
+  "requiredRuleIds": [
+    "TTK-P01",
+    "TTK-A01",
+    "TTK-B01",
+    "TTK-U01",
+    "TTK-Y01",
+    "TTK-R01",
+    "TTK-M01"
+  ],
+  "humanRoute": [
+    "Medical",
+    "Regulatory",
+    "Legal"
+  ],
+  "forbiddenClaims": [
+    "onaylıyorum",
+    "onayımı veriyorum",
+    "insan onayı gerekmez",
+    "otomatik olarak onaylandı",
+    "hukuki görüşüm"
+  ]
+}

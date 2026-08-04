@@ -58,11 +58,7 @@ extra:
 
 nav:
   - Home: index.md
-  - Enterprise Demo:
-      - Investment Committee: INVESTMENT-COMMITTEE-DEMO.md
-      - Marketing Claims Review: MARKETING-CLAIMS-REVIEW-DEMO.md
-      - Delivery Plan: ENTERPRISE-DEMO-PLAN.md
-  - Türkiye Enterprise Skills:
+  - Enterprise Skills:
       - Overview: skills/index.md
       - KVKK Notice Review: skills/kvkk-aydinlatma-kontrolu.md
       - ETK / IYS Messaging: skills/etk-iys-ileti-karari.md
@@ -74,11 +70,13 @@ nav:
       - TİTCK Promotion Review: skills/titck-ilac-tanitimi.md
       - Crypto Payment Gate: skills/kripto-odeme-kapisi.md
       - Telecom Data Review: skills/btk-haberlesme-verisi.md
-      - Third-party Notices: downloads/turkiye-enterprise/THIRD_PARTY_NOTICES.md
+      - Investment Committee: skills/investment-committee.md
+      - Marketing Claims Review: skills/marketing-claims-review.md
+      - Third-party Notices: downloads/skills/THIRD_PARTY_NOTICES.md
+  - Method:
+      - Delivery Plan: ENTERPRISE-DEMO-PLAN.md
   - Türkçe:
       - Ana Sayfa: tr/index.md
-      - Yatırım Komitesi: tr/demos/investment-committee.md
-      - Pazarlama İddiaları: tr/demos/marketing-claims-review.md
       - Skill Kataloğu: tr/skills/index.md
       - KVKK Aydınlatma: tr/skills/kvkk-aydinlatma-kontrolu.md
       - ETK / IYS İleti: tr/skills/etk-iys-ileti-karari.md
@@ -90,8 +88,8 @@ nav:
       - TİTCK İlaç Tanıtımı: tr/skills/titck-ilac-tanitimi.md
       - Kripto Ödeme Kapısı: tr/skills/kripto-odeme-kapisi.md
       - BTK Haberleşme Verisi: tr/skills/btk-haberlesme-verisi.md
-  - Experiments:
-      - Command Line E2E: E2E-THE-ART-OF-COMMAND-LINE.md
+      - Yatırım Komitesi: tr/skills/investment-committee.md
+      - Pazarlama İddiaları: tr/skills/marketing-claims-review.md
   - Guide: guide.md
   - Downstream: DOWNSTREAM.md
   - Architecture: ARCHITECTURE.md

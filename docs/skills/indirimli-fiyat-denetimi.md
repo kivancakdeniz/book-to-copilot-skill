@@ -2,21 +2,51 @@
 
 [Türkçe](../tr/skills/indirimli-fiyat-denetimi.md)
 
-## Expected difference: LLM only vs LLM + skill
+## Control vs skill: measured
 
-| Brief-only large language model (LLM) | Compiled skill |
-|---|---|
-| May produce free-form prose and an incomplete checklist | Structures the review around permitted decision classes, three options, and rule identifiers |
-| May fill evidence gaps with assumptions | Keeps missing facts as `bilinmiyor` and routes them to a human decision-maker |
-| May provide a general compliance or operational recommendation | Explicitly applies the publication, go-live, transaction, or closure gate |
+Both runs answered the same locked case with the same prompt. The only
+difference is that the second run had the skill installed. Scoring is done by a
+deterministic script against the locked scenario, not by a model, so anyone can
+reproduce these numbers.
 
-This comparison is an expected design hypothesis, not an observed result. A
-Cowork A/B evaluation has not yet been run for these 10 new skills. Planned
-metrics are exact decision and option selection, required-rule recall,
-unsupported-claim count, adherence to human authority limits, and response
-length. No measured return on investment (ROI) or production-performance claim
-is made.
+| Governance gate | LLM only | LLM + skill |
+| --- | --- | --- |
+| Policy rules cited | 0 / 7 | 7 / 7 |
+| Exact decision class stated | no | yes |
+| Named option stated | no | yes |
+| Human approval route named | yes | yes |
+| No autonomous-authority claim | yes | yes |
+| **Trace score** | **20 / 100** | **100 / 100** |
 
+Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Captured: 2026-08-04 · Scenario: `FYT-01`
+
+[Control answer](../assets/skills/indirimli-fiyat-denetimi/outputs/control-1.txt) · [Skill answer](../assets/skills/indirimli-fiyat-denetimi/outputs/treatment-1.txt) · [Scorecard](../assets/skills/indirimli-fiyat-denetimi/scorecard.json)
+
+Reproduce:
+
+```bash
+python tools/score_skill_answer.py scorecard --demo demos/indirimli-fiyat-denetimi
+```
+
+The control run cited 0 of 7 policy rules and the skill run cited 7. Only the skill run stated the exact decision class (`revise-price-claim`).
+
+Limits: one run per condition, one locked scenario, and a single host. This table
+is the machine-checkable subset; the 14-point human rubric lives in
+`demos/indirimli-fiyat-denetimi/evaluation/rubric.json`.
+
+## From source to skill
+
+This chain shows exactly which content produced the skill.
+
+| Stage | Produced content |
+| --- | --- |
+| Official source (metadata only) | [Fiyat bilgisi içeren reklamlar ile indirimli satış reklamları ve ticari uygulamaları hakkında kılavuz](https://tuketici.ticaret.gov.tr/haberler/fiyat-bilgisi-iceren-reklamlar-ile-indirimli-satis-reklamlari-ve-ticari-uygulamalari-hakkinda-kilavuz-guncellendi) — Ticaret Bakanlığı |
+| Public method summary | `demos/indirimli-fiyat-denetimi/skill/public-method.md` |
+| Synthetic company policy | `demos/indirimli-fiyat-denetimi/sources/company-policy.md` |
+| Synthetic case | `demos/indirimli-fiyat-denetimi/sources/case-brief.md` |
+| Locked evaluation | 12 scenarios and a 14-point rubric: `demos/indirimli-fiyat-denetimi/evaluation/` |
+| Portable skill | `demos/indirimli-fiyat-denetimi/skill/SKILL.md` plus five companions |
+| Host packages | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness and classic) |
 
 ## At a glance
 
@@ -73,11 +103,14 @@ required.
 
 ## Downloads
 
-- [Cowork skill](../downloads/turkiye-enterprise/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-cowork.skill)
-- [GitHub Copilot for VS Code ZIP](../downloads/turkiye-enterprise/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-vscode.zip)
-- [Scout ZIP](../downloads/turkiye-enterprise/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-scout.zip)
-- [Copilot Studio GitHub harness ZIP](../downloads/turkiye-enterprise/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-studio-github-harness.zip)
-- [Copilot Studio classic setup ZIP](../downloads/turkiye-enterprise/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-studio-classic-setup.zip)
+These packages are generated deterministically by the shared release factory
+and are bound to the SHA-256 manifest:
 
-The classic setup ZIP is not a direct-import package. Its files are setup
-materials that a human must apply in a Copilot Studio classic environment.
+- [Cowork skill package](../downloads/skills/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-cowork.skill)
+- [Copilot VS Code ZIP](../downloads/skills/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-vscode.zip)
+- [Scout ZIP](../downloads/skills/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-scout.zip)
+- [Copilot Studio GitHub harness ZIP](../downloads/skills/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-studio-github-harness.zip)
+- [Copilot Studio classic setup ZIP](../downloads/skills/indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-studio-classic-setup.zip)
+
+The classic setup ZIP is a package of setup materials and instructions for
+Copilot Studio; it is not a direct agent import package.

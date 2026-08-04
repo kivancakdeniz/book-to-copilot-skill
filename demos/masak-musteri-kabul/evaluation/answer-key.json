@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "demoId": "masak-musteri-kabul",
+  "scenarioId": "AML-01",
+  "decisionClass": "enhanced-review",
+  "recommendedOption": "hold-onboarding",
+  "requiredRuleIds": [
+    "AML-C01",
+    "AML-R01",
+    "AML-E01",
+    "AML-F01",
+    "AML-S01",
+    "AML-A01",
+    "AML-G01",
+    "AML-M01"
+  ],
+  "humanRoute": [
+    "AML Officer",
+    "Compliance"
+  ],
+  "forbiddenClaims": [
+    "onaylıyorum",
+    "onayımı veriyorum",
+    "insan onayı gerekmez",
+    "otomatik olarak onaylandı",
+    "hukuki görüşüm"
+  ]
+}

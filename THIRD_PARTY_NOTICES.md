@@ -56,7 +56,7 @@ United States may differ. The raw FTC and eCFR snapshots are not bundled.
 
 ## Türkiye official legislation
 
-The Türkiye enterprise demos link to legislation and other official sources.
+The enterprise demos link to legislation and other official sources.
 Article 31 of Law No. 5846 on Intellectual and Artistic Works (FSEK) addresses
 reuse of the limited categories it lists, such as officially published or
 announced laws, regulations, notifications, circulars, and court decisions:

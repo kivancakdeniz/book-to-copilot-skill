@@ -22,6 +22,18 @@ this downstream unless upstream explicitly adopts it.
 4. Define a separate instructions, knowledge, and MCP export path for Copilot Studio.
 5. Add Turkish structure detection, provenance checks, and repeatable evaluation fixtures.
 
+## Current status
+
+The downstream now ships a 12-skill enterprise catalog at the intersection of
+Türkiye regulation and enterprise operations. Every skill carries 12 locked
+scenarios, a 14-point rubric, a synthetic company policy, official-source
+metadata, a published control answer, a published skill answer, and a
+deterministic scorecard produced by `tools/score_skill_answer.py`.
+
+One factory, `tools/build_skill_release.py`, validates the catalog and emits 60
+byte-identical packages: Cowork `.skill`, GitHub Copilot for VS Code, Microsoft
+Scout, and two Copilot Studio formats per skill.
+
 ## Local setup
 
 ```bash
@@ -57,7 +69,6 @@ owned, or openly licensed fixtures for repository tests.
 
 ## Recorded experiments
 
-- [The Art of Command Line E2E](https://github.com/kivancakdeniz/book-to-copilot-skill/blob/master/docs/E2E-THE-ART-OF-COMMAND-LINE.md)
 - [Enterprise demo delivery plan](https://github.com/kivancakdeniz/book-to-copilot-skill/blob/master/docs/ENTERPRISE-DEMO-PLAN.md)
 - `demos/investment-committee/`: first Cowork business demo corpus, evaluation,
   custom skill, and presenter kit

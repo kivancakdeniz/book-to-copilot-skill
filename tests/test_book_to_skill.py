@@ -720,7 +720,7 @@ class TestDetectStructure:
 
     def test_markdown_anchor_index_is_toc(self):
         text = (
-            "# The Art of Command Line\n\n"
+            "# Operations Handbook\n\n"
             "- [Basics](#basics)\n"
             "- [Everyday use](#everyday-use)\n"
             "- [System debugging](#system-debugging)\n\n"

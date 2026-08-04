@@ -17,11 +17,11 @@ on:
       - SECURITY.md
       - demos/investment-committee/evidence/**
       - demos/marketing-claims-review/evidence/**
-      - demos/turkiye-enterprise/**
+      - demos/**
       - docs/skills/**
       - requirements-docs.txt
-      - tests/test_turkiye_enterprise_release.py
-      - tools/build_turkiye_enterprise_release.py
+      - tests/test_skill_release.py
+      - tools/build_skill_release.py
       - tools/scan_generated_skill.py
       - tools/validate_skill.py
       - tools/discovery_tax.py
@@ -42,11 +42,11 @@ on:
       - SECURITY.md
       - demos/investment-committee/evidence/**
       - demos/marketing-claims-review/evidence/**
-      - demos/turkiye-enterprise/**
+      - demos/**
       - docs/skills/**
       - requirements-docs.txt
-      - tests/test_turkiye_enterprise_release.py
-      - tools/build_turkiye_enterprise_release.py
+      - tests/test_skill_release.py
+      - tools/build_skill_release.py
       - tools/scan_generated_skill.py
       - tools/validate_skill.py
       - tools/discovery_tax.py
@@ -75,7 +75,7 @@ jobs:
       - name: Test Türkiye enterprise release
         run: |
           set -euo pipefail
-          python -m pytest tests/test_turkiye_enterprise_release.py -q
+          python -m pytest tests/test_skill_release.py -q
       - name: Assemble docs sources
         # Single-source: the Guide and Skill Reference pages are the repo-root
         # README.md / SKILL.md, copied in (never committed under docs/). The
@@ -102,27 +102,9 @@ jobs:
           cp SECURITY.md docs/SECURITY.md
           mkdir -p docs/tools
           cp tools/discovery_tax.py docs/tools/discovery_tax.py
-          mkdir -p docs/assets/investment-committee/evidence/outputs
-          mkdir -p docs/assets/investment-committee/evidence/screenshots
-          mkdir -p docs/assets/investment-committee/evidence/metadata
-          for output in demos/investment-committee/evidence/outputs/*.md; do
-            name=$(basename "$output" .md)
-            cp "$output" "docs/assets/investment-committee/evidence/outputs/$name.txt"
-          done
-          cp demos/investment-committee/evidence/screenshots/*.png docs/assets/investment-committee/evidence/screenshots/
-          cp demos/investment-committee/evidence/metadata/cowork-runs.json docs/assets/investment-committee/evidence/metadata/
-          mkdir -p docs/assets/marketing-claims-review/evidence/outputs
-          mkdir -p docs/assets/marketing-claims-review/evidence/screenshots
-          mkdir -p docs/assets/marketing-claims-review/evidence/metadata
-          for output in demos/marketing-claims-review/evidence/outputs/*.md; do
-            name=$(basename "$output" .md)
-            cp "$output" "docs/assets/marketing-claims-review/evidence/outputs/$name.txt"
-          done
-          cp demos/marketing-claims-review/evidence/screenshots/*.png docs/assets/marketing-claims-review/evidence/screenshots/
-          cp demos/marketing-claims-review/evidence/metadata/*.json docs/assets/marketing-claims-review/evidence/metadata/
-          python tools/build_turkiye_enterprise_release.py stage-docs \
+          python tools/build_skill_release.py stage-docs \
             --root . \
-            --output-dir "$RUNNER_TEMP/turkiye-enterprise-release" \
+            --output-dir "$RUNNER_TEMP/skill-release" \
             --docs-dir docs
       - name: Build
         run: |
@@ -149,7 +131,7 @@ jobs:
       - name: Test Türkiye enterprise release
         run: |
           set -euo pipefail
-          python -m pytest tests/test_turkiye_enterprise_release.py -q
+          python -m pytest tests/test_skill_release.py -q
       - name: Assemble docs sources
         run: |
           set -euo pipefail
@@ -173,27 +155,9 @@ jobs:
           cp SECURITY.md docs/SECURITY.md
           mkdir -p docs/tools
           cp tools/discovery_tax.py docs/tools/discovery_tax.py
-          mkdir -p docs/assets/investment-committee/evidence/outputs
-          mkdir -p docs/assets/investment-committee/evidence/screenshots
-          mkdir -p docs/assets/investment-committee/evidence/metadata
-          for output in demos/investment-committee/evidence/outputs/*.md; do
-            name=$(basename "$output" .md)
-            cp "$output" "docs/assets/investment-committee/evidence/outputs/$name.txt"
-          done
-          cp demos/investment-committee/evidence/screenshots/*.png docs/assets/investment-committee/evidence/screenshots/
-          cp demos/investment-committee/evidence/metadata/cowork-runs.json docs/assets/investment-committee/evidence/metadata/
-          mkdir -p docs/assets/marketing-claims-review/evidence/outputs
-          mkdir -p docs/assets/marketing-claims-review/evidence/screenshots
-          mkdir -p docs/assets/marketing-claims-review/evidence/metadata
-          for output in demos/marketing-claims-review/evidence/outputs/*.md; do
-            name=$(basename "$output" .md)
-            cp "$output" "docs/assets/marketing-claims-review/evidence/outputs/$name.txt"
-          done
-          cp demos/marketing-claims-review/evidence/screenshots/*.png docs/assets/marketing-claims-review/evidence/screenshots/
-          cp demos/marketing-claims-review/evidence/metadata/*.json docs/assets/marketing-claims-review/evidence/metadata/
-          python tools/build_turkiye_enterprise_release.py stage-docs \
+          python tools/build_skill_release.py stage-docs \
             --root . \
-            --output-dir "$RUNNER_TEMP/turkiye-enterprise-release" \
+            --output-dir "$RUNNER_TEMP/skill-release" \
             --docs-dir docs
       - name: Build
         run: |

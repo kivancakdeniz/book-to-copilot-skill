@@ -16,9 +16,20 @@ bir yapı.</strong>
 </p>
 
 [Başlangıç rehberi](../guide.md){ .md-button .md-button--primary }
-[Yatırım Komitesi demosu](demos/investment-committee.md){ .md-button }
-[Pazarlama İddiaları İncelemesi](demos/marketing-claims-review.md){ .md-button }
-[10 skill'lik katalog](skills/index.md){ .md-button }
+[12 skill'lik katalog](skills/index.md){ .md-button }
+[Skill'ler nasıl kanıtlandı](#kontrol-ve-skill-12-skillde-olculdu){ .md-button }
+
+## Bu proje ne için var
+
+Bu downstream tek bir soruyu kanıtla yanıtlamak için var: **onaylı kurum
+rehberini bir Agent Skill'e derlemek, gerçek bir kurumsal kararda asistanın
+ürettiği çıktıyı gerçekten değiştiriyor mu?**
+
+Yanıt için proje, Türkiye mevzuatı ile kurumsal operasyonun kesişiminde on iki
+işlenmiş karar sunar, her birini iki kez çalıştırır, iki çalıştırmayı da
+deterministik bir betikle puanlar ve sonucu Microsoft 365 Copilot Cowork, GitHub
+Copilot, Microsoft Scout ve Copilot Studio'ya aktarılabilir paketler hâline
+getirir.
 
 ## Kaynak proje ve bağımsızlık
 
@@ -39,44 +50,46 @@ deterministik paketler ve değerlendirme malzemeleri ekler.
 - Çıktı daha büyük bir istem değil; açık kapıları, kaynak izi ve insan onay
   sınırları olan bir karar kaydıdır.
 
-## Yalnız LLM ve derlenmiş skill
+## Kontrol ve skill: 12 skill'de ölçüldü
 
-| Tek bakışta | Yalnız LLM | LLM + derlenmiş skill |
+Katalogdaki her skill aynı yöntemle sınandı. Aynı kilitli vaka, aynı istem ve tek
+fark: ikinci çalıştırmada skill kuruluydu. İki yanıt da `tools/score_skill_answer.py`
+ile puanlanır; betik yanıtı kilitli senaryoya göre denetler. Sonucu bir model
+değerlendirmez, bu yüzden puanlamayı herkes yeniden çalıştırıp aynı sayıları alır.
+
+| 12 skill genelinde ölçüm | Yalnız LLM | LLM + skill |
 |---|---|---|
-| İş yönü | Çoğu zaman makul | Genellikle aynı makul yön |
-| Karar biçimi | Serbest metin | Kontrollü karar sınıfı ve yapılandırılmış satırlar |
-| Kural ve kanıt | Özet düzeyinde kaynaklar | Kural ID'leri, kanıt ID'leri ve yöntem kaynakları |
-| İnsan yetkisi | Genel veya çıkarımsal | Adlandırılmış roller ve açık onay kapıları |
+| Ortalama iz puanı | 33 / 100 | 95 / 100 |
+| Hiç politika kuralına atıf yapmayan skill | 12 / 12 | 0 / 12 |
+| Tam karar sınıfını yazan skill | 0 / 12 | 9 / 12 |
+| Yayımlanan ham yanıt | 12 | 12 |
 
-## Mevcut kanıt
+Kontrol çalıştırmaları yetersiz değildir; çoğunlukla makul bir iş yönü bulur.
+Yapamadıkları şey, şirket kural kimliklerine atıf yapmak, izin verilen tam karar
+sınıfını yazmak ve kararı adı konmuş insan sahibine yönlendirmektir; çünkü skill
+olmadan bu bilgi modele hiç ulaşmaz.
 
-[Yatırım Komitesi demosu](demos/investment-committee.md), yalnız özet kullanan
-iki kontrolü ve skill'in açıkça çağrıldığı iki uygulama koşusunu korur. Dört koşunun
-tamamı aşamalı otomasyonu seçti; uygulama koşuları kesin karar sınıfını, politika
-kapılarını, yetki rotasını ve izlenebilir kaynakları ekledi.
+!!! warning "Bu neyi kanıtlar, neyi kanıtlamaz"
 
-[Pazarlama İddiaları İncelemesi](demos/marketing-claims-review.md), model eşleşmiş
-bir Claude Opus 4.8 kontrol/uygulama çiftini ve ayrı bir Auto uygulamasını
-korur. İki taraf da kanıtla sınırlandırılmış kampanyayı seçti; skill destekli
-koşular kesin sınıfı, denetlenebilir yedi satırı, kural/kanıt eşlemesini ve yayın
-kontrollerini ekledi.
-
-!!! warning "Bu kanıt neyi gösterir"
-
-    Bunlar nedensel A/B kanıtı değil, oturum açılmış Cowork UX gözlemleridir.
-    Uygulama istemleri skill'leri açıkça çağırdı ve kontrollere verilmeyen
-    kaynakları içerdi. Ham ilk yanıtlar, ekran görüntüleri, manifestler ve ön
-    rubrik provaları yayımlandı; sabit modelli değerlendirme ile kör insan
-    incelemesi beklemededir.
+    Bu, kilitli senaryolara karşı skill başına tek çalıştırmalı bir karşılaştırmadır;
+    nedensel bir benchmark değildir. Her skill için tek host üzerinde bir kontrol ve
+    bir skill çalıştırması vardır ve skill çalıştırması, kontrolün hiç görmediği
+    şirket politikasını meşru biçimde alır. On iki skill çalıştırmasının üçü kilitli
+    beklentiden daha temkinli bir karar sınıfı seçti; bu gizlenmedi, yayımlandı. İlk
+    iki demo ayrıca host düzeyinde Microsoft 365 Copilot Cowork ekran görüntüleri ve
+    manifestleri taşır.
 
 ## Katalog durumu
 
-[Türkiye kurumsal kataloğu](skills/index.md); mahremiyet, pazarlama, finans,
-güvenlik, sağlık, ödeme ve telekom alanlarında **değerlendirmeye hazır 10 yeni
-demo** içerir. Her skill için beş deterministik, bayt düzeyinde özdeş biçim olmak
-üzere **50 çalışma ortamı paketi hazırdır**. Bu 10 demo için Cowork A/B
-çalıştırılmadığından
-katalog model etkisi, üretim performansı veya ROI iddiasında bulunmaz.
+[Katalog](skills/index.md); mahremiyet, ticari ileti, e-ticaret, finansal suç,
+bankacılık, rekabet, iş güvenliği, sağlık, ödeme, telekom, sermaye tahsisi ve
+reklam incelemesi alanlarında **12 skill** içerir. Her biri 12 kilitli senaryo,
+14 puanlık rubrik, sentetik şirket politikası, resmî kaynak metadatası, ham
+kontrol yanıtı, ham skill yanıtı ve deterministik skor kartı ile gelir.
+
+**60 host paketi yayımlandı**: Cowork, VS Code'da GitHub Copilot, Microsoft Scout
+ve Copilot Studio (GitHub harness ve classic setup) için skill başına beş
+deterministik, byte-identical biçim.
 
 ## Başvuru
 

@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "demoId": "kvkk-aydinlatma-kontrolu",
+  "scenarioId": "KVK-E01",
+  "gateWeights": {
+    "decisionClass": 20,
+    "recommendedOption": 20,
+    "ruleCitations": 40,
+    "humanRoute": 10,
+    "forbiddenClaims": 10
+  },
+  "maxTraceScore": 100,
+  "runs": [
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "control",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "outputPath": "evidence/outputs/control-1.md",
+      "promptPath": "evaluation/control-prompt.md",
+      "runId": "control-1",
+      "outputSha256": "59f7df3775a1b10409db85925f8d6c7e6cbe48bab8063b5311ff1364c4e8fcf5",
+      "traceScore": 10,
+      "ruleCitationCount": 0,
+      "ruleCitationTotal": 5,
+      "gates": {
+        "decisionClass": {
+          "passed": false,
+          "score": 0
+        },
+        "recommendedOption": {
+          "passed": false,
+          "score": 0
+        },
+        "ruleCitations": {
+          "passed": false,
+          "score": 0,
+          "cited": [],
+          "missing": [
+            "KVK-C01",
+            "KVK-N01",
+            "KVK-S01",
+            "KVK-T01",
+            "KVK-R01"
+          ]
+        },
+        "humanRoute": {
+          "passed": false,
+          "score": 0
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    },
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "treatment",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "outputPath": "evidence/outputs/treatment-1.md",
+      "promptPath": "evaluation/treatment-prompt.md",
+      "runId": "treatment-1",
+      "outputSha256": "da8866253b975664e2c5765b3a38efc4b1b694e4f9fc447d5e3bf46f40c70598",
+      "traceScore": 100,
+      "ruleCitationCount": 5,
+      "ruleCitationTotal": 5,
+      "gates": {
+        "decisionClass": {
+          "passed": true,
+          "score": 20
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": true,
+          "score": 40,
+          "cited": [
+            "KVK-C01",
+            "KVK-N01",
+            "KVK-S01",
+            "KVK-T01",
+            "KVK-R01"
+          ],
+          "missing": []
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    }
+  ],
+  "summary": {
+    "controlTraceScore": 10,
+    "treatmentTraceScore": 100,
+    "traceScoreDelta": 90,
+    "controlRuleCitations": 0,
+    "treatmentRuleCitations": 5,
+    "ruleCitationTotal": 5
+  }
+}

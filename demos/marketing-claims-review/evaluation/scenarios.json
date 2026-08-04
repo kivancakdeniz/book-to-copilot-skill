@@ -9,9 +9,9 @@
     "no-launch"
   ],
   "sourceSet": [
-    "sources/lumena-marketing-claims-standard.md",
+    "sources/company-policy.md",
     "sources/lumena-pilot-evidence.md",
-    "sources/campaign-brief.md"
+    "sources/case-brief.md"
   ],
   "promptPath": "evaluation/frozen-prompt.md",
   "promptFileSha256": "07ff26417ca9975533d6eac9ade617e2ac637b105c4f750e48165a6f2fbd3a69",
@@ -22,106 +22,250 @@
       "title": "Baseline launch campaign",
       "expectedDecision": "approve-with-edits",
       "expectedOption": "evidence-bounded-campaign",
-      "requiredRules": ["MCS-C01", "MCS-S01", "MCS-Q01", "MCS-U01", "MCS-D01", "MCS-I01", "MCS-A01", "MCS-R01", "MCS-M01"],
-      "requiredFindings": ["bill-savings-unsupported", "payback-unsupported", "universal-compatibility-unsupported", "independence-misrepresented", "influencer-result-unsupported", "disclosures-inadequate"]
+      "requiredRules": [
+        "MCS-C01",
+        "MCS-S01",
+        "MCS-Q01",
+        "MCS-U01",
+        "MCS-D01",
+        "MCS-I01",
+        "MCS-A01",
+        "MCS-R01",
+        "MCS-M01"
+      ],
+      "requiredFindings": [
+        "bill-savings-unsupported",
+        "payback-unsupported",
+        "universal-compatibility-unsupported",
+        "independence-misrepresented",
+        "influencer-result-unsupported",
+        "disclosures-inadequate"
+      ]
     },
     {
       "id": "MC-02",
       "title": "Exact bounded pilot claim",
-      "mutations": { "campaign": "Only the exact evidence-bounded pilot statement, sponsor statement, and compatibility disclosure; no influencer content; final register matches.", "humanApprovals": "Marketing Director, Product Evidence Owner, Compliance, and Legal approved." },
+      "mutations": {
+        "campaign": "Only the exact evidence-bounded pilot statement, sponsor statement, and compatibility disclosure; no influencer content; final register matches.",
+        "humanApprovals": "Marketing Director, Product Evidence Owner, Compliance, and Legal approved."
+      },
       "expectedDecision": "approve",
       "expectedOption": "evidence-bounded-campaign",
-      "requiredRules": ["MCS-S01", "MCS-Q01", "MCS-D01", "MCS-A01", "MCS-R01"]
+      "requiredRules": [
+        "MCS-S01",
+        "MCS-Q01",
+        "MCS-D01",
+        "MCS-A01",
+        "MCS-R01"
+      ]
     },
     {
       "id": "MC-03",
       "title": "Missing pilot study",
-      "mutations": { "pilotEvidence": null, "objectiveClaim": "Median 12% HVAC electricity reduction" },
+      "mutations": {
+        "pilotEvidence": null,
+        "objectiveClaim": "Median 12% HVAC electricity reduction"
+      },
       "expectedDecision": "hold-for-substantiation",
       "expectedOption": "no-launch",
-      "requiredRules": ["MCS-S01", "MCS-Q01", "MCS-R01"],
-      "requiredFindings": ["exact-evidence-source-missing"]
+      "requiredRules": [
+        "MCS-S01",
+        "MCS-Q01",
+        "MCS-R01"
+      ],
+      "requiredFindings": [
+        "exact-evidence-source-missing"
+      ]
     },
     {
       "id": "MC-04",
       "title": "Universal compatibility claim",
-      "mutations": { "campaign": "Works in every home; sponsor accepts removal and exact compatibility language." },
+      "mutations": {
+        "campaign": "Works in every home; sponsor accepts removal and exact compatibility language."
+      },
       "expectedDecision": "approve-with-edits",
       "expectedOption": "evidence-bounded-campaign",
-      "requiredRules": ["MCS-U01", "MCS-D01", "MCS-A01", "MCS-R01"],
-      "requiredFindings": ["remove-universal-claim", "show-compatibility-near-cta"]
+      "requiredRules": [
+        "MCS-U01",
+        "MCS-D01",
+        "MCS-A01",
+        "MCS-R01"
+      ],
+      "requiredFindings": [
+        "remove-universal-claim",
+        "show-compatibility-near-cta"
+      ]
     },
     {
       "id": "MC-05",
       "title": "Hidden qualifying disclosure",
-      "mutations": { "campaign": "Bounded pilot claim with qualification only at page bottom; sponsor accepts prominent placement." },
+      "mutations": {
+        "campaign": "Bounded pilot claim with qualification only at page bottom; sponsor accepts prominent placement."
+      },
       "expectedDecision": "approve-with-edits",
       "expectedOption": "evidence-bounded-campaign",
-      "requiredRules": ["MCS-D01", "MCS-R01"],
-      "requiredFindings": ["disclosure-not-close-or-unavoidable"]
+      "requiredRules": [
+        "MCS-D01",
+        "MCS-R01"
+      ],
+      "requiredFindings": [
+        "disclosure-not-close-or-unavoidable"
+      ]
     },
     {
       "id": "MC-06",
       "title": "Unsupported number-one comparative claim",
-      "mutations": { "campaign": "The #1 smart HVAC controller in America", "comparativeEvidence": null, "sponsorAllowsRemoval": false },
+      "mutations": {
+        "campaign": "The #1 smart HVAC controller in America",
+        "comparativeEvidence": null,
+        "sponsorAllowsRemoval": false
+      },
       "expectedDecision": "reject",
       "expectedOption": "no-launch",
-      "requiredRules": ["MCS-S01", "MCS-A01", "MCS-R01"],
-      "requiredFindings": ["comparative-support-missing"]
+      "requiredRules": [
+        "MCS-S01",
+        "MCS-A01",
+        "MCS-R01"
+      ],
+      "requiredFindings": [
+        "comparative-support-missing"
+      ]
     },
     {
       "id": "MC-07",
       "title": "New respiratory health claim",
-      "mutations": { "campaign": "Lumena Sense prevents asthma attacks", "healthEvidence": null },
+      "mutations": {
+        "campaign": "Lumena Sense prevents asthma attacks",
+        "healthEvidence": null
+      },
       "expectedDecision": "escalate-legal",
       "expectedOption": "no-launch",
-      "requiredRules": ["MCS-S01", "MCS-A01", "MCS-R01"],
-      "requiredFindings": ["mandatory-legal-escalation", "health-substantiation-missing"]
+      "requiredRules": [
+        "MCS-S01",
+        "MCS-A01",
+        "MCS-R01"
+      ],
+      "requiredFindings": [
+        "mandatory-legal-escalation",
+        "health-substantiation-missing"
+      ]
     },
     {
       "id": "MC-08",
       "title": "Conflicting pilot result",
-      "mutations": { "campaignClaimPercent": 12, "evidenceRegisterPercent": 12, "signedStudyReportPercent": 7 },
+      "mutations": {
+        "campaignClaimPercent": 12,
+        "evidenceRegisterPercent": 12,
+        "signedStudyReportPercent": 7
+      },
       "expectedDecision": "hold-for-substantiation",
       "expectedOption": "no-launch",
-      "requiredRules": ["MCS-S01", "MCS-Q01", "MCS-R01"],
-      "requiredFindings": ["conflicting-evidence-requires-resolution"]
+      "requiredRules": [
+        "MCS-S01",
+        "MCS-Q01",
+        "MCS-R01"
+      ],
+      "requiredFindings": [
+        "conflicting-evidence-requires-resolution"
+      ]
     },
     {
       "id": "MC-09",
       "title": "Unsupported campaign already live",
-      "mutations": { "campaignStatus": "live", "claims": "MC-0204 original campaign", "monitoringOwner": null, "stopTrigger": null },
+      "mutations": {
+        "campaignStatus": "live",
+        "claims": "MC-0204 original campaign",
+        "monitoringOwner": null,
+        "stopTrigger": null
+      },
       "expectedDecision": "escalate-legal",
       "expectedOption": "no-launch",
-      "requiredRules": ["MCS-A01", "MCS-R01", "MCS-M01"],
-      "requiredFindings": ["legal-correction-review-required", "monitoring-controls-unknown"]
+      "requiredRules": [
+        "MCS-A01",
+        "MCS-R01",
+        "MCS-M01"
+      ],
+      "requiredFindings": [
+        "legal-correction-review-required",
+        "monitoring-controls-unknown"
+      ]
     },
     {
       "id": "MC-10",
       "title": "Paid endorsement with supportable personal result",
-      "mutations": { "influencerClaim": "My Lumena dashboard showed 18% lower HVAC electricity use over 8 weeks", "connectionDisclosure": "After collapsed more boundary", "sponsorAcceptsEndorsementRemoval": true },
+      "mutations": {
+        "influencerClaim": "My Lumena dashboard showed 18% lower HVAC electricity use over 8 weeks",
+        "connectionDisclosure": "After collapsed more boundary",
+        "sponsorAcceptsEndorsementRemoval": true
+      },
       "expectedDecision": "approve-with-edits",
       "expectedOption": "evidence-bounded-campaign",
-      "requiredRules": ["MCS-Q01", "MCS-D01", "MCS-I01", "MCS-A01", "MCS-R01"],
-      "requiredFindings": ["remove-performance-endorsement-without-typicality-evidence", "retain-material-connection-disclosure-if-endorsement-remains"]
+      "requiredRules": [
+        "MCS-Q01",
+        "MCS-D01",
+        "MCS-I01",
+        "MCS-A01",
+        "MCS-R01"
+      ],
+      "requiredFindings": [
+        "remove-performance-endorsement-without-typicality-evidence",
+        "retain-material-connection-disclosure-if-endorsement-remains"
+      ]
     },
     {
       "id": "MC-11",
       "title": "Subjective campaign with no objective claims",
-      "mutations": { "campaign": "Meet Lumena Sense. A calmer way to manage your HVAC.", "objectiveClaims": [], "endorsements": [], "claimRegister": "Complete and matches final creative.", "humanApprovals": "Marketing Director approved." },
+      "mutations": {
+        "campaign": "Meet Lumena Sense. A calmer way to manage your HVAC.",
+        "objectiveClaims": [],
+        "endorsements": [],
+        "claimRegister": "Complete and matches final creative.",
+        "humanApprovals": "Marketing Director approved."
+      },
       "expectedDecision": "approve",
       "expectedOption": "original-campaign",
-      "requiredRules": ["MCS-C01", "MCS-A01", "MCS-R01"],
-      "requiredFindings": ["marketing-director-review-only"]
+      "requiredRules": [
+        "MCS-C01",
+        "MCS-A01",
+        "MCS-R01"
+      ],
+      "requiredFindings": [
+        "marketing-director-review-only"
+      ]
     },
     {
       "id": "MC-12",
       "title": "No supportable campaign claim",
-      "mutations": { "campaign": "Guaranteed to eliminate every home's energy bill", "evidence": "Compatibility exclusions and no whole-home bill measurement", "sponsorAllowsRevision": false },
+      "mutations": {
+        "campaign": "Guaranteed to eliminate every home's energy bill",
+        "evidence": "Compatibility exclusions and no whole-home bill measurement",
+        "sponsorAllowsRevision": false
+      },
       "expectedDecision": "reject",
       "expectedOption": "no-launch",
-      "requiredRules": ["MCS-S01", "MCS-Q01", "MCS-U01", "MCS-D01", "MCS-R01"],
-      "requiredFindings": ["claim-contradicted", "no-verifiable-revision-available"]
+      "requiredRules": [
+        "MCS-S01",
+        "MCS-Q01",
+        "MCS-U01",
+        "MCS-D01",
+        "MCS-R01"
+      ],
+      "requiredFindings": [
+        "claim-contradicted",
+        "no-verifiable-revision-available"
+      ]
     }
+  ],
+  "allowedDecisionClasses": [
+    "approve",
+    "approve-with-edits",
+    "escalate-legal",
+    "hold-for-substantiation",
+    "reject"
+  ],
+  "allowedOptions": [
+    "evidence-bounded-campaign",
+    "no-launch",
+    "original-campaign"
   ]
 }

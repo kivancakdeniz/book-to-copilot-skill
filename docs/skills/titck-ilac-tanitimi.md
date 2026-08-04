@@ -2,19 +2,52 @@
 
 [Türkçe](../tr/skills/titck-ilac-tanitimi.md)
 
-## LLM only vs LLM + skill: expected difference
+## Control vs skill: measured
 
-| Brief-only LLM | Compiled skill |
-|---|---|
-| May produce an open-ended narrative or an incomplete checklist | Structures the review around the allowed decision classes, three options, and rule IDs |
-| May fill evidence gaps with assumptions | Keeps unsupported facts `bilinmiyor` and routes them to the human decision owner |
-| May offer a general compliance or campaign recommendation | Applies an explicit publication, targeting, or withdrawal gate |
+Both runs answered the same locked case with the same prompt. The only
+difference is that the second run had the skill installed. Scoring is done by a
+deterministic script against the locked scenario, not by a model, so anyone can
+reproduce these numbers.
 
-This comparison is a design hypothesis only. Cowork A/B evaluation has not yet
-been run for these 10 new skills. Metrics to measure are exact decision and
-option match, required rule recall, unsupported-claim count, preservation of
-human authority, and response length. No ROI, production-performance, or
-model-impact claim is made.
+| Governance gate | LLM only | LLM + skill |
+| --- | --- | --- |
+| Policy rules cited | 0 / 7 | 7 / 7 |
+| Exact decision class stated | no | yes |
+| Named option stated | yes | yes |
+| Human approval route named | yes | yes |
+| No autonomous-authority claim | yes | yes |
+| **Trace score** | **40 / 100** | **100 / 100** |
+
+Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Captured: 2026-08-04 · Scenario: `TTK-01`
+
+[Control answer](../assets/skills/titck-ilac-tanitimi/outputs/control-1.txt) · [Skill answer](../assets/skills/titck-ilac-tanitimi/outputs/treatment-1.txt) · [Scorecard](../assets/skills/titck-ilac-tanitimi/scorecard.json)
+
+Reproduce:
+
+```bash
+python tools/score_skill_answer.py scorecard --demo demos/titck-ilac-tanitimi
+```
+
+The control run cited 0 of 7 policy rules and the skill run cited 7. Only the skill run stated the exact decision class (`do-not-publish`).
+
+Limits: one run per condition, one locked scenario, and a single host. This table
+is the machine-checkable subset; the 14-point human rubric lives in
+`demos/titck-ilac-tanitimi/evaluation/rubric.json`.
+
+## From source to skill
+
+This chain shows exactly which content produced the skill.
+
+| Stage | Produced content |
+| --- | --- |
+| Official source (metadata only) | [Beşerî Tıbbi Ürünlerin Tanıtım Faaliyetleri Hakkında Yönetmelik](https://www.titck.gov.tr/mevzuat/beseri-tibbi-urunlerin-tanitim-faaliyetleri-hakkinda-yonetmelik-27122018172726) — Türkiye İlaç ve Tıbbî Cihaz Kurumu (TİTCK) |
+| Official source (metadata only) | [Beşerî Tıbbi Ürünlerin Tanıtım Faaliyetleri Hakkında Yönetmelik - Resmî Gazete yayımı](https://www.resmigazete.gov.tr/eskiler/2015/07/20150703-2.htm) — T.C. Resmî Gazete |
+| Public method summary | `demos/titck-ilac-tanitimi/skill/public-method.md` |
+| Synthetic company policy | `demos/titck-ilac-tanitimi/sources/company-policy.md` |
+| Synthetic case | `demos/titck-ilac-tanitimi/sources/case-brief.md` |
+| Locked evaluation | 12 scenarios and a 14-point rubric: `demos/titck-ilac-tanitimi/evaluation/` |
+| Portable skill | `demos/titck-ilac-tanitimi/skill/SKILL.md` plus five companions |
+| Host packages | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness and classic) |
 
 ## Scenario
 
@@ -62,19 +95,17 @@ all records are synthetic.
 
 ## Downloads
 
-- [Microsoft 365 Copilot Cowork skill](../downloads/turkiye-enterprise/titck-ilac-tanitimi/titck-ilac-tanitimi-cowork.skill)
-- [GitHub Copilot for VS Code package](../downloads/turkiye-enterprise/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-vscode.zip)
-- [Scout package](../downloads/turkiye-enterprise/titck-ilac-tanitimi/titck-ilac-tanitimi-scout.zip)
-- [Copilot Studio GitHub harness package](../downloads/turkiye-enterprise/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-github-harness.zip)
-- [Copilot Studio classic setup package](../downloads/turkiye-enterprise/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-classic-setup.zip)
+These packages are generated deterministically by the shared release factory
+and are bound to the SHA-256 manifest:
 
-!!! warning "Copilot Studio classic setup"
+- [Cowork skill package](../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-cowork.skill)
+- [Copilot VS Code ZIP](../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-vscode.zip)
+- [Scout ZIP](../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-scout.zip)
+- [Copilot Studio GitHub harness ZIP](../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-github-harness.zip)
+- [Copilot Studio classic setup ZIP](../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-classic-setup.zip)
 
-    The classic setup ZIP is guided manual setup material, not a directly
-    importable skill, agent, or solution, and it does not lock runtime behaviour.
-    A human must review and configure its instructions, knowledge sources,
-    connections, permissions, and publishing settings separately in the target
-    environment.
+The classic setup ZIP is a package of setup materials and instructions for
+Copilot Studio; it is not a direct agent import package.
 
 ## Evaluation status
 

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "demoId": "bddk-uzaktan-musteri-edinimi",
+  "scenarioId": "BDK-01",
+  "decisionClass": "reject-flow",
+  "recommendedOption": "manual-onboarding-fallback",
+  "requiredRuleIds": [
+    "BDK-I01",
+    "BDK-V01",
+    "BDK-L01",
+    "BDK-K01",
+    "BDK-A01",
+    "BDK-R01",
+    "BDK-M01"
+  ],
+  "humanRoute": [
+    "Güvenlik",
+    "Uyum",
+    "Hukuk"
+  ],
+  "forbiddenClaims": [
+    "onaylıyorum",
+    "onayımı veriyorum",
+    "insan onayı gerekmez",
+    "otomatik olarak onaylandı",
+    "hukuki görüşüm"
+  ]
+}

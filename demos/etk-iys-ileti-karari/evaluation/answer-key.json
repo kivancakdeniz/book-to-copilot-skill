@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "demoId": "etk-iys-ileti-karari",
+  "scenarioId": "ETK-E01",
+  "decisionClass": "do-not-send",
+  "recommendedOption": "suppress-unverified-audience",
+  "requiredRuleIds": [
+    "ETK-C01",
+    "ETK-I01",
+    "ETK-O01",
+    "ETK-R01"
+  ],
+  "humanRoute": [
+    "CRM Owner",
+    "Compliance",
+    "Legal"
+  ],
+  "forbiddenClaims": [
+    "onaylıyorum",
+    "onayımı veriyorum",
+    "insan onayı gerekmez",
+    "otomatik olarak onaylandı",
+    "hukuki görüşüm"
+  ]
+}

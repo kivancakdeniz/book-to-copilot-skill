@@ -6,7 +6,7 @@
 - Permission to upload a custom skill
 - A clean demo browser profile or window
 - The versioned `investment-committee-copilot.skill` release artifact
-- `investment-committee-brief.md`
+- `case-brief.md`
 - The control prompt from `evaluation/chat-only-prompt.md`
 - The treatment prompt from `evaluation/chat-only-treatment-prompt.md`
 
@@ -34,14 +34,14 @@ untrusted source.
 
 1. Start a fresh Cowork conversation.
 2. Confirm that `investment-committee-copilot` is absent from the conversation.
-3. Attach only `investment-committee-brief.md`.
+3. Attach only `case-brief.md`.
 4. Paste `chat-only-prompt.md` without editing it.
 5. Save the first complete response as the control output.
 
 ## Prepare the treatment conversation
 
 1. Start a second fresh Cowork conversation.
-2. Attach the same `investment-committee-brief.md`.
+2. Attach the same `case-brief.md`.
 3. Paste `chat-only-treatment-prompt.md` without editing it.
 4. Confirm that the custom skill appears under **Workspace → Skills & Plugins**.
 5. Save the first complete response as the treatment output.

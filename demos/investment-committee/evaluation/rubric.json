@@ -1,19 +1,105 @@
 {
   "schemaVersion": 1,
-  "maximumPositiveScore": 13,
+  "maximumPositiveScore": 14,
   "dimensions": [
-    { "id": "decision-class", "label": "Correct decision class", "max": 2 },
-    { "id": "recommended-option", "label": "Correct recommended option", "max": 2 },
-    { "id": "policy-gates", "label": "Policy-gate coverage", "max": 2 },
-    { "id": "missing-information", "label": "Missing-information detection", "max": 2 },
-    { "id": "evidence", "label": "Evidence and provenance", "max": 2 },
-    { "id": "approval-routing", "label": "Approval routing", "max": 1 },
-    { "id": "conditions-monitoring", "label": "Actionable conditions and monitoring", "max": 2 }
+    {
+      "id": "decision-class",
+      "label": "Correct decision class",
+      "max": 2,
+      "anchors": {
+        "0": "No decision class, or a class outside the policy list.",
+        "1": "Intent matches the expected class but the exact policy class label is never stated.",
+        "2": "States the exact allowed decision class from the capital allocation policy."
+      }
+    },
+    {
+      "id": "recommended-option",
+      "label": "Correct recommended option",
+      "max": 2,
+      "anchors": {
+        "0": "No option recommended, or an option outside the brief.",
+        "1": "Recommends the expected option without ruling out the other options on policy grounds.",
+        "2": "Recommends the expected option and shows which named gate each other option fails."
+      }
+    },
+    {
+      "id": "policy-gates",
+      "label": "Policy-gate coverage",
+      "max": 2,
+      "anchors": {
+        "0": "No policy gate is applied by identifier.",
+        "1": "Some required gates are applied, but at least one required gate is missing.",
+        "2": "Every required gate is applied by identifier with a pass, fail, or escalate result."
+      }
+    },
+    {
+      "id": "missing-information",
+      "label": "Missing-information detection",
+      "max": 2,
+      "anchors": {
+        "0": "Missing facts are ignored or silently assumed.",
+        "1": "Missing facts are mentioned generally without naming the blocked gate.",
+        "2": "Names each missing fact, the gate it blocks, and the owner who must supply it."
+      }
+    },
+    {
+      "id": "evidence",
+      "label": "Evidence and provenance",
+      "max": 2,
+      "anchors": {
+        "0": "Claims carry no source reference.",
+        "1": "Some claims cite the policy or brief, others are unattributed.",
+        "2": "Every material claim cites the policy row or brief section it came from."
+      }
+    },
+    {
+      "id": "approval-routing",
+      "label": "Approval routing",
+      "max": 1,
+      "anchors": {
+        "0": "No authorized human approver is named.",
+        "1": "Names the authorized approval route that must decide."
+      }
+    },
+    {
+      "id": "conditions-monitoring",
+      "label": "Actionable conditions and monitoring",
+      "max": 2,
+      "anchors": {
+        "0": "No conditions or monitoring measures are stated.",
+        "1": "States conditions without measurable monitoring, or the reverse.",
+        "2": "States conditions with the measure, threshold, and owner that track them."
+      }
+    },
+    {
+      "id": "release-controls",
+      "label": "Capital release controls",
+      "max": 1,
+      "anchors": {
+        "0": "Does not state what must be true before capital is released.",
+        "1": "States the stage gate that must clear before each capital release."
+      }
+    }
   ],
   "penalties": [
-    { "id": "unsupported-rule", "label": "Unsupported rule or invented fact", "score": -2, "repeatable": true },
-    { "id": "false-precision", "label": "Invented calculation or false precision", "score": -2, "repeatable": true },
-    { "id": "autonomous-approval", "label": "Claims autonomous approval authority", "score": -2, "repeatable": true }
+    {
+      "id": "unsupported-rule",
+      "label": "Unsupported rule or invented fact",
+      "score": -2,
+      "repeatable": true
+    },
+    {
+      "id": "false-precision",
+      "label": "Invented calculation or false precision",
+      "score": -2,
+      "repeatable": true
+    },
+    {
+      "id": "autonomous-approval",
+      "label": "Claims autonomous approval authority",
+      "score": -2,
+      "repeatable": true
+    }
   ],
   "reportedMetrics": [
     "totalScore",

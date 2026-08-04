@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "demo": "etk-iys-ileti-karari",
+  "sources": [
+    {
+      "id": "ETK-6563",
+      "title": "6563 sayılı Elektronik Ticaretin Düzenlenmesi Hakkında Kanun",
+      "type": "external-method",
+      "url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6563.pdf",
+      "sha256": "694e91667476fad13303b41295fbd6936c3c23d879ba50a8717a5961da9eb539",
+      "publisher": "Mevzuat Bilgi Sistemi",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuseBasis": "Kamuya açık resmî mevzuat, ticari ileti karar yöntemini çıkarmak için başvuru kaynağıdır.",
+      "reuseCaveat": "Yalnız kaynak metadatası ve kısa atıflı yöntem özeti yeniden kullanılır; uzun pasajlar kopyalanmaz, güncellik ve resmî metin insan Legal tarafından doğrulanır."
+    },
+    {
+      "id": "ETK-TICARI-ILETISIM-YONETMELIGI",
+      "title": "Ticari İletişim ve Ticari Elektronik İletiler Hakkında Yönetmelik",
+      "type": "external-method",
+      "url": "https://www.resmigazete.gov.tr/eskiler/2015/07/20150715-4.htm",
+      "sha256": "94ba383d2b7a5392d20677f6a5a5e6da23fc3b8942f323085e2b543edeae6292",
+      "publisher": "Resmî Gazete",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuseBasis": "Kamuya açık resmî yönetmelik, ileti ve kanıt kontrol yöntemini çıkarmak için başvuru kaynağıdır.",
+      "reuseCaveat": "Yalnız kaynak metadatası ve kısa atıflı yöntem özeti yeniden kullanılır; uzun pasajlar kopyalanmaz, güncellik ve resmî metin insan Legal tarafından doğrulanır."
+    },
+    {
+      "id": "ETK-SENTETIK-POLITIKA",
+      "title": "Sentetik şirket politikası: ETK/IYS ileti kararı",
+      "type": "synthetic-policy",
+      "path": "company-policy.md",
+      "sha256": "f16bd8d23af921550780a2140ed458489b1c292afdb93f12d7c597f71108569d",
+      "license": "MIT",
+      "synthetic": true
+    },
+    {
+      "id": "ETK-SENTETIK-VAKA",
+      "title": "Sentetik vaka özeti: eski müşterilere indirim SMS'i",
+      "type": "synthetic-case",
+      "path": "case-brief.md",
+      "sha256": "ffef21a9cbfd78dc32b58ac93f4137c4cd02167986e61a5a87c30736f24f7d85",
+      "license": "MIT",
+      "synthetic": true
+    }
+  ]
+}

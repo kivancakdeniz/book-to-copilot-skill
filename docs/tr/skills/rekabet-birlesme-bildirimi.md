@@ -2,25 +2,51 @@
 
 [English](../../skills/rekabet-birlesme-bildirimi.md)
 
-## LLM only vs LLM + skill - beklenen fark
+## Kontrol ve skill: ölçülen
 
-| Brief-only LLM | Derlenmiş skill |
-|---|---|
-| Serbest anlatım ve eksik kontrol listesi üretebilir | İzinli karar sınıfları, üç seçenek ve kural kimlikleriyle yapılandırır |
-| Eksik kanıtı varsayım ile doldurma riski taşır | Eksik olguyu `bilinmiyor` tutar ve insan karar sahibine yönlendirir |
-| Genel bir uyum veya operasyon önerisi verir | Yayın, canlıya geçiş, işlem veya kapanış kapısını açıkça uygular |
+İki çalıştırma aynı kilitli vakayı aynı istemle yanıtladı. Tek fark, ikinci
+çalıştırmada skill'in kurulu olmasıdır. Puanlama modele değil, kilitli senaryoya
+bakan deterministik bir betiğe dayanır; sayıları herkes yeniden üretebilir.
 
-Bu tablo tasarım hipotezidir; bu 10 yeni skill için Cowork A/B henüz
-çalıştırılmadı. Ölçülecek metrikler: exact karar/seçenek, gerekli kural geri
-çağırma, desteksiz iddia sayısı, insan yetki sınırı ve yanıt uzunluğu. ROI veya
-üretim performansı iddia edilmez.
+| Yönetişim kapısı | Yalnız LLM | LLM + skill |
+| --- | --- | --- |
+| Atıf yapılan politika kuralı | 0 / 7 | 7 / 7 |
+| Tam karar sınıfı yazıldı | hayır | evet |
+| Adlandırılmış seçenek yazıldı | evet | evet |
+| İnsan onay rotası adlandırıldı | evet | evet |
+| Otonom yetki iddiası yok | evet | evet |
+| **İz puanı** | **40 / 100** | **100 / 100** |
 
+Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Tarih: 2026-08-04 · Senaryo: `RKB-01`
 
-Kurgusal bir devralmada kalıcı kontrol değişikliği sağlanmış, Finans precomputed
-ciro testini `met` olarak vermiş, hedefin teknoloji teşebbüsü durumu ise
-`unknown` kalmıştır. İmza yakındır ve kapanış istenmektedir. Bu portable Türkçe
-skill, ciro hesaplamadan veya hukuki bildirim kararı vermeden insan danışman
-rotasını ve kapanış kapısını yapılandırır.
+[Kontrol yanıtı](../../assets/skills/rekabet-birlesme-bildirimi/outputs/control-1.txt) · [Skill yanıtı](../../assets/skills/rekabet-birlesme-bildirimi/outputs/treatment-1.txt) · [Skor kartı](../../assets/skills/rekabet-birlesme-bildirimi/scorecard.json)
+
+Yeniden üretmek için:
+
+```bash
+python tools/score_skill_answer.py scorecard --demo demos/rekabet-birlesme-bildirimi
+```
+
+Kontrol çalıştırması 7 politika kuralının 0 tanesine atıf yaptı skill çalıştırması 7 tanesine atıf yaptı. Tam karar sınıfını (`legal-notification-review`) yalnız skill çalıştırması yazdı.
+
+Sınır: koşul başına tek çalıştırma, tek kilitli senaryo ve tek host. Bu tablo
+makine ile denetlenebilir alt kümedir; 14 puanlık insan rubriği
+`demos/rekabet-birlesme-bildirimi/evaluation/rubric.json` dosyasındadır.
+
+## Kaynaktan skill'e
+
+Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
+
+| Aşama | Üretilen içerik |
+| --- | --- |
+| Resmî kaynak (yalnız metadata) | [Birleşme ve Devralma Sayılan Haller ve Kontrol Kavramı Hakkında Kılavuz](https://www.rekabet.gov.tr/Dosya/kilavuzlar/birlesme-ve-devralma-sayilan-haller-ve-kontrol-kavrami-hakkinda-kilavuz.pdf) — Rekabet Kurumu |
+| Resmî kaynak (yalnız metadata) | [Birleşme ve Devralma İşlemlerinde Ciro Hesaplanmasına İlişkin Kılavuz](https://www.rekabet.gov.tr/Dosya/bd-ciro-kilavuzu-20260504120128549.pdf) — Rekabet Kurumu |
+| Kamuya açık yöntem özeti | `demos/rekabet-birlesme-bildirimi/skill/public-method.md` |
+| Sentetik şirket politikası | `demos/rekabet-birlesme-bildirimi/sources/company-policy.md` |
+| Sentetik vaka | `demos/rekabet-birlesme-bildirimi/sources/case-brief.md` |
+| Kilitli değerlendirme | 12 senaryo ve 14 puanlık rubrik: `demos/rekabet-birlesme-bildirimi/evaluation/` |
+| Taşınabilir skill | `demos/rekabet-birlesme-bildirimi/skill/SKILL.md` ve beş destek dosyası |
+| Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
 ## Bir bakışta iş etkisi
 
@@ -46,15 +72,17 @@ yönlendirmesi olmadan kapı açılmaz.
 
 ## İndirmeler
 
-- [Cowork skill](../../downloads/turkiye-enterprise/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-cowork.skill)
-- [GitHub Copilot for VS Code paketi](../../downloads/turkiye-enterprise/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-vscode.zip)
-- [Scout paketi](../../downloads/turkiye-enterprise/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-scout.zip)
-- [Copilot Studio GitHub harness paketi](../../downloads/turkiye-enterprise/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-studio-github-harness.zip)
-- [Copilot Studio Classic kurulum paketi](../../downloads/turkiye-enterprise/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-studio-classic-setup.zip)
+Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
+SHA-256 manifestine bağlanmıştır:
 
-Copilot Studio Classic paketi doğrudan içe aktarılan bir çözüm değildir. Classic
-ortamında insan tarafından uygulanacak kurulum dosyaları ve eşleme rehberi
-sağlar; kurulum sonrası yetki, bağlantı ve yayın ayarları ayrıca doğrulanır.
+- [Cowork skill paketi](../../downloads/skills/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-cowork.skill)
+- [Copilot VS Code ZIP](../../downloads/skills/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-vscode.zip)
+- [Scout ZIP](../../downloads/skills/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-scout.zip)
+- [Copilot Studio GitHub harness ZIP](../../downloads/skills/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-studio-github-harness.zip)
+- [Copilot Studio classic setup ZIP](../../downloads/skills/rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-studio-classic-setup.zip)
+
+Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
+doğrudan ajan içe aktarma paketi değildir.
 
 ## Değerlendirme
 

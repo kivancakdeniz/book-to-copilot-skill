@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DEMO = ROOT / "demos" / "investment-committee"
-SKILL = DEMO / "cowork" / "skill"
+SKILL = DEMO / "skill"
 
 spec = importlib.util.spec_from_file_location(
     "package_cowork_skill",
@@ -37,9 +37,10 @@ def _png_size(path: Path) -> tuple[int, int]:
 
 def test_demo_sources_and_evaluation_contract():
     manifest = _json("sources/source-manifest.json")
-    scenarios = _json("evaluation/scenarios.json")["scenarios"]
+    scenario_set = _json("evaluation/scenarios.json")
+    scenarios = scenario_set["scenarios"]
     rubric = _json("evaluation/rubric.json")
-    policy = (DEMO / "sources" / "asteria-capital-allocation-policy.md").read_text(
+    policy = (DEMO / "sources" / "company-policy.md").read_text(
         encoding="utf-8"
     )
 
@@ -47,36 +48,62 @@ def test_demo_sources_and_evaluation_contract():
     green_book = next(source for source in manifest["sources"] if source["id"] == "green-book-2026")
     assert re.fullmatch(r"[a-f0-9]{64}", green_book["sha256"])
     assert "Open Government Licence v3.0" in green_book["attribution"]
-    assert green_book["tracked"] is False
+    assert green_book["redistribution"] == "metadata-only"
+    assert "path" not in green_book
+
+    synthetic = [source for source in manifest["sources"] if source.get("synthetic")]
+    assert len(synthetic) == 3
+    for source in synthetic:
+        path = DEMO / "sources" / source["path"]
+        assert path.is_file()
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == source["sha256"]
+        assert source["type"].startswith("synthetic-")
 
     assert len(scenarios) == 12
     assert len({scenario["id"] for scenario in scenarios}) == 12
     assert scenarios[0]["expectedDecision"] == "conditional-approval"
     assert scenarios[0]["expectedOption"] == "phased-automation"
     allowed = {"approve", "conditional-approval", "escalate", "reject", "insufficient-evidence"}
+    assert set(scenario_set["allowedDecisionClasses"]) == allowed
+    assert set(scenario_set["allowedOptions"]) == {"none", "phased-automation"}
     for scenario in scenarios:
         assert scenario["expectedDecision"] in allowed
+        assert scenario["expectedOption"] in scenario_set["allowedOptions"]
         for rule in scenario.get("requiredRules", []):
             assert rule in policy
 
+    no_viable_option = next(scenario for scenario in scenarios if scenario["id"] == "IC-12")
+    assert no_viable_option["expectedDecision"] == "reject"
+    assert no_viable_option["expectedOption"] == "none"
+
+    assert len(rubric["dimensions"]) == 8
+    assert rubric["maximumPositiveScore"] == 14
     assert sum(dimension["max"] for dimension in rubric["dimensions"]) == rubric[
         "maximumPositiveScore"
     ]
+    release_controls = next(
+        dimension for dimension in rubric["dimensions"] if dimension["id"] == "release-controls"
+    )
+    assert release_controls["max"] == 1
+    for dimension in rubric["dimensions"]:
+        assert set(dimension["anchors"]) == {
+            str(score) for score in range(dimension["max"] + 1)
+        }
 
 
 def test_cowork_skill_structure_and_links():
     files = sorted(path.relative_to(SKILL).as_posix() for path in SKILL.rglob("*") if path.is_file())
     assert files == [
         "SKILL.md",
-        "references/appraisal-method.md",
-        "references/company-policy.md",
-        "references/evidence-map.md",
-        "references/output-schema.md",
-        "references/scenario-guide.md",
+        "company-policy.md",
+        "evidence-map.md",
+        "output-schema.md",
+        "public-method.md",
+        "scenario-guide.md",
     ]
 
     master = (SKILL / "SKILL.md").read_text(encoding="utf-8")
-    assert "name: investment-committee-copilot" in master
+    assert "name: investment-committee" in master
     assert "allowed-tools" not in master
     for relative in files[1:]:
         assert f"./{relative}" in master
@@ -166,14 +193,16 @@ def test_preliminary_review_contract():
     assert review["status"] == "not-a-formal-benchmark"
     assert review["method"]["humanReviewCompleted"] is False
     assert scorecard["scenarioId"] == review["scenarioId"]
-    assert {dimension["id"] for dimension in scorecard["dimensions"]} == set(maximums)
+    # The rehearsal predates the release-controls dimension, so it scores a rubric subset.
+    scored = {dimension["id"] for dimension in scorecard["dimensions"]}
+    assert scored and scored <= set(maximums)
     for dimension in scorecard["dimensions"]:
         expected_anchors = {str(score) for score in range(maximums[dimension["id"]] + 1)}
         assert set(dimension["anchors"]) == expected_anchors
     assert {result["blindLabel"] for result in review["results"]} == {"A", "B", "C", "D"}
 
     for result in review["results"]:
-        assert set(result["dimensions"]) == set(maximums)
+        assert set(result["dimensions"]) == scored
         for dimension_id, score in result["dimensions"].items():
             assert 0 <= score <= maximums[dimension_id]
         assert result["positiveScore"] == sum(result["dimensions"].values())
@@ -189,11 +218,18 @@ def test_preliminary_review_contract():
 
 
 def test_demo_page_makes_the_observed_skill_difference_explicit():
-    page = (ROOT / "docs" / "INVESTMENT-COMMITTEE-DEMO.md").read_text(
+    page = (ROOT / "docs" / "skills" / "investment-committee.md").read_text(
         encoding="utf-8"
     )
     normalized = " ".join(page.split())
-    assert "## LLM only vs LLM + skill" in normalized
-    assert "both conditions found the phased option" in normalized
-    assert "Not present in control context" in normalized
-    assert "experience comparison rather than a causal A/B" in normalized
+    assert "## Control vs skill: measured" in normalized
+    assert "The control run cited 0 of 6 policy rules and the skill run cited 6." in normalized
+    assert (
+        "Only the skill run stated the exact decision class (`conditional-approval`)."
+        in normalized
+    )
+    assert "This is a UX comparison, not a causal A/B." in normalized
+    assert (
+        "Limits: one run per condition, one locked scenario, and a single host."
+        in normalized
+    )

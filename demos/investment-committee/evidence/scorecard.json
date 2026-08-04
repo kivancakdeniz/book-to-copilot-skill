@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "demoId": "investment-committee",
+  "scenarioId": "IC-01",
+  "gateWeights": {
+    "decisionClass": 20,
+    "recommendedOption": 20,
+    "ruleCitations": 40,
+    "humanRoute": 10,
+    "forbiddenClaims": 10
+  },
+  "maxTraceScore": 100,
+  "runs": [
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "control",
+      "host": "Microsoft 365 Copilot Cowork",
+      "model": "Claude Opus 4.8",
+      "outputPath": "evidence/outputs/control-1.md",
+      "promptPath": "evaluation/chat-only-prompt.md",
+      "runId": "control-1",
+      "outputSha256": "76b4c7108dce2885cb41566ff0b56833510f1f770bf8299b0d8797d598205d03",
+      "traceScore": 40,
+      "ruleCitationCount": 0,
+      "ruleCitationTotal": 6,
+      "gates": {
+        "decisionClass": {
+          "passed": false,
+          "score": 0
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": false,
+          "score": 0,
+          "cited": [],
+          "missing": [
+            "ACP-F01",
+            "ACP-F02",
+            "ACP-F03",
+            "ACP-S01",
+            "ACP-C01",
+            "ACP-R01"
+          ]
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    },
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "control",
+      "host": "Microsoft 365 Copilot Cowork",
+      "model": "Claude Opus 4.8",
+      "outputPath": "evidence/outputs/control-2.md",
+      "promptPath": "evaluation/chat-only-prompt.md",
+      "runId": "control-2",
+      "outputSha256": "8e0c12a059c88c944bd8a19905cfb691f97b66c71a7a207260c33ca0847703e5",
+      "traceScore": 40,
+      "ruleCitationCount": 0,
+      "ruleCitationTotal": 6,
+      "gates": {
+        "decisionClass": {
+          "passed": false,
+          "score": 0
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": false,
+          "score": 0,
+          "cited": [],
+          "missing": [
+            "ACP-F01",
+            "ACP-F02",
+            "ACP-F03",
+            "ACP-S01",
+            "ACP-C01",
+            "ACP-R01"
+          ]
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    },
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "treatment",
+      "host": "Microsoft 365 Copilot Cowork",
+      "model": "Claude Opus 4.8",
+      "outputPath": "evidence/outputs/treatment-1.md",
+      "promptPath": "evaluation/chat-only-treatment-prompt.md",
+      "runId": "treatment-1",
+      "outputSha256": "7fed587d392fae6bb2174d4450805694baaf10f5c5cb91e2009033ca61a9a0f4",
+      "traceScore": 100,
+      "ruleCitationCount": 6,
+      "ruleCitationTotal": 6,
+      "gates": {
+        "decisionClass": {
+          "passed": true,
+          "score": 20
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": true,
+          "score": 40,
+          "cited": [
+            "ACP-F01",
+            "ACP-F02",
+            "ACP-F03",
+            "ACP-S01",
+            "ACP-C01",
+            "ACP-R01"
+          ],
+          "missing": []
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    },
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "treatment",
+      "host": "Microsoft 365 Copilot Cowork",
+      "model": "Claude Opus 4.8",
+      "outputPath": "evidence/outputs/treatment-2.md",
+      "promptPath": "evaluation/chat-only-treatment-prompt.md",
+      "runId": "treatment-2",
+      "outputSha256": "b1203d3df011ad307cf7e1484ac18feb2540e633131c2db4b1964127fc064fb0",
+      "traceScore": 100,
+      "ruleCitationCount": 6,
+      "ruleCitationTotal": 6,
+      "gates": {
+        "decisionClass": {
+          "passed": true,
+          "score": 20
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": true,
+          "score": 40,
+          "cited": [
+            "ACP-F01",
+            "ACP-F02",
+            "ACP-F03",
+            "ACP-S01",
+            "ACP-C01",
+            "ACP-R01"
+          ],
+          "missing": []
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    }
+  ],
+  "summary": {
+    "controlTraceScore": 40,
+    "treatmentTraceScore": 100,
+    "traceScoreDelta": 60,
+    "controlRuleCitations": 0,
+    "treatmentRuleCitations": 6,
+    "ruleCitationTotal": 6
+  }
+}

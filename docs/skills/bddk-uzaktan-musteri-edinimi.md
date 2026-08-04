@@ -2,24 +2,51 @@
 
 [Türkçe](../tr/skills/bddk-uzaktan-musteri-edinimi.md)
 
-## Control vs skill-assisted LLM: expected difference only
+## Control vs skill: measured
 
-| Control: brief-only LLM | Skill-assisted LLM |
-|---|---|
-| May produce an open-ended narrative or an incomplete checklist | Structures the response around allowed decision classes, three options, and rule IDs |
-| May fill evidence gaps with assumptions | Keeps missing facts `unknown` and routes them to a human decision-maker |
-| May offer general compliance or operational guidance | Explicitly applies the publication, go-live, transaction, or closing gate |
+Both runs answered the same locked case with the same prompt. The only
+difference is that the second run had the skill installed. Scoring is done by a
+deterministic script against the locked scenario, not by a model, so anyone can
+reproduce these numbers.
 
-This comparison is a design hypothesis about the expected difference only.
-Cowork A/B execution for these 10 new skills, including the 12 locked scenarios
-and the 14-point rubric, is still pending. Planned metrics are exact decision
-and option match, required-rule recall, unsupported-claim count, observance of
-human authority, and response length. No ROI or production-performance claim is made.
+| Governance gate | LLM only | LLM + skill |
+| --- | --- | --- |
+| Policy rules cited | 0 / 7 | 7 / 7 |
+| Exact decision class stated | no | no |
+| Named option stated | yes | yes |
+| Human approval route named | yes | yes |
+| No autonomous-authority claim | yes | yes |
+| **Trace score** | **40 / 100** | **80 / 100** |
 
-A fictional digital-bank team wants to launch a remote onboarding flow that
-requests an identity-document scan and selfie by email only. This portable skill
-reviews the request through method, evidence, control, human-authority, and
-go-live gates without making an official determination.
+Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Captured: 2026-08-04 · Scenario: `BDK-01`
+
+[Control answer](../assets/skills/bddk-uzaktan-musteri-edinimi/outputs/control-1.txt) · [Skill answer](../assets/skills/bddk-uzaktan-musteri-edinimi/outputs/treatment-1.txt) · [Scorecard](../assets/skills/bddk-uzaktan-musteri-edinimi/scorecard.json)
+
+Reproduce:
+
+```bash
+python tools/score_skill_answer.py scorecard --demo demos/bddk-uzaktan-musteri-edinimi
+```
+
+The control run cited 0 of 7 policy rules and the skill run cited 7. The skill run chose a more cautious class than the locked expectation (`reject-flow`), so the class call stays with the human reviewer.
+
+Limits: one run per condition, one locked scenario, and a single host. This table
+is the machine-checkable subset; the 14-point human rubric lives in
+`demos/bddk-uzaktan-musteri-edinimi/evaluation/rubric.json`.
+
+## From source to skill
+
+This chain shows exactly which content produced the skill.
+
+| Stage | Produced content |
+| --- | --- |
+| Official source (metadata only) | [Bankalarca Kullanılacak Uzaktan Kimlik Tespiti Yöntemlerine ve Elektronik Ortamda Sözleşme İlişkisinin Kurulmasına İlişkin Yönetmelik](https://www.resmigazete.gov.tr/eskiler/2021/04/20210401-7.htm) — Resmî Gazete |
+| Public method summary | `demos/bddk-uzaktan-musteri-edinimi/skill/public-method.md` |
+| Synthetic company policy | `demos/bddk-uzaktan-musteri-edinimi/sources/company-policy.md` |
+| Synthetic case | `demos/bddk-uzaktan-musteri-edinimi/sources/case-brief.md` |
+| Locked evaluation | 12 scenarios and a 14-point rubric: `demos/bddk-uzaktan-musteri-edinimi/evaluation/` |
+| Portable skill | `demos/bddk-uzaktan-musteri-edinimi/skill/SKILL.md` plus five companions |
+| Host packages | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness and classic) |
 
 ## Business impact at a glance
 
@@ -48,16 +75,17 @@ action.
 
 ## Downloads
 
-- [Cowork skill](../downloads/turkiye-enterprise/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-cowork.skill)
-- [GitHub Copilot for VS Code package](../downloads/turkiye-enterprise/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-vscode.zip)
-- [Scout package](../downloads/turkiye-enterprise/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-scout.zip)
-- [Copilot Studio GitHub harness package](../downloads/turkiye-enterprise/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-studio-github-harness.zip)
-- [Copilot Studio Classic setup package](../downloads/turkiye-enterprise/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-studio-classic-setup.zip)
+These packages are generated deterministically by the shared release factory
+and are bound to the SHA-256 manifest:
 
-The Copilot Studio Classic package is not a directly importable solution. It
-provides setup files and a mapping guide for human implementation in a Classic
-environment; permissions, connections, and publication settings must be
-verified separately after setup.
+- [Cowork skill package](../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-cowork.skill)
+- [Copilot VS Code ZIP](../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-vscode.zip)
+- [Scout ZIP](../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-scout.zip)
+- [Copilot Studio GitHub harness ZIP](../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-studio-github-harness.zip)
+- [Copilot Studio classic setup ZIP](../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-studio-classic-setup.zip)
+
+The classic setup ZIP is a package of setup materials and instructions for
+Copilot Studio; it is not a direct agent import package.
 
 ## Evaluation
 

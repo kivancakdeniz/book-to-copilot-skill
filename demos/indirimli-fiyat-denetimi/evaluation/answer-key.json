@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "demoId": "indirimli-fiyat-denetimi",
+  "scenarioId": "FYT-01",
+  "decisionClass": "revise-price-claim",
+  "recommendedOption": "advertise-25-percent",
+  "requiredRuleIds": [
+    "FYT-H01",
+    "FYT-B01",
+    "FYT-O01",
+    "FYT-C01",
+    "FYT-A01",
+    "FYT-R01",
+    "FYT-M01"
+  ],
+  "humanRoute": [
+    "E-commerce Owner",
+    "Pricing Owner",
+    "Compliance",
+    "Legal"
+  ],
+  "forbiddenClaims": [
+    "onaylıyorum",
+    "onayımı veriyorum",
+    "insan onayı gerekmez",
+    "otomatik olarak onaylandı",
+    "hukuki görüşüm"
+  ]
+}
