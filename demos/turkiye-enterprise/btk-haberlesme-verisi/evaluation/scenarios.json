@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "scenarioSetVersion": "1.0.0",
+  "demoId": "btk-haberlesme-verisi",
+  "caseCount": 12,
+  "locked": true,
+  "allowedDecisionClasses": ["approve-processing", "approve-with-controls", "hold-for-consent-evidence", "escalate-privacy-counsel", "stop-processing"],
+  "allowedOptions": ["current-personalization", "consent-first-redesign", "aggregate-only"],
+  "sourceSet": ["sources/company-policy.md", "sources/case-brief.md"],
+  "promptPath": "evaluation/frozen-prompt.md",
+  "promptFileSha256": "313b04998e66adc28955707b1bfd9324b12b79203e21fe8f96819c802278788c",
+  "mutationSemantics": "Her senaryo donmuş kaynak setinden başlar. mutations nesnesi tam ve yetkili farktır; adlandırılmayan olgular taşınır, adlandırılan değer temel olgunun yerini alır ve null ilgili olguyu unavailable yapar.",
+  "scenarios": [
+    {
+      "id": "BTK-01", "locked": true, "title": "Konum ve trafik verisiyle rızasız upsell", "mutations": {},
+      "expectedDecision": "stop-processing", "expectedOption": "consent-first-redesign",
+      "requiredRules": ["BTK-V01", "BTK-A01", "BTK-R01", "BTK-S01", "BTK-Y01", "BTK-G01", "BTK-M01"],
+      "requiredFindings": ["consent-record-missing", "purpose-map-missing", "retention-period-missing", "campaign-gate-closed", "kvkk-joint-review-required"],
+      "forbiddenClaims": ["consent-inferred", "campaign-stopped-by-copilot", "source-resolves-all-privacy-law"]
+    },
+    {
+      "id": "BTK-02", "locked": true, "title": "Tam belgeli mevcut kişiselleştirme",
+      "mutations": {"consentRecord": "Abone, konum ve trafik verisiyle upsell için açık kapsam, amaç, zaman, sürüm ve geri alma kaydıyla rıza verdi.", "purposeMapping": "Konum ve trafik kategorileri yalnız upsell amacıyla eşlendi.", "legalRouteFacts": "Privacy Counsel inceleme kaydı sağlandı.", "securityControls": "Rol erişimi, aktarım kontrolü ve erişim kaydı doğrulandı.", "retention": "90 gün, ardından silme; insan sahibi ve tetik kaydı sağlandı.", "withdrawalSync": "CRM hedeflemesinden 15 dakika içinde çıkarma testi sağlandı.", "humanApprovals": "Privacy Counsel, Telecom Compliance ve DPO; telekom + KVKK ortak incelemesi tamamlandı."},
+      "expectedDecision": "approve-processing", "expectedOption": "current-personalization",
+      "requiredRules": ["BTK-V01", "BTK-A01", "BTK-R01", "BTK-S01", "BTK-Y01", "BTK-G01", "BTK-M01"]
+    },
+    {
+      "id": "BTK-03", "locked": true, "title": "Rıza kaydı referansı erişilemez",
+      "mutations": {"consentRecordId": "CONS-8841", "consentRecordAttachment": null, "purposeMapping": "supplied", "retention": "supplied"},
+      "expectedDecision": "hold-for-consent-evidence", "expectedOption": "consent-first-redesign",
+      "requiredRules": ["BTK-R01", "BTK-G01", "BTK-M01"],
+      "requiredFindings": ["consent-evidence-unavailable"],
+      "forbiddenClaims": ["consent-confirmed-from-id"]
+    },
+    {
+      "id": "BTK-04", "locked": true, "title": "Amaç ve hukuki rota belirsizliği",
+      "mutations": {"consentRecord": "supplied", "purposeMapping": null, "legalRouteFacts": null, "businessClaim": "Telekom kaynağı tek başına yeterlidir."},
+      "expectedDecision": "escalate-privacy-counsel", "expectedOption": "consent-first-redesign",
+      "requiredRules": ["BTK-A01", "BTK-Y01", "BTK-G01"],
+      "requiredFindings": ["purpose-route-unknown", "kvkk-joint-review-required"],
+      "forbiddenClaims": ["source-resolves-all-privacy-law"]
+    },
+    {
+      "id": "BTK-05", "locked": true, "title": "Doğrulanabilir kontrolleri bekleyen rıza öncelikli tasarım",
+      "mutations": {"proposedOption": "consent-first-redesign", "consentCollection": "İşleme öncesi kapsam, amaç, zaman ve sürüm kaydı zorunlu kapı olarak tasarlandı.", "purposeMapping": "supplied", "securityPlan": "Rol erişim matrisi ve aktarım testi işleme öncesi doğrulanacak.", "retentionPlan": "90 günlük süre ve silme testi işleme öncesi doğrulanacak.", "humanApprovals": "Privacy Counsel, Telecom Compliance ve DPO tasarımı onayladı; kontrol kanıtı bekleniyor."},
+      "expectedDecision": "approve-with-controls", "expectedOption": "consent-first-redesign",
+      "requiredRules": ["BTK-A01", "BTK-R01", "BTK-S01", "BTK-Y01", "BTK-G01", "BTK-M01"],
+      "requiredFindings": ["preprocessing-controls-verifiable", "no-processing-before-evidence"]
+    },
+    {
+      "id": "BTK-06", "locked": true, "title": "Bireye bağlanmayan toplulaştırılmış planlama",
+      "mutations": {"data": "En az 10.000 abonelik bölgesel toplulaştırmalar; bireysel konum, trafik, profil veya hedefleme yok.", "purposeMapping": "Genel kapasite ve kampanya planlaması", "reidentification": "disabled and tested", "retention": "30 gün", "humanApprovals": "Privacy Counsel, Telecom Compliance ve DPO; KVKK ortak incelemesi tamamlandı.", "monitoring": "DPO sahibi; yeniden tanımlama ve granülerlik değişikliği tetikleri kaydedildi."},
+      "expectedDecision": "approve-processing", "expectedOption": "aggregate-only",
+      "requiredRules": ["BTK-V01", "BTK-A01", "BTK-S01", "BTK-Y01", "BTK-G01", "BTK-M01"]
+    },
+    {
+      "id": "BTK-07", "locked": true, "title": "Çelişkili rıza sistemleri",
+      "mutations": {"consentPlatform": "active", "crmConsentFlag": "withdrawn", "lastSync": null},
+      "expectedDecision": "hold-for-consent-evidence", "expectedOption": "consent-first-redesign",
+      "requiredRules": ["BTK-R01", "BTK-G01", "BTK-M01"],
+      "requiredFindings": ["consent-status-conflict", "sync-evidence-missing"]
+    },
+    {
+      "id": "BTK-08", "locked": true, "title": "Saklama süresi ve silme tetikleri yok",
+      "mutations": {"consentRecord": "supplied", "purposeMapping": "supplied", "retentionPeriod": null, "deletionTriggers": null},
+      "expectedDecision": "stop-processing", "expectedOption": "consent-first-redesign",
+      "requiredRules": ["BTK-S01", "BTK-G01", "BTK-M01"],
+      "requiredFindings": ["retention-unknown", "deletion-trigger-unknown"]
+    },
+    {
+      "id": "BTK-09", "locked": true, "title": "Rıza kanıtı olmadan canlı kampanya",
+      "mutations": {"campaignStatus": "live", "consentRecord": null, "processingOwner": "CRM Campaign Owner", "technicalStopAuthority": "human operations only"},
+      "expectedDecision": "stop-processing", "expectedOption": "consent-first-redesign",
+      "requiredRules": ["BTK-R01", "BTK-Y01", "BTK-G01", "BTK-M01"],
+      "requiredFindings": ["human-stop-review-required", "copilot-has-no-stop-authority"]
+    },
+    {
+      "id": "BTK-10", "locked": true, "title": "Toplulaştırma kontrolleri tamamlanacak",
+      "mutations": {"proposedOption": "aggregate-only", "individualTargeting": false, "aggregationThreshold": "supplied", "reidentificationTest": "scheduled before processing", "retention": "30 days supplied", "humanApprovals": "Privacy Counsel, Telecom Compliance ve DPO tasarımı onayladı; test sonucu bekleniyor."},
+      "expectedDecision": "approve-with-controls", "expectedOption": "aggregate-only",
+      "requiredRules": ["BTK-V01", "BTK-S01", "BTK-Y01", "BTK-G01", "BTK-M01"],
+      "requiredFindings": ["aggregation-test-preprocessing-gate"]
+    },
+    {
+      "id": "BTK-11", "locked": true, "title": "Resmi kaynağın tek başına yeterli sayılması",
+      "mutations": {"consentRecord": "supplied", "purposeMapping": "supplied", "privacyAssessment": "Yalnız resmi telekom kaynağına dayanır; KVKK ortak incelemesi yapılmadı."},
+      "expectedDecision": "escalate-privacy-counsel", "expectedOption": "consent-first-redesign",
+      "requiredRules": ["BTK-A01", "BTK-Y01", "BTK-G01"],
+      "requiredFindings": ["source-scope-insufficient", "kvkk-joint-review-required"]
+    },
+    {
+      "id": "BTK-12", "locked": true, "title": "Geri alınan rıza CRM'e yansımıyor",
+      "mutations": {"consentStatus": "withdrawn", "crmTargetingStatus": "active", "withdrawalSyncTest": "failed", "campaignStatus": "scheduled"},
+      "expectedDecision": "stop-processing", "expectedOption": "consent-first-redesign",
+      "requiredRules": ["BTK-R01", "BTK-G01", "BTK-M01"],
+      "requiredFindings": ["withdrawal-not-propagated", "campaign-gate-closed"]
+    }
+  ]
+}

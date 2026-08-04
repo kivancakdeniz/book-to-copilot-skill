@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "demoId": "masak-musteri-kabul",
+  "sources": [
+    {
+      "id": "masak-tedbirler-yonetmeligi",
+      "title": "Suç gelirlerinin aklanmasının ve terörün finansmanının önlenmesine dair tedbirler hakkında yönetmelik",
+      "type": "external-method",
+      "url": "https://masak.hmb.gov.tr/suc-gelirlerinin-aklanmasinin-ve-terorun-finansmaninin-onlenmesine-dair-tedbirler-hakkinda-yonetmelik-3/",
+      "sha256": "242cbc47fdd7359f0312fbe59308e1e68ca97b697b0b22b7e5ff62cef6d77f6c",
+      "publisher": "MASAK",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuseCaveat": "Resmi içerik pakete alınmaz; güncellik, kapsam ve yeniden kullanım koşulları resmi sayfadan insan tarafından doğrulanmalıdır. Yöntem kaynağıdır, şirket kararı veya SİB/STR sonucu değildir."
+    },
+    {
+      "id": "kurgusal-aml-company-policy",
+      "title": "Kurgusal AML Kuruluşu kurumsal müşteri kabul politikası",
+      "type": "synthetic-policy",
+      "path": "company-policy.md",
+      "license": "MIT",
+      "synthetic": true,
+      "sha256": "3b85b6892a1eaffdcd3f1a0237956d16ec8c7c4ee610efdeefa3cf31393069c2"
+    },
+    {
+      "id": "kf-kyb-2026-144",
+      "title": "Vaka özeti KF-KYB-2026-144",
+      "type": "synthetic-case",
+      "path": "case-brief.md",
+      "license": "MIT",
+      "synthetic": true,
+      "sha256": "77b3a9611a72ba1bcaa09afa526e28760a6485d014333af13d7cc112973d2a3f"
+    }
+  ]
+}

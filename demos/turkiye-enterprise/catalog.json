@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "1.0.0",
+  "entries": [
+    {
+      "id": "kvkk-aydinlatma-kontrolu",
+      "title": "KVKK aydınlatma kontrolü",
+      "article": "docs/skills/kvkk-aydinlatma-kontrolu.md",
+      "status": "release",
+      "sector": "Veri koruma",
+      "audience": "Privacy, Compliance ve ürün ekipleri",
+      "oneLineValue": "Aydınlatma, rıza ve aktarım boşluklarını insan yayın kapısına bağlar."
+    },
+    {
+      "id": "etk-iys-ileti-karari",
+      "title": "ETK/IYS ileti kararı",
+      "article": "docs/skills/etk-iys-ileti-karari.md",
+      "status": "release",
+      "sector": "Ticari elektronik ileti",
+      "audience": "CRM, Compliance ve Legal ekipleri",
+      "oneLineValue": "Kampanya kitlesini kişi-kanal kanıtı ve bastırma kapısıyla inceler."
+    },
+    {
+      "id": "indirimli-fiyat-denetimi",
+      "title": "İndirimli fiyat denetimi",
+      "article": "docs/skills/indirimli-fiyat-denetimi.md",
+      "status": "release",
+      "sector": "E-ticaret ve tüketici hukuku",
+      "audience": "E-ticaret, fiyatlandırma ve Compliance ekipleri",
+      "oneLineValue": "Fiyat geçmişi ile kampanya iddiasını izlenebilir bir yayın kararında buluşturur."
+    },
+    {
+      "id": "masak-musteri-kabul",
+      "title": "MASAK müşteri kabul",
+      "article": "docs/skills/masak-musteri-kabul.md",
+      "status": "release",
+      "sector": "Finansal suçlarla mücadele",
+      "audience": "AML, Compliance ve müşteri kabul ekipleri",
+      "oneLineValue": "Kimlik, nihai faydalanıcı ve fon kaynağı boşluklarını insan incelemesine yönlendirir."
+    },
+    {
+      "id": "bddk-uzaktan-musteri-edinimi",
+      "title": "BDDK uzaktan müşteri edinimi",
+      "article": "docs/skills/bddk-uzaktan-musteri-edinimi.md",
+      "status": "release",
+      "sector": "Bankacılık",
+      "audience": "Dijital bankacılık, güvenlik, Uyum ve Hukuk ekipleri",
+      "oneLineValue": "Uzaktan edinim akışını kanıt, kontrol ve canlıya geçiş kapılarıyla sınar."
+    },
+    {
+      "id": "rekabet-birlesme-bildirimi",
+      "title": "Rekabet birleşme bildirimi",
+      "article": "docs/skills/rekabet-birlesme-bildirimi.md",
+      "status": "release",
+      "sector": "Birleşme ve devralmalar",
+      "audience": "M&A, Finans ve Rekabet Hukuku ekipleri",
+      "oneLineValue": "Ön hesaplama göstergelerini hukuki bildirim kararı ve kapanış kapısından ayırır."
+    },
+    {
+      "id": "isg-risk-degerlendirme",
+      "title": "İSG risk değerlendirmesi: değişiklikten devreye alma kapısına",
+      "article": "docs/skills/isg-risk-degerlendirme.md",
+      "status": "release",
+      "sector": "İş sağlığı ve güvenliği",
+      "audience": "İSG, operasyon, bakım ve mühendislik ekipleri",
+      "oneLineValue": "Değişiklik risklerini katılım, kontrol ve devreye alma kanıtlarıyla görünür kılar."
+    },
+    {
+      "id": "titck-ilac-tanitimi",
+      "title": "TİTCK ilaç tanıtımı: hedef kitle ve yayın kapısı",
+      "article": "docs/skills/titck-ilac-tanitimi.md",
+      "status": "release",
+      "sector": "İlaç ve sağlık iletişimi",
+      "audience": "Medical, Regulatory, Legal ve pazarlama ekipleri",
+      "oneLineValue": "Ürün statüsü, hedef kitle ve kanal erişimini insan yayın incelemesine bağlar."
+    },
+    {
+      "id": "kripto-odeme-kapisi",
+      "title": "Kripto ödeme kapısı",
+      "article": "docs/skills/kripto-odeme-kapisi.md",
+      "status": "release",
+      "sector": "Ödeme hizmetleri ve kripto varlıklar",
+      "audience": "Payments, Compliance, Legal ve ürün ekipleri",
+      "oneLineValue": "Kripto işlevinin ödeme akışındaki rolünü ürün sınırı ve lansman kapısıyla inceler."
+    },
+    {
+      "id": "btk-haberlesme-verisi",
+      "title": "BTK haberleşme verisi",
+      "article": "docs/skills/btk-haberlesme-verisi.md",
+      "status": "release",
+      "sector": "Telekom ve mahremiyet",
+      "audience": "Telekom Compliance, Privacy, DPO ve CRM ekipleri",
+      "oneLineValue": "Konum ve trafik verisi kullanımını amaç, rıza ve saklama kapılarıyla sınırlar."
+    }
+  ]
+}

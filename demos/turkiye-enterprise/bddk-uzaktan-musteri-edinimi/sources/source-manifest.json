@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "demoId": "bddk-uzaktan-musteri-edinimi",
+  "sources": [
+    {
+      "id": "resmi-gazete-uzaktan-kimlik-2021",
+      "title": "Bankalarca Kullanılacak Uzaktan Kimlik Tespiti Yöntemlerine ve Elektronik Ortamda Sözleşme İlişkisinin Kurulmasına İlişkin Yönetmelik",
+      "publisher": "Resmî Gazete",
+      "url": "https://www.resmigazete.gov.tr/eskiler/2021/04/20210401-7.htm",
+      "sha256": "1a0b58decd14454d8cbf7e6cb3cf3902cedbac8b7bcaf9644004429915ce15bf",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuseCaveat": "Resmî metin bu depoda yeniden dağıtılmaz. Kullanımdan önce kaynak URL, güncellik, kapsam, değişiklik ve yeniden kullanım koşulları yetkili bir insan tarafından doğrulanmalıdır.",
+      "role": "Kısa ve atıflı inceleme yöntemi için dış kaynak metadata'sı; şirket politikası, hukuki tavsiye veya teknik sertifika değildir",
+      "tracked": false
+    },
+    {
+      "id": "ume-company-policy",
+      "title": "Kurgusal Ufuk Bankası Uzaktan Müşteri Edinimi Politikası UME-1.0",
+      "publisher": "Kurgusal demo külliyatı",
+      "path": "company-policy.md",
+      "sha256": "f8f5d91960aeb0d7f960369909d5eb93c67b7581dca8c9a5c1a2ed69c54c52d9",
+      "license": "MIT",
+      "synthetic": true,
+      "redistribution": "included",
+      "reuseCaveat": "MIT lisanslı sentetik demo içeriği; gerçek banka politikası, hukuki görüş veya teknik sertifika değildir.",
+      "tracked": true
+    },
+    {
+      "id": "ume-baseline-case",
+      "title": "Vaka UME-2408: Kurgusal Ufuk Bankası uzaktan müşteri edinimi",
+      "publisher": "Kurgusal demo külliyatı",
+      "path": "case-brief.md",
+      "sha256": "47772642fd40b9031e00ac3eb4f698a1d3f02e39e47eec448a9af0723d3a7f34",
+      "license": "MIT",
+      "synthetic": true,
+      "redistribution": "included",
+      "reuseCaveat": "MIT lisanslı sentetik demo içeriği; gerçek müşteri, banka işlemi veya kimlik kaydı değildir.",
+      "tracked": true
+    }
+  ]
+}

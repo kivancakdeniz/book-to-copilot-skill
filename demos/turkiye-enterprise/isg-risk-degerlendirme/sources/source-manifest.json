@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "demoId": "isg-risk-degerlendirme",
+  "sources": [
+    {
+      "id": "isg-risk-degerlendirmesi-yonetmeligi-2012",
+      "title": "İş Sağlığı ve Güvenliği Risk Değerlendirmesi Yönetmeliği",
+      "publisher": "T.C. Resmî Gazete",
+      "url": "https://www.resmigazete.gov.tr/eskiler/2012/12/20121229-13.htm",
+      "sha256": "a1ab5bfc1ea7c305393d7fa75f33d7a7debaf97fe3a6e46cc5d4dfb9276a31dc",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuse": "Resmî dış kaynak yalnızca doğrulama metadatası ve kısa atıflı yöntem özetiyle kullanılır; yeniden kullanım koşulları ile güncel metin insan tarafından kaynaktan doğrulanmalıdır.",
+      "reuseCaveat": "Resmî dış kaynak bu depoda yeniden dağıtılmaz. Güncel metin, kapsam, değişiklik ve yeniden kullanım koşulları yetkili bir insan tarafından kaynak URL'den doğrulanmalıdır.",
+      "role": "Kısa ve atıflı İSG inceleme yöntemi için dış kaynak metadatası; şirket politikası, hukuki veya mühendislik tavsiyesi ya da sertifikasyon değildir",
+      "tracked": false
+    },
+    {
+      "id": "mh-isg-company-policy",
+      "title": "MaviHat İSG değişiklik ve devreye alma politikası MH-ISG-1.0",
+      "publisher": "Kurgusal demo külliyatı",
+      "path": "company-policy.md",
+      "sha256": "e8e5dbe7517e474e759852b88da3f89413eaac90d0b926506d39a3cfddc0d5c8",
+      "license": "MIT",
+      "synthetic": true,
+      "redistribution": "included",
+      "reuse": "MIT lisanslı sentetik demo içeriği; gerçek şirket politikası veya mevzuat değildir.",
+      "reuseCaveat": "MIT lisanslı sentetik demo içeriği; gerçek şirket politikası, hukuki veya mühendislik görüşü ya da sertifikasyon değildir.",
+      "tracked": true
+    },
+    {
+      "id": "isg-01-case-brief",
+      "title": "Paletleme robotu devreye alma talebi vaka brifi",
+      "publisher": "Kurgusal demo külliyatı",
+      "path": "case-brief.md",
+      "sha256": "7d2344fd5afbb2f52d72d6212ae9b2246bd01dde32463dea3a206cdadd030f56",
+      "license": "MIT",
+      "synthetic": true,
+      "redistribution": "included",
+      "reuse": "MIT lisanslı sentetik demo içeriği; gerçek tesis, çalışan veya ekipman kaydı değildir.",
+      "reuseCaveat": "MIT lisanslı sentetik demo içeriği; gerçek tesis, çalışan, ekipman veya İSG değerlendirmesi kaydı değildir.",
+      "tracked": true
+    }
+  ]
+}

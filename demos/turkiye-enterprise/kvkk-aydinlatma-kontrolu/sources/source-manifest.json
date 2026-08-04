@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "demo": "kvkk-aydinlatma-kontrolu",
+  "sources": [
+    {
+      "id": "KVKK-6698",
+      "title": "6698 sayılı Kişisel Verilerin Korunması Kanunu",
+      "type": "external-method",
+      "url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6698.pdf",
+      "sha256": "1ad27253b0068d4c3d991b92b68c6bc1104439430160f4350a3f04fbb211f2b5",
+      "publisher": "Mevzuat Bilgi Sistemi",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuseBasis": "Kamuya açık resmî mevzuat, karar yöntemini çıkarmak için başvuru kaynağıdır.",
+      "reuseCaveat": "Yalnız kaynak metadatası ve kısa atıflı yöntem özeti yeniden kullanılır; uzun pasajlar kopyalanmaz, güncellik ve resmî metin insan Legal tarafından doğrulanır."
+    },
+    {
+      "id": "KVKK-AYDINLATMA-TEBLIGI",
+      "title": "Aydınlatma Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ",
+      "type": "external-method",
+      "url": "https://www.resmigazete.gov.tr/eskiler/2018/03/20180310-5.htm",
+      "sha256": "f40c0e9df0eb9ccbc3476284b34dcaa718ac9157b32781dc1a83a36badf286d9",
+      "publisher": "Resmî Gazete",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuseBasis": "Kamuya açık resmî tebliğ, aydınlatma kontrol yöntemini çıkarmak için başvuru kaynağıdır.",
+      "reuseCaveat": "Yalnız kaynak metadatası ve kısa atıflı yöntem özeti yeniden kullanılır; uzun pasajlar kopyalanmaz, güncellik ve resmî metin insan Legal tarafından doğrulanır."
+    },
+    {
+      "id": "KVK-SENTETIK-POLITIKA",
+      "title": "Sentetik şirket politikası: KVKK aydınlatma kontrolü",
+      "type": "synthetic-policy",
+      "path": "company-policy.md",
+      "sha256": "02547ff8ed5e8484fdff38ae5699b6f64db5861c67c12a5603570f80dffccb13",
+      "license": "MIT",
+      "synthetic": true
+    },
+    {
+      "id": "KVK-SENTETIK-VAKA",
+      "title": "Sentetik vaka özeti: B2B SaaS potansiyel müşteri formu",
+      "type": "synthetic-case",
+      "path": "case-brief.md",
+      "sha256": "9a16796f1523d796f649bb4422b470e7f43de2478a3aeece0f3d8500886e3470",
+      "license": "MIT",
+      "synthetic": true
+    }
+  ]
+}

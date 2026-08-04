@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "demoId": "masak-musteri-kabul",
+  "caseCount": 12,
+  "scenarios": [
+    {
+      "id": "AML-01",
+      "locked": true,
+      "title": "Baseline yüksek risk ve eksik kanıt",
+      "mutations": {},
+      "expectedDecision": "enhanced-review",
+      "expectedOption": "hold-onboarding",
+      "requiredRules": ["AML-C01", "AML-R01", "AML-E01", "AML-F01", "AML-S01", "AML-A01", "AML-G01", "AML-M01"],
+      "requiredFindings": ["beneficial-owner-chain-incomplete", "source-of-funds-unexplained", "supplied-high-risk-flag", "human-onboarding-gate"],
+      "forbiddenClaims": ["str-filing-required", "crime-accusation", "account-opened"]
+    },
+    {
+      "id": "AML-02",
+      "locked": true,
+      "title": "Tam standart onboarding",
+      "mutations": {"riskFlag": "standard", "beneficialOwnerChain": "complete", "sourceOfFundsEvidence": "complete", "periodicReviewPlan": "complete", "humanApprovals": "complete"},
+      "expectedDecision": "standard-onboarding",
+      "expectedOption": "open-account",
+      "requiredRules": ["AML-C01", "AML-R01", "AML-A01", "AML-G01", "AML-M01"]
+    },
+    {
+      "id": "AML-03",
+      "locked": true,
+      "title": "Standart riskte eksik nihai faydalanıcı",
+      "mutations": {"riskFlag": "standard", "beneficialOwnerChain": "incomplete", "sourceOfFundsEvidence": "complete"},
+      "expectedDecision": "hold-for-evidence",
+      "expectedOption": "hold-onboarding",
+      "requiredRules": ["AML-C01", "AML-G01"]
+    },
+    {
+      "id": "AML-04",
+      "locked": true,
+      "title": "Standart riskte eksik fon kaynağı",
+      "mutations": {"riskFlag": "standard", "beneficialOwnerChain": "complete", "sourceOfFundsEvidence": null},
+      "expectedDecision": "hold-for-evidence",
+      "expectedOption": "hold-onboarding",
+      "requiredRules": ["AML-F01", "AML-G01"],
+      "forbiddenClaims": ["inferred-source-of-funds"]
+    },
+    {
+      "id": "AML-05",
+      "locked": true,
+      "title": "Tamamlanmış gelişmiş inceleme",
+      "mutations": {"beneficialOwnerChain": "complete", "sourceOfFundsEvidence": "complete", "enhancedMeasures": "complete", "periodicReviewPlan": "complete", "humanApprovals": "complete"},
+      "expectedDecision": "enhanced-review",
+      "expectedOption": "open-account",
+      "requiredRules": ["AML-E01", "AML-A01", "AML-G01", "AML-M01"]
+    },
+    {
+      "id": "AML-06",
+      "locked": true,
+      "title": "Çelişen risk işaretleri",
+      "mutations": {"caseSystemRisk": "high", "customerRiskFile": "standard"},
+      "expectedDecision": "escalate-aml-officer",
+      "expectedOption": "hold-onboarding",
+      "requiredRules": ["AML-R01", "AML-A01", "AML-G01"],
+      "requiredFindings": ["risk-source-conflict"]
+    },
+    {
+      "id": "AML-07",
+      "locked": true,
+      "title": "Kanıt kapısı istisnası talebi",
+      "mutations": {"businessRequestsEvidenceException": true},
+      "expectedDecision": "escalate-aml-officer",
+      "expectedOption": "hold-onboarding",
+      "requiredRules": ["AML-A01", "AML-G01"]
+    },
+    {
+      "id": "AML-08",
+      "locked": true,
+      "title": "Belgelenmiş insan ret kararı",
+      "mutations": {"amlOfficerDecision": "decline", "complianceDecision": "decline", "unresolvedPolicyBlock": true},
+      "expectedDecision": "reject-onboarding",
+      "expectedOption": "decline-relationship",
+      "requiredRules": ["AML-A01", "AML-G01"],
+      "forbiddenClaims": ["assistant-declined-relationship"]
+    },
+    {
+      "id": "AML-09",
+      "locked": true,
+      "title": "Eksik yetkili kimlik belgesi",
+      "mutations": {"riskFlag": "standard", "authorizedSignerIdentity": "incomplete", "beneficialOwnerChain": "complete", "sourceOfFundsEvidence": "complete"},
+      "expectedDecision": "hold-for-evidence",
+      "expectedOption": "hold-onboarding",
+      "requiredRules": ["AML-C01", "AML-G01"]
+    },
+    {
+      "id": "AML-10",
+      "locked": true,
+      "title": "Periyodik inceleme planı eksik",
+      "mutations": {"riskFlag": "standard", "beneficialOwnerChain": "complete", "sourceOfFundsEvidence": "complete", "periodicReviewPlan": null},
+      "expectedDecision": "hold-for-evidence",
+      "expectedOption": "hold-onboarding",
+      "requiredRules": ["AML-M01", "AML-G01"]
+    },
+    {
+      "id": "AML-11",
+      "locked": true,
+      "title": "İş birimi SİB kararı istiyor",
+      "mutations": {"businessRequestsStrDecision": true, "beneficialOwnerChain": "complete", "sourceOfFundsEvidence": "complete"},
+      "expectedDecision": "escalate-aml-officer",
+      "expectedOption": "hold-onboarding",
+      "requiredRules": ["AML-S01", "AML-A01"],
+      "forbiddenClaims": ["str-file", "str-do-not-file", "crime-accusation"]
+    },
+    {
+      "id": "AML-12",
+      "locked": true,
+      "title": "Standart inceleme, insan onayı bekleniyor",
+      "mutations": {"riskFlag": "standard", "beneficialOwnerChain": "complete", "sourceOfFundsEvidence": "complete", "periodicReviewPlan": "complete", "humanApprovals": "pending"},
+      "expectedDecision": "standard-onboarding",
+      "expectedOption": "hold-onboarding",
+      "requiredRules": ["AML-A01", "AML-G01"]
+    }
+  ]
+}

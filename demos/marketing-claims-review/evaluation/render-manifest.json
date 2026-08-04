@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "scenarioSetVersion": "1.0.0",
+  "rendererPath": "render_scenarios.py",
+  "inputCount": 12,
+  "inputs": {
+    "MC-01": "8c8a1688ec5f1c3364578d267eb78aef98ddd48de86520f810d358d2d3a3f780",
+    "MC-02": "c2823e9fecdcbf72e4c32bb6c5c56c8d922eb0d98ad4df7f86526b434812d4a3",
+    "MC-03": "f9fe6d84d6d29791a7ba55914bdc84d2cfafe0d39a6f9964feeafc010d44fc71",
+    "MC-04": "f1ab8b0859d3e5825a8678d690b96e3db9b19d2b71f2d9e665880a2e27e69b1e",
+    "MC-05": "27c9ddb3cfe0b5fee05f74a507b016c692664409d7564036b52e204938bfa610",
+    "MC-06": "40effba8eb62666694b79bec1881ac71df1b1e154c3694d7617e2cfa9ba784ec",
+    "MC-07": "9ec9ee30d4e3a920201e84bd380a1d2648e243a0152a3a770609b6afc9a4dc8d",
+    "MC-08": "683fe17a66301faf33eb3c89819249654b227c341524491fb82dcd55ec0dd7ee",
+    "MC-09": "91f72d4b506a3e9a601a95dab11003bbbc45bed73e12e9719bed0d214763ebf2",
+    "MC-10": "02627a8c7f7845e8c324ec2a74c7cbfd5d2534d0844ba547a74ac36706141380",
+    "MC-11": "102e86bdf53691f67d9dcb1ac137a91cfddbe398157c6bd1a661f24dc8b4ec6f",
+    "MC-12": "c507a07b7b8d11f57e26bbfd4982d0677476518cc6f507db5fe0771d0c5da967"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "demoId": "investment-committee",
+  "scenarioId": "IC-01",
+  "evidenceKind": "cowork-ux-observation",
+  "captureDate": "2026-08-04",
+  "host": "Microsoft 365 Copilot Cowork",
+  "modelShownByHost": "Claude Opus 4.8",
+  "coworkVersionShownByHost": null,
+  "coworkAvailabilityState": "available",
+  "skillPackage": {
+    "name": "investment-committee-copilot",
+    "sha256": "40c4f763cd0ffc30a939cd7a7cda2e58780ea9731eb4a3dc3376c4864168a659",
+    "uncompressedBytes": 26062,
+    "fileCount": 6
+  },
+  "installationScreenshotPath": "../screenshots/01-skill-installed-1600x900.png",
+  "limitations": [
+    "Cowork did not expose a pinned runtime version.",
+    "No conversation-level custom-skill toggle was visible in this Cowork surface.",
+    "Treatment prompts explicitly invoked the skill after automatic discovery did not load it.",
+    "The control and treatment prompts are therefore not identical.",
+    "These runs document Cowork UX and are not a causal comparison or formal benchmark."
+  ],
+  "attempts": [
+    {
+      "runId": "control-1",
+      "blindLabel": "B",
+      "assignedCondition": "control",
+      "status": "included",
+      "promptPath": "../../evaluation/chat-only-prompt.md",
+      "promptBodySha256": "b4c7939f82d9340c9c4917483c0906ca495cfaa5d6b49ce8f5779f221ea6775f",
+      "attachmentPaths": ["../../sources/investment-committee-brief.md"],
+      "enabledSkills": [],
+      "skillActivityObserved": false,
+      "artifactCreationObserved": false,
+      "outputPath": "../outputs/control-1.md",
+      "screenshotPaths": ["../screenshots/02-control-1-1600x900.png"],
+      "exclusionReason": null
+    },
+    {
+      "runId": "control-2",
+      "blindLabel": "C",
+      "assignedCondition": "control",
+      "status": "included",
+      "promptPath": "../../evaluation/chat-only-prompt.md",
+      "promptBodySha256": "b4c7939f82d9340c9c4917483c0906ca495cfaa5d6b49ce8f5779f221ea6775f",
+      "attachmentPaths": ["../../sources/investment-committee-brief.md"],
+      "enabledSkills": [],
+      "skillActivityObserved": false,
+      "artifactCreationObserved": false,
+      "outputPath": "../outputs/control-2.md",
+      "outputSha256": "8e0c12a059c88c944bd8a19905cfb691f97b66c71a7a207260c33ca0847703e5",
+      "screenshotPaths": ["../screenshots/06-control-2-1920x1080.png"],
+      "screenshotSha256": {
+        "../screenshots/06-control-2-1920x1080.png": "499fd6a6fbbb82cc3e9cf36cda4f9880bef49e549b561770263c5489b6b5c281"
+      },
+      "exclusionReason": null
+    },
+    {
+      "runId": "treatment-1",
+      "blindLabel": "D",
+      "assignedCondition": "treatment",
+      "status": "included",
+      "promptPath": "../../evaluation/chat-only-treatment-prompt.md",
+      "promptBodySha256": "7b878b035d515ffce654d207e5eff57c1b2e7c6d04006a69b3f8bb3b233b37b1",
+      "attachmentPaths": ["../../sources/investment-committee-brief.md"],
+      "enabledSkills": ["investment-committee-copilot"],
+      "skillActivityObserved": true,
+      "artifactCreationObserved": false,
+      "outputPath": "../outputs/treatment-1.md",
+      "screenshotPaths": ["../screenshots/04-treatment-1-1600x900.png"],
+      "exclusionReason": null
+    },
+    {
+      "runId": "treatment-2",
+      "blindLabel": "A",
+      "assignedCondition": "treatment",
+      "status": "included",
+      "promptPath": "../../evaluation/chat-only-treatment-prompt.md",
+      "promptBodySha256": "7b878b035d515ffce654d207e5eff57c1b2e7c6d04006a69b3f8bb3b233b37b1",
+      "attachmentPaths": ["../../sources/investment-committee-brief.md"],
+      "enabledSkills": ["investment-committee-copilot"],
+      "skillActivityObserved": true,
+      "artifactCreationObserved": false,
+      "outputPath": "../outputs/treatment-2.md",
+      "outputSha256": "b1203d3df011ad307cf7e1484ac18feb2540e633131c2db4b1964127fc064fb0",
+      "screenshotPaths": ["../screenshots/05-treatment-2-1920x1080.png"],
+      "screenshotSha256": {
+        "../screenshots/05-treatment-2-1920x1080.png": "69fb6409dbcbe6c9cfc8afb7e97d8e86c2dc85250d06d20baa60b3dba3e295d6"
+      },
+      "exclusionReason": null
+    },
+    {
+      "runId": "long-form-control-1",
+      "blindLabel": null,
+      "assignedCondition": "control",
+      "status": "excluded",
+      "promptPath": "../../evaluation/frozen-prompt.md",
+      "promptBodySha256": null,
+      "attachmentPaths": ["../../sources/investment-committee-brief.md"],
+      "enabledSkills": ["Word"],
+      "skillActivityObserved": true,
+      "artifactCreationObserved": true,
+      "outputPath": null,
+      "screenshotPaths": [],
+      "exclusionReason": "The prompt triggered Word artifact generation, exceeded the rehearsal timebox, and encountered a document-render race before a stable chat result."
+    },
+    {
+      "runId": "treatment-auto-discovery-1",
+      "blindLabel": null,
+      "assignedCondition": "treatment",
+      "status": "excluded",
+      "promptPath": "../../evaluation/chat-only-prompt.md",
+      "promptBodySha256": "b4c7939f82d9340c9c4917483c0906ca495cfaa5d6b49ce8f5779f221ea6775f",
+      "attachmentPaths": ["../../sources/investment-committee-brief.md"],
+      "enabledSkills": ["investment-committee-copilot"],
+      "skillActivityObserved": false,
+      "artifactCreationObserved": false,
+      "outputPath": null,
+      "screenshotPaths": [],
+      "exclusionReason": "Automatic discovery did not load the custom skill; the attempt was stopped before scoring."
+    }
+  ]
+}

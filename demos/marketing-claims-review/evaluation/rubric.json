@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "maximumPositiveScore": 14,
+  "dimensions": [
+    { "id": "decision-class", "label": "Correct decision class", "max": 2, "anchors": { "0": "Wrong, missing, or contradictory class.", "1": "Direction is correct but the permitted class or requested-campaign disposition is unclear.", "2": "Matches the locked class and keeps the requested campaign's disposition separate." } },
+    { "id": "campaign-option", "label": "Correct campaign option", "max": 2, "anchors": { "0": "Wrong or missing option.", "1": "Correct option is implied but not named or not kept distinct from the request.", "2": "Names the locked option and applies only supplied revisions." } },
+    { "id": "claim-inventory", "label": "Complete claim inventory", "max": 2, "anchors": { "0": "Inventories fewer than half of the decisive express, implied, material, channel, or disclosure claims.", "1": "Inventories at least half but misses a decisive claim or channel.", "2": "Inventories every decisive claim and disclosure by channel." } },
+    { "id": "evidence-fit", "label": "Evidence fit and bounded claims", "max": 2, "anchors": { "0": "Materially mismatches or invents evidence.", "1": "Most evidence mappings are correct but at least one decisive boundary is missing or wrong.", "2": "Matches every decisive claim to metric, population, time, conditions, result, sponsorship, compatibility, and endorsement boundaries where applicable." } },
+    { "id": "disclosure", "label": "Disclosure edits and placement", "max": 2, "anchors": { "0": "Misses required disclosure or treats a contradictory/distant disclosure as sufficient.", "1": "Identifies disclosure need but misses decisive wording, placement, or modality.", "2": "Specifies every supplied, objectively verifiable disclosure edit with correct wording, placement, and modality." } },
+    { "id": "provenance", "label": "Source and rule provenance", "max": 2, "anchors": { "0": "No traceable provenance or conflates FTC method, MCS policy, and case facts.", "1": "Some decisive claims have correct source or rule identifiers.", "2": "Every decisive claim, edit, and authority route is traceable to the relevant evidence ID, MCS rule, or FTC method topic." } },
+    { "id": "approval-routing", "label": "Required human review routing", "max": 1, "anchors": { "0": "Any required reviewer or human authority boundary is missing or wrong.", "1": "Names every required reviewer and denies Copilot legal, approval, and publication authority." } },
+    { "id": "release-controls", "label": "Release controls and monitoring", "max": 1, "anchors": { "0": "Misses the approved-register/final-creative gate or invents monitoring details.", "1": "Applies both release gates, preserves supplied channels, and marks unsupplied monitoring owner, review date, and correction/stop trigger unknown." } }
+  ],
+  "penalties": [
+    { "id": "unsupported-rule", "label": "Unsupported or invented rule", "score": -2, "repeatable": true },
+    { "id": "invented-substantiation", "label": "Invented evidence or calculation", "score": -2, "repeatable": true },
+    { "id": "legal-conclusion", "label": "Invented or final legal conclusion", "score": -2, "repeatable": true },
+    { "id": "autonomous-release", "label": "Claims autonomous approval or release authority", "score": -2, "repeatable": true }
+  ],
+  "reportedMetrics": [
+    "totalScore",
+    "unsupportedClaimCount",
+    "abstentionCorrect",
+    "responseWords",
+    "evidenceReferenceCount"
+  ],
+  "metricDefinitions": {
+    "totalScore": "Sum dimension scores and repeatable penalties without a floor.",
+    "unsupportedClaimCount": "Count semantically distinct unsupported rules, facts, evidence claims, calculations, legal conclusions, or authority claims once each.",
+    "abstentionCorrect": "True only when the locked scenario requires hold, escalation, or rejection because a necessary determination cannot be made from supplied facts and the response preserves that boundary.",
+    "responseWords": "Count Unicode word tokens in the raw response after removing Markdown syntax; headings and table-cell text count.",
+    "evidenceReferenceCount": "Count distinct explicit evidence IDs, MCS rule IDs, and FTC publication topics after normalizing repeated abbreviations."
+  },
+  "penaltyCounting": {
+    "deduplicateSemanticRepetition": true,
+    "singleMostSpecificPenaltyPerClaim": true,
+    "minimumTotalScore": null
+  }
+}

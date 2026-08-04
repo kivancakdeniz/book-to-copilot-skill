@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "demoId": "investment-committee",
+  "sources": [
+    {
+      "id": "green-book-2026",
+      "title": "The Green Book - UK government guidance on appraisal",
+      "publisher": "HM Treasury and Government Finance Function",
+      "publishedDate": "2026-02-05",
+      "url": "https://assets.publishing.service.gov.uk/media/698dbcd17da91680ad7f4308/The_Green_Book_2026.pdf",
+      "landingPage": "https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government",
+      "sha256": "275602acb918e4d32e46c59e5d0596bebcfc5e2820ec86f489a8651c523ccc37",
+      "pages": 88,
+      "license": "Open Government Licence v3.0",
+      "licenseUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+      "role": "Public appraisal method; not Asteria policy",
+      "tracked": false
+    },
+    {
+      "id": "asteria-capital-policy",
+      "title": "Asteria Capital Allocation Policy",
+      "publisher": "Fictional demo corpus",
+      "path": "asteria-capital-allocation-policy.md",
+      "license": "MIT",
+      "role": "Synthetic company decision thresholds and authority matrix",
+      "tracked": true
+    },
+    {
+      "id": "warehouse-options",
+      "title": "Northstar Warehouse Automation Options",
+      "publisher": "Fictional demo corpus",
+      "path": "warehouse-automation-options.md",
+      "license": "MIT",
+      "role": "Synthetic options and precomputed investment facts",
+      "tracked": true
+    },
+    {
+      "id": "committee-brief",
+      "title": "Investment Committee Brief IC-0247",
+      "publisher": "Fictional demo corpus",
+      "path": "investment-committee-brief.md",
+      "license": "MIT",
+      "role": "Frozen scenario facts supplied to every experimental arm",
+      "tracked": true
+    }
+  ]
+}

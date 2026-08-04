@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "scenarioSetVersion": "1.0.0",
+  "demoId": "titck-ilac-tanitimi",
+  "locked": true,
+  "decisionClasses": [
+    "approve-professional-material",
+    "revise-before-use",
+    "hold-for-product-status",
+    "escalate-medical-legal",
+    "do-not-publish"
+  ],
+  "options": [
+    "consumer-social",
+    "professional-channel-review",
+    "no-campaign"
+  ],
+  "sourceSet": [
+    "sources/company-policy.md",
+    "sources/case-brief.md"
+  ],
+  "promptPath": "evaluation/frozen-prompt.md",
+  "promptFileSha256": "b87137eebd6d1c2576c205c2542d28abfb620b8a6452d6d469826216d7dc29d5",
+  "mutationSemantics": "Her senaryo kilitli kaynak setinden başlar. mutations nesnesindeki alanlar aynı adlı başlangıç olgusunun yerini alır; null, bilginin sağlanmadığını gösterir. Cevap anahtarı model girdisine verilmez.",
+  "scenarios": [
+    {
+      "id": "TTK-01",
+      "title": "Tüketiciye açık reçeteli ürün kreatifi",
+      "expectedDecision": "do-not-publish",
+      "expectedOption": "professional-channel-review",
+      "requiredRules": ["TTK-P01", "TTK-A01", "TTK-B01", "TTK-U01", "TTK-Y01", "TTK-R01", "TTK-M01"],
+      "requiredFindings": ["prescription-product", "public-consumer-channel", "product-benefit-cta", "professional-access-control-absent", "publication-gate-closed"]
+    },
+    {
+      "id": "TTK-02",
+      "title": "Doğrulanmış profesyonel materyal",
+      "mutations": {
+        "channel": "Kimlik ve sağlık meslek mensubu rolü insan tarafından doğrulanmış kapalı portal.",
+        "audience": "Yalnız doğrulanmış sağlık meslek mensupları.",
+        "material": "Onaylı kapsamla satır satır eşleşen ayrı profesyonel materyal.",
+        "humanReview": "Medical, Regulatory ve Legal tamamlandı ve sürüm kaydı eşleşti."
+      },
+      "expectedDecision": "approve-professional-material",
+      "expectedOption": "professional-channel-review",
+      "requiredRules": ["TTK-P01", "TTK-A01", "TTK-B01", "TTK-U01", "TTK-Y01", "TTK-R01"]
+    },
+    {
+      "id": "TTK-03",
+      "title": "Ürün statüsü sağlanmadı",
+      "mutations": {
+        "productStatus": null,
+        "statusSource": null
+      },
+      "expectedDecision": "hold-for-product-status",
+      "expectedOption": "no-campaign",
+      "requiredRules": ["TTK-P01", "TTK-Y01", "TTK-R01"],
+      "requiredFindings": ["product-status-unknown"]
+    },
+    {
+      "id": "TTK-04",
+      "title": "Tüketici kanalında düzeltilebilir sentetik ürün",
+      "mutations": {
+        "product": "Ayrı bir kurgusal reçetesiz ürün.",
+        "productStatus": "Regulatory tarafından belgelenmiş reçetesiz statü.",
+        "channel": "Tüketiciye açık sosyal kanal.",
+        "claim": "Onaylı kapsamla eşleşiyor; zorunlu bir niteleme kreatifte eksik.",
+        "sponsorAcceptsExactRevision": true
+      },
+      "expectedDecision": "revise-before-use",
+      "expectedOption": "consumer-social",
+      "requiredRules": ["TTK-P01", "TTK-A01", "TTK-B01", "TTK-Y01", "TTK-R01"],
+      "requiredFindings": ["exact-qualification-required"]
+    },
+    {
+      "id": "TTK-05",
+      "title": "Açık profilde profesyonel etiketi",
+      "mutations": {
+        "profileLabel": "Yalnız sağlık profesyonelleri içindir.",
+        "accessControl": "Profil herkese açık; rol doğrulaması yok."
+      },
+      "expectedDecision": "do-not-publish",
+      "expectedOption": "professional-channel-review",
+      "requiredRules": ["TTK-A01", "TTK-U01", "TTK-R01"],
+      "requiredFindings": ["label-is-not-access-control"]
+    },
+    {
+      "id": "TTK-06",
+      "title": "Yeni tıbbi fayda iddiası",
+      "mutations": {
+        "channel": "Doğrulanmış profesyonel portal.",
+        "claim": "Sağlanan onaylı kapsamda bulunmayan yeni tıbbi fayda iddiası.",
+        "claimEvidence": null
+      },
+      "expectedDecision": "escalate-medical-legal",
+      "expectedOption": "professional-channel-review",
+      "requiredRules": ["TTK-B01", "TTK-Y01", "TTK-R01"],
+      "requiredFindings": ["medical-claim-outside-supplied-scope"]
+    },
+    {
+      "id": "TTK-07",
+      "title": "Çelişkili onaylı kapsam kayıtları",
+      "mutations": {
+        "medicalSource": "Fayda cümlesini onaylı gösteriyor.",
+        "regulatorySource": "Aynı fayda cümlesini kapsam dışı gösteriyor."
+      },
+      "expectedDecision": "escalate-medical-legal",
+      "expectedOption": "no-campaign",
+      "requiredRules": ["TTK-B01", "TTK-Y01", "TTK-R01"],
+      "requiredFindings": ["approved-scope-conflict"]
+    },
+    {
+      "id": "TTK-08",
+      "title": "Profesyonel materyalde kapsam dışı çağrı",
+      "mutations": {
+        "channel": "Doğrulanmış profesyonel portal.",
+        "material": "Ürün ve fayda kapsamı eşleşiyor; çağrı metni onaylı sürümden farklı.",
+        "sponsorAcceptsExactRevision": true
+      },
+      "expectedDecision": "revise-before-use",
+      "expectedOption": "professional-channel-review",
+      "requiredRules": ["TTK-B01", "TTK-U01", "TTK-Y01", "TTK-R01"],
+      "requiredFindings": ["cta-must-match-approved-scope"]
+    },
+    {
+      "id": "TTK-09",
+      "title": "Ürün statüsü kaynakları çelişkili",
+      "mutations": {
+        "briefStatus": "Reçeteli.",
+        "regulatoryRegisterStatus": "Sağlanmadı.",
+        "marketingSheetStatus": "Reçetesiz olarak işaretli."
+      },
+      "expectedDecision": "hold-for-product-status",
+      "expectedOption": "no-campaign",
+      "requiredRules": ["TTK-P01", "TTK-Y01", "TTK-R01"],
+      "requiredFindings": ["product-status-conflict"]
+    },
+    {
+      "id": "TTK-10",
+      "title": "Kampanyadan vazgeçme talebi",
+      "mutations": {
+        "request": "Ürün için kampanya yürütmeme seçeneğini kayda al.",
+        "publicationRequested": false
+      },
+      "expectedDecision": "do-not-publish",
+      "expectedOption": "no-campaign",
+      "requiredRules": ["TTK-Y01", "TTK-R01"],
+      "requiredFindings": ["no-publication-requested"]
+    },
+    {
+      "id": "TTK-11",
+      "title": "Tüketici kreatifi zaten yayında",
+      "mutations": {
+        "publicationState": "Tüketiciye açık Instagram gönderisi yayında.",
+        "monitoringOwner": null,
+        "correctionRemovalTrigger": null
+      },
+      "expectedDecision": "do-not-publish",
+      "expectedOption": "no-campaign",
+      "requiredRules": ["TTK-A01", "TTK-Y01", "TTK-R01", "TTK-M01"],
+      "requiredFindings": ["human-remediation-review-required", "monitoring-controls-unknown"]
+    },
+    {
+      "id": "TTK-12",
+      "title": "Erişim kontrolü kaldırılan profesyonel kanal",
+      "mutations": {
+        "priorReview": "Profesyonel materyal daha önce insanlarca incelenmişti.",
+        "channelChange": "Portal rol doğrulamasını kaldırdı ve bağlantı herkese açıldı."
+      },
+      "expectedDecision": "do-not-publish",
+      "expectedOption": "professional-channel-review",
+      "requiredRules": ["TTK-A01", "TTK-U01", "TTK-Y01", "TTK-R01", "TTK-M01"],
+      "requiredFindings": ["access-control-change-closes-gate"]
+    }
+  ]
+}

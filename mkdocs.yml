@@ -1,0 +1,126 @@
+site_name: book-to-copilot-skill
+site_description: Compile business guidance into governed, evaluated Copilot skills.
+site_url: https://kivancakdeniz.github.io/book-to-copilot-skill/
+edit_uri: ""
+
+# index.md is a committed landing page. Guide (README.md) and Skill Reference
+# (SKILL.md) are assembled from the repo root at build time, so prose docs stay
+# single-source. See .github/workflows/deploy-docs.yml.
+
+theme:
+  name: material
+  language: en
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.instant
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+plugins:
+  - search:
+      lang:
+        - en
+        - tr
+
+extra:
+  alternate:
+    - name: English
+      link: https://kivancakdeniz.github.io/book-to-copilot-skill/
+      lang: en
+    - name: Türkçe
+      link: https://kivancakdeniz.github.io/book-to-copilot-skill/tr/
+      lang: tr
+
+nav:
+  - Home: index.md
+  - Enterprise Demo:
+      - Investment Committee: INVESTMENT-COMMITTEE-DEMO.md
+      - Marketing Claims Review: MARKETING-CLAIMS-REVIEW-DEMO.md
+      - Delivery Plan: ENTERPRISE-DEMO-PLAN.md
+  - Türkiye Enterprise Skills:
+      - Overview: skills/index.md
+      - KVKK Notice Review: skills/kvkk-aydinlatma-kontrolu.md
+      - ETK / IYS Messaging: skills/etk-iys-ileti-karari.md
+      - Discount Price Review: skills/indirimli-fiyat-denetimi.md
+      - MASAK Customer Acceptance: skills/masak-musteri-kabul.md
+      - BDDK Remote Onboarding: skills/bddk-uzaktan-musteri-edinimi.md
+      - Merger Notification: skills/rekabet-birlesme-bildirimi.md
+      - OHS Risk Assessment: skills/isg-risk-degerlendirme.md
+      - TİTCK Promotion Review: skills/titck-ilac-tanitimi.md
+      - Crypto Payment Gate: skills/kripto-odeme-kapisi.md
+      - Telecom Data Review: skills/btk-haberlesme-verisi.md
+      - Third-party Notices: downloads/turkiye-enterprise/THIRD_PARTY_NOTICES.md
+  - Türkçe:
+      - Ana Sayfa: tr/index.md
+      - Yatırım Komitesi: tr/demos/investment-committee.md
+      - Pazarlama İddiaları: tr/demos/marketing-claims-review.md
+      - Skill Kataloğu: tr/skills/index.md
+      - KVKK Aydınlatma: tr/skills/kvkk-aydinlatma-kontrolu.md
+      - ETK / IYS İleti: tr/skills/etk-iys-ileti-karari.md
+      - İndirimli Fiyat: tr/skills/indirimli-fiyat-denetimi.md
+      - MASAK Müşteri Kabul: tr/skills/masak-musteri-kabul.md
+      - BDDK Uzaktan Edinim: tr/skills/bddk-uzaktan-musteri-edinimi.md
+      - Rekabet Birleşme Bildirimi: tr/skills/rekabet-birlesme-bildirimi.md
+      - İSG Risk Değerlendirmesi: tr/skills/isg-risk-degerlendirme.md
+      - TİTCK İlaç Tanıtımı: tr/skills/titck-ilac-tanitimi.md
+      - Kripto Ödeme Kapısı: tr/skills/kripto-odeme-kapisi.md
+      - BTK Haberleşme Verisi: tr/skills/btk-haberlesme-verisi.md
+  - Experiments:
+      - Command Line E2E: E2E-THE-ART-OF-COMMAND-LINE.md
+  - Guide: guide.md
+  - Downstream: DOWNSTREAM.md
+  - Architecture: ARCHITECTURE.md
+  - Performance: PERFORMANCE.md
+  - Skill Reference: skill-reference.md
+  - Backers: BACKERS.md
+  - Changelog: CHANGELOG.md
+  - Licensing and Reuse: LICENSING-AND-REUSE.md
+  - Responsible Use: RESPONSIBLE-USE.md
+  - License: LICENSE.md
+  - Security: SECURITY.md
+  - Notice: NOTICE.md
+  - Global Third-party Notices: THIRD_PARTY_NOTICES.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: true

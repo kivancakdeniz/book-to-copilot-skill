@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "scenarioSetVersion": "1.0.0",
+  "demoId": "isg-risk-degerlendirme",
+  "locked": true,
+  "decisionClasses": [
+    "accept-assessment",
+    "renew-assessment",
+    "hold-for-evidence",
+    "escalate-isg-board",
+    "reject-commissioning"
+  ],
+  "options": [
+    "commission-now",
+    "hold-commissioning",
+    "redesign-work-cell"
+  ],
+  "sourceSet": [
+    "sources/company-policy.md",
+    "sources/case-brief.md"
+  ],
+  "promptPath": "evaluation/frozen-prompt.md",
+  "promptFileSha256": "b120c91d80bb42a9910fd8103ff28dd4757947ee1dc03b2b2750823d32fe9b58",
+  "mutationSemantics": "Her senaryo kilitli kaynak setinden başlar. mutations nesnesindeki alanlar aynı adlı başlangıç olgusunun yerini alır; null, bilginin sağlanmadığını gösterir. Cevap anahtarı model girdisine verilmez.",
+  "scenarios": [
+    {
+      "id": "ISG-01",
+      "title": "Robot eklenen başlangıç hücresi",
+      "expectedDecision": "renew-assessment",
+      "expectedOption": "hold-commissioning",
+      "requiredRules": ["ISG-D01", "ISG-T01", "ISG-H01", "ISG-O01", "ISG-A01", "ISG-R01", "ISG-M01"],
+      "requiredFindings": ["change-not-covered", "operator-maintenance-participation-missing", "guarding-evidence-unknown", "lockout-evidence-unknown", "commissioning-gate-closed"]
+    },
+    {
+      "id": "ISG-02",
+      "title": "Yenilenmiş ve doğrulanmış değerlendirme",
+      "mutations": {
+        "assessment": "Robot, yerleşim, görevler ve bakım senaryoları yenilenen belgede incelendi.",
+        "participation": "İşveren temsilcisi, İSG profesyonelleri, operatörler, bakım ve çalışan temsilcisi kayıtlı katıldı.",
+        "controls": "Koruma ve enerji izolasyonu kanıtları yetkili insanlarca doğrulandı.",
+        "actions": "Açık kritik aksiyon yok; insan onay kaydı tamamlandı."
+      },
+      "expectedDecision": "accept-assessment",
+      "expectedOption": "commission-now",
+      "requiredRules": ["ISG-D01", "ISG-T01", "ISG-H01", "ISG-A01", "ISG-R01"]
+    },
+    {
+      "id": "ISG-03",
+      "title": "Koruma testi kaydı eksik",
+      "mutations": {
+        "assessment": "Robot değişikliği yenilenen değerlendirmede kapsandı.",
+        "participation": "Gerekli rollerin katılımı kayıtlı.",
+        "guardingEvidence": null,
+        "lockoutEvidence": "Yetkili insanlarca doğrulandı."
+      },
+      "expectedDecision": "hold-for-evidence",
+      "expectedOption": "hold-commissioning",
+      "requiredRules": ["ISG-H01", "ISG-O01", "ISG-R01"],
+      "requiredFindings": ["guarding-evidence-unknown"]
+    },
+    {
+      "id": "ISG-04",
+      "title": "Operatör ve bakım katılımı hâlâ yok",
+      "mutations": {
+        "assessment": "Robot değişikliği taslak yenilemede kapsandı.",
+        "guardingEvidence": "Sağlandı.",
+        "lockoutEvidence": "Sağlandı.",
+        "operatorMaintenanceParticipation": null
+      },
+      "expectedDecision": "hold-for-evidence",
+      "expectedOption": "hold-commissioning",
+      "requiredRules": ["ISG-T01", "ISG-O01", "ISG-R01"],
+      "requiredFindings": ["required-participation-not-recorded"]
+    },
+    {
+      "id": "ISG-05",
+      "title": "Yetki uyuşmazlığı",
+      "mutations": {
+        "assessment": "Yenilendi.",
+        "evidence": "Kritik kontroller doğrulandı.",
+        "authorityConflict": "İşveren temsilcisi ile görevlendirilmiş İSG profesyoneli kapının durumu konusunda uzlaşmıyor."
+      },
+      "expectedDecision": "escalate-isg-board",
+      "expectedOption": "hold-commissioning",
+      "requiredRules": ["ISG-A01", "ISG-R01"],
+      "requiredFindings": ["human-authority-conflict"]
+    },
+    {
+      "id": "ISG-06",
+      "title": "Korumasız erişim ve kontrol reddi",
+      "mutations": {
+        "hazard": "Çalışan robot hareket alanına fiziksel engel olmadan erişebiliyor.",
+        "sponsorPosition": "Zorunlu koruma değişikliğini kabul etmiyor."
+      },
+      "expectedDecision": "reject-commissioning",
+      "expectedOption": "redesign-work-cell",
+      "requiredRules": ["ISG-H01", "ISG-A01", "ISG-R01"],
+      "requiredFindings": ["critical-access-hazard", "required-control-refused"]
+    },
+    {
+      "id": "ISG-07",
+      "title": "Çelişkili enerji izolasyonu kayıtları",
+      "mutations": {
+        "assessment": "Yenilendi.",
+        "lockoutProcedure": "Onaylı olarak işaretli.",
+        "maintenanceObservation": "Bakım ekibi prosedürün sahada uygulanamadığını kaydetti."
+      },
+      "expectedDecision": "hold-for-evidence",
+      "expectedOption": "hold-commissioning",
+      "requiredRules": ["ISG-H01", "ISG-O01", "ISG-R01"],
+      "requiredFindings": ["lockout-evidence-conflict"]
+    },
+    {
+      "id": "ISG-08",
+      "title": "Deneme sırasında ramak kala",
+      "mutations": {
+        "priorGate": "İnsanlarca kapatılmıştı.",
+        "event": "Deneme sırasında beklenmeyen robot hareketiyle ramak kala kaydı oluştu."
+      },
+      "expectedDecision": "renew-assessment",
+      "expectedOption": "hold-commissioning",
+      "requiredRules": ["ISG-D01", "ISG-H01", "ISG-R01", "ISG-M01"],
+      "requiredFindings": ["near-miss-triggers-review"]
+    },
+    {
+      "id": "ISG-09",
+      "title": "Yeni hücre tasarımı önerisi",
+      "mutations": {
+        "proposal": "İnsan ve robot görevlerini fiziksel olarak ayıran yeni hücre tasarımı önerildi.",
+        "newDesignAssessment": null
+      },
+      "expectedDecision": "renew-assessment",
+      "expectedOption": "redesign-work-cell",
+      "requiredRules": ["ISG-D01", "ISG-H01", "ISG-R01"],
+      "requiredFindings": ["redesign-requires-assessment"]
+    },
+    {
+      "id": "ISG-10",
+      "title": "Sahipsiz açık aksiyonlar",
+      "mutations": {
+        "assessment": "Yenilendi.",
+        "criticalControls": "Doğrulandı.",
+        "openActions": "Üç açık bulgu var; sahip ve hedef tarih alanları boş."
+      },
+      "expectedDecision": "hold-for-evidence",
+      "expectedOption": "hold-commissioning",
+      "requiredRules": ["ISG-O01", "ISG-R01"],
+      "requiredFindings": ["owner-action-date-incomplete"]
+    },
+    {
+      "id": "ISG-11",
+      "title": "Kabul sonrası hız yazılımı değişikliği",
+      "mutations": {
+        "priorDecision": "Değerlendirme insanlarca kabul edilmişti.",
+        "change": "Robot hız profili ve yaklaşma davranışı yazılımla değiştirildi."
+      },
+      "expectedDecision": "renew-assessment",
+      "expectedOption": "hold-commissioning",
+      "requiredRules": ["ISG-D01", "ISG-H01", "ISG-R01", "ISG-M01"],
+      "requiredFindings": ["software-change-triggers-review"]
+    },
+    {
+      "id": "ISG-12",
+      "title": "Kapatılamayan sıkışma riski",
+      "mutations": {
+        "assessment": "Yenilendi.",
+        "finding": "Mevcut yerleşimde kritik sıkışma tehlikesi doğrulandı ve uygulanabilir kontrol gösterilemedi.",
+        "alternative": "Görev ve hücre yerleşiminin yeniden tasarımı mümkün."
+      },
+      "expectedDecision": "reject-commissioning",
+      "expectedOption": "redesign-work-cell",
+      "requiredRules": ["ISG-H01", "ISG-A01", "ISG-R01"],
+      "requiredFindings": ["critical-risk-not-controlled"]
+    }
+  ]
+}

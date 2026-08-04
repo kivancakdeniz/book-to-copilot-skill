@@ -1,0 +1,59 @@
+*.pyc
+__pycache__/
+.venv/
+.local/
+
+# Secrets and local provider state
+.env
+.env.*
+!.env.example
+!.env.*.example
+.azure/
+.azd/
+local.settings.json
+**/local.settings.json
+credentials/
+**/credentials/
+credentials.json
+**/credentials.json
+*.pem
+*.key
+*.p12
+*.pfx
+!*.example.pem
+!*.example.key
+!*.example.p12
+!*.example.pfx
+
+# Agent session traces (Stone CLI) — never commit
+.stone/
+**/.stone/
+
+# PyPI packaging build directories
+dist/
+build/
+*.egg-info/
+
+# uv lockfile (not pinned for a library/tool; deps live in pyproject extras)
+uv.lock
+
+# Local design specifications
+docs/superpowers/specs/
+
+# MkDocs: build output + pages assembled from README/SKILL at deploy time
+# (docs/index.md is a committed landing page, NOT assembled)
+site/
+docs/guide.md
+docs/skill-reference.md
+docs/BACKERS.md
+docs/CHANGELOG.md
+docs/DOWNSTREAM.md
+docs/LICENSE.md
+docs/NOTICE.md
+docs/THIRD_PARTY_NOTICES.md
+docs/SECURITY.md
+docs/tools/discovery_tax.py
+docs/assets/investment-committee/evidence/
+docs/assets/marketing-claims-review/evidence/
+docs/downloads/
+release/

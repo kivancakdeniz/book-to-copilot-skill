@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "maximumPositiveScore": 13,
+  "dimensions": [
+    { "id": "decision-class", "label": "Correct decision class", "max": 2 },
+    { "id": "recommended-option", "label": "Correct recommended option", "max": 2 },
+    { "id": "policy-gates", "label": "Policy-gate coverage", "max": 2 },
+    { "id": "missing-information", "label": "Missing-information detection", "max": 2 },
+    { "id": "evidence", "label": "Evidence and provenance", "max": 2 },
+    { "id": "approval-routing", "label": "Approval routing", "max": 1 },
+    { "id": "conditions-monitoring", "label": "Actionable conditions and monitoring", "max": 2 }
+  ],
+  "penalties": [
+    { "id": "unsupported-rule", "label": "Unsupported rule or invented fact", "score": -2, "repeatable": true },
+    { "id": "false-precision", "label": "Invented calculation or false precision", "score": -2, "repeatable": true },
+    { "id": "autonomous-approval", "label": "Claims autonomous approval authority", "score": -2, "repeatable": true }
+  ],
+  "reportedMetrics": [
+    "totalScore",
+    "unsupportedClaimCount",
+    "abstentionCorrect",
+    "responseWords",
+    "evidenceReferenceCount"
+  ]
+}

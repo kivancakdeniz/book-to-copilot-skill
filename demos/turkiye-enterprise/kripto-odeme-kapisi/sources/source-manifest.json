@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "demoId": "kripto-odeme-kapisi",
+  "sources": [
+    {
+      "id": "tcmb-kripto-odeme-yonetmeligi-2021",
+      "title": "Ödemelerde Kripto Varlıkların Kullanılmamasına Dair Yönetmelik",
+      "type": "external-method",
+      "officialUrl": "https://www.resmigazete.gov.tr/eskiler/2021/04/20210416-4.htm",
+      "sha256": "d16a7f69a0254d0838e0c06999c4308030ad93f3b0e5bf6fde448f72861447e8",
+      "publisher": "Türkiye Cumhuriyet Merkez Bankası / T.C. Resmî Gazete",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuseCaveat": "Resmi içerik pakete alınmaz; güncellik, kapsam ve yeniden kullanım koşulları resmi sayfadan insan tarafından doğrulanmalıdır. Kısa yöntem kaynağıdır, şirket kararı veya hukuki tavsiye değildir."
+    },
+    {
+      "id": "kurgusal-odeme-kripto-urun-politikasi",
+      "title": "Kurgusal Ödeme Kripto Ürün Sınırı Politikası KRP-1.0",
+      "type": "synthetic-policy",
+      "path": "company-policy.md",
+      "license": "MIT",
+      "synthetic": true,
+      "sha256": "a8b30967af4ac2f880b7a3c2e0b9e34cdbbad2af188194153fb5005fbd53e626"
+    },
+    {
+      "id": "vaka-krp-2401",
+      "title": "Kurgusal Ödeme USDT Satıcı Ödeme Akışı KRP-2401",
+      "type": "synthetic-case",
+      "path": "case-brief.md",
+      "license": "MIT",
+      "synthetic": true,
+      "sha256": "142b7afa5141ca27f6668e95bb57b1f9750d81c68a15cc323ac29bed8c42088d"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "demoId": "marketing-claims-review",
+  "sources": [
+    {
+      "id": "ftc-rules-road-pdf",
+      "title": "Advertising and Marketing on the Internet: Rules of the Road",
+      "publisher": "U.S. Federal Trade Commission",
+      "url": "https://www.ftc.gov/system/files/ftc_gov/pdf/bus28-rulesroad-2023_508.pdf",
+      "sha256": "d000f004d9c28b66dd81a590e6ecdacc5f9d08caf7b6af626407436abebe336a",
+      "pages": 16,
+      "snapshotFormat": "PDF",
+      "role": "Public advertising-method source; not Lumena policy or legal advice",
+      "reuseCaveat": "U.S. federal government works are generally not copyrightable under 17 U.S.C. 105; third-party material and assets must be checked separately.",
+      "tracked": false
+    },
+    {
+      "id": "ftc-dot-com-disclosures-2013",
+      "title": ".com Disclosures: How to Make Effective Disclosures in Digital Advertising",
+      "publisher": "U.S. Federal Trade Commission",
+      "publishedDate": "2013-03",
+      "url": "https://www.ftc.gov/system/files/documents/plain-language/bus41-dot-com-disclosures-information-about-online-advertising.pdf",
+      "sha256": "b189fd2c01b21309021c9cba5ae2d5cb8abb55a555bde412e11f124c420a142e",
+      "pages": 53,
+      "snapshotFormat": "PDF",
+      "role": "Public digital-disclosure method; not Lumena policy or legal advice",
+      "reuseCaveat": "U.S. federal government works are generally not copyrightable under 17 U.S.C. 105; third-party material and assets must be checked separately.",
+      "tracked": false
+    },
+    {
+      "id": "ftc-endorsement-guides-2023-07-26",
+      "title": "Guides Concerning the Use of Endorsements and Testimonials in Advertising (16 CFR Part 255)",
+      "publisher": "Electronic Code of Federal Regulations",
+      "publishedDate": "2023-07-26",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2023-07-26/title-16.xml?part=255",
+      "sha256": "feb1c8cfee82158c16c4210ef320bc93ffb2f414aa2bdce6e6772a77064180ea",
+      "snapshotFormat": "XML",
+      "role": "Date-pinned official FTC endorsement-guides source; not Lumena policy or legal advice",
+      "reuseCaveat": "U.S. federal government works are generally not copyrightable under 17 U.S.C. 105; third-party material and assets must be checked separately.",
+      "tracked": false
+    },
+    {
+      "id": "lumena-marketing-claims-standard",
+      "title": "Lumena Marketing Claims Standard MCS-2.1",
+      "publisher": "Fictional demo corpus",
+      "path": "lumena-marketing-claims-standard.md",
+      "sha256": "ffce2eca9b76eaad1e23c9eee0406868592a8d20eaa3cd22899aa46aaf09397f",
+      "license": "MIT",
+      "role": "Synthetic company claim rules, decisions, and authority matrix",
+      "tracked": true
+    },
+    {
+      "id": "lumena-pilot-evidence",
+      "title": "Lumena Sense Pilot Evidence Register",
+      "publisher": "Fictional demo corpus",
+      "path": "lumena-pilot-evidence.md",
+      "sha256": "1505e7d98331898edb111e844e44179f263803a24eb352a1a53826844389d83e",
+      "license": "MIT",
+      "role": "Synthetic factual evidence and compatibility boundaries",
+      "tracked": true
+    },
+    {
+      "id": "campaign-brief-mc-0204",
+      "title": "Lumena Sense US Digital Launch Campaign Brief MC-0204",
+      "publisher": "Fictional demo corpus",
+      "path": "campaign-brief.md",
+      "sha256": "f93168b54f2dc3e7f58576b5b5a963be10ea18e9eaf797a626ce304ad1b53356",
+      "license": "MIT",
+      "role": "Frozen synthetic baseline supplied to every evaluation arm",
+      "tracked": true
+    }
+  ]
+}

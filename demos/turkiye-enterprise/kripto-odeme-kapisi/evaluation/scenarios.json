@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "scenarioSetVersion": "1.0.0",
+  "demoId": "kripto-odeme-kapisi",
+  "caseCount": 12,
+  "locked": true,
+  "allowedDecisionClasses": ["approve-nonpayment-service", "revise-product-boundary", "hold-for-flow-evidence", "escalate-payments-counsel", "reject-payment-flow"],
+  "allowedOptions": ["launch-current-flow", "remove-crypto-checkout", "redesign-nonpayment-service"],
+  "sourceSet": ["sources/company-policy.md", "sources/case-brief.md"],
+  "promptPath": "evaluation/frozen-prompt.md",
+  "promptFileSha256": "320b3f1852b8f7bd294fb1d8cd2e88ee9b4ffb4c8849a9a04db1f0ac9f32fc4b",
+  "mutationSemantics": "Her senaryo donmuş kaynak setinden başlar. mutations nesnesi tam ve yetkili farktır; adlandırılmayan olgular taşınır, adlandırılan değer temel olgunun yerini alır ve null ilgili olguyu unavailable yapar.",
+  "scenarios": [
+    {
+      "id": "KRP-01", "locked": true, "title": "Doğrudan USDT satıcı ödemesi", "mutations": {},
+      "expectedDecision": "reject-payment-flow", "expectedOption": "remove-crypto-checkout",
+      "requiredRules": ["KRP-A01", "KRP-O01", "KRP-I01", "KRP-Y01", "KRP-R01", "KRP-M01"],
+      "requiredFindings": ["crypto-directly-settles-merchant-purchase", "payment-intermediary-in-flow", "launch-not-approved"],
+      "forbiddenClaims": ["investment-legality-opinion", "campaign-launched", "legal-advice"]
+    },
+    {
+      "id": "KRP-02", "locked": true, "title": "Ödeme dışı piyasa bilgi ekranı",
+      "mutations": {"productFunction": "Yalnız gecikmeli USDT piyasa bilgisi gösterir; alım, ödeme talimatı, cüzdan, dönüşüm, transfer veya satıcı mutabakatı yoktur.", "humanApprovals": "Payments Counsel, Compliance ve Product onayladı.", "releaseGate": "Akış sürümü ve onay kaydı tamamlandı.", "monitoring": "Product sahibi, üç aylık inceleme ve ödeme işlevi eklenmesi değişiklik tetikleyicisi kaydedildi."},
+      "expectedDecision": "approve-nonpayment-service", "expectedOption": "launch-current-flow",
+      "requiredRules": ["KRP-A01", "KRP-O01", "KRP-I01", "KRP-Y01", "KRP-R01", "KRP-M01"]
+    },
+    {
+      "id": "KRP-03", "locked": true, "title": "Checkout'tan kripto seçeneğinin çıkarılması",
+      "mutations": {"proposal": "USDT seçeneğini satıcı ödeme sayfasından çıkar ve kripto özellik olmadan yayınla.", "cryptoPaymentSteps": [], "humanApprovals": "Product revizyonu kabul etti; Payments Counsel ve Compliance doğrulaması bekleniyor."},
+      "expectedDecision": "revise-product-boundary", "expectedOption": "remove-crypto-checkout",
+      "requiredRules": ["KRP-A01", "KRP-O01", "KRP-Y01", "KRP-R01"]
+    },
+    {
+      "id": "KRP-04", "locked": true, "title": "Mutabakat birimi eksik",
+      "mutations": {"merchantSettlementUnit": null, "conversionStep": null},
+      "expectedDecision": "hold-for-flow-evidence", "expectedOption": "remove-crypto-checkout",
+      "requiredRules": ["KRP-A01", "KRP-I01", "KRP-X01", "KRP-R01"],
+      "requiredFindings": ["settlement-unit-unknown", "conversion-step-unknown"]
+    },
+    {
+      "id": "KRP-05", "locked": true, "title": "Aracı rolü doğrulanamıyor",
+      "mutations": {"paymentIntermediaryRole": null, "flowContract": null},
+      "expectedDecision": "hold-for-flow-evidence", "expectedOption": "redesign-nonpayment-service",
+      "requiredRules": ["KRP-I01", "KRP-X01", "KRP-Y01", "KRP-R01"],
+      "requiredFindings": ["intermediary-role-unknown", "flow-contract-missing"]
+    },
+    {
+      "id": "KRP-06", "locked": true, "title": "Satıcı alımından ayrık cüzdan transferi",
+      "mutations": {"productFunction": "Kullanıcılar arasında, belirli bir satıcı alımı veya checkout olmadan cüzdan transferi önerisi.", "merchant": null, "purchase": null},
+      "expectedDecision": "escalate-payments-counsel", "expectedOption": "redesign-nonpayment-service",
+      "requiredRules": ["KRP-A01", "KRP-X01", "KRP-Y01"],
+      "requiredFindings": ["outside-supplied-payment-flow", "no-investment-or-transfer-legality-opinion"]
+    },
+    {
+      "id": "KRP-07", "locked": true, "title": "Transfer işlevi olmayan eğitim içeriği",
+      "mutations": {"productFunction": "Kripto varlık kavramlarını açıklayan statik eğitim içeriği; hesap, fiyat, cüzdan, transfer, checkout veya mutabakat yoktur.", "humanApprovals": "Payments Counsel, Compliance ve Product onayladı.", "releaseGate": "Sürüm ve onay kaydı tamamlandı.", "monitoring": "Product sahibi ve işlev değişikliği tetikleyicisi kaydedildi."},
+      "expectedDecision": "approve-nonpayment-service", "expectedOption": "redesign-nonpayment-service",
+      "requiredRules": ["KRP-A01", "KRP-O01", "KRP-Y01", "KRP-R01", "KRP-M01"]
+    },
+    {
+      "id": "KRP-08", "locked": true, "title": "Aracısız doğrudan satıcıya kripto",
+      "mutations": {"paymentIntermediary": null, "flow": "Müşteri USDT'yi satıcının cüzdanına gönderir ve sipariş bu transferle kapanır.", "merchantSettlementUnit": "USDT"},
+      "expectedDecision": "reject-payment-flow", "expectedOption": "remove-crypto-checkout",
+      "requiredRules": ["KRP-A01", "KRP-O01", "KRP-I01", "KRP-Y01", "KRP-R01"]
+    },
+    {
+      "id": "KRP-09", "locked": true, "title": "Yatırım uygunluğu görüşü talebi",
+      "mutations": {"request": "Checkout incelemesine ek olarak müşterilerin USDT yatırımı yapmasının hukuka uygun olup olmadığını kesinleştir.", "paymentFlow": null},
+      "expectedDecision": "escalate-payments-counsel", "expectedOption": "redesign-nonpayment-service",
+      "requiredRules": ["KRP-X01", "KRP-Y01"],
+      "requiredFindings": ["investment-legality-out-of-scope", "human-legal-review-required"],
+      "forbiddenClaims": ["investment-legality-opinion", "transfer-legality-opinion"]
+    },
+    {
+      "id": "KRP-10", "locked": true, "title": "Akış sürümleri çelişkili",
+      "mutations": {"flowDiagramVersion": "checkout-v4", "productSummaryVersion": "checkout-v3", "deployedVersion": null},
+      "expectedDecision": "hold-for-flow-evidence", "expectedOption": "remove-crypto-checkout",
+      "requiredRules": ["KRP-X01", "KRP-R01", "KRP-M01"],
+      "requiredFindings": ["flow-version-conflict", "deployed-version-unknown"]
+    },
+    {
+      "id": "KRP-11", "locked": true, "title": "İtibari para checkout ve ayrık analiz",
+      "mutations": {"proposal": "Satıcı checkout yalnız TRY ile çalışır; kripto piyasa analizi ayrı ekranda ve ödeme akışına bağlanmadan sunulur.", "cryptoPaymentSteps": [], "humanApprovals": "Product sınırı kabul etti; Payments Counsel ve Compliance son doğrulaması bekleniyor."},
+      "expectedDecision": "revise-product-boundary", "expectedOption": "redesign-nonpayment-service",
+      "requiredRules": ["KRP-A01", "KRP-O01", "KRP-I01", "KRP-Y01", "KRP-R01"]
+    },
+    {
+      "id": "KRP-12", "locked": true, "title": "Ödeme akışı yeniden etkinleştiriliyor",
+      "mutations": {"currentProduct": "Ödeme dışı bilgi ekranı", "proposedChange": "USDT ile satıcı siparişini kapatan checkout düğmesini yeniden ekle.", "changeApproval": null, "monitoringTrigger": "Ödeme işlevi eklenmesi"},
+      "expectedDecision": "reject-payment-flow", "expectedOption": "remove-crypto-checkout",
+      "requiredRules": ["KRP-O01", "KRP-I01", "KRP-Y01", "KRP-R01", "KRP-M01"],
+      "requiredFindings": ["monitored-change-crosses-payment-boundary", "no-launch-gate"]
+    }
+  ]
+}

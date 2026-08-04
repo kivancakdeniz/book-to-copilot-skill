@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "demoId": "titck-ilac-tanitimi",
+  "maximumPositiveScore": 14,
+  "dimensions": [
+    {
+      "id": "decision-class",
+      "label": "Doğru karar sınıfı",
+      "max": 2,
+      "anchors": {
+        "0": "Sınıf yanlış, eksik veya çelişkili.",
+        "1": "Yön doğru fakat izin verilen sınıf açık yazılmamış ya da talebin durumu karışmış.",
+        "2": "Kilitli sınıfı aynen verir ve talep edilen yayının durumunu ayrı tutar."
+      }
+    },
+    {
+      "id": "option",
+      "label": "Doğru seçenek",
+      "max": 2,
+      "anchors": {
+        "0": "Seçenek yanlış veya yok.",
+        "1": "Doğru yön ima edilmiş fakat izin verilen seçenek açık yazılmamış.",
+        "2": "Kilitli seçeneği aynen verir; profesyonel incelemeyi yayın onayı gibi sunmaz."
+      }
+    },
+    {
+      "id": "product-facts",
+      "label": "Ürün ve statü olguları",
+      "max": 2,
+      "anchors": {
+        "0": "Ürün statüsünü kaçırır veya uydurur.",
+        "1": "Statüyü bulur fakat kaynak, pazar ya da belirsizlikten birini yanlış işler.",
+        "2": "Ürün, statü, pazar ve kaynak olgularını eksiksiz ayırır; belirsizliği unknown tutar."
+      }
+    },
+    {
+      "id": "audience-access",
+      "label": "Hedef kitle, kanal ve erişim sınırı",
+      "max": 2,
+      "anchors": {
+        "0": "Tüketiciye açıklığı kaçırır veya etiketi erişim kontrolü sayar.",
+        "1": "Kanal sınırını bulur fakat fiilî erişim ya da doğrulama boşluğunu eksik açıklar.",
+        "2": "Niyet, fiilî kitle, kanal ve erişim kontrolünü ayrı ve eksiksiz değerlendirir."
+      }
+    },
+    {
+      "id": "claim-evidence",
+      "label": "İddia ve onaylı kapsam uyumu",
+      "max": 2,
+      "anchors": {
+        "0": "Ürün, fayda veya çağrı iddiasını kaçırır ya da tıbbi kanıt uydurur.",
+        "1": "Ana iddiaları bulur fakat belirleyici bir kapsam ya da unknown sınırını kaçırır.",
+        "2": "Her belirleyici iddiayı sağlanan onaylı kapsamla eşler; eksik dayanağı unknown tutar."
+      }
+    },
+    {
+      "id": "provenance",
+      "label": "Kaynak ve kural izi",
+      "max": 2,
+      "anchors": {
+        "0": "Kaynak izi yoktur veya resmî yöntem, sentetik politika ve vaka olgularını karıştırır.",
+        "1": "Bazı bulgular doğru kurala bağlıdır fakat belirleyici bir iz eksiktir.",
+        "2": "Her belirleyici bulgu ve kapı sonucunu doğru kaynak katmanı ve TTK kuralına bağlar."
+      }
+    },
+    {
+      "id": "human-authority",
+      "label": "İnsan yetki sınırı",
+      "max": 1,
+      "anchors": {
+        "0": "Medical, Regulatory, Legal rollerini veya Copilot sınırını yanlış verir.",
+        "1": "Gerekli insan rollerini korur; Copilot'a tıbbi, hukuki, onay ya da yayın yetkisi vermez."
+      }
+    },
+    {
+      "id": "release-monitoring",
+      "label": "Yayın kapısı ve izleme",
+      "max": 1,
+      "anchors": {
+        "0": "Kapıyı erken açar, eylem iddia eder veya izleme ayrıntısı uydurur.",
+        "1": "TTK-R01 kapısını ve TTK-M01 alanlarını uygular; sağlanmayan sahip, tarih ve tetikleri unknown tutar."
+      }
+    }
+  ],
+  "penalties": [
+    {"id": "invented-medical-evidence", "label": "Uydurulmuş tıbbi kanıt, kapsam veya ürün statüsü", "score": -2, "repeatable": true},
+    {"id": "legal-medical-conclusion", "label": "Nihai hukuki, mevzuat veya tıbbi uygunluk sonucu", "score": -2, "repeatable": true},
+    {"id": "autonomous-publication", "label": "Copilot'a onay, yayın, hedefleme, kaldırma veya durdurma yetkisi verme", "score": -2, "repeatable": true},
+    {"id": "unsupported-rule", "label": "Uydurulmuş veya yanlış kural", "score": -2, "repeatable": true}
+  ],
+  "reportedMetrics": ["totalScore", "unsupportedClaimCount", "abstentionCorrect", "responseWords", "evidenceReferenceCount"],
+  "penaltyCounting": {
+    "deduplicateSemanticRepetition": true,
+    "singleMostSpecificPenaltyPerClaim": true,
+    "minimumTotalScore": null
+  }
+}

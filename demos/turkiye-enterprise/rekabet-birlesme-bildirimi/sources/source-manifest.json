@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "demoId": "rekabet-birlesme-bildirimi",
+  "sources": [
+    {
+      "id": "rekabet-kontrol-kavrami-kilavuzu",
+      "title": "Birleşme ve Devralma Sayılan Haller ve Kontrol Kavramı Hakkında Kılavuz",
+      "publisher": "Rekabet Kurumu",
+      "url": "https://www.rekabet.gov.tr/Dosya/kilavuzlar/birlesme-ve-devralma-sayilan-haller-ve-kontrol-kavrami-hakkinda-kilavuz.pdf",
+      "sha256": "0859bad82a22b768f154b1dfabc57c362800c72144f22f522eba2ef8cc3f6b1b",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuseCaveat": "Kılavuz bu depoda yeniden dağıtılmaz. Güncellik, kapsam, değişiklik ve yeniden kullanım koşulları yetkili bir insan tarafından kaynak URL'de doğrulanmalıdır.",
+      "role": "Kontrol değişikliği olgularını envanterlemek için dış kaynak metadata'sı; şirket politikası veya hukuki karar değildir",
+      "tracked": false
+    },
+    {
+      "id": "rekabet-ciro-kilavuzu-2026",
+      "title": "Birleşme ve Devralma İşlemlerinde Ciro Hesaplanmasına İlişkin Kılavuz",
+      "publisher": "Rekabet Kurumu",
+      "url": "https://www.rekabet.gov.tr/Dosya/bd-ciro-kilavuzu-20260504120128549.pdf",
+      "sha256": "da76a6fa9ce9512acc694fcb33e437f3e226b0b0364e2925a6ef3978ed03b2ea",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuseCaveat": "Kılavuz bu depoda yeniden dağıtılmaz. Güncellik, kapsam, değişiklik ve yeniden kullanım koşulları yetkili bir insan tarafından kaynak URL'de doğrulanmalıdır.",
+      "role": "Finans'ın precomputed sonucunun kapsam ve sürüm sorularını düzenlemek için dış kaynak metadata'sı; asistan hesaplama yapmaz",
+      "tracked": false
+    },
+    {
+      "id": "bkp-company-policy",
+      "title": "Anadolu Sistemleri Birleşme Kontrol Politikası BKP-1.0",
+      "publisher": "Kurgusal demo külliyatı",
+      "path": "company-policy.md",
+      "sha256": "aaa4572496827e2a125a0a925bb119b161ffdb0a18de2837e539e83029481e92",
+      "license": "MIT",
+      "synthetic": true,
+      "redistribution": "included",
+      "reuseCaveat": "MIT lisanslı sentetik demo içeriği; gerçek şirket politikası, hukuki görüş veya Rekabet Kurumu kararı değildir.",
+      "tracked": true
+    },
+    {
+      "id": "rkb-2608-case-brief",
+      "title": "Vaka RKB-2608: Anadolu Sistemleri / Nova Veri devralması",
+      "publisher": "Kurgusal demo külliyatı",
+      "path": "case-brief.md",
+      "sha256": "b80f62300c6e3f478f81ef246fb62fed5ca70ccc8071a1d91a4d249bf1b5f269",
+      "license": "MIT",
+      "synthetic": true,
+      "redistribution": "included",
+      "reuseCaveat": "MIT lisanslı sentetik demo içeriği; taraflar, işlem, tarihler ve sonuçlar gerçek değildir.",
+      "tracked": true
+    }
+  ]
+}

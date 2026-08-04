@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "demoId": "btk-haberlesme-verisi",
+  "sources": [
+    {
+      "id": "btk-haberlesme-verileri-yonetmeligi-2020",
+      "title": "Elektronik Haberleşme Sektöründe Kişisel Verilerin İşlenmesi ve Gizliliğin Korunmasına İlişkin Yönetmelik",
+      "type": "external-method",
+      "officialUrl": "https://www.resmigazete.gov.tr/eskiler/2020/12/20201204-13.htm",
+      "sha256": "8fc09febf358035b94bbdd43a7e3c14b598634797d5248a602be55fbd7ad957b",
+      "publisher": "Bilgi Teknolojileri ve İletişim Kurumu / T.C. Resmî Gazete",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuseCaveat": "Resmi içerik pakete alınmaz; güncellik, kapsam ve yeniden kullanım koşulları resmi sayfadan insan tarafından doğrulanmalıdır. Kısa yöntem kaynağıdır, şirket kararı veya hukuki tavsiye değildir; tek başına tüm mahremiyet hukukunu çözmez."
+    },
+    {
+      "id": "kurgusal-telco-haberlesme-verisi-politikasi",
+      "title": "Kurgusal Telco Haberleşme Verisi Kampanya Politikası BTK-1.0",
+      "type": "synthetic-policy",
+      "path": "company-policy.md",
+      "license": "MIT",
+      "synthetic": true,
+      "sha256": "b078092ad72bb525d1c386b6e45ce9baf9e0dc27ed954b65c563e43e799cdcec"
+    },
+    {
+      "id": "btk-crm-310",
+      "title": "Kurgusal Telco Kişiselleştirilmiş Upsell Kampanyası BTK-CRM-310",
+      "type": "synthetic-case",
+      "path": "case-brief.md",
+      "license": "MIT",
+      "synthetic": true,
+      "sha256": "e6954f12154782a5f33abc486711f7eb0cbcff1baed7e9732e5d7ddf207b3ae6"
+    }
+  ]
+}

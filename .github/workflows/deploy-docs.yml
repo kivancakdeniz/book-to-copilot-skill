@@ -1,0 +1,207 @@
+name: Deploy docs
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - docs/**
+      - README.md
+      - SKILL.md
+      - BACKERS.md
+      - CHANGELOG.md
+      - CONTRIBUTING.md
+      - DOWNSTREAM.md
+      - LICENSE*
+      - NOTICE*
+      - THIRD_PARTY_NOTICES.md
+      - SECURITY.md
+      - demos/investment-committee/evidence/**
+      - demos/marketing-claims-review/evidence/**
+      - demos/turkiye-enterprise/**
+      - docs/skills/**
+      - requirements-docs.txt
+      - tests/test_turkiye_enterprise_release.py
+      - tools/build_turkiye_enterprise_release.py
+      - tools/scan_generated_skill.py
+      - tools/validate_skill.py
+      - tools/discovery_tax.py
+      - mkdocs.yml
+      - .github/workflows/deploy-docs.yml
+  pull_request:
+    paths:
+      - docs/**
+      - README.md
+      - SKILL.md
+      - BACKERS.md
+      - CHANGELOG.md
+      - CONTRIBUTING.md
+      - DOWNSTREAM.md
+      - LICENSE*
+      - NOTICE*
+      - THIRD_PARTY_NOTICES.md
+      - SECURITY.md
+      - demos/investment-committee/evidence/**
+      - demos/marketing-claims-review/evidence/**
+      - demos/turkiye-enterprise/**
+      - docs/skills/**
+      - requirements-docs.txt
+      - tests/test_turkiye_enterprise_release.py
+      - tools/build_turkiye_enterprise_release.py
+      - tools/scan_generated_skill.py
+      - tools/validate_skill.py
+      - tools/discovery_tax.py
+      - mkdocs.yml
+      - .github/workflows/deploy-docs.yml
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Actions pinned to commit SHAs (tags in comments) so a supply-chain
+      # swap on a moving tag cannot alter the build. Zizmor-clean.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+      - name: Install docs dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --requirement requirements-docs.txt
+      - name: Test Türkiye enterprise release
+        run: |
+          set -euo pipefail
+          python -m pytest tests/test_turkiye_enterprise_release.py -q
+      - name: Assemble docs sources
+        # Single-source: the Guide and Skill Reference pages are the repo-root
+        # README.md / SKILL.md, copied in (never committed under docs/). The
+        # landing page docs/index.md is committed and curated separately.
+        run: |
+          set -euo pipefail
+          cp README.md docs/guide.md
+          sed -i \
+            -e 's|src="docs/assets/|src="assets/|g' \
+            -e 's|href="#-|href="#|g' \
+            -e 's|](#-|](#|g' \
+            -e 's|href="docs/PERFORMANCE.md"|href="PERFORMANCE.md"|g' \
+            -e 's|href="docs/ARCHITECTURE.md"|href="ARCHITECTURE.md"|g' \
+            docs/guide.md
+          cp SKILL.md docs/skill-reference.md
+          cp BACKERS.md docs/BACKERS.md
+          cp CHANGELOG.md docs/CHANGELOG.md
+          cp DOWNSTREAM.md docs/DOWNSTREAM.md
+          cp LICENSE.md docs/LICENSE.md
+          cp NOTICE.md docs/NOTICE.md
+          cp THIRD_PARTY_NOTICES.md docs/THIRD_PARTY_NOTICES.md
+          cp SECURITY.md docs/SECURITY.md
+          mkdir -p docs/tools
+          cp tools/discovery_tax.py docs/tools/discovery_tax.py
+          mkdir -p docs/assets/investment-committee/evidence/outputs
+          mkdir -p docs/assets/investment-committee/evidence/screenshots
+          mkdir -p docs/assets/investment-committee/evidence/metadata
+          for output in demos/investment-committee/evidence/outputs/*.md; do
+            name=$(basename "$output" .md)
+            cp "$output" "docs/assets/investment-committee/evidence/outputs/$name.txt"
+          done
+          cp demos/investment-committee/evidence/screenshots/*.png docs/assets/investment-committee/evidence/screenshots/
+          cp demos/investment-committee/evidence/metadata/cowork-runs.json docs/assets/investment-committee/evidence/metadata/
+          mkdir -p docs/assets/marketing-claims-review/evidence/outputs
+          mkdir -p docs/assets/marketing-claims-review/evidence/screenshots
+          mkdir -p docs/assets/marketing-claims-review/evidence/metadata
+          for output in demos/marketing-claims-review/evidence/outputs/*.md; do
+            name=$(basename "$output" .md)
+            cp "$output" "docs/assets/marketing-claims-review/evidence/outputs/$name.txt"
+          done
+          cp demos/marketing-claims-review/evidence/screenshots/*.png docs/assets/marketing-claims-review/evidence/screenshots/
+          cp demos/marketing-claims-review/evidence/metadata/*.json docs/assets/marketing-claims-review/evidence/metadata/
+          python tools/build_turkiye_enterprise_release.py stage-docs \
+            --root . \
+            --output-dir "$RUNNER_TEMP/turkiye-enterprise-release" \
+            --docs-dir docs
+      - name: Build
+        run: |
+          set -euo pipefail
+          mkdocs build --strict
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+      - name: Install docs dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --requirement requirements-docs.txt
+      - name: Test Türkiye enterprise release
+        run: |
+          set -euo pipefail
+          python -m pytest tests/test_turkiye_enterprise_release.py -q
+      - name: Assemble docs sources
+        run: |
+          set -euo pipefail
+          cp README.md docs/guide.md
+          sed -i \
+            -e 's|src="docs/assets/|src="assets/|g' \
+            -e 's|href="#-|href="#|g' \
+            -e 's|](#-|](#|g' \
+            -e 's|href="docs/PERFORMANCE.md"|href="PERFORMANCE.md"|g' \
+            -e 's|href="docs/ARCHITECTURE.md"|href="ARCHITECTURE.md"|g' \
+            docs/guide.md
+          cp SKILL.md docs/skill-reference.md
+          cp BACKERS.md docs/BACKERS.md
+          cp CHANGELOG.md docs/CHANGELOG.md
+          cp DOWNSTREAM.md docs/DOWNSTREAM.md
+          cp LICENSE.md docs/LICENSE.md
+          cp NOTICE.md docs/NOTICE.md
+          cp THIRD_PARTY_NOTICES.md docs/THIRD_PARTY_NOTICES.md
+          cp SECURITY.md docs/SECURITY.md
+          mkdir -p docs/tools
+          cp tools/discovery_tax.py docs/tools/discovery_tax.py
+          mkdir -p docs/assets/investment-committee/evidence/outputs
+          mkdir -p docs/assets/investment-committee/evidence/screenshots
+          mkdir -p docs/assets/investment-committee/evidence/metadata
+          for output in demos/investment-committee/evidence/outputs/*.md; do
+            name=$(basename "$output" .md)
+            cp "$output" "docs/assets/investment-committee/evidence/outputs/$name.txt"
+          done
+          cp demos/investment-committee/evidence/screenshots/*.png docs/assets/investment-committee/evidence/screenshots/
+          cp demos/investment-committee/evidence/metadata/cowork-runs.json docs/assets/investment-committee/evidence/metadata/
+          mkdir -p docs/assets/marketing-claims-review/evidence/outputs
+          mkdir -p docs/assets/marketing-claims-review/evidence/screenshots
+          mkdir -p docs/assets/marketing-claims-review/evidence/metadata
+          for output in demos/marketing-claims-review/evidence/outputs/*.md; do
+            name=$(basename "$output" .md)
+            cp "$output" "docs/assets/marketing-claims-review/evidence/outputs/$name.txt"
+          done
+          cp demos/marketing-claims-review/evidence/screenshots/*.png docs/assets/marketing-claims-review/evidence/screenshots/
+          cp demos/marketing-claims-review/evidence/metadata/*.json docs/assets/marketing-claims-review/evidence/metadata/
+          python tools/build_turkiye_enterprise_release.py stage-docs \
+            --root . \
+            --output-dir "$RUNNER_TEMP/turkiye-enterprise-release" \
+            --docs-dir docs
+      - name: Build
+        run: |
+          set -euo pipefail
+          mkdocs build --strict
+      - name: Deploy to gh-pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          credential_key='http.https://github.com/.extraheader'
+          auth_header=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 | tr -d '\n')
+          git config --local "$credential_key" "AUTHORIZATION: basic $auth_header"
+          trap 'git config --local --unset-all "$credential_key" || true' EXIT
+          mkdocs gh-deploy --force

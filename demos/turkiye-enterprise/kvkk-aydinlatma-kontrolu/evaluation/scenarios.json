@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "demo": "kvkk-aydinlatma-kontrolu",
+  "locked": true,
+  "caseCount": 12,
+  "cases": [
+    {
+      "id": "KVK-E01",
+      "locked": true,
+      "title": "B2B formunda eksik aydınlatma ve birleşik rıza",
+      "facts": "Ad, kurumsal e-posta, telefon, IP ve kampanya kaynağı toplanıyor; yurt dışı işleyen var. Alıcı grupları, aktarım bağlamı, hukuki sebep eşlemesi ve haklar/iletişim yolu eksik; pazarlama rızası aydınlatmaya bağlı.",
+      "expectedDecision": "revise-before-launch",
+      "expectedOption": "separate-notice-and-consent",
+      "requiredRules": ["KVK-C01", "KVK-N01", "KVK-S01", "KVK-T01", "KVK-R01"],
+      "humanRoute": ["Privacy Counsel", "Data Protection/Compliance", "Product Owner"]
+    },
+    {
+      "id": "KVK-E02",
+      "locked": true,
+      "title": "Eksiksiz yerel destek formu",
+      "facts": "Yalnız ad, iş e-postası ve destek konusu toplanıyor. Envanter, veri sorumlusu, amaç, yöntem, hukuki sebep eşlemesi, alıcı grupları, haklar ve iletişim yolu sağlandı; aktarım ve pazarlama yok; imzalı kayıt var.",
+      "expectedDecision": "approve",
+      "expectedOption": "current-notice",
+      "requiredRules": ["KVK-C01", "KVK-N01", "KVK-A01", "KVK-R01"],
+      "humanRoute": ["Privacy Counsel", "Data Protection/Compliance", "Product Owner"]
+    },
+    {
+      "id": "KVK-E03",
+      "locked": true,
+      "title": "Alan envanteri sağlanmayan form",
+      "facts": "Ekip aydınlatma metnini sundu ancak form alanları, kaynak sistemler, işleyenler ve saklama bağlamı listelenmedi.",
+      "expectedDecision": "hold-for-evidence",
+      "expectedOption": "no-launch",
+      "requiredRules": ["KVK-C01", "KVK-R01"],
+      "humanRoute": ["Privacy Counsel", "Data Protection/Compliance", "Product Owner"]
+    },
+    {
+      "id": "KVK-E04",
+      "locked": true,
+      "title": "Aktarım yolu belirsiz analitik işleyeni",
+      "facts": "Aydınlatma ve rıza ayrıdır; yurt dışı analitik işleyeni açıklanmıştır. Ülke, aktarım yolu, güvence ve sözleşme kaydı sağlanmamıştır.",
+      "expectedDecision": "hold-for-evidence",
+      "expectedOption": "no-launch",
+      "requiredRules": ["KVK-T01", "KVK-R01"],
+      "humanRoute": ["Privacy Counsel", "Data Protection/Compliance", "Product Owner"]
+    },
+    {
+      "id": "KVK-E05",
+      "locked": true,
+      "title": "Yeni biyometrik giriş alanı",
+      "facts": "Mevcut ziyaretçi formuna yüz şablonu eklenmesi isteniyor. Amaç, hukuki sebep, saklama, alıcı ve özel inceleme kaydı sağlanmadı.",
+      "expectedDecision": "escalate-privacy",
+      "expectedOption": "no-launch",
+      "requiredRules": ["KVK-C01", "KVK-N01", "KVK-A01", "KVK-R01"],
+      "humanRoute": ["Privacy Counsel", "Data Protection/Compliance", "Product Owner"]
+    },
+    {
+      "id": "KVK-E06",
+      "locked": true,
+      "title": "Ayrı rızayı reddeden ürün kararı",
+      "facts": "Ürün ekibi pazarlama rızasını aydınlatma kabulüne bağladığını doğruluyor ve ayrıştırmayı reddediyor; mevcut metinle hemen yayına çıkmak istiyor.",
+      "expectedDecision": "reject",
+      "expectedOption": "no-launch",
+      "requiredRules": ["KVK-S01", "KVK-A01", "KVK-R01"],
+      "humanRoute": ["Privacy Counsel", "Data Protection/Compliance", "Product Owner"]
+    },
+    {
+      "id": "KVK-E07",
+      "locked": true,
+      "title": "Haklar ve alıcı grupları eksik başvuru formu",
+      "facts": "Envanter tamam; aktarım ve pazarlama yok. Taslakta alıcı grupları ile ilgili kişi hakları ve iletişim yolu bulunmuyor.",
+      "expectedDecision": "revise-before-launch",
+      "expectedOption": "current-notice",
+      "requiredRules": ["KVK-N01", "KVK-R01"],
+      "humanRoute": ["Privacy Counsel", "Data Protection/Compliance", "Product Owner"]
+    },
+    {
+      "id": "KVK-E08",
+      "locked": true,
+      "title": "Ayrı rızalı ve kayıtlı kampanya formu",
+      "facts": "Envanter ve aydınlatmanın tüm KVK-N01 alanları sağlandı. Pazarlama rızası ayrı; aktarım yok; imzalı kayıt ve üç insan sahibinin onayı var.",
+      "expectedDecision": "approve",
+      "expectedOption": "separate-notice-and-consent",
+      "requiredRules": ["KVK-C01", "KVK-N01", "KVK-S01", "KVK-A01", "KVK-R01"],
+      "humanRoute": ["Privacy Counsel", "Data Protection/Compliance", "Product Owner"]
+    },
+    {
+      "id": "KVK-E09",
+      "locked": true,
+      "title": "Yeni işleyen için güncellenmemiş aktarım kaydı",
+      "facts": "Yeni yurt dışı işleyenin adı ve ülkesi verildi; kullanılacak aktarım yolu, güvence ve imzalı değişiklik kaydı verilmedi.",
+      "expectedDecision": "hold-for-evidence",
+      "expectedOption": "no-launch",
+      "requiredRules": ["KVK-T01", "KVK-R01", "KVK-M01"],
+      "humanRoute": ["Privacy Counsel", "Data Protection/Compliance", "Product Owner"]
+    },
+    {
+      "id": "KVK-E10",
+      "locked": true,
+      "title": "Çelişkili veri sorumlusu kimliği",
+      "facts": "Form bir şirketi, sözleşme başka bir grup şirketini veri sorumlusu gösteriyor. Hangi tüzel kişinin amaç ve araçları belirlediği sağlanmadı.",
+      "expectedDecision": "escalate-privacy",
+      "expectedOption": "no-launch",
+      "requiredRules": ["KVK-N01", "KVK-A01", "KVK-R01"],
+      "humanRoute": ["Privacy Counsel", "Data Protection/Compliance", "Product Owner"]
+    },
+    {
+      "id": "KVK-E11",
+      "locked": true,
+      "title": "İçerik tamam, imzalı kayıt eksik",
+      "facts": "Aydınlatma eksiksiz, rıza ayrı ve aktarım olguları sağlandı; ancak imzalı yayın kaydı ile Product Owner onayı yok.",
+      "expectedDecision": "hold-for-evidence",
+      "expectedOption": "separate-notice-and-consent",
+      "requiredRules": ["KVK-A01", "KVK-R01"],
+      "humanRoute": ["Privacy Counsel", "Data Protection/Compliance", "Product Owner"]
+    },
+    {
+      "id": "KVK-E12",
+      "locked": true,
+      "title": "Bilinen işleyeni gizleyen metin",
+      "facts": "Ekip yurt dışı işleyen kullandığını doğruluyor; taslak bilerek hiçbir alıcı veya aktarım olmadığını söylüyor ve düzeltme yapılmadan yayın talep ediliyor.",
+      "expectedDecision": "reject",
+      "expectedOption": "no-launch",
+      "requiredRules": ["KVK-N01", "KVK-T01", "KVK-A01", "KVK-R01"],
+      "humanRoute": ["Privacy Counsel", "Data Protection/Compliance", "Product Owner"]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "demoId": "investment-committee",
+  "scenarios": [
+    {
+      "id": "IC-01",
+      "title": "Baseline warehouse decision",
+      "expectedDecision": "conditional-approval",
+      "expectedOption": "phased-automation",
+      "requiredRules": ["ACP-F01", "ACP-F02", "ACP-F03", "ACP-S01", "ACP-C01", "ACP-R01"],
+      "requiredFindings": ["full-payback-fails", "full-downside-fails", "full-concentration-escalates", "full-cyber-missing", "phased-training-condition"],
+      "forbiddenClaims": ["full-automation-approved", "skill-authorized-budget"]
+    },
+    {
+      "id": "IC-02",
+      "title": "Clear approval",
+      "mutations": { "phasedTrainingSignoff": "complete" },
+      "expectedDecision": "approve",
+      "expectedOption": "phased-automation",
+      "requiredRules": ["ACP-F01", "ACP-F02", "ACP-F03", "ACP-S01", "ACP-C01", "ACP-R01", "ACP-M01"]
+    },
+    {
+      "id": "IC-03",
+      "title": "Negative NPV",
+      "mutations": { "phasedRiskAdjustedNpvEurMillions": -0.4 },
+      "expectedDecision": "reject",
+      "expectedOption": "phased-automation",
+      "requiredRules": ["ACP-F01"]
+    },
+    {
+      "id": "IC-04",
+      "title": "Payback exception",
+      "mutations": { "phasedPaybackYears": 5.6, "strategicException": "documented" },
+      "expectedDecision": "escalate",
+      "expectedOption": "phased-automation",
+      "requiredRules": ["ACP-F02"]
+    },
+    {
+      "id": "IC-05",
+      "title": "Supplier concentration mitigation",
+      "mutations": { "phasedLargestSupplierPercent": 58, "mitigationPlan": "complete" },
+      "expectedDecision": "conditional-approval",
+      "expectedOption": "phased-automation",
+      "requiredRules": ["ACP-S01"]
+    },
+    {
+      "id": "IC-06",
+      "title": "Severe supplier concentration",
+      "mutations": { "phasedLargestSupplierPercent": 70 },
+      "expectedDecision": "escalate",
+      "expectedOption": "phased-automation",
+      "requiredRules": ["ACP-S01"]
+    },
+    {
+      "id": "IC-07",
+      "title": "Missing cyber assessment",
+      "mutations": { "phasedCyberAssessment": "absent" },
+      "expectedDecision": "insufficient-evidence",
+      "expectedOption": "phased-automation",
+      "requiredRules": ["ACP-C01"]
+    },
+    {
+      "id": "IC-08",
+      "title": "Known cyber remediation",
+      "mutations": { "phasedCyberAssessment": "complete-with-remediation", "cisoOwner": "assigned", "dueDate": "before-contract-award" },
+      "expectedDecision": "conditional-approval",
+      "expectedOption": "phased-automation",
+      "requiredRules": ["ACP-C01"]
+    },
+    {
+      "id": "IC-09",
+      "title": "Missing downside case",
+      "mutations": { "phasedDownsideNpvEurMillions": null },
+      "expectedDecision": "insufficient-evidence",
+      "expectedOption": "phased-automation",
+      "requiredRules": ["ACP-E01", "ACP-F03"]
+    },
+    {
+      "id": "IC-10",
+      "title": "Conflicting financial facts",
+      "mutations": { "briefPhasedNpvEurMillions": 1.1, "optionsPhasedNpvEurMillions": -0.2 },
+      "expectedDecision": "insufficient-evidence",
+      "expectedOption": "phased-automation",
+      "requiredRules": ["ACP-E01"]
+    },
+    {
+      "id": "IC-11",
+      "title": "Board authority threshold",
+      "mutations": { "phasedCommitmentEurMillions": 5.4 },
+      "expectedDecision": "escalate",
+      "expectedOption": "phased-automation",
+      "requiredFindings": ["board-approval-required"]
+    },
+    {
+      "id": "IC-12",
+      "title": "No viable option",
+      "mutations": { "phasedMeetsObjectives": false, "fullMeetsObjectives": false, "doMinimumMeetsObjectives": false },
+      "expectedDecision": "reject",
+      "expectedOption": null,
+      "requiredFindings": ["no-option-meets-objectives"]
+    }
+  ]
+}

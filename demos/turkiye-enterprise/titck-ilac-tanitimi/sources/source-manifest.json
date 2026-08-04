@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "demoId": "titck-ilac-tanitimi",
+  "sources": [
+    {
+      "id": "titck-tanitim-yonetmeligi-sayfasi",
+      "title": "Beşerî Tıbbi Ürünlerin Tanıtım Faaliyetleri Hakkında Yönetmelik",
+      "publisher": "Türkiye İlaç ve Tıbbî Cihaz Kurumu (TİTCK)",
+      "url": "https://www.titck.gov.tr/mevzuat/beseri-tibbi-urunlerin-tanitim-faaliyetleri-hakkinda-yonetmelik-27122018172726",
+      "sha256": "552ce8f77c365599105d387e5d9d312998f26df634131faad66201a35ad027d1",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuse": "Resmî dış kaynak yalnızca doğrulama metadatası ve kısa atıflı yöntem özetiyle kullanılır; yeniden kullanım koşulları ile güncel metin insan tarafından kaynaktan doğrulanmalıdır.",
+      "reuseCaveat": "Resmî dış kaynak bu depoda yeniden dağıtılmaz. Güncel metin, kapsam, değişiklik ve yeniden kullanım koşulları yetkili bir insan tarafından kaynak URL'den doğrulanmalıdır.",
+      "role": "Kısa ve atıflı ilaç tanıtımı inceleme yöntemi için TİTCK dış kaynak metadatası; şirket politikası, hukuki veya tıbbi tavsiye değildir",
+      "tracked": false
+    },
+    {
+      "id": "resmi-gazete-tanitim-yonetmeligi-2015",
+      "title": "Beşerî Tıbbi Ürünlerin Tanıtım Faaliyetleri Hakkında Yönetmelik - Resmî Gazete yayımı",
+      "publisher": "T.C. Resmî Gazete",
+      "url": "https://www.resmigazete.gov.tr/eskiler/2015/07/20150703-2.htm",
+      "sha256": "c23a03d934063bec7abd0a678cf947d2044af82f63d404a59028aaa5421191cf",
+      "retrievedAt": "2026-08-04",
+      "redistribution": "metadata-only",
+      "reuse": "Resmî dış kaynak yalnızca doğrulama metadatası ve kısa atıflı yöntem özetiyle kullanılır; yeniden kullanım koşulları ile güncel metin insan tarafından kaynaktan doğrulanmalıdır.",
+      "reuseCaveat": "Resmî dış kaynak bu depoda yeniden dağıtılmaz. Güncel metin, kapsam, değişiklik ve yeniden kullanım koşulları yetkili bir insan tarafından kaynak URL'den doğrulanmalıdır.",
+      "role": "Kısa ve atıflı ilaç tanıtımı inceleme yöntemi için Resmî Gazete dış kaynak metadatası; şirket politikası, hukuki veya tıbbi tavsiye değildir",
+      "tracked": false
+    },
+    {
+      "id": "nt-ttk-company-policy",
+      "title": "Kurgusal Farma ilaç tanıtım yönetişimi politikası NT-TTK-1.0",
+      "publisher": "Kurgusal demo külliyatı",
+      "path": "company-policy.md",
+      "sha256": "3558556225092be6f5f7c5e5208517ebfc8d4c909dc9f5cb443502e3be3662ec",
+      "license": "MIT",
+      "synthetic": true,
+      "redistribution": "included",
+      "reuse": "MIT lisanslı sentetik demo içeriği; gerçek şirket politikası, mevzuat veya tıbbi görüş değildir.",
+      "reuseCaveat": "MIT lisanslı sentetik demo içeriği; gerçek şirket politikası, mevzuat, hukuki görüş veya tıbbi tavsiye değildir.",
+      "tracked": true
+    },
+    {
+      "id": "ttk-01-case-brief",
+      "title": "Reçeteli ürün için Instagram kreatifi vaka brifi",
+      "publisher": "Kurgusal demo külliyatı",
+      "path": "case-brief.md",
+      "sha256": "cc6f6d279001a9cdabd95f4f08dfe8d4835149f2608a7e6dbdbee8fd563f7928",
+      "license": "MIT",
+      "synthetic": true,
+      "redistribution": "included",
+      "reuse": "MIT lisanslı sentetik demo içeriği; gerçek ürün, hasta, sağlık meslek mensubu veya kampanya kaydı değildir.",
+      "reuseCaveat": "MIT lisanslı sentetik demo içeriği; gerçek ürün, hasta, sağlık meslek mensubu, kampanya veya tıbbi kayıt değildir.",
+      "tracked": true
+    }
+  ]
+}

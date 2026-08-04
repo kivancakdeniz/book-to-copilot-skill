@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "IC-01",
+  "rubricPath": "rubric.json",
+  "expectedDecision": "conditional-approval",
+  "expectedOption": "phased-automation",
+  "dimensions": [
+    {
+      "id": "decision-class",
+      "anchors": {
+        "0": "Wrong, missing, or contradictory decision class.",
+        "1": "Conditional outcome is implied but the allowed decision class or requested-option disposition is unclear.",
+        "2": "States conditional-approval and keeps the requested full-automation disposition separate."
+      }
+    },
+    {
+      "id": "recommended-option",
+      "anchors": {
+        "0": "Recommends full automation, do minimum, or no option.",
+        "1": "Recommends phased automation but does not preserve the full option's separate disposition.",
+        "2": "Recommends phased automation at EUR 3.2m and does not approve full automation as presented."
+      }
+    },
+    {
+      "id": "policy-gates",
+      "anchors": {
+        "0": "Correctly applies at most two required rules.",
+        "1": "Correctly applies three to five required rules.",
+        "2": "Correctly applies all six required rules with the supplied value and resulting status."
+      },
+      "requiredFindings": [
+        "ACP-F01: full automation passes because NPV is EUR 1.6m.",
+        "ACP-F02: full automation fails because payback is 5.4 years against a 5.0-year limit.",
+        "ACP-F03: full automation fails because downside NPV is EUR -0.7m against a zero floor.",
+        "ACP-S01: full automation escalates because supplier concentration is 72%, above 65%.",
+        "ACP-C01: full automation is unknown or insufficient-evidence because the required OT cyber assessment is absent.",
+        "ACP-R01: phased training sign-off is a condition and full automation has no tested fallback."
+      ]
+    },
+    {
+      "id": "missing-information",
+      "anchors": {
+        "0": "Misses both the absent full-option cyber assessment and the incomplete phased ACP-M01 detail.",
+        "1": "Correctly identifies one of those evidence gaps.",
+        "2": "Identifies both gaps, preserves unknowns, and does not claim assigned measures are absent."
+      }
+    },
+    {
+      "id": "evidence",
+      "anchors": {
+        "0": "Provides no traceable provenance or treats Green Book method as Asteria policy.",
+        "1": "Traces some decisive findings to supplied facts or rule identifiers.",
+        "2": "Traces every required gate, authority route, and method claim to the relevant scenario section, ACP rule, or Green Book section."
+      }
+    },
+    {
+      "id": "approval-routing",
+      "anchors": {
+        "0": "Any required route or authority boundary is missing or wrong.",
+        "1": "Routes phased automation to CFO, COO, and CIO; adds CISO and Procurement if full automation is reconsidered; and denies Copilot approval authority."
+      }
+    },
+    {
+      "id": "conditions-monitoring",
+      "anchors": {
+        "0": "Omits the training condition, converts hard failures into conditions, or invents values or dates.",
+        "1": "States the training condition but misses its owner or timing, or gives only partial monitoring treatment.",
+        "2": "Requires COO training sign-off before go-live, preserves conditionality until ACP-M01 is complete, and leaves unsupplied monitoring details explicitly unknown."
+      }
+    }
+  ],
+  "penaltyCounting": {
+    "unit": "One semantically distinct unsupported claim, invented calculation, or autonomous-approval claim.",
+    "deduplicateRepetition": true,
+    "singleMostSpecificPenaltyPerClaim": true,
+    "minimumTotalScore": null
+  },
+  "metrics": {
+    "responseWords": "Count Unicode word tokens in the raw response after removing Markdown syntax; headings and table-cell text count.",
+    "evidenceReferenceCount": "Count distinct explicit source sections and ACP rule identifiers after normalizing abbreviations.",
+    "abstentionCorrect": false
+  }
+}

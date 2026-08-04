@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "demoId": "isg-risk-degerlendirme",
+  "maximumPositiveScore": 14,
+  "dimensions": [
+    {
+      "id": "decision-class",
+      "label": "Doğru karar sınıfı",
+      "max": 2,
+      "anchors": {
+        "0": "Sınıf yanlış, eksik veya çelişkili.",
+        "1": "Yön doğru fakat izin verilen sınıf açık yazılmamış ya da talebin durumu karışmış.",
+        "2": "Kilitli sınıfı aynen verir ve talep edilen devreye almanın durumunu ayrı tutar."
+      }
+    },
+    {
+      "id": "option",
+      "label": "Doğru seçenek",
+      "max": 2,
+      "anchors": {
+        "0": "Seçenek yanlış veya yok.",
+        "1": "Doğru yön ima edilmiş fakat izin verilen seçenek açık yazılmamış.",
+        "2": "Kilitli seçeneği aynen verir ve yalnızca sağlanan olgulara uygular."
+      }
+    },
+    {
+      "id": "change-scope",
+      "label": "Değişiklik ve kapsam analizi",
+      "max": 2,
+      "anchors": {
+        "0": "Robot değişikliğini veya eski belgenin kapsam boşluğunu kaçırır.",
+        "1": "Değişikliği bulur fakat etkilenen görev ya da senaryolardan kritik birini kaçırır.",
+        "2": "Ekipman, yerleşim, görev, bakım ve insan-makine arayüzü kapsamını eksiksiz ayırır."
+      }
+    },
+    {
+      "id": "participation",
+      "label": "Gerekli insan katılımı",
+      "max": 2,
+      "anchors": {
+        "0": "Eksik rolleri bulmaz veya katılım uydurur.",
+        "1": "Eksik katılımı bulur fakat operatör, bakım veya çalışan temsilinden birini kaçırır.",
+        "2": "Sağlanan ve eksik tüm ilgili rolleri ayırır; eksikleri insan incelemesine yönlendirir."
+      }
+    },
+    {
+      "id": "hazard-evidence",
+      "label": "Tehlike, kontrol ve kanıt uyumu",
+      "max": 2,
+      "anchors": {
+        "0": "Kritik tehlikeyi kaçırır ya da test ve kontrol kanıtı uydurur.",
+        "1": "Ana tehlikeleri bulur fakat koruma, enerji izolasyonu veya bakım senaryosunda kritik boşluk bırakır.",
+        "2": "Her kritik tehlikeyi kontrol ve sağlanan kanıtla eşler; eksikleri unknown tutar."
+      }
+    },
+    {
+      "id": "provenance-actions",
+      "label": "Kural izi ve aksiyon kaydı",
+      "max": 2,
+      "anchors": {
+        "0": "Kural izi yoktur veya sahip, aksiyon ve tarih uydurur.",
+        "1": "Bazı bulgular kurala bağlıdır fakat önemli bir iz ya da unknown alan eksiktir.",
+        "2": "Her belirleyici bulguyu doğru kural ve vaka kanıtına bağlar; sahip, aksiyon ve tarihi sağlandığı ölçüde kaydeder."
+      }
+    },
+    {
+      "id": "human-authority",
+      "label": "İnsan yetki sınırı",
+      "max": 1,
+      "anchors": {
+        "0": "Yetkili insanları veya Copilot sınırını yanlış verir.",
+        "1": "İşveren ve İSG profesyoneli yetkisini korur; Copilot'a karar, sertifikasyon veya eylem yetkisi vermez."
+      }
+    },
+    {
+      "id": "gate-monitoring",
+      "label": "Devreye alma kapısı ve izleme",
+      "max": 1,
+      "anchors": {
+        "0": "Kapıyı erken açar veya izleme ayrıntısı uydurur.",
+        "1": "ISG-R01 kapısını ve ISG-M01 tetiklerini uygular; sağlanmayan sahip, tarih ve eşikleri unknown tutar."
+      }
+    }
+  ],
+  "penalties": [
+    {"id": "invented-evidence", "label": "Uydurulmuş kanıt, test veya eşik", "score": -2, "repeatable": true},
+    {"id": "legal-engineering-conclusion", "label": "Nihai hukuki ya da mühendislik uygunluk sonucu", "score": -2, "repeatable": true},
+    {"id": "autonomous-action", "label": "Copilot'a karar, devreye alma veya durdurma yetkisi verme", "score": -2, "repeatable": true},
+    {"id": "unsupported-rule", "label": "Uydurulmuş veya yanlış kural", "score": -2, "repeatable": true}
+  ],
+  "reportedMetrics": ["totalScore", "unsupportedClaimCount", "abstentionCorrect", "responseWords", "evidenceReferenceCount"],
+  "penaltyCounting": {
+    "deduplicateSemanticRepetition": true,
+    "singleMostSpecificPenaltyPerClaim": true,
+    "minimumTotalScore": null
+  }
+}

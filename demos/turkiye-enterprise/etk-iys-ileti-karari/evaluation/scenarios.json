@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "demo": "etk-iys-ileti-karari",
+  "locked": true,
+  "caseCount": 12,
+  "cases": [
+    {
+      "id": "ETK-E01",
+      "locked": true,
+      "title": "Eski müşterilere kanıtsız indirim SMS'i",
+      "facts": "48.000 eski perakende müşterisine promosyon SMS'i planlanıyor. Güncel rıza/IYS görüntüsü yok; ret metni var; hizmet bildirimi değil.",
+      "expectedDecision": "do-not-send",
+      "expectedOption": "suppress-unverified-audience",
+      "requiredRules": ["ETK-C01", "ETK-I01", "ETK-O01", "ETK-R01"],
+      "humanRoute": ["CRM Owner", "Compliance", "Legal"]
+    },
+    {
+      "id": "ETK-E02",
+      "locked": true,
+      "title": "Tamamı doğrulanmış küçük kampanya",
+      "facts": "1.200 alıcının kişi ve SMS kanalı düzeyinde güncel rıza/IYS kanıtı sağlandı. Promosyon amacı ve ret yolu açık; bastırma testi ile insan onayı kayıtlı.",
+      "expectedDecision": "approve-send",
+      "expectedOption": "full-audience",
+      "requiredRules": ["ETK-C01", "ETK-I01", "ETK-O01", "ETK-A01", "ETK-R01"],
+      "humanRoute": ["CRM Owner", "Compliance", "Legal"]
+    },
+    {
+      "id": "ETK-E03",
+      "locked": true,
+      "title": "Karışık kanıtlı kitle",
+      "facts": "10.000 kaydın 6.400'ünde güncel SMS rıza/IYS kanıtı var. Kampanya sistemi kalan 3.600 kaydı dışlayabiliyor; test sonucu ve insan onayı sağlandı.",
+      "expectedDecision": "approve-with-controls",
+      "expectedOption": "verified-consent-only",
+      "requiredRules": ["ETK-I01", "ETK-A01", "ETK-R01"],
+      "humanRoute": ["CRM Owner", "Compliance", "Legal"]
+    },
+    {
+      "id": "ETK-E04",
+      "locked": true,
+      "title": "Süresi belirsiz IYS dışa aktarımı",
+      "facts": "Altı ay önce alınmış IYS dışa aktarımı var; kampanya öncesi değişiklikler, retler ve kanıt geçerlilik süresi sağlanmadı.",
+      "expectedDecision": "hold-for-iys-evidence",
+      "expectedOption": "suppress-unverified-audience",
+      "requiredRules": ["ETK-I01", "ETK-R01", "ETK-M01"],
+      "humanRoute": ["CRM Owner", "Compliance", "Legal"]
+    },
+    {
+      "id": "ETK-E05",
+      "locked": true,
+      "title": "Promosyonsuz hizmet kesintisi bildirimi",
+      "facts": "Aktif müşterilere devam eden hizmet kesintisinin zamanı ve destek kanalı bildirilecek. İndirim, çapraz satış veya satın alma çağrısı yok; alıcı ilişkisi ve işlem olguları sağlandı.",
+      "expectedDecision": "approve-send",
+      "expectedOption": "full-audience",
+      "requiredRules": ["ETK-C01", "ETK-X01", "ETK-A01", "ETK-R01"],
+      "humanRoute": ["CRM Owner", "Compliance", "Legal"]
+    },
+    {
+      "id": "ETK-E06",
+      "locked": true,
+      "title": "Belgesiz istisna iddiası",
+      "facts": "Satış ekibi promosyon e-postasının istisna olduğunu söylüyor; alıcı rolü, ilişki, işlem ve istisnayı destekleyen olgular sağlanmıyor.",
+      "expectedDecision": "escalate-legal",
+      "expectedOption": "suppress-unverified-audience",
+      "requiredRules": ["ETK-C01", "ETK-X01", "ETK-A01"],
+      "humanRoute": ["CRM Owner", "Compliance", "Legal"]
+    },
+    {
+      "id": "ETK-E07",
+      "locked": true,
+      "title": "Yalnız ret metnine dayanan promosyon",
+      "facts": "Promosyon SMS'inde kolay ret yolu var; hiçbir alıcı için ön rıza/IYS kanıtı sağlanmadı.",
+      "expectedDecision": "do-not-send",
+      "expectedOption": "suppress-unverified-audience",
+      "requiredRules": ["ETK-I01", "ETK-O01", "ETK-R01"],
+      "humanRoute": ["CRM Owner", "Compliance", "Legal"]
+    },
+    {
+      "id": "ETK-E08",
+      "locked": true,
+      "title": "Kanal düzeyinde doğrulanmış alt kitle",
+      "facts": "CRM'de e-posta ve SMS izinleri karışık. Yalnız 2.300 kişinin SMS kanalı güncel olarak doğrulandı; sistem bu alt kitleyi ayrı seçebiliyor ve retleri bastırıyor.",
+      "expectedDecision": "approve-with-controls",
+      "expectedOption": "verified-consent-only",
+      "requiredRules": ["ETK-I01", "ETK-O01", "ETK-R01"],
+      "humanRoute": ["CRM Owner", "Compliance", "Legal"]
+    },
+    {
+      "id": "ETK-E09",
+      "locked": true,
+      "title": "Kanal alanı eksik kanıt dosyası",
+      "facts": "Kanıt dışa aktarımında kişi ve durum var, fakat kanal ile güncellik zamanı yok. Kampanya SMS olarak planlandı.",
+      "expectedDecision": "hold-for-iys-evidence",
+      "expectedOption": "suppress-unverified-audience",
+      "requiredRules": ["ETK-I01", "ETK-R01"],
+      "humanRoute": ["CRM Owner", "Compliance", "Legal"]
+    },
+    {
+      "id": "ETK-E10",
+      "locked": true,
+      "title": "İşlem mesajına eklenen satış teklifi",
+      "facts": "Teslimat bildiriminin sonuna indirim kodu ve yeni ürün çağrısı ekleniyor. Ekip tüm mesajı hizmet bildirimi sayıyor; promosyon bölümü için kanıt yok.",
+      "expectedDecision": "escalate-legal",
+      "expectedOption": "suppress-unverified-audience",
+      "requiredRules": ["ETK-C01", "ETK-X01", "ETK-A01"],
+      "humanRoute": ["CRM Owner", "Compliance", "Legal"]
+    },
+    {
+      "id": "ETK-E11",
+      "locked": true,
+      "title": "Başarısız bastırma kapısı testi",
+      "facts": "Rıza/IYS kanıtı olan alt kitle tanımlı; test gönderiminde doğrulanmamış ve ret vermiş kayıtların da seçildiği görülüyor.",
+      "expectedDecision": "do-not-send",
+      "expectedOption": "suppress-unverified-audience",
+      "requiredRules": ["ETK-I01", "ETK-O01", "ETK-R01"],
+      "humanRoute": ["CRM Owner", "Compliance", "Legal"]
+    },
+    {
+      "id": "ETK-E12",
+      "locked": true,
+      "title": "Güncel kanıt ve izleme kaydı tamam",
+      "facts": "Tüm hedef kitlenin kişi ve SMS kanalı düzeyinde güncel rıza/IYS kanıtı, ret bastırması, kampanya amacı, insan onayı, kanıt geçerlilik süresi ve şikâyet sorumlusu sağlandı.",
+      "expectedDecision": "approve-send",
+      "expectedOption": "full-audience",
+      "requiredRules": ["ETK-C01", "ETK-I01", "ETK-O01", "ETK-A01", "ETK-R01", "ETK-M01"],
+      "humanRoute": ["CRM Owner", "Compliance", "Legal"]
+    }
+  ]
+}

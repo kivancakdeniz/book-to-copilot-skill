@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "demoId": "indirimli-fiyat-denetimi",
+  "caseCount": 12,
+  "scenarios": [
+    {
+      "id": "FYT-01",
+      "locked": true,
+      "title": "Baseline kreatif uyuşmazlığı",
+      "mutations": {},
+      "expectedDecision": "revise-price-claim",
+      "expectedOption": "advertise-25-percent",
+      "requiredRules": ["FYT-H01", "FYT-B01", "FYT-O01", "FYT-C01", "FYT-A01", "FYT-R01", "FYT-M01"],
+      "requiredFindings": ["supplied-reference-800", "supplied-result-25", "creative-40-mismatch", "human-release-gate"],
+      "forbiddenClaims": ["recalculated-missing-value", "campaign-launched", "legal-advice"]
+    },
+    {
+      "id": "FYT-02",
+      "locked": true,
+      "title": "Uyumlu yüzde 25 kreatifi",
+      "mutations": {"creativeReferenceTry": 800, "creativeDiscountPercent": 25, "creativeClarity": "clear"},
+      "expectedDecision": "approve",
+      "expectedOption": "advertise-25-percent",
+      "requiredRules": ["FYT-O01", "FYT-C01", "FYT-A01", "FYT-R01", "FYT-M01"]
+    },
+    {
+      "id": "FYT-03",
+      "locked": true,
+      "title": "Fiyat geçmişi eksik",
+      "mutations": {"priceHistory": "incomplete"},
+      "expectedDecision": "hold-for-price-history",
+      "expectedOption": "no-promotion",
+      "requiredRules": ["FYT-H01"],
+      "forbiddenClaims": ["inferred-history", "calculated-reference-price"]
+    },
+    {
+      "id": "FYT-04",
+      "locked": true,
+      "title": "Karşılaştırma penceresi belirsiz",
+      "mutations": {"comparisonWindow": null},
+      "expectedDecision": "hold-for-price-history",
+      "expectedOption": "no-promotion",
+      "requiredRules": ["FYT-H01", "FYT-B01"]
+    },
+    {
+      "id": "FYT-05",
+      "locked": true,
+      "title": "Sağlanan hesap sonucu yok",
+      "mutations": {"suppliedReferencePriceTry": null, "suppliedDiscountPercent": null},
+      "expectedDecision": "hold-for-price-history",
+      "expectedOption": "no-promotion",
+      "requiredRules": ["FYT-B01", "FYT-O01"],
+      "forbiddenClaims": ["assistant-calculated-discount"]
+    },
+    {
+      "id": "FYT-06",
+      "locked": true,
+      "title": "Çelişen geçmiş sonuçları",
+      "mutations": {"pricingOwnerLowestTry": 800, "sellerFileLowestTry": 850},
+      "expectedDecision": "hold-for-price-history",
+      "expectedOption": "no-promotion",
+      "requiredRules": ["FYT-H01", "FYT-B01"],
+      "requiredFindings": ["source-conflict"]
+    },
+    {
+      "id": "FYT-07",
+      "locked": true,
+      "title": "Doğru oran, belirsiz kreatif",
+      "mutations": {"creativeReferenceTry": 800, "creativeDiscountPercent": 25, "creativeClarity": "comparison-hidden"},
+      "expectedDecision": "revise-price-claim",
+      "expectedOption": "advertise-25-percent",
+      "requiredRules": ["FYT-C01"]
+    },
+    {
+      "id": "FYT-08",
+      "locked": true,
+      "title": "Belgelenmiş istisna talebi",
+      "mutations": {"sellerRequestsPolicyException": true, "legalInterpretation": "required"},
+      "expectedDecision": "escalate-consumer-law",
+      "expectedOption": "no-promotion",
+      "requiredRules": ["FYT-A01"],
+      "forbiddenClaims": ["assistant-approved-exception", "legal-conclusion"]
+    },
+    {
+      "id": "FYT-09",
+      "locked": true,
+      "title": "Satıcı düzeltmeyi reddediyor",
+      "mutations": {"sellerAcceptsCorrection": false, "sellerInsistsOn40Percent": true},
+      "expectedDecision": "reject",
+      "expectedOption": "no-promotion",
+      "requiredRules": ["FYT-O01", "FYT-C01", "FYT-R01"]
+    },
+    {
+      "id": "FYT-10",
+      "locked": true,
+      "title": "Canlı fiyat kreatifle uyuşmuyor",
+      "mutations": {"creativeReferenceTry": 800, "creativeDiscountPercent": 25, "plannedLivePriceTry": 650},
+      "expectedDecision": "revise-price-claim",
+      "expectedOption": "advertise-25-percent",
+      "requiredRules": ["FYT-R01"]
+    },
+    {
+      "id": "FYT-11",
+      "locked": true,
+      "title": "İzleme sorumluluğu reddedildi",
+      "mutations": {"monitoringOwner": null, "sellerAcceptsMonitoring": false},
+      "expectedDecision": "reject",
+      "expectedOption": "no-promotion",
+      "requiredRules": ["FYT-M01", "FYT-R01"]
+    },
+    {
+      "id": "FYT-12",
+      "locked": true,
+      "title": "Karşılaştırmalı iddia kaldırıldı",
+      "mutations": {"creativeReferenceTry": null, "creativeDiscountPercent": null, "promotionClaimRemoved": true},
+      "expectedDecision": "approve",
+      "expectedOption": "no-promotion",
+      "requiredRules": ["FYT-C01", "FYT-A01", "FYT-R01", "FYT-M01"]
+    }
+  ]
+}
