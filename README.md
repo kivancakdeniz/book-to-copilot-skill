@@ -15,6 +15,10 @@
   <a href="LICENSE.md">MIT license</a>
 </p>
 
+<p align="center">
+  <img src="docs/assets/book-to-copilot-skill-cover.webp" alt="Books, documents, regulations, and institutional guidance transform into a structured Agent Skill, pass through a control-versus-skill evaluation, and branch into five portable Copilot packages." width="1200">
+</p>
+
 ## What this repository adds
 
 This public downstream turns the original document-to-skill converter into a

@@ -5,6 +5,8 @@ and document collections into structured Agent Skills. It then helps you test
 whether the skill changes an LLM's answer and package the result for the
 Microsoft Copilot ecosystem.
 
+![Books, documents, regulations, and institutional guidance transform into a structured Agent Skill, pass through a control-versus-skill evaluation, and branch into five portable Copilot packages.](../assets/book-to-copilot-skill-cover.webp){ loading=eager fetchpriority=high }
+
 [Create your own skill](create-a-skill.md){ .md-button .md-button--primary }
 [Explore the 12 examples](skills/index.md){ .md-button }
 

@@ -5,6 +5,8 @@ doküman koleksiyonlarını yapılandırılmış Agent Skill'lere dönüştürü
 skill'in LLM yanıtında anlamlı fark yaratıp yaratmadığını test etmeyi ve sonucu
 Microsoft Copilot ekosistemi için paketlemeyi sağlar.
 
+![Kitaplar, dokümanlar, mevzuat ve kurum rehberleri yapılandırılmış bir Agent Skill'e dönüşür; kontrol-versus-skill değerlendirmesinden geçer ve beş taşınabilir Copilot paketine ayrılır.](../assets/book-to-copilot-skill-cover.webp){ loading=eager fetchpriority=high }
+
 [Kendi skill'inizi oluşturun](create-a-skill.md){ .md-button .md-button--primary }
 [12 örneği inceleyin](skills/index.md){ .md-button }
 
