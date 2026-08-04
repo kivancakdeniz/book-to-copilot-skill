@@ -89,6 +89,8 @@ jobs:
             -e 's|](#-|](#|g' \
             -e 's|href="docs/PERFORMANCE.md"|href="PERFORMANCE.md"|g' \
             -e 's|href="docs/ARCHITECTURE.md"|href="ARCHITECTURE.md"|g' \
+            -e 's|](docs/LICENSING-AND-REUSE.md)|](LICENSING-AND-REUSE.md)|g' \
+            -e 's|](docs/RESPONSIBLE-USE.md)|](RESPONSIBLE-USE.md)|g' \
             docs/guide.md
           cp SKILL.md docs/skill-reference.md
           cp BACKERS.md docs/BACKERS.md
@@ -158,6 +160,8 @@ jobs:
             -e 's|](#-|](#|g' \
             -e 's|href="docs/PERFORMANCE.md"|href="PERFORMANCE.md"|g' \
             -e 's|href="docs/ARCHITECTURE.md"|href="ARCHITECTURE.md"|g' \
+            -e 's|](docs/LICENSING-AND-REUSE.md)|](LICENSING-AND-REUSE.md)|g' \
+            -e 's|](docs/RESPONSIBLE-USE.md)|](RESPONSIBLE-USE.md)|g' \
             docs/guide.md
           cp SKILL.md docs/skill-reference.md
           cp BACKERS.md docs/BACKERS.md
