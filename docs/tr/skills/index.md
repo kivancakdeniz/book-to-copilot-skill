@@ -1,7 +1,5 @@
 # Kurumsal karar skill kataloğu
 
-[English](../../skills/index.md)
-
 Bu katalog, tek bir yayın fabrikasıyla üretilen 12 kurumsal karar skill'ini
 listeler. Her skill 12 kilitli senaryo, 14 puanlık rubrik, sentetik şirket
 politikası ve resmî kaynak metadatası içerir.
@@ -18,22 +16,108 @@ deterministik üretilir ve temiz yeniden derlemede byte-identical doğrulanır.
 [SHA256SUMS](../../downloads/skills/SHA256SUMS) ·
 [Üçüncü taraf bildirimleri](../../downloads/skills/THIRD_PARTY_NOTICES.md)
 
-## Katalog
+## 12 skill
 
-| Skill | Alan | Hedef ekip | Tek cümlede değer | Yalnız LLM | LLM + skill |
-|---|---|---|---|---|---|
-| [KVKK aydınlatma kontrolü](kvkk-aydinlatma-kontrolu.md) | Veri koruma | Privacy, Compliance ve ürün ekipleri | Aydınlatma, rıza ve aktarım boşluklarını insan yayın kapısına bağlar. | 10/100 | 100/100 |
-| [ETK/IYS ileti kararı](etk-iys-ileti-karari.md) | Ticari elektronik ileti | CRM, Compliance ve Legal ekipleri | Kampanya kitlesini kişi-kanal kanıtı ve bastırma kapısıyla inceler. | 20/100 | 80/100 |
-| [İndirimli fiyat denetimi](indirimli-fiyat-denetimi.md) | E-ticaret ve tüketici hukuku | E-ticaret, fiyatlandırma ve Compliance ekipleri | Fiyat geçmişi ile kampanya iddiasını izlenebilir bir yayın kararında buluşturur. | 20/100 | 100/100 |
-| [MASAK müşteri kabul](masak-musteri-kabul.md) | Finansal suçlarla mücadele | AML, Compliance ve müşteri kabul ekipleri | Kimlik, nihai faydalanıcı ve fon kaynağı boşluklarını insan incelemesine yönlendirir. | 20/100 | 100/100 |
-| [BDDK uzaktan müşteri edinimi](bddk-uzaktan-musteri-edinimi.md) | Bankacılık | Dijital bankacılık, güvenlik, Uyum ve Hukuk ekipleri | Uzaktan edinim akışını kanıt, kontrol ve canlıya geçiş kapılarıyla sınar. | 40/100 | 80/100 |
-| [Rekabet birleşme bildirimi](rekabet-birlesme-bildirimi.md) | Birleşme ve devralmalar | M&A, Finans ve Rekabet Hukuku ekipleri | Ön hesaplama göstergelerini hukuki bildirim kararı ve kapanış kapısından ayırır. | 40/100 | 100/100 |
-| [İSG risk değerlendirmesi: değişiklikten devreye alma kapısına](isg-risk-degerlendirme.md) | İş sağlığı ve güvenliği | İSG, operasyon, bakım ve mühendislik ekipleri | Değişiklik risklerini katılım, kontrol ve devreye alma kanıtlarıyla görünür kılar. | 40/100 | 100/100 |
-| [TİTCK ilaç tanıtımı: hedef kitle ve yayın kapısı](titck-ilac-tanitimi.md) | İlaç ve sağlık iletişimi | Medical, Regulatory, Legal ve pazarlama ekipleri | Ürün statüsü, hedef kitle ve kanal erişimini insan yayın incelemesine bağlar. | 40/100 | 100/100 |
-| [Kripto ödeme kapısı](kripto-odeme-kapisi.md) | Ödeme hizmetleri ve kripto varlıklar | Payments, Compliance, Legal ve ürün ekipleri | Kripto işlevinin ödeme akışındaki rolünü ürün sınırı ve lansman kapısıyla inceler. | 40/100 | 100/100 |
-| [BTK haberleşme verisi](btk-haberlesme-verisi.md) | Telekom ve mahremiyet | Telekom Compliance, Privacy, DPO ve CRM ekipleri | Konum ve trafik verisi kullanımını amaç, rıza ve saklama kapılarıyla sınırlar. | 40/100 | 80/100 |
-| [Yatırım komitesi değerlendirmesi](investment-committee.md) | Sermaye tahsisi | CFO, COO, CIO ve yatırım komitesi üyeleri | Sermaye brifingini kapılı ve kanıt atıflı bir komite karar kartına dönüştürür. | 40/100 | 100/100 |
-| [Pazarlama iddiaları incelemesi](marketing-claims-review.md) | Pazarlama ve reklam uyumu | Pazarlama, Legal ve Compliance ekipleri | Reklam iddialarını dayanak, ifşa ve yayın kontrolleriyle sınar. | 40/100 | 100/100 |
+<div class="grid cards" markdown>
+
+-   **[KVKK aydınlatma kontrolü](kvkk-aydinlatma-kontrolu.md)**
+
+    <span class="bts-skill-kicker">Veri koruma</span>
+
+    Aydınlatma, rıza ve aktarım boşluklarını insan yayın kapısına bağlar.
+
+    <span class="bts-score bts-score--control">LLM 10</span> <span class="bts-score bts-score--skill">Skill 100</span>
+
+-   **[ETK/IYS ileti kararı](etk-iys-ileti-karari.md)**
+
+    <span class="bts-skill-kicker">Ticari elektronik ileti</span>
+
+    Kampanya kitlesini kişi-kanal kanıtı ve bastırma kapısıyla inceler.
+
+    <span class="bts-score bts-score--control">LLM 20</span> <span class="bts-score bts-score--skill">Skill 80</span>
+
+-   **[İndirimli fiyat denetimi](indirimli-fiyat-denetimi.md)**
+
+    <span class="bts-skill-kicker">E-ticaret ve tüketici hukuku</span>
+
+    Fiyat geçmişi ile kampanya iddiasını izlenebilir bir yayın kararında buluşturur.
+
+    <span class="bts-score bts-score--control">LLM 20</span> <span class="bts-score bts-score--skill">Skill 100</span>
+
+-   **[MASAK müşteri kabul](masak-musteri-kabul.md)**
+
+    <span class="bts-skill-kicker">Finansal suçlarla mücadele</span>
+
+    Kimlik, nihai faydalanıcı ve fon kaynağı boşluklarını insan incelemesine yönlendirir.
+
+    <span class="bts-score bts-score--control">LLM 20</span> <span class="bts-score bts-score--skill">Skill 100</span>
+
+-   **[BDDK uzaktan müşteri edinimi](bddk-uzaktan-musteri-edinimi.md)**
+
+    <span class="bts-skill-kicker">Bankacılık</span>
+
+    Uzaktan edinim akışını kanıt, kontrol ve canlıya geçiş kapılarıyla sınar.
+
+    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 80</span>
+
+-   **[Rekabet birleşme bildirimi](rekabet-birlesme-bildirimi.md)**
+
+    <span class="bts-skill-kicker">Birleşme ve devralmalar</span>
+
+    Ön hesaplama göstergelerini hukuki bildirim kararı ve kapanış kapısından ayırır.
+
+    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
+
+-   **[İSG risk değerlendirmesi: değişiklikten devreye alma kapısına](isg-risk-degerlendirme.md)**
+
+    <span class="bts-skill-kicker">İş sağlığı ve güvenliği</span>
+
+    Değişiklik risklerini katılım, kontrol ve devreye alma kanıtlarıyla görünür kılar.
+
+    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
+
+-   **[TİTCK ilaç tanıtımı: hedef kitle ve yayın kapısı](titck-ilac-tanitimi.md)**
+
+    <span class="bts-skill-kicker">İlaç ve sağlık iletişimi</span>
+
+    Ürün statüsü, hedef kitle ve kanal erişimini insan yayın incelemesine bağlar.
+
+    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
+
+-   **[Kripto ödeme kapısı](kripto-odeme-kapisi.md)**
+
+    <span class="bts-skill-kicker">Ödeme hizmetleri ve kripto varlıklar</span>
+
+    Kripto işlevinin ödeme akışındaki rolünü ürün sınırı ve lansman kapısıyla inceler.
+
+    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
+
+-   **[BTK haberleşme verisi](btk-haberlesme-verisi.md)**
+
+    <span class="bts-skill-kicker">Telekom ve mahremiyet</span>
+
+    Konum ve trafik verisi kullanımını amaç, rıza ve saklama kapılarıyla sınırlar.
+
+    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 80</span>
+
+-   **[Yatırım komitesi değerlendirmesi](investment-committee.md)**
+
+    <span class="bts-skill-kicker">Sermaye tahsisi</span>
+
+    Sermaye brifingini kapılı ve kanıt atıflı bir komite karar kartına dönüştürür.
+
+    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
+
+-   **[Pazarlama iddiaları incelemesi](marketing-claims-review.md)**
+
+    <span class="bts-skill-kicker">Pazarlama ve reklam uyumu</span>
+
+    Reklam iddialarını dayanak, ifşa ve yayın kontrolleriyle sınar.
+
+    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
+
+</div>
+
 
 ## Kaynak ve lisans sınırı
 

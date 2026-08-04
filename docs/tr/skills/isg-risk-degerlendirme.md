@@ -1,6 +1,32 @@
 # İSG risk değerlendirmesi: değişiklikten devreye alma kapısına
 
-[English](../../skills/isg-risk-degerlendirme.md)
+<span class="bts-skill-kicker">İş sağlığı ve güvenliği</span>
+
+**İSG, operasyon, bakım ve mühendislik ekipleri** için. Değişiklik risklerini katılım, kontrol ve devreye alma kanıtlarıyla görünür kılar.
+
+<ul class="bts-metrics bts-metrics--compact">
+  <li><b>40</b><span>LLM only</span></li>
+  <li><b>100</b><span>LLM + skill</span></li>
+  <li><b>7/7</b><span>kural atfı</span></li>
+  <li><b>12</b><span>kilitli senaryo</span></li>
+</ul>
+
+## Skill ne ekledi
+
+Kontrol yanıtı 0/7 kural kimliğine, skill yanıtı 7/7 kural kimliğine atıf yaptı. Skill'in değeri daha uzun metin üretmesi değil; şirket politikasını, kanıt boşluklarını ve insan yetki sınırını aynı karar kaydında görünür kılmasıdır.
+
+Copilot onay veremez, yayımlayamaz veya operasyonel eylem uygulayamaz.
+
+## Karar sözleşmesi
+
+| Kilitli beklenti | Değer |
+| --- | --- |
+| Karar sınıfı | `renew-assessment` |
+| Seçenek | `hold-commissioning` |
+| Zorunlu kural | 7 kimlik |
+| İnsan rotası | İşveren · İSG profesyonelleri · çalışan temsilcileri |
+
+Bu değerler modele gösterilmez; yalnız kilitli senaryo ve deterministik skorlayıcı tarafından kullanılır.
 
 ## Kontrol ve skill: ölçülen
 
@@ -47,48 +73,6 @@ Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
 | Taşınabilir skill | `demos/isg-risk-degerlendirme/skill/SKILL.md` ve beş destek dosyası |
 | Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
-## Ne derler?
-
-- Değişiklik mevcut risk değerlendirmesinin kapsamında mı?
-- Operatör, bakım ve çalışan temsilinin katılımı kanıtlı mı?
-- Koruma, erişim ve kilitleme/etiketleme kontrolleri doğrulanmış mı?
-- Açık bulguların insan sahibi, aksiyonu ve tarihi var mı?
-- Devreye alma kapısı ile olay ve değişiklik izleme tetikleri açık mı?
-
-## Kaynak yaklaşımı
-
-Kamusal yöntem kaynağı, T.C. Resmî Gazete'de yayımlanan
-[İş Sağlığı ve Güvenliği Risk Değerlendirmesi Yönetmeliği](https://www.resmigazete.gov.tr/eskiler/2012/12/20121229-13.htm)
-sayfasıdır. Snapshot SHA-256 değeri
-`a1ab5bfc1ea7c305393d7fa75f33d7a7debaf97fe3a6e46cc5d4dfb9276a31dc`,
-erişim tarihi `2026-08-04`tür. Dış kaynak yalnızca metadata olarak dağıtılır;
-skill uzun kopyalar yerine kısa ve atıflı yöntem özeti taşır. Güncel metin ve
-yeniden kullanım koşulları insan tarafından resmî kaynaktan doğrulanır.
-
-Şirket politikası, vaka, roller ve bütün operasyonel kayıtlar sentetiktir.
-
-## İndir
-
-- [Microsoft 365 Copilot Cowork skill](../../downloads/skills/isg-risk-degerlendirme/isg-risk-degerlendirme-cowork.skill)
-- [GitHub Copilot for VS Code paketi](../../downloads/skills/isg-risk-degerlendirme/isg-risk-degerlendirme-copilot-vscode.zip)
-- [Scout paketi](../../downloads/skills/isg-risk-degerlendirme/isg-risk-degerlendirme-scout.zip)
-- [Copilot Studio GitHub harness paketi](../../downloads/skills/isg-risk-degerlendirme/isg-risk-degerlendirme-copilot-studio-github-harness.zip)
-- [Copilot Studio classic kurulum paketi](../../downloads/skills/isg-risk-degerlendirme/isg-risk-degerlendirme-copilot-studio-classic-setup.zip)
-
-!!! warning "Copilot Studio classic kurulumu"
-
-    Classic paket doğrudan yüklenen, çalışma zamanını veya davranışı sabitleyen
-    bir skill değildir. Yönlendirmeli manuel kurulum malzemesidir; talimatlar,
-    bilgi kaynakları, bağlantılar, izinler ve yayımlama ayarları bir insan
-    tarafından hedef ortamda ayrı ayrı incelenip yapılandırılmalıdır.
-
-## Değerlendirme sözleşmesi
-
-Demo tam 12 kilitli senaryo, beş karar sınıfı, üç seçenek ve her puan düzeyi
-çapalanmış azami 14 puanlık rubrik kullanır. Donmuş prompt; kanıt, kişi, tarih,
-eşik veya yetki uydurmayı ve sohbet dışı eser ya da operasyonel eylem üretmeyi
-yasaklar.
-
 ## İndirmeler
 
 Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
@@ -102,3 +86,7 @@ SHA-256 manifestine bağlanmıştır:
 
 Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
 doğrudan ajan içe aktarma paketi değildir.
+
+## Kullanım sınırı
+
+Bu sentetik demo profesyonel görüş veya üretim kontrolü değildir. Sonuçları resmî kaynaktan ve yetkili insanla doğrulayın. [Güvenlik ve kaynak](../safety.md) sayfası veri, kaynak, lisans ve insan yetkisi sınırlarını açıklar.

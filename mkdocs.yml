@@ -3,10 +3,6 @@ site_description: Compile business guidance into governed, evaluated Copilot ski
 site_url: https://kivancakdeniz.github.io/book-to-copilot-skill/
 edit_uri: ""
 
-# index.md is a committed landing page. Guide (README.md) and Skill Reference
-# (SKILL.md) are assembled from the repo root at build time, so prose docs stay
-# single-source. See .github/workflows/deploy-docs.yml.
-
 theme:
   name: material
   language: en
@@ -33,7 +29,6 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.indexes
-    - navigation.instant
     - navigation.top
     - navigation.footer
     - toc.follow
@@ -46,67 +41,31 @@ extra_css:
   - assets/theme.css
 
 plugins:
-  - search:
-      lang:
-        - en
-        - tr
-
-extra:
-  alternate:
-    - name: English
-      link: https://kivancakdeniz.github.io/book-to-copilot-skill/
-      lang: en
-    - name: Türkçe
-      link: https://kivancakdeniz.github.io/book-to-copilot-skill/tr/
-      lang: tr
+  - i18n:
+      docs_structure: folder
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: en
+          name: English
+          default: true
+          build: true
+        - locale: tr
+          name: Türkçe
+          build: true
+          site_description: Onaylı iş rehberini yönetişimli ve ölçülmüş Copilot skill'lerine derleyin.
+          nav_translations:
+            Overview: Genel Bakış
+            Skills: Skill'ler
+            Method: Yöntem
+            Safety & source: Güvenlik ve Kaynak
+  - search
 
 nav:
-  - Home: index.md
-  - Enterprise Skills:
-      - Overview: skills/index.md
-      - KVKK Notice Review: skills/kvkk-aydinlatma-kontrolu.md
-      - ETK / IYS Messaging: skills/etk-iys-ileti-karari.md
-      - Discount Price Review: skills/indirimli-fiyat-denetimi.md
-      - MASAK Customer Acceptance: skills/masak-musteri-kabul.md
-      - BDDK Remote Onboarding: skills/bddk-uzaktan-musteri-edinimi.md
-      - Merger Notification: skills/rekabet-birlesme-bildirimi.md
-      - OHS Risk Assessment: skills/isg-risk-degerlendirme.md
-      - TİTCK Promotion Review: skills/titck-ilac-tanitimi.md
-      - Crypto Payment Gate: skills/kripto-odeme-kapisi.md
-      - Telecom Data Review: skills/btk-haberlesme-verisi.md
-      - Investment Committee: skills/investment-committee.md
-      - Marketing Claims Review: skills/marketing-claims-review.md
-      - Third-party Notices: downloads/skills/THIRD_PARTY_NOTICES.md
-  - Method:
-      - How it works: how-it-works.md
-      - Delivery Plan: ENTERPRISE-DEMO-PLAN.md
-      - Architecture: ARCHITECTURE.md
-      - Performance: PERFORMANCE.md
-  - Türkçe:
-      - Ana Sayfa: tr/index.md
-      - Nasıl çalışır: tr/nasil-calisir.md
-      - Skill Kataloğu: tr/skills/index.md
-      - KVKK Aydınlatma: tr/skills/kvkk-aydinlatma-kontrolu.md
-      - ETK / IYS İleti: tr/skills/etk-iys-ileti-karari.md
-      - İndirimli Fiyat: tr/skills/indirimli-fiyat-denetimi.md
-      - MASAK Müşteri Kabul: tr/skills/masak-musteri-kabul.md
-      - BDDK Uzaktan Edinim: tr/skills/bddk-uzaktan-musteri-edinimi.md
-      - Rekabet Birleşme Bildirimi: tr/skills/rekabet-birlesme-bildirimi.md
-      - İSG Risk Değerlendirmesi: tr/skills/isg-risk-degerlendirme.md
-      - TİTCK İlaç Tanıtımı: tr/skills/titck-ilac-tanitimi.md
-      - Kripto Ödeme Kapısı: tr/skills/kripto-odeme-kapisi.md
-      - BTK Haberleşme Verisi: tr/skills/btk-haberlesme-verisi.md
-      - Yatırım Komitesi: tr/skills/investment-committee.md
-      - Pazarlama İddiaları: tr/skills/marketing-claims-review.md
-  - About:
-      - Project and source: DOWNSTREAM.md
-      - Changelog: CHANGELOG.md
-      - Licensing and reuse: LICENSING-AND-REUSE.md
-      - Responsible use: RESPONSIBLE-USE.md
-      - License: LICENSE.md
-      - Security: SECURITY.md
-      - Notice: NOTICE.md
-      - Third-party notices: THIRD_PARTY_NOTICES.md
+  - Overview: index.md
+  - Skills: skills/index.md
+  - Method: how-it-works.md
+  - Safety & source: safety.md
 
 markdown_extensions:
   - admonition

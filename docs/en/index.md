@@ -48,8 +48,11 @@ direction. What they cannot do is cite the company rule identifiers, state the
 exact allowed decision class, and route the decision to the named owner, because
 none of that reaches the model without the skill.
 
-<figure markdown>
-![One locked case answered twice and scored by a deterministic script](assets/diagrams/evaluation.svg)
+<figure class="bts-diagram">
+<picture>
+    <source media="(max-width: 720px)" srcset="../assets/diagrams/evaluation-mobile.svg">
+    <img src="../assets/diagrams/evaluation.svg" alt="One locked case answered twice and scored by a deterministic script">
+</picture>
 <figcaption>The evaluation method behind every number on this site. Raw answers, scorecards, and the scorer itself are published.</figcaption>
 </figure>
 
@@ -99,8 +102,11 @@ none of that reaches the model without the skill.
 
 ## How a skill is built
 
-<figure markdown>
-![From approved guidance to five host packages](assets/diagrams/pipeline.svg)
+<figure class="bts-diagram">
+<picture>
+    <source media="(max-width: 720px)" srcset="../assets/diagrams/pipeline-mobile.svg">
+    <img src="../assets/diagrams/pipeline.svg" alt="From approved guidance to five host packages">
+</picture>
 <figcaption>Official method by metadata only, a published synthetic company layer, one compiled skill, and five host exports.</figcaption>
 </figure>
 
@@ -115,5 +121,4 @@ examples, the deterministic evaluation, and the release factory. It is
 independently maintained and not endorsed by the upstream author, Microsoft, or
 any public authority.
 
-[Project and source](DOWNSTREAM.md) · [Licensing and reuse](LICENSING-AND-REUSE.md) ·
-[Responsible use](RESPONSIBLE-USE.md)
+[Safety, source, and reuse boundaries](safety.md)

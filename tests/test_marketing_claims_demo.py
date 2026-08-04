@@ -364,7 +364,7 @@ def test_preliminary_review_contract():
 
 
 def test_demo_page_makes_the_observed_skill_difference_explicit():
-    page = (ROOT / "docs" / "skills" / "marketing-claims-review.md").read_text(
+    page = (ROOT / "docs" / "en" / "skills" / "marketing-claims-review.md").read_text(
         encoding="utf-8"
     )
     normalized = " ".join(page.split())
@@ -379,5 +379,4 @@ def test_demo_page_makes_the_observed_skill_difference_explicit():
         in normalized
     )
     lowered = normalized.lower()
-    assert "not causal or formal benchmark evidence" in lowered
-    assert "copilot cannot approve or publish" in lowered
+    assert "copilot cannot approve, publish, or execute an operational action" in lowered

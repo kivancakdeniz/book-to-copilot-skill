@@ -1,6 +1,32 @@
 # Rekabet birleşme bildirimi
 
-[English](../../skills/rekabet-birlesme-bildirimi.md)
+<span class="bts-skill-kicker">Birleşme ve devralmalar</span>
+
+**M&A, Finans ve Rekabet Hukuku ekipleri** için. Ön hesaplama göstergelerini hukuki bildirim kararı ve kapanış kapısından ayırır.
+
+<ul class="bts-metrics bts-metrics--compact">
+  <li><b>40</b><span>LLM only</span></li>
+  <li><b>100</b><span>LLM + skill</span></li>
+  <li><b>7/7</b><span>kural atfı</span></li>
+  <li><b>12</b><span>kilitli senaryo</span></li>
+</ul>
+
+## Skill ne ekledi
+
+Kontrol yanıtı 0/7 kural kimliğine, skill yanıtı 7/7 kural kimliğine atıf yaptı. Skill'in değeri daha uzun metin üretmesi değil; şirket politikasını, kanıt boşluklarını ve insan yetki sınırını aynı karar kaydında görünür kılmasıdır.
+
+Copilot onay veremez, yayımlayamaz veya operasyonel eylem uygulayamaz.
+
+## Karar sözleşmesi
+
+| Kilitli beklenti | Değer |
+| --- | --- |
+| Karar sınıfı | `legal-notification-review` |
+| Seçenek | `hold-closing` |
+| Zorunlu kural | 7 kimlik |
+| İnsan rotası | Rekabet Hukuku Danışmanı · Finans · Sponsor |
+
+Bu değerler modele gösterilmez; yalnız kilitli senaryo ve deterministik skorlayıcı tarafından kullanılır.
 
 ## Kontrol ve skill: ölçülen
 
@@ -48,28 +74,6 @@ Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
 | Taşınabilir skill | `demos/rekabet-birlesme-bildirimi/skill/SKILL.md` ve beş destek dosyası |
 | Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
-## Bir bakışta iş etkisi
-
-| Soru | Etki |
-|---|---|
-| Hangi karar gerekir? | Temel vakada `legal-notification-review`; güvenli seçenek `hold-closing` |
-| Hangi risk görünür olur? | `met` göstergesinin hukuki sonuç sanılması, `unknown` teknoloji statüsü, eksik danışman yönlendirmesi ve sürüm takibi |
-| Kim karar verir? | Rekabet Hukuku Danışmanı; Finans yalnız precomputed ciro sonucunun sahibidir |
-| Skill ne kazandırır? | Aynı beş sınıf, üç seçenek, kural izlenebilirliği ve 14 puanlık ölçülebilir çıktı |
-| Skill ne yapmaz? | Ciro/eşik hesabı, filing kararı, bildirim, yeniden yapılandırma, imza veya kapanış |
-
-## Nasıl çalışır?
-
-Skill, iki Rekabet Kurumu kılavuzunu metadata-only manifestle sınırlar; PDF'leri
-yeniden dağıtmaz veya resmi metni kopyalamaz. Kısa kamu yöntemi sorularını
-sentetik BKP-1.0 şirket politikasından ve sentetik RKB-2608 işlem olgularından
-ayırır.
-
-Temel vakada `met` yalnız Finans'ın önceden hesaplanmış göstergesidir. Bildirim
-gerekliliğine ilişkin hukuki sonuç değildir. Teknoloji teşebbüsü durumu
-`unknown` kalır, Rekabet Hukuku Danışmanı incelemesi beklenir ve kayıtlı kapanış
-yönlendirmesi olmadan kapı açılmaz.
-
 ## İndirmeler
 
 Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
@@ -84,12 +88,6 @@ SHA-256 manifestine bağlanmıştır:
 Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
 doğrudan ajan içe aktarma paketi değildir.
 
-## Değerlendirme
+## Kullanım sınırı
 
-Demo, cevap anahtarı prompttan ayrı tam 12 kilitli senaryo ve her boyutu açık
-ankrajlı 14 puanlık rubrik içerir. Puanlama doğru sınıf/seçenek kadar kontrol
-olgusu envanterini, hesaplama yapmama disiplinini, teknoloji statüsü sınırını,
-kaynak izlenebilirliğini, insan yetkisini ve kapanış kapısını ölçer.
-
-Bu içerik eğitim ve yönetişim tasarımı içindir. Nihai hukuki karar ve bütün işlem
-eylemleri yetkili insanlarda kalır.
+Bu sentetik demo profesyonel görüş veya üretim kontrolü değildir. Sonuçları resmî kaynaktan ve yetkili insanla doğrulayın. [Güvenlik ve kaynak](../safety.md) sayfası veri, kaynak, lisans ve insan yetkisi sınırlarını açıklar.

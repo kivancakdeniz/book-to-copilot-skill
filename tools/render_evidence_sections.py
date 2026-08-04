@@ -130,7 +130,7 @@ def render_evidence(locale: str, slug: str, scorecard: Mapping[str, Any],
     treatment = max(
         (run for run in runs if run["condition"] == "treatment"), key=lambda run: run["traceScore"]
     )
-    asset = f"../assets/skills/{slug}" if locale == "en" else f"../../assets/skills/{slug}"
+    asset = f"../../assets/skills/{slug}"
     rows = _gate_rows(locale, control, treatment)
     if locale == "tr":
         head = (
@@ -234,42 +234,122 @@ def render_lineage(locale: str, slug: str, manifest: Mapping[str, Any]) -> str:
     return "\n".join(lines)
 
 
-def update_article(path: Path, locale: str, slug: str, scorecard: Mapping[str, Any],
-                   key: Mapping[str, Any], manifest: Mapping[str, Any]) -> bool:
-    text = path.read_text(encoding="utf-8")
+def render_article(
+    locale: str,
+    slug: str,
+    entry: Mapping[str, Any],
+    scorecard: Mapping[str, Any],
+    key: Mapping[str, Any],
+    manifest: Mapping[str, Any],
+) -> str:
+    localized = entry[locale]
+    runs = scorecard["runs"]
+    control = max(
+        (run for run in runs if run["condition"] == "control"),
+        key=lambda run: run["traceScore"],
+    )
+    treatment = max(
+        (run for run in runs if run["condition"] == "treatment"),
+        key=lambda run: run["traceScore"],
+    )
+    route = " · ".join(key["humanRoute"])
+    if locale == "tr":
+        intro = (
+            f"**{localized['audience']}** için. {localized['oneLineValue']}"
+        )
+        contract = (
+            "## Karar sözleşmesi\n\n"
+            "| Kilitli beklenti | Değer |\n| --- | --- |\n"
+            f"| Karar sınıfı | `{key['decisionClass']}` |\n"
+            f"| Seçenek | `{key['recommendedOption']}` |\n"
+            f"| Zorunlu kural | {len(key['requiredRuleIds'])} kimlik |\n"
+            f"| İnsan rotası | {route} |\n\n"
+            "Bu değerler modele gösterilmez; yalnız kilitli senaryo ve deterministik "
+            "skorlayıcı tarafından kullanılır.\n"
+        )
+        contribution = (
+            "## Skill ne ekledi\n\n"
+            f"Kontrol yanıtı {control['ruleCitationCount']}/{control['ruleCitationTotal']} "
+            f"kural kimliğine, skill yanıtı {treatment['ruleCitationCount']}/"
+            f"{treatment['ruleCitationTotal']} kural kimliğine atıf yaptı. "
+            "Skill'in değeri daha uzun metin üretmesi değil; şirket politikasını, kanıt "
+            "boşluklarını ve insan yetki sınırını aynı karar kaydında görünür kılmasıdır.\n\n"
+            "Copilot onay veremez, yayımlayamaz veya operasyonel eylem uygulayamaz.\n"
+        )
+        safety = (
+            "## Kullanım sınırı\n\n"
+            "Bu sentetik demo profesyonel görüş veya üretim kontrolü değildir. Sonuçları "
+            "resmî kaynaktan ve yetkili insanla doğrulayın. [Güvenlik ve kaynak](../safety.md) "
+            "sayfası veri, kaynak, lisans ve insan yetkisi sınırlarını açıklar.\n"
+        )
+    else:
+        intro = f"For **{localized['audience']}**. {localized['oneLineValue']}"
+        contract = (
+            "## Decision contract\n\n"
+            "| Locked expectation | Value |\n| --- | --- |\n"
+            f"| Decision class | `{key['decisionClass']}` |\n"
+            f"| Option | `{key['recommendedOption']}` |\n"
+            f"| Required rules | {len(key['requiredRuleIds'])} identifiers |\n"
+            f"| Human route | {route} |\n\n"
+            "These values are never shown to the model; only the locked scenario and the "
+            "deterministic scorer use them.\n"
+        )
+        contribution = (
+            "## What the skill added\n\n"
+            f"The control answer cited {control['ruleCitationCount']}/"
+            f"{control['ruleCitationTotal']} rule identifiers; the skill answer cited "
+            f"{treatment['ruleCitationCount']}/{treatment['ruleCitationTotal']}. "
+            "The value is not a longer answer. It is a decision record that exposes company "
+            "policy, evidence gaps, and the human authority boundary together.\n\n"
+            "Copilot cannot approve, publish, or execute an operational action.\n"
+        )
+        safety = (
+            "## Use boundary\n\n"
+            "This synthetic demo is not professional advice or a production control. Verify "
+            "the result against the official source and with the authorized human. "
+            "[Safety & source](../safety.md) explains the data, source, licence, evaluation, "
+            "and human-authority boundaries.\n"
+        )
+    hero = (
+        f"# {localized['title']}\n\n"
+        f"<span class=\"bts-skill-kicker\">{localized['sector']}</span>\n\n"
+        f"{intro}\n\n"
+        "<ul class=\"bts-metrics bts-metrics--compact\">\n"
+        f"  <li><b>{control['traceScore']}</b><span>LLM only</span></li>\n"
+        f"  <li><b>{treatment['traceScore']}</b><span>LLM + skill</span></li>\n"
+        f"  <li><b>{treatment['ruleCitationCount']}/{treatment['ruleCitationTotal']}</b>"
+        f"<span>{'kural atfı' if locale == 'tr' else 'rule citations'}</span></li>\n"
+        "  <li><b>12</b><span>"
+        f"{'kilitli senaryo' if locale == 'tr' else 'locked scenarios'}</span></li>\n"
+        "</ul>\n"
+    )
     evidence = render_evidence(locale, slug, scorecard, key)
     lineage = render_lineage(locale, slug, manifest)
-
-    match = COMPARISON_HEADING_RE.search(text)
-    if match is None:
-        raise SystemExit(f"{path}: comparison heading not found")
-    heading = match.group(0)
-    section = re.compile(SECTION_RE.format(heading=re.escape(heading)))
-    text = section.sub(evidence.rstrip() + "\n", text, count=1)
-
-    for existing in (LINEAGE_HEADING[locale], LINEAGE_HEADING["en"], LINEAGE_HEADING["tr"]):
-        pattern = re.compile(SECTION_RE.format(heading=re.escape(existing)))
-        text = pattern.sub("", text)
-    anchor = re.compile(SECTION_RE.format(heading=re.escape(EVIDENCE_HEADING[locale])))
-    anchor_match = anchor.search(text)
-    insert_at = anchor_match.end()
-    text = text[:insert_at] + "\n" + lineage + text[insert_at:]
-
     downloads = render_downloads(locale, slug)
-    downloads_section = re.compile(
-        SECTION_RE.format(heading=re.escape(DOWNLOADS_HEADING[locale]))
+    return "\n\n".join(
+        section.strip()
+        for section in (hero, contribution, contract, evidence, lineage, downloads, safety)
+    ) + "\n"
+
+
+def update_article(
+    path: Path,
+    locale: str,
+    slug: str,
+    entry: Mapping[str, Any],
+    scorecard: Mapping[str, Any],
+    key: Mapping[str, Any],
+    manifest: Mapping[str, Any],
+) -> bool:
+    path.write_text(
+        render_article(locale, slug, entry, scorecard, key, manifest),
+        encoding="utf-8",
     )
-    if downloads_section.search(text):
-        text = downloads_section.sub(downloads.rstrip() + "\n", text, count=1)
-    else:
-        text = text.rstrip() + "\n\n" + downloads
-    text = re.sub(r"\n{3,}", "\n\n", text)
-    path.write_text(text, encoding="utf-8")
     return True
 
 
 def render_downloads(locale: str, slug: str) -> str:
-    prefix = "../downloads/skills" if locale == "en" else "../../downloads/skills"
+    prefix = "../../downloads/skills"
     if locale == "tr":
         lines = [
             DOWNLOADS_HEADING["tr"],
@@ -311,8 +391,6 @@ def render_catalog(locale: str, entries: Sequence[Mapping[str, Any]],
         lines = [
             "# Kurumsal karar skill kataloğu",
             "",
-            "[English](../../skills/index.md)",
-            "",
             f"Bu katalog, tek bir yayın fabrikasıyla üretilen {count} kurumsal karar skill'ini",
             "listeler. Her skill 12 kilitli senaryo, 14 puanlık rubrik, sentetik şirket",
             "politikası ve resmî kaynak metadatası içerir.",
@@ -329,24 +407,31 @@ def render_catalog(locale: str, entries: Sequence[Mapping[str, Any]],
             "[SHA256SUMS](../../downloads/skills/SHA256SUMS) ·",
             "[Üçüncü taraf bildirimleri](../../downloads/skills/THIRD_PARTY_NOTICES.md)",
             "",
-            "## Katalog",
+            "## 12 skill",
             "",
-            "| Skill | Alan | Hedef ekip | Tek cümlede değer | Yalnız LLM | LLM + skill |",
-            "|---|---|---|---|---|---|",
+            '<div class="grid cards" markdown>',
+            "",
         ]
         for entry in entries:
             summary = scorecards[entry["id"]]["summary"]
             locale_entry = entry["tr"]
-            lines.append(
-                f"| [{locale_entry['title']}]({entry['id']}.md) | {locale_entry['sector']} "
-                f"| {locale_entry['audience']} | {locale_entry['oneLineValue']} "
-                f"| {summary['controlTraceScore']}/100 | {summary['treatmentTraceScore']}/100 |"
+            lines.extend(
+                (
+                    f"-   **[{locale_entry['title']}]({entry['id']}.md)**",
+                    "",
+                    f"    <span class=\"bts-skill-kicker\">{locale_entry['sector']}</span>",
+                    "",
+                    f"    {locale_entry['oneLineValue']}",
+                    "",
+                    f"    <span class=\"bts-score bts-score--control\">LLM {summary['controlTraceScore']}</span> "
+                    f"<span class=\"bts-score bts-score--skill\">Skill {summary['treatmentTraceScore']}</span>",
+                    "",
+                )
             )
+        lines.extend(("</div>", ""))
     else:
         lines = [
             "# Enterprise decision skill catalog",
-            "",
-            "[Türkçe](../tr/skills/index.md)",
             "",
             f"This catalog lists {count} enterprise decision skills built by one release",
             "factory. Each skill ships 12 locked scenarios, a 14-point rubric, a synthetic",
@@ -362,22 +447,31 @@ def render_catalog(locale: str, entries: Sequence[Mapping[str, Any]],
             "They are generated deterministically and verified byte-identical after a clean",
             "rebuild.",
             "",
-            "[SHA256SUMS](../downloads/skills/SHA256SUMS) ·",
-            "[Third-party notices](../downloads/skills/THIRD_PARTY_NOTICES.md)",
+            "[SHA256SUMS](../../downloads/skills/SHA256SUMS) ·",
+            "[Third-party notices](../../downloads/skills/THIRD_PARTY_NOTICES.md)",
             "",
-            "## Catalog",
+            "## 12 skills",
             "",
-            "| Skill | Domain | Target team | Value in one sentence | LLM only | LLM + skill |",
-            "|---|---|---|---|---|---|",
+            '<div class="grid cards" markdown>',
+            "",
         ]
         for entry in entries:
             summary = scorecards[entry["id"]]["summary"]
             locale_entry = entry["en"]
-            lines.append(
-                f"| [{locale_entry['title']}]({entry['id']}.md) | {locale_entry['sector']} "
-                f"| {locale_entry['audience']} | {locale_entry['oneLineValue']} "
-                f"| {summary['controlTraceScore']}/100 | {summary['treatmentTraceScore']}/100 |"
+            lines.extend(
+                (
+                    f"-   **[{locale_entry['title']}]({entry['id']}.md)**",
+                    "",
+                    f"    <span class=\"bts-skill-kicker\">{locale_entry['sector']}</span>",
+                    "",
+                    f"    {locale_entry['oneLineValue']}",
+                    "",
+                    f"    <span class=\"bts-score bts-score--control\">LLM {summary['controlTraceScore']}</span> "
+                    f"<span class=\"bts-score bts-score--skill\">Skill {summary['treatmentTraceScore']}</span>",
+                    "",
+                )
             )
+        lines.extend(("</div>", ""))
     lines.append("")
     return "\n".join(lines)
 
@@ -408,9 +502,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         key = _load(demo / "evaluation" / "answer-key.json")
         manifest = _load(demo / "sources" / "source-manifest.json")
         for locale, field in (("en", "article"), ("tr", "articleTr")):
-            update_article(root / entry[field], locale, slug, scorecard, key, manifest)
+            update_article(
+                root / entry[field], locale, slug, entry, scorecard, key, manifest
+            )
             updated += 1
-    update_catalog_page(root / "docs" / "skills" / "index.md", "en",
+    update_catalog_page(root / "docs" / "en" / "skills" / "index.md", "en",
                         render_catalog("en", entries, scorecards))
     update_catalog_page(root / "docs" / "tr" / "skills" / "index.md", "tr",
                         render_catalog("tr", entries, scorecards))

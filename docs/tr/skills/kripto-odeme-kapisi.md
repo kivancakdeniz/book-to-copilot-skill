@@ -1,6 +1,32 @@
 # Kripto ödeme kapısı
 
-[English](../../skills/kripto-odeme-kapisi.md)
+<span class="bts-skill-kicker">Ödeme hizmetleri ve kripto varlıklar</span>
+
+**Payments, Compliance, Legal ve ürün ekipleri** için. Kripto işlevinin ödeme akışındaki rolünü ürün sınırı ve lansman kapısıyla inceler.
+
+<ul class="bts-metrics bts-metrics--compact">
+  <li><b>40</b><span>LLM only</span></li>
+  <li><b>100</b><span>LLM + skill</span></li>
+  <li><b>6/6</b><span>kural atfı</span></li>
+  <li><b>12</b><span>kilitli senaryo</span></li>
+</ul>
+
+## Skill ne ekledi
+
+Kontrol yanıtı 0/6 kural kimliğine, skill yanıtı 6/6 kural kimliğine atıf yaptı. Skill'in değeri daha uzun metin üretmesi değil; şirket politikasını, kanıt boşluklarını ve insan yetki sınırını aynı karar kaydında görünür kılmasıdır.
+
+Copilot onay veremez, yayımlayamaz veya operasyonel eylem uygulayamaz.
+
+## Karar sözleşmesi
+
+| Kilitli beklenti | Değer |
+| --- | --- |
+| Karar sınıfı | `reject-payment-flow` |
+| Seçenek | `remove-crypto-checkout` |
+| Zorunlu kural | 6 kimlik |
+| İnsan rotası | Payments Counsel · Compliance · Product |
+
+Bu değerler modele gösterilmez; yalnız kilitli senaryo ve deterministik skorlayıcı tarafından kullanılır.
 
 ## Kontrol ve skill: ölçülen
 
@@ -47,56 +73,6 @@ Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
 | Taşınabilir skill | `demos/kripto-odeme-kapisi/skill/SKILL.md` ve beş destek dosyası |
 | Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
-## Bir bakışta
-
-| Alan | Değer |
-|---|---|
-| Problem | USDT'nin satıcı alımını doğrudan kapattığı checkout akışının ürün sınırını incelemek |
-| Baseline | Kripto doğrudan ödeme işlevinde; ödeme hizmeti aracısı akışta; lansman talep ediliyor |
-| Beklenen sınıf | `reject-payment-flow` |
-| Beklenen seçenek | `remove-crypto-checkout` |
-| İnsan kararı | Payments Counsel + Compliance + Product |
-
-## İş etkisi
-
-Demo, hızlı lansman baskısı altındaki dağınık ürün tartışmasını izlenebilir bir
-varlık, işlev, aracı, mutabakat, karar ve lansman kapısı kaydına dönüştürür.
-Beklenen iş etkisi daha erken ürün sınırı tespiti, daha az geç aşama yeniden
-çalışma ve insan karar sahiplerine daha tutarlı kanıt paketidir. Üretim sonucu,
-mevzuata uyum veya hukuki yeterlilik garantisi değildir.
-
-## Kaynak ve güvenlik
-
-Kamusal yöntem kaynağı TCMB'nin T.C. Resmî Gazete'de yayımlanan düzenlemesidir.
-Paket resmi içeriği yeniden dağıtmaz; yalnız resmi URL, yayıncı, 2026-08-04
-erişim tarihi, SHA-256 ve yeniden kullanım uyarısı taşır. Skill kısa ve atıflı
-yöntem özeti kullanır; mevzuat metnini kopyalamaz. Karar sınıfları ve seçenekler
-MIT lisanslı sentetik Kurgusal Ödeme politikasından gelir.
-
-## İnsan ve kapsam sınırı
-
-Bu skill hukuki tavsiye değildir. Payments Counsel, Compliance ve Product karar
-verir. Copilot onay, lansman, ödeme, transfer, ürün değişikliği veya durdurma
-yapmaz. Sağlanan checkout akışının ötesinde yatırım ya da transfer hukukuna
-ilişkin görüş vermez.
-
-## 12 kilitli senaryo
-
-| Kimlik | Odak | Beklenen sınıf | Beklenen seçenek |
-|---|---|---|---|
-| KRP-01 | Doğrudan USDT satıcı ödemesi | `reject-payment-flow` | `remove-crypto-checkout` |
-| KRP-02 | Ödeme dışı piyasa bilgi ekranı | `approve-nonpayment-service` | `launch-current-flow` |
-| KRP-03 | Checkout'tan kriptonun çıkarılması | `revise-product-boundary` | `remove-crypto-checkout` |
-| KRP-04 | Eksik mutabakat/dönüşüm | `hold-for-flow-evidence` | `remove-crypto-checkout` |
-| KRP-05 | Bilinmeyen aracı rolü | `hold-for-flow-evidence` | `redesign-nonpayment-service` |
-| KRP-06 | Satıcı alımından ayrık transfer | `escalate-payments-counsel` | `redesign-nonpayment-service` |
-| KRP-07 | Statik eğitim içeriği | `approve-nonpayment-service` | `redesign-nonpayment-service` |
-| KRP-08 | Aracısız doğrudan satıcı transferi | `reject-payment-flow` | `remove-crypto-checkout` |
-| KRP-09 | Yatırım uygunluğu görüşü | `escalate-payments-counsel` | `redesign-nonpayment-service` |
-| KRP-10 | Çelişkili akış sürümleri | `hold-for-flow-evidence` | `remove-crypto-checkout` |
-| KRP-11 | TRY checkout ve ayrık analiz | `revise-product-boundary` | `redesign-nonpayment-service` |
-| KRP-12 | Ödeme işlevinin yeniden eklenmesi | `reject-payment-flow` | `remove-crypto-checkout` |
-
 ## İndirmeler
 
 Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
@@ -110,3 +86,7 @@ SHA-256 manifestine bağlanmıştır:
 
 Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
 doğrudan ajan içe aktarma paketi değildir.
+
+## Kullanım sınırı
+
+Bu sentetik demo profesyonel görüş veya üretim kontrolü değildir. Sonuçları resmî kaynaktan ve yetkili insanla doğrulayın. [Güvenlik ve kaynak](../safety.md) sayfası veri, kaynak, lisans ve insan yetkisi sınırlarını açıklar.

@@ -1,6 +1,32 @@
 # BDDK uzaktan müşteri edinimi
 
-[English](../../skills/bddk-uzaktan-musteri-edinimi.md)
+<span class="bts-skill-kicker">Bankacılık</span>
+
+**Dijital bankacılık, güvenlik, Uyum ve Hukuk ekipleri** için. Uzaktan edinim akışını kanıt, kontrol ve canlıya geçiş kapılarıyla sınar.
+
+<ul class="bts-metrics bts-metrics--compact">
+  <li><b>40</b><span>LLM only</span></li>
+  <li><b>80</b><span>LLM + skill</span></li>
+  <li><b>7/7</b><span>kural atfı</span></li>
+  <li><b>12</b><span>kilitli senaryo</span></li>
+</ul>
+
+## Skill ne ekledi
+
+Kontrol yanıtı 0/7 kural kimliğine, skill yanıtı 7/7 kural kimliğine atıf yaptı. Skill'in değeri daha uzun metin üretmesi değil; şirket politikasını, kanıt boşluklarını ve insan yetki sınırını aynı karar kaydında görünür kılmasıdır.
+
+Copilot onay veremez, yayımlayamaz veya operasyonel eylem uygulayamaz.
+
+## Karar sözleşmesi
+
+| Kilitli beklenti | Değer |
+| --- | --- |
+| Karar sınıfı | `reject-flow` |
+| Seçenek | `manual-onboarding-fallback` |
+| Zorunlu kural | 7 kimlik |
+| İnsan rotası | Güvenlik · Uyum · Hukuk |
+
+Bu değerler modele gösterilmez; yalnız kilitli senaryo ve deterministik skorlayıcı tarafından kullanılır.
 
 ## Kontrol ve skill: ölçülen
 
@@ -47,28 +73,6 @@ Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
 | Taşınabilir skill | `demos/bddk-uzaktan-musteri-edinimi/skill/SKILL.md` ve beş destek dosyası |
 | Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
-## Bir bakışta iş etkisi
-
-| Soru | Etki |
-|---|---|
-| Hangi karar gerekir? | Temel vakada `reject-flow`; güvenli seçenek `manual-onboarding-fallback` |
-| Hangi risk görünür olur? | Canlı/görüntülü etkileşim, canlılık/bütünlük, kayıt ve izleme kanıtı boşlukları |
-| Kim karar verir? | Güvenlik, Uyum ve Hukuk insan yetkilileri |
-| Skill ne kazandırır? | Aynı beş sınıf, üç seçenek, kural izlenebilirliği ve 14 puanlık ölçülebilir çıktı |
-| Skill ne yapmaz? | Hukuki tavsiye, resmi uygunluk, teknik sertifika, canlıya geçiş veya müşteri işlemi |
-
-## Nasıl çalışır?
-
-Skill, Resmî Gazete kaynağını metadata-only manifestle sınırlar; resmi metni
-yeniden dağıtmaz veya kopyalamaz. Kısa kamu yöntemi sorularını sentetik UME-1.0
-şirket politikasından ve sentetik UME-2408 vaka kanıtından ayırır. Sonuç, tam bir
-karar sınıfı, tam bir seçenek, kanıt kapıları ve gerekli insan rotasıdır.
-
-Temel akışta canlı veya görüntülü etkileşim, canlılık ve süreç bütünlüğü kanıtı,
-kontrol günlükleri, izleme planı ve insan onayları yoktur. Bu nedenle doğrudan
-canlıya geçiş önerilmez. Her eksik alan açık kalır; selfie'den teknik
-sertifikasyon sonucu çıkarılmaz.
-
 ## İndirmeler
 
 Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
@@ -83,12 +87,6 @@ SHA-256 manifestine bağlanmıştır:
 Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
 doğrudan ajan içe aktarma paketi değildir.
 
-## Değerlendirme
+## Kullanım sınırı
 
-Demo, cevap anahtarı istemden ayrı tam 12 kilitli senaryo ve her boyutu açık
-ankrajlı 14 puanlık rubrik içerir. Puanlama doğru sınıf/seçenek kadar yöntem
-envanterini, kanıt disiplinini, kaynak izlenebilirliğini, insan yetkisini ve
-canlıya geçiş/izleme kapılarını da ölçer.
-
-Bu içerik eğitim ve yönetişim tasarımı içindir. Nihai karar ve bütün uygulama
-eylemleri yetkili insanlarda kalır.
+Bu sentetik demo profesyonel görüş veya üretim kontrolü değildir. Sonuçları resmî kaynaktan ve yetkili insanla doğrulayın. [Güvenlik ve kaynak](../safety.md) sayfası veri, kaynak, lisans ve insan yetkisi sınırlarını açıklar.

@@ -1,6 +1,32 @@
 # ETK/IYS ileti kararı
 
-[English](../../skills/etk-iys-ileti-karari.md)
+<span class="bts-skill-kicker">Ticari elektronik ileti</span>
+
+**CRM, Compliance ve Legal ekipleri** için. Kampanya kitlesini kişi-kanal kanıtı ve bastırma kapısıyla inceler.
+
+<ul class="bts-metrics bts-metrics--compact">
+  <li><b>20</b><span>LLM only</span></li>
+  <li><b>80</b><span>LLM + skill</span></li>
+  <li><b>4/4</b><span>kural atfı</span></li>
+  <li><b>12</b><span>kilitli senaryo</span></li>
+</ul>
+
+## Skill ne ekledi
+
+Kontrol yanıtı 0/4 kural kimliğine, skill yanıtı 4/4 kural kimliğine atıf yaptı. Skill'in değeri daha uzun metin üretmesi değil; şirket politikasını, kanıt boşluklarını ve insan yetki sınırını aynı karar kaydında görünür kılmasıdır.
+
+Copilot onay veremez, yayımlayamaz veya operasyonel eylem uygulayamaz.
+
+## Karar sözleşmesi
+
+| Kilitli beklenti | Değer |
+| --- | --- |
+| Karar sınıfı | `do-not-send` |
+| Seçenek | `suppress-unverified-audience` |
+| Zorunlu kural | 4 kimlik |
+| İnsan rotası | CRM Owner · Compliance · Legal |
+
+Bu değerler modele gösterilmez; yalnız kilitli senaryo ve deterministik skorlayıcı tarafından kullanılır.
 
 ## Kontrol ve skill: ölçülen
 
@@ -48,54 +74,6 @@ Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
 | Taşınabilir skill | `demos/etk-iys-ileti-karari/skill/SKILL.md` ve beş destek dosyası |
 | Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
-## Bir bakışta iş sorusu
-
-CRM ekibi, güncel rıza/IYS kanıtı sunmadan 48.000 eski perakende müşterisine
-indirim SMS'i gönderebilir mi?
-
-## Başlangıç olguları
-
-- Mesaj indirim ve satın alma çağrısı içeriyor; hizmet bildirimi değil.
-- Güncel rıza veya IYS durum anlık görüntüsü sağlanmadı.
-- Kişi ve SMS kanalı düzeyinde kanıt listesi yok.
-- Ret/çıkış ifadesi var.
-- İstisna, bastırma kapısı ve insan onayını destekleyen kayıt sağlanmadı.
-
-## Beklenen karar
-
-Başlangıç için karar `do-not-send`, seçenek `suppress-unverified-audience` olur.
-İnsan rotası CRM Owner + Compliance + Legal'dır.
-
-## İş etkisi
-
-Demo, kampanya ekibinin kitle büyüklüğünden önce ileti amacı, kişi-kanal kanıtı,
-ret kontrolü, istisna olgusu ve bastırma kapısını incelemesini sağlar. Etki
-nitelikseldir: doğrulanmamış kitlenin görünür olması, insan karar rotasının
-netleşmesi ve kampanya incelemelerinin aynı sözleşmeyle tekrarlanması beklenir.
-Ölçülmüş ROI veya finansal kazanım iddiası yoktur.
-
-## Kaynak ve lisans sınırı
-
-6563 sayılı ETK ile Ticari İletişim Yönetmeliği kamuya açık resmî yöntemdir.
-Manifest, 2026-08-04 tarihinde alınan resmî URL, yayıncı ve SHA-256 metadatasını
-taşır; resmî dosyalar `metadata-only` yaklaşımıyla yeniden dağıtılmaz ve uzun
-pasajlar kopyalanmaz. Sentetik politika ve vaka MIT lisanslıdır. Güncellik,
-yeniden kullanım ve uygulama insan Legal tarafından doğrulanır.
-
-## Güvenlik ve insan sınırı
-
-Bu içerik hukuki tavsiye veya nihai hukuki sonuç değildir. İnsan Legal/Compliance
-kararın sahibidir. Skill yalnız analiz, eksik belirleme ve yönlendirme yapar;
-mesaj gönderme, IYS kaydı değiştirme, kitle bastırma, kampanya başlatma/durdurma
-veya başka otonom eylem yapmaz. Gerçek müşteri listesi demo girdisi olarak
-kullanılmamalıdır.
-
-## 12 senaryo durumu
-
-On iki benzersiz senaryo cevap anahtarlarıyla kilitlenmiş ve 14 puanlık rubriğe
-bağlanmıştır. Senaryolar bu makalede çalıştırılmış veya sonuçlandırılmış olarak
-sunulmaz; biçimsel yürütme ve insan incelemesi beklenmektedir.
-
 ## İndirmeler
 
 Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
@@ -109,3 +87,7 @@ SHA-256 manifestine bağlanmıştır:
 
 Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
 doğrudan ajan içe aktarma paketi değildir.
+
+## Kullanım sınırı
+
+Bu sentetik demo profesyonel görüş veya üretim kontrolü değildir. Sonuçları resmî kaynaktan ve yetkili insanla doğrulayın. [Güvenlik ve kaynak](../safety.md) sayfası veri, kaynak, lisans ve insan yetkisi sınırlarını açıklar.

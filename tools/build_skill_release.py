@@ -697,7 +697,7 @@ def _validate_catalog(root: Path) -> list[Mapping[str, Any]]:
                         f"catalog entry {entry.get('id')} has empty {locale_key}.{field}"
                     )
         for field, expected_article in (
-            ("article", f"docs/skills/{entry['id']}.md"),
+            ("article", f"docs/en/skills/{entry['id']}.md"),
             ("articleTr", f"docs/tr/skills/{entry['id']}.md"),
         ):
             if entry.get(field) != expected_article:

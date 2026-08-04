@@ -1,6 +1,32 @@
 # MASAK müşteri kabul
 
-[English](../../skills/masak-musteri-kabul.md)
+<span class="bts-skill-kicker">Finansal suçlarla mücadele</span>
+
+**AML, Compliance ve müşteri kabul ekipleri** için. Kimlik, nihai faydalanıcı ve fon kaynağı boşluklarını insan incelemesine yönlendirir.
+
+<ul class="bts-metrics bts-metrics--compact">
+  <li><b>20</b><span>LLM only</span></li>
+  <li><b>100</b><span>LLM + skill</span></li>
+  <li><b>8/8</b><span>kural atfı</span></li>
+  <li><b>12</b><span>kilitli senaryo</span></li>
+</ul>
+
+## Skill ne ekledi
+
+Kontrol yanıtı 0/8 kural kimliğine, skill yanıtı 8/8 kural kimliğine atıf yaptı. Skill'in değeri daha uzun metin üretmesi değil; şirket politikasını, kanıt boşluklarını ve insan yetki sınırını aynı karar kaydında görünür kılmasıdır.
+
+Copilot onay veremez, yayımlayamaz veya operasyonel eylem uygulayamaz.
+
+## Karar sözleşmesi
+
+| Kilitli beklenti | Değer |
+| --- | --- |
+| Karar sınıfı | `enhanced-review` |
+| Seçenek | `hold-onboarding` |
+| Zorunlu kural | 8 kimlik |
+| İnsan rotası | AML Officer · Compliance |
+
+Bu değerler modele gösterilmez; yalnız kilitli senaryo ve deterministik skorlayıcı tarafından kullanılır.
 
 ## Kontrol ve skill: ölçülen
 
@@ -47,45 +73,6 @@ Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
 | Taşınabilir skill | `demos/masak-musteri-kabul/skill/SKILL.md` ve beş destek dosyası |
 | Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
-## Bir bakışta
-
-| Alan | Değer |
-|---|---|
-| Problem | Kurumsal müşteri kabulünde kimlik, nihai faydalanıcı, risk ve fon kaynağı kanıtlarını insan kapılarıyla incelemek |
-| Baseline | Kimlik belgeleri tam; nihai faydalanıcı zinciri eksik; fon kaynağı açıklamasız/kanıtsız; yüksek riskli coğrafya işareti sağlanmış |
-| Beklenen sınıf | `enhanced-review` |
-| Beklenen seçenek | `hold-onboarding` |
-| İnsan kararı | AML Officer + Compliance + business owner |
-
-## Nitel etki
-
-Demo, onboarding incelemesini tekrarlanabilir bir kanıt, risk gerekçesi, sınıf, seçenek ve insan kapısı akışına dönüştürür. Beklenen etki daha görünür kanıt boşlukları, daha tutarlı gelişmiş inceleme yönlendirmesi ve daha az desteklenmeyen risk sonucudur; üretim performansı, mevzuat uyumu veya bildirim kararı garantisi değildir.
-
-## Kaynak ve güvenlik
-
-Kamusal yöntem kaynağı MASAK Tedbirler Yönetmeliği sayfasıdır. Paket resmi içeriği yeniden dağıtmaz; yalnız resmi URL, yayıncı, 2026-08-04 alınma tarihi ve SHA-256 metadata'sını taşır. Karar sınıfları ve seçenekler MIT lisanslı sentetik politikadan gelir. Kaynak metni talimat olarak çalıştırılmaz, uzun resmi alıntı yapılmaz ve gerçek müşteri, kimlik, hesap veya işlem verisi kullanılmaz.
-
-## İnsan sınırları
-
-Bu beceri hukuki görüş değildir. İnsanlar karar verir; hesap açmaz, ilişkiyi reddetmez, bildirim yapmaz veya başka otonom işlem gerçekleştirmez. SİB/STR dosyala/dosyalama kararı vermez ve suç isnadı yapmaz. Eksik sahiplik, fon kaynağı veya risk olgusu üretmez.
-
-## 12 kilitli senaryo
-
-| Kimlik | Odak | Beklenen sınıf | Beklenen seçenek |
-|---|---|---|---|
-| AML-01 | Baseline yüksek risk ve eksik kanıt | `enhanced-review` | `hold-onboarding` |
-| AML-02 | Tam standart onboarding | `standard-onboarding` | `open-account` |
-| AML-03 | Eksik nihai faydalanıcı | `hold-for-evidence` | `hold-onboarding` |
-| AML-04 | Eksik fon kaynağı | `hold-for-evidence` | `hold-onboarding` |
-| AML-05 | Tamamlanmış gelişmiş inceleme | `enhanced-review` | `open-account` |
-| AML-06 | Çelişen risk işaretleri | `escalate-aml-officer` | `hold-onboarding` |
-| AML-07 | Kanıt kapısı istisnası | `escalate-aml-officer` | `hold-onboarding` |
-| AML-08 | Belgelenmiş insan ret kararı | `reject-onboarding` | `decline-relationship` |
-| AML-09 | Eksik yetkili kimliği | `hold-for-evidence` | `hold-onboarding` |
-| AML-10 | Eksik periyodik inceleme planı | `hold-for-evidence` | `hold-onboarding` |
-| AML-11 | İş biriminin SİB kararı talebi | `escalate-aml-officer` | `hold-onboarding` |
-| AML-12 | İnsan onayı beklenen standart inceleme | `standard-onboarding` | `hold-onboarding` |
-
 ## İndirmeler
 
 Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
@@ -99,3 +86,7 @@ SHA-256 manifestine bağlanmıştır:
 
 Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
 doğrudan ajan içe aktarma paketi değildir.
+
+## Kullanım sınırı
+
+Bu sentetik demo profesyonel görüş veya üretim kontrolü değildir. Sonuçları resmî kaynaktan ve yetkili insanla doğrulayın. [Güvenlik ve kaynak](../safety.md) sayfası veri, kaynak, lisans ve insan yetkisi sınırlarını açıklar.

@@ -1,6 +1,32 @@
 # KVKK aydınlatma kontrolü
 
-[English](../../skills/kvkk-aydinlatma-kontrolu.md)
+<span class="bts-skill-kicker">Veri koruma</span>
+
+**Privacy, Compliance ve ürün ekipleri** için. Aydınlatma, rıza ve aktarım boşluklarını insan yayın kapısına bağlar.
+
+<ul class="bts-metrics bts-metrics--compact">
+  <li><b>10</b><span>LLM only</span></li>
+  <li><b>100</b><span>LLM + skill</span></li>
+  <li><b>5/5</b><span>kural atfı</span></li>
+  <li><b>12</b><span>kilitli senaryo</span></li>
+</ul>
+
+## Skill ne ekledi
+
+Kontrol yanıtı 0/5 kural kimliğine, skill yanıtı 5/5 kural kimliğine atıf yaptı. Skill'in değeri daha uzun metin üretmesi değil; şirket politikasını, kanıt boşluklarını ve insan yetki sınırını aynı karar kaydında görünür kılmasıdır.
+
+Copilot onay veremez, yayımlayamaz veya operasyonel eylem uygulayamaz.
+
+## Karar sözleşmesi
+
+| Kilitli beklenti | Değer |
+| --- | --- |
+| Karar sınıfı | `revise-before-launch` |
+| Seçenek | `separate-notice-and-consent` |
+| Zorunlu kural | 5 kimlik |
+| İnsan rotası | Privacy Counsel · Data Protection/Compliance · Product Owner |
+
+Bu değerler modele gösterilmez; yalnız kilitli senaryo ve deterministik skorlayıcı tarafından kullanılır.
 
 ## Kontrol ve skill: ölçülen
 
@@ -48,55 +74,6 @@ Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
 | Taşınabilir skill | `demos/kvkk-aydinlatma-kontrolu/skill/SKILL.md` ve beş destek dosyası |
 | Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
-## Bir bakışta iş sorusu
-
-Sentetik B2B SaaS potansiyel müşteri formu, mevcut aydınlatma taslağı ve birleşik
-pazarlama rızasıyla yayına çıkabilir mi?
-
-## Başlangıç olguları
-
-- Form ad, kurumsal e-posta, telefon, IP ve kampanya kaynağı topluyor.
-- Bir yurt dışı işleyen kullanılıyor; aktarım yolu ve güvence ayrıntıları yok.
-- Taslak veri sorumlusunu, amaçları ve yöntemi gösteriyor.
-- Alıcı grupları, aktarım bağlamı, hukuki sebep eşlemesi ve ilgili kişi
-  hakları/iletişim yolu eksik.
-- Pazarlama rızası aydınlatma kabulüne bağlanmış.
-
-## Beklenen karar
-
-Başlangıç için karar `revise-before-launch`, seçenek
-`separate-notice-and-consent` olur. İnsan rotası Privacy Counsel + Data
-Protection/Compliance + Product Owner'dır.
-
-## İş etkisi
-
-Demo, ürün ekibinin “metin var mı?” kontrolünü veri envanteri, aydınlatma
-tamamlığı, rıza ayrımı, aktarım kanıtı ve imzalı yayın kapısıyla izlenebilir bir
-karara dönüştürür. Etki nitelikseldir: eksiklerin daha erken görünmesi, karar
-sahipliğinin netleşmesi ve değerlendirmelerin aynı sözleşmeyle tekrarlanması
-beklenir. Ölçülmüş ROI veya finansal kazanım iddiası yoktur.
-
-## Kaynak ve lisans sınırı
-
-6698 sayılı KVKK ile Aydınlatma Tebliği kamuya açık resmî yöntemdir. Manifest,
-2026-08-04 tarihinde alınan resmî URL, yayıncı ve SHA-256 metadatasını taşır;
-resmî dosyalar `metadata-only` yaklaşımıyla yeniden dağıtılmaz ve uzun pasajlar
-kopyalanmaz. Sentetik politika ve vaka MIT lisanslıdır. Güncellik, yeniden
-kullanım ve uygulama insan Legal tarafından doğrulanır.
-
-## Güvenlik ve insan sınırı
-
-Bu içerik hukuki tavsiye veya nihai hukuki sonuç değildir. İnsan Legal/Compliance
-kararın sahibidir. Skill yalnız analiz, eksik belirleme ve yönlendirme yapar;
-yayına alma, rıza toplama, veri aktarma, kayıt değiştirme veya başka otonom eylem
-yapmaz. Gerçek kişisel veri demo girdisi olarak kullanılmamalıdır.
-
-## 12 senaryo durumu
-
-On iki benzersiz senaryo cevap anahtarlarıyla kilitlenmiş ve 14 puanlık rubriğe
-bağlanmıştır. Senaryolar bu makalede çalıştırılmış veya sonuçlandırılmış olarak
-sunulmaz; biçimsel yürütme ve insan incelemesi beklenmektedir.
-
 ## İndirmeler
 
 Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
@@ -110,3 +87,7 @@ SHA-256 manifestine bağlanmıştır:
 
 Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
 doğrudan ajan içe aktarma paketi değildir.
+
+## Kullanım sınırı
+
+Bu sentetik demo profesyonel görüş veya üretim kontrolü değildir. Sonuçları resmî kaynaktan ve yetkili insanla doğrulayın. [Güvenlik ve kaynak](../safety.md) sayfası veri, kaynak, lisans ve insan yetkisi sınırlarını açıklar.

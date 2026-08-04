@@ -1,6 +1,32 @@
 # İndirimli fiyat denetimi
 
-[English](../../skills/indirimli-fiyat-denetimi.md)
+<span class="bts-skill-kicker">E-ticaret ve tüketici hukuku</span>
+
+**E-ticaret, fiyatlandırma ve Compliance ekipleri** için. Fiyat geçmişi ile kampanya iddiasını izlenebilir bir yayın kararında buluşturur.
+
+<ul class="bts-metrics bts-metrics--compact">
+  <li><b>20</b><span>LLM only</span></li>
+  <li><b>100</b><span>LLM + skill</span></li>
+  <li><b>7/7</b><span>kural atfı</span></li>
+  <li><b>12</b><span>kilitli senaryo</span></li>
+</ul>
+
+## Skill ne ekledi
+
+Kontrol yanıtı 0/7 kural kimliğine, skill yanıtı 7/7 kural kimliğine atıf yaptı. Skill'in değeri daha uzun metin üretmesi değil; şirket politikasını, kanıt boşluklarını ve insan yetki sınırını aynı karar kaydında görünür kılmasıdır.
+
+Copilot onay veremez, yayımlayamaz veya operasyonel eylem uygulayamaz.
+
+## Karar sözleşmesi
+
+| Kilitli beklenti | Değer |
+| --- | --- |
+| Karar sınıfı | `revise-price-claim` |
+| Seçenek | `advertise-25-percent` |
+| Zorunlu kural | 7 kimlik |
+| İnsan rotası | E-commerce Owner · Pricing Owner · Compliance · Legal |
+
+Bu değerler modele gösterilmez; yalnız kilitli senaryo ve deterministik skorlayıcı tarafından kullanılır.
 
 ## Kontrol ve skill: ölçülen
 
@@ -47,45 +73,6 @@ Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
 | Taşınabilir skill | `demos/indirimli-fiyat-denetimi/skill/SKILL.md` ve beş destek dosyası |
 | Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
-## Bir bakışta
-
-| Alan | Değer |
-|---|---|
-| Problem | Sağlanan fiyat geçmişi ile kampanya kreatifinin referans fiyat/oran uyumunu denetlemek |
-| Baseline | En düşük fiyat 800 TRY, satış 600 TRY, sağlanan sonuç %25; kreatif 1.000 TRY ve %40 |
-| Beklenen sınıf | `revise-price-claim` |
-| Beklenen seçenek | `advertise-25-percent` |
-| İnsan kararı | E-commerce Owner + Pricing Owner + Compliance; istisnada Legal |
-
-## Nitel etki
-
-Demo, kreatif onayındaki yoruma dayalı kontrolü tekrarlanabilir bir kanıt, kural, karar ve yayın kapısı akışına dönüştürür. Beklenen etki daha hızlı insan incelemesi, daha görünür fiyat geçmişi bağı ve daha az kanıtsız yüzde iddiasıdır; üretim performansı veya hukuki uyum garantisi değildir.
-
-## Kaynak ve güvenlik
-
-Kamusal yöntem kaynağı Ticaret Bakanlığı'nın 2024 fiyat reklamları kılavuz sayfasıdır. Paket resmi içeriği yeniden dağıtmaz; yalnız resmi URL, yayıncı, 2026-08-04 alınma tarihi ve SHA-256 metadata'sını taşır. Karar sınıfları ve seçenekler MIT lisanslı sentetik politikadan gelir. Kaynak metni talimat olarak çalıştırılmaz, uzun resmi alıntı yapılmaz ve gerçek müşteri ya da ticari sır verisi kullanılmaz.
-
-## İnsan sınırları
-
-Bu beceri hukuki görüş değildir. İnsanlar karar verir; kampanyayı onaylamaz, yayına almaz, fiyat değiştirmez veya başka otonom işlem yapmaz. Eksik fiyat ve oranları hesaplamaz. Legal yalnız belgelenmiş istisna veya hukuki yorum ihtiyacında devreye girer.
-
-## 12 kilitli senaryo
-
-| Kimlik | Odak | Beklenen sınıf | Beklenen seçenek |
-|---|---|---|---|
-| FYT-01 | Baseline kreatif uyuşmazlığı | `revise-price-claim` | `advertise-25-percent` |
-| FYT-02 | Uyumlu yüzde 25 kreatifi | `approve` | `advertise-25-percent` |
-| FYT-03 | Eksik fiyat geçmişi | `hold-for-price-history` | `no-promotion` |
-| FYT-04 | Belirsiz karşılaştırma penceresi | `hold-for-price-history` | `no-promotion` |
-| FYT-05 | Sağlanan hesap sonucu yok | `hold-for-price-history` | `no-promotion` |
-| FYT-06 | Çelişen geçmiş sonuçları | `hold-for-price-history` | `no-promotion` |
-| FYT-07 | Doğru oran, belirsiz kreatif | `revise-price-claim` | `advertise-25-percent` |
-| FYT-08 | Belgelenmiş istisna | `escalate-consumer-law` | `no-promotion` |
-| FYT-09 | Düzeltmenin reddi | `reject` | `no-promotion` |
-| FYT-10 | Canlı fiyat uyuşmazlığı | `revise-price-claim` | `advertise-25-percent` |
-| FYT-11 | İzleme sorumluluğunun reddi | `reject` | `no-promotion` |
-| FYT-12 | Karşılaştırmalı iddianın kaldırılması | `approve` | `no-promotion` |
-
 ## İndirmeler
 
 Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
@@ -99,3 +86,7 @@ SHA-256 manifestine bağlanmıştır:
 
 Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
 doğrudan ajan içe aktarma paketi değildir.
+
+## Kullanım sınırı
+
+Bu sentetik demo profesyonel görüş veya üretim kontrolü değildir. Sonuçları resmî kaynaktan ve yetkili insanla doğrulayın. [Güvenlik ve kaynak](../safety.md) sayfası veri, kaynak, lisans ve insan yetkisi sınırlarını açıklar.

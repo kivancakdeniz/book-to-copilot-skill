@@ -4,7 +4,7 @@
   "entries": [
     {
       "id": "kvkk-aydinlatma-kontrolu",
-      "article": "docs/skills/kvkk-aydinlatma-kontrolu.md",
+      "article": "docs/en/skills/kvkk-aydinlatma-kontrolu.md",
       "articleTr": "docs/tr/skills/kvkk-aydinlatma-kontrolu.md",
       "status": "release",
       "en": {
@@ -22,7 +22,7 @@
     },
     {
       "id": "etk-iys-ileti-karari",
-      "article": "docs/skills/etk-iys-ileti-karari.md",
+      "article": "docs/en/skills/etk-iys-ileti-karari.md",
       "articleTr": "docs/tr/skills/etk-iys-ileti-karari.md",
       "status": "release",
       "en": {
@@ -40,7 +40,7 @@
     },
     {
       "id": "indirimli-fiyat-denetimi",
-      "article": "docs/skills/indirimli-fiyat-denetimi.md",
+      "article": "docs/en/skills/indirimli-fiyat-denetimi.md",
       "articleTr": "docs/tr/skills/indirimli-fiyat-denetimi.md",
       "status": "release",
       "en": {
@@ -58,7 +58,7 @@
     },
     {
       "id": "masak-musteri-kabul",
-      "article": "docs/skills/masak-musteri-kabul.md",
+      "article": "docs/en/skills/masak-musteri-kabul.md",
       "articleTr": "docs/tr/skills/masak-musteri-kabul.md",
       "status": "release",
       "en": {
@@ -76,7 +76,7 @@
     },
     {
       "id": "bddk-uzaktan-musteri-edinimi",
-      "article": "docs/skills/bddk-uzaktan-musteri-edinimi.md",
+      "article": "docs/en/skills/bddk-uzaktan-musteri-edinimi.md",
       "articleTr": "docs/tr/skills/bddk-uzaktan-musteri-edinimi.md",
       "status": "release",
       "en": {
@@ -94,7 +94,7 @@
     },
     {
       "id": "rekabet-birlesme-bildirimi",
-      "article": "docs/skills/rekabet-birlesme-bildirimi.md",
+      "article": "docs/en/skills/rekabet-birlesme-bildirimi.md",
       "articleTr": "docs/tr/skills/rekabet-birlesme-bildirimi.md",
       "status": "release",
       "en": {
@@ -112,7 +112,7 @@
     },
     {
       "id": "isg-risk-degerlendirme",
-      "article": "docs/skills/isg-risk-degerlendirme.md",
+      "article": "docs/en/skills/isg-risk-degerlendirme.md",
       "articleTr": "docs/tr/skills/isg-risk-degerlendirme.md",
       "status": "release",
       "en": {
@@ -130,7 +130,7 @@
     },
     {
       "id": "titck-ilac-tanitimi",
-      "article": "docs/skills/titck-ilac-tanitimi.md",
+      "article": "docs/en/skills/titck-ilac-tanitimi.md",
       "articleTr": "docs/tr/skills/titck-ilac-tanitimi.md",
       "status": "release",
       "en": {
@@ -148,7 +148,7 @@
     },
     {
       "id": "kripto-odeme-kapisi",
-      "article": "docs/skills/kripto-odeme-kapisi.md",
+      "article": "docs/en/skills/kripto-odeme-kapisi.md",
       "articleTr": "docs/tr/skills/kripto-odeme-kapisi.md",
       "status": "release",
       "en": {
@@ -166,7 +166,7 @@
     },
     {
       "id": "btk-haberlesme-verisi",
-      "article": "docs/skills/btk-haberlesme-verisi.md",
+      "article": "docs/en/skills/btk-haberlesme-verisi.md",
       "articleTr": "docs/tr/skills/btk-haberlesme-verisi.md",
       "status": "release",
       "en": {
@@ -184,7 +184,7 @@
     },
     {
       "id": "investment-committee",
-      "article": "docs/skills/investment-committee.md",
+      "article": "docs/en/skills/investment-committee.md",
       "articleTr": "docs/tr/skills/investment-committee.md",
       "status": "release",
       "en": {
@@ -202,7 +202,7 @@
     },
     {
       "id": "marketing-claims-review",
-      "article": "docs/skills/marketing-claims-review.md",
+      "article": "docs/en/skills/marketing-claims-review.md",
       "articleTr": "docs/tr/skills/marketing-claims-review.md",
       "status": "release",
       "en": {

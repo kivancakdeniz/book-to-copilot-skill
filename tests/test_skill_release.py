@@ -31,11 +31,11 @@ def _json(path: Path):
 
 def _prepare_valid_root(destination: Path) -> Path:
     demos_target = destination / "demos"
-    docs_target = destination / "docs" / "skills"
+    docs_target = destination / "docs" / "en" / "skills"
     docs_tr_target = destination / "docs" / "tr" / "skills"
     docs_tr_target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copytree(ROOT / "demos", demos_target)
-    shutil.copytree(ROOT / "docs" / "skills", docs_target)
+    shutil.copytree(ROOT / "docs" / "en" / "skills", docs_target)
     shutil.copytree(ROOT / "docs" / "tr" / "skills", docs_tr_target)
     shutil.copy2(ROOT / "LICENSE.md", destination / "LICENSE.md")
 
@@ -197,7 +197,9 @@ def test_catalog_scenarios_and_source_skill_counts():
 
 def test_articles_link_all_five_expected_packages():
     for slug in release.EXPECTED_SLUGS:
-        article = (ROOT / "docs" / "skills" / f"{slug}.md").read_text(encoding="utf-8")
+        article = (ROOT / "docs" / "en" / "skills" / f"{slug}.md").read_text(
+            encoding="utf-8"
+        )
         targets = {
             target.split("#", 1)[0].rsplit("/", 1)[-1]
             for target in release._MARKDOWN_LINK_RE.findall(article)
@@ -214,38 +216,65 @@ def test_articles_link_all_five_expected_packages():
 
 def test_bilingual_articles_and_download_links_are_complete():
     for slug in release.EXPECTED_SLUGS:
-        english_path = ROOT / "docs" / "skills" / f"{slug}.md"
+        english_path = ROOT / "docs" / "en" / "skills" / f"{slug}.md"
         turkish_path = ROOT / "docs" / "tr" / "skills" / f"{slug}.md"
         english = english_path.read_text(encoding="utf-8")
         turkish = turkish_path.read_text(encoding="utf-8")
 
-        assert f"[Türkçe](../tr/skills/{slug}.md)" in english
-        assert f"[English](../../skills/{slug}.md)" in turkish
-        for text, prefix in (
-            (english, "../downloads/skills/"),
-            (turkish, "../../downloads/skills/"),
-        ):
+        assert "[Türkçe]" not in english
+        assert "[English]" not in turkish
+        for text in (english, turkish):
             targets = {
                 target.split("#", 1)[0]
                 for target in release._MARKDOWN_LINK_RE.findall(text)
                 if "downloads/skills" in target
             }
             assert len(targets) == 5
-            assert all(target.startswith(prefix + slug + "/") for target in targets)
+            assert all(
+                target.startswith("../../downloads/skills/" + slug + "/")
+                for target in targets
+            )
 
 
 def test_bilingual_site_entrypoints_and_material_alternates_exist():
-    assert (ROOT / "docs" / "index.md").is_file()
+    assert (ROOT / "docs" / "en" / "index.md").is_file()
     assert (ROOT / "docs" / "tr" / "index.md").is_file()
     assert (ROOT / "docs" / "tr" / "skills" / "investment-committee.md").is_file()
     assert (ROOT / "docs" / "tr" / "skills" / "marketing-claims-review.md").is_file()
 
     config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
     assert "language: en" in config
+    assert "docs_structure: folder" in config
+    assert "reconfigure_material: true" in config
     assert "name: English" in config
     assert "name: Türkçe" in config
-    assert "link: https://kivancakdeniz.github.io/book-to-copilot-skill/tr/" in config
-    assert "lang:\n        - en\n        - tr" in config
+    assert "nav_translations:" in config
+    assert "- Türkçe:" not in config
+    assert "navigation.instant" not in config
+
+    english_pages = {
+        path.relative_to(ROOT / "docs" / "en")
+        for path in (ROOT / "docs" / "en").rglob("*.md")
+    }
+    turkish_pages = {
+        path.relative_to(ROOT / "docs" / "tr")
+        for path in (ROOT / "docs" / "tr").rglob("*.md")
+    }
+    assert english_pages == turkish_pages
+
+    nav = config.split("nav:\n", 1)[1].split("\nmarkdown_extensions:", 1)[0]
+    assert len([line for line in nav.splitlines() if line.startswith("  - ")]) == 4
+    for label in ("Overview", "Skills", "Method", "Safety & source"):
+        assert f"- {label}:" in nav
+
+    for removed in (
+        "ARCHITECTURE.md",
+        "PERFORMANCE.md",
+        "ENTERPRISE-DEMO-PLAN.md",
+        "LICENSING-AND-REUSE.md",
+        "RESPONSIBLE-USE.md",
+    ):
+        assert not (ROOT / "docs" / removed).exists()
 
 
 def test_build_creates_fifty_host_archives_and_manifests(built_release):
@@ -722,14 +751,16 @@ def test_answer_keys_stay_locked_to_the_scenario_and_out_of_the_case_brief():
 
 
 def test_published_articles_quote_the_measured_scores():
-    catalog_en = (ROOT / "docs" / "skills" / "index.md").read_text(encoding="utf-8")
+    catalog_en = (ROOT / "docs" / "en" / "skills" / "index.md").read_text(
+        encoding="utf-8"
+    )
     catalog_tr = (ROOT / "docs" / "tr" / "skills" / "index.md").read_text(encoding="utf-8")
     for slug in release.EXPECTED_SLUGS:
         scorecard = _scorecard(slug)
         control = _best(scorecard, "control")["traceScore"]
         treatment = _best(scorecard, "treatment")["traceScore"]
         for path, prefix in (
-            (ROOT / "docs" / "skills" / f"{slug}.md", "../assets/skills"),
+            (ROOT / "docs" / "en" / "skills" / f"{slug}.md", "../../assets/skills"),
             (ROOT / "docs" / "tr" / "skills" / f"{slug}.md", "../../assets/skills"),
         ):
             article = path.read_text(encoding="utf-8")
@@ -737,7 +768,8 @@ def test_published_articles_quote_the_measured_scores():
             assert f"**{treatment} / 100**" in article, f"{path}: treatment score missing"
             assert f"{prefix}/{slug}/scorecard.json" in article
         for catalog in (catalog_en, catalog_tr):
-            assert f"| {control}/100 | {treatment}/100 |" in catalog
+            assert f">LLM {control}</span>" in catalog
+            assert f">Skill {treatment}</span>" in catalog
 
 
 def test_scorer_matches_citations_regardless_of_case_accent_or_punctuation():
@@ -793,7 +825,7 @@ def test_site_never_republishes_upstream_promotion():
 
 
 def test_landing_pages_still_credit_the_upstream_project():
-    for page in (ROOT / "docs" / "index.md", ROOT / "docs" / "tr" / "index.md"):
+    for page in (ROOT / "docs" / "en" / "index.md", ROOT / "docs" / "tr" / "index.md"):
         text = page.read_text(encoding="utf-8")
         assert "github.com/virgiliojr94/book-to-skill" in text
 
@@ -805,6 +837,7 @@ def test_site_ships_its_own_brand_and_diagrams():
     assert (assets / "theme.css").is_file()
     for name in ("pipeline", "evaluation", "decision-card"):
         assert (assets / "diagrams" / f"{name}.svg").is_file()
+        assert (assets / "diagrams" / f"{name}-mobile.svg").is_file()
 
     config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
     assert "assets/logo.svg" in config
@@ -813,9 +846,13 @@ def test_site_ships_its_own_brand_and_diagrams():
     assert "BACKERS.md" not in config
 
     for page, prefix in (
-        (ROOT / "docs" / "index.md", "assets/diagrams"),
+        (ROOT / "docs" / "en" / "index.md", "../assets/diagrams"),
         (ROOT / "docs" / "tr" / "index.md", "../assets/diagrams"),
-        (ROOT / "docs" / "how-it-works.md", "assets/diagrams"),
-        (ROOT / "docs" / "tr" / "nasil-calisir.md", "../assets/diagrams"),
+        (ROOT / "docs" / "en" / "how-it-works.md", "../assets/diagrams"),
+        (ROOT / "docs" / "tr" / "how-it-works.md", "../../assets/diagrams"),
     ):
-        assert f"{prefix}/" in page.read_text(encoding="utf-8"), f"{page}: no diagram"
+        text = page.read_text(encoding="utf-8")
+        assert f"{prefix}/" in text, f"{page}: no diagram"
+        assert "<picture>" in text
+        assert 'media="(max-width: 720px)"' in text
+        assert "-mobile.svg" in text

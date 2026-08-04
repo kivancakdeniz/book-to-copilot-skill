@@ -40,16 +40,8 @@ uv.lock
 # Local design specifications
 docs/superpowers/specs/
 
-# MkDocs: build output + pages assembled from README/SKILL at deploy time
-# (docs/index.md is a committed landing page, NOT assembled)
+# MkDocs build output and generated release assets
 site/
-docs/CHANGELOG.md
-docs/DOWNSTREAM.md
-docs/LICENSE.md
-docs/NOTICE.md
-docs/THIRD_PARTY_NOTICES.md
-docs/SECURITY.md
-docs/tools/discovery_tax.py
 docs/assets/skills/
 docs/downloads/
 release/

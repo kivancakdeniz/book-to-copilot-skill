@@ -18,7 +18,7 @@ kurumsal karar; her biri, skill olmadan çalışan aynı modelle karşılaştır
 </p>
 
 [12 skill'i incele](skills/index.md){ .md-button .md-button--primary }
-[Nasıl çalıştığını gör](nasil-calisir.md){ .md-button }
+[Nasıl çalıştığını gör](how-it-works.md){ .md-button }
 
 </div>
 
@@ -48,8 +48,11 @@ Yapamadıkları şey, şirket kural kimliklerine atıf yapmak, izin verilen tam 
 sınıfını yazmak ve kararı adı konmuş sahibine yönlendirmektir; çünkü skill
 olmadan bu bilgi modele hiç ulaşmaz.
 
-<figure markdown>
-![Aynı kilitli vaka iki kez yanıtlanır ve deterministik puanlanır](../assets/diagrams/evaluation.svg)
+<figure class="bts-diagram">
+<picture>
+    <source media="(max-width: 720px)" srcset="../assets/diagrams/evaluation-mobile.svg">
+    <img src="../assets/diagrams/evaluation.svg" alt="Aynı kilitli vaka iki kez yanıtlanır ve deterministik puanlanır">
+</picture>
 <figcaption>Bu sitedeki her sayının arkasındaki değerlendirme yöntemi. Ham yanıtlar, skor kartları ve skorlayıcının kendisi yayımlanır.</figcaption>
 </figure>
 
@@ -99,12 +102,15 @@ olmadan bu bilgi modele hiç ulaşmaz.
 
 ## Bir skill nasıl kurulur
 
-<figure markdown>
-![Onaylı rehberden beş host paketine](../assets/diagrams/pipeline.svg)
+<figure class="bts-diagram">
+<picture>
+    <source media="(max-width: 720px)" srcset="../assets/diagrams/pipeline-mobile.svg">
+    <img src="../assets/diagrams/pipeline.svg" alt="Onaylı rehberden beş host paketine">
+</picture>
 <figcaption>Yalnız metadata ile resmî yöntem, yayımlanmış sentetik şirket katmanı, tek derlenmiş skill ve beş host aktarımı.</figcaption>
 </figure>
 
-[Yöntemi oku](nasil-calisir.md){ .md-button }
+[Yöntemi oku](how-it-works.md){ .md-button }
 
 ## Kaynak ve bağımsızlık
 
@@ -115,6 +121,4 @@ deterministik değerlendirmeyi ve yayın fabrikasını ekler. Bağımsız olarak
 sürdürülür; kaynak projenin yazarı, Microsoft ya da herhangi bir kamu otoritesi
 tarafından onaylanmamıştır.
 
-[Proje ve kaynak](../DOWNSTREAM.md) ·
-[Lisanslama ve yeniden kullanım](../LICENSING-AND-REUSE.md) ·
-[Sorumlu kullanım](../RESPONSIBLE-USE.md)
+[Güvenlik, kaynak ve yeniden kullanım sınırları](safety.md)

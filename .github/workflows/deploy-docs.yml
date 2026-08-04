@@ -77,18 +77,8 @@ jobs:
           set -euo pipefail
           python -m pytest tests/test_skill_release.py -q
       - name: Assemble docs sources
-        # The site never mirrors the repository README. Only legal and release
-        # notices are copied in; every published page is authored for the site.
         run: |
           set -euo pipefail
-          cp CHANGELOG.md docs/CHANGELOG.md
-          cp DOWNSTREAM.md docs/DOWNSTREAM.md
-          cp LICENSE.md docs/LICENSE.md
-          cp NOTICE.md docs/NOTICE.md
-          cp THIRD_PARTY_NOTICES.md docs/THIRD_PARTY_NOTICES.md
-          cp SECURITY.md docs/SECURITY.md
-          mkdir -p docs/tools
-          cp tools/discovery_tax.py docs/tools/discovery_tax.py
           python tools/build_skill_release.py stage-docs \
             --root . \
             --output-dir "$RUNNER_TEMP/skill-release" \
@@ -122,14 +112,6 @@ jobs:
       - name: Assemble docs sources
         run: |
           set -euo pipefail
-          cp CHANGELOG.md docs/CHANGELOG.md
-          cp DOWNSTREAM.md docs/DOWNSTREAM.md
-          cp LICENSE.md docs/LICENSE.md
-          cp NOTICE.md docs/NOTICE.md
-          cp THIRD_PARTY_NOTICES.md docs/THIRD_PARTY_NOTICES.md
-          cp SECURITY.md docs/SECURITY.md
-          mkdir -p docs/tools
-          cp tools/discovery_tax.py docs/tools/discovery_tax.py
           python tools/build_skill_release.py stage-docs \
             --root . \
             --output-dir "$RUNNER_TEMP/skill-release" \

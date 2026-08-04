@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 600" role="img" aria-label="Pipeline: approved guidance becomes one skill and five host packages">
+  <style>
+    .bg{fill:#fff}.card{fill:#fff;stroke:#d7dced;stroke-width:1.5}.accent{fill:#f4f6ff;stroke:#b9c4ef;stroke-width:1.5}.final{fill:#eef9f4;stroke:#9dd8be;stroke-width:1.5}.title{font:600 18px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#17203a}.body{font:15px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#4a5573}.kicker{font:700 12px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#6b76a0;letter-spacing:.08em}.flow{stroke:#9aa6cc;stroke-width:2;fill:none;marker-end:url(#arrow)}
+    @media(prefers-color-scheme:dark){.bg{fill:#131828}.card{fill:#161b2e;stroke:#2c3550}.accent{fill:#1a2140;stroke:#3a4573}.final{fill:#12261f;stroke:#2f5f49}.title{fill:#eef1fa}.body{fill:#a9b3d0}.kicker{fill:#8b96c4}.flow{stroke:#6a769e}}
+  </style>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#9aa6cc"/></marker></defs>
+  <rect class="bg" width="360" height="600" rx="18"/>
+  <g><rect class="card" x="20" y="20" width="320" height="108" rx="14"/><text class="kicker" x="40" y="48">1 · SOURCE</text><text class="title" x="40" y="75">Approved guidance</text><text class="body" x="40" y="100">Official method by metadata only</text><text class="body" x="40" y="119">Synthetic company policy</text></g>
+  <path class="flow" d="M180 130v28"/>
+  <g><rect class="accent" x="20" y="162" width="320" height="108" rx="14"/><text class="kicker" x="40" y="190">2 · COMPILE</text><text class="title" x="40" y="217">Portable skill</text><text class="body" x="40" y="242">SKILL.md plus five companions</text><text class="body" x="40" y="261">Policy · method · evidence · schema</text></g>
+  <path class="flow" d="M180 272v28"/>
+  <g><rect class="accent" x="20" y="304" width="320" height="108" rx="14"/><text class="kicker" x="40" y="332">3 · PROVE</text><text class="title" x="40" y="359">Two runs, one scorer</text><text class="body" x="40" y="384">Same case and prompt; skill on or off</text><text class="body" x="40" y="403">Scored deterministically</text></g>
+  <path class="flow" d="M180 414v28"/>
+  <g><rect class="final" x="20" y="446" width="320" height="116" rx="14"/><text class="kicker" x="40" y="474">4 · EXPORT</text><text class="title" x="40" y="501">Five host packages</text><text class="body" x="40" y="526">Cowork · Copilot in VS Code · Scout</text><text class="body" x="40" y="547">Copilot Studio harness + classic</text></g>
+  <text class="body" x="20" y="588">Raw official documents are never bundled.</text>
+</svg>

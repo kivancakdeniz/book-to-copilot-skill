@@ -1,30 +1,32 @@
-# Yatırım Komitesi Copilot
+# Yatırım komitesi değerlendirmesi
 
-[English](../../skills/investment-committee.md)
+<span class="bts-skill-kicker">Sermaye tahsisi</span>
 
-## Karar
+**CFO, COO, CIO ve yatırım komitesi üyeleri** için. Sermaye brifingini kapılı ve kanıt atıflı bir komite karar kartına dönüştürür.
 
-Kurgusal Asteria Distribution Group, 4,8 milyon EUR tutarındaki tam otomasyon
-önerisini onaylamalı mı; daha güvenli bir seçenek mi seçmeli, konuyu üst makama
-mı taşımalı, reddetmeli mi, yoksa daha fazla kanıt mı istemeli?
+<ul class="bts-metrics bts-metrics--compact">
+  <li><b>40</b><span>LLM only</span></li>
+  <li><b>100</b><span>LLM + skill</span></li>
+  <li><b>6/6</b><span>kural atfı</span></li>
+  <li><b>12</b><span>kilitli senaryo</span></li>
+</ul>
 
-Bu demo, aynı iş sorusu ve yatırım özeti için ilk yanıttan oluşan dört Cowork
-UX koşusunu kaydeder:
+## Skill ne ekledi
 
-| Koşul | Bağlam |
-|---|---|
-| Kontrol, iki koşu | Yalnız yatırım özeti; özel skill yok |
-| Uygulama, iki koşu | Aynı özet; özel skill açıkça çağrıldı ve yüklenmiş olarak gösterildi |
+Kontrol yanıtı 0/6 kural kimliğine, skill yanıtı 6/6 kural kimliğine atıf yaptı. Skill'in değeri daha uzun metin üretmesi değil; şirket politikasını, kanıt boşluklarını ve insan yetki sınırını aynı karar kaydında görünür kılmasıdır.
 
-Cowork Claude Opus 4.8'i gösterdi, ancak sabitlenmiş çalışma zamanı sürümünü
-açıklamadı. Konuşma düzeyinde özel skill anahtarı görünmüyordu ve otomatik keşif
-kurulu skill'i yüklemedi. Bu nedenle uygulama istemi skill'i açıkça çağırır.
-Bu bir UX karşılaştırmasıdır, nedensel A/B değildir.
+Copilot onay veremez, yayımlayamaz veya operasyonel eylem uygulayamaz.
 
-Uygulamanın Asteria'nın kurgusal politika kapılarını kullanması; asgari, aşamalı
-ve talep edilen seçenekleri karşılaştırması; talep edilen seçeneğin ayrı hükmünü
-koruması; eksik kanıtı belirlemesi; insan onay mercilerine yönlendirmesi ve her
-kuralın kaynağını göstermesi beklenir.
+## Karar sözleşmesi
+
+| Kilitli beklenti | Değer |
+| --- | --- |
+| Karar sınıfı | `conditional-approval` |
+| Seçenek | `phased-automation` |
+| Zorunlu kural | 6 kimlik |
+| İnsan rotası | Investment Committee |
+
+Bu değerler modele gösterilmez; yalnız kilitli senaryo ve deterministik skorlayıcı tarafından kullanılır.
 
 ## Kontrol ve skill: ölçülen
 
@@ -71,94 +73,6 @@ Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
 | Taşınabilir skill | `demos/investment-committee/skill/SKILL.md` ve beş destek dosyası |
 | Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
-## Temel vaka
-
-| Seçenek | Taahhüt | NPV | Geri ödeme | Aşağı yönlü NPV | En büyük tedarikçi | Sonuç |
-|---|---:|---:|---:|---:|---:|---|
-| Asgari | EUR 0.8m | EUR 0.3m | 3.5y | EUR 0.0m | 30% | Operasyonel hedefleri karşılamıyor |
-| Aşamalı otomasyon | EUR 3.2m | EUR 1.1m | 4.2y | EUR 0.2m | 45% | Hedefleri karşılıyor; eğitim onayı beklemede |
-| Tam otomasyon | EUR 4.8m | EUR 1.6m | 5.4y | EUR -0.7m | 72% | Siber değerlendirme ve geri dönüş planı yok |
-
-Kilitli uygulama cevap anahtarı, aşamalı otomasyonun koşullu onayını bekler.
-Model bu sonucu ikna edici bir öneri üretmesi söylenerek değil, kanıt ve politika
-uygulamasıyla kazanmalıdır.
-
-## Değerlendirme
-
-On iki senaryo; açık onayı, negatif NPV'yi, geri ödeme istisnasını, tedarikçi
-yoğunlaşmasını, siber kanıtı, çelişkili olguları, eksik aşağı yönlü kanıtı, yetki
-eskalasyonunu ve uygulanabilir seçenek bulunmamasını test eder.
-
-Resmî kanıt yayını şunları gösterecektir:
-
-- ham ilk koşu çıktıları;
-- rastgeleleştirilmiş A/B karşılaştırması;
-- karar ve seçenek doğruluğu;
-- kapı kapsamı ve eksik bilgi tespiti;
-- kaynak izi kalitesi;
-- desteksiz kural ve uydurulmuş olgu cezaları;
-- sınırlamalar ve başarısız vakalar.
-
-## Cowork UX gözlemleri
-
-Dört ayrı Cowork görevi korundu: iki kontrol ve skill'in açıkça çağrıldığı iki
-uygulama. İki operasyonel deneme dışlandı: Word üretimini tetikleyen uzun biçimli
-bir istem ve otomatik keşfin özel skill'i yüklemediği bir uygulama denemesi.
-
-| Gözlem | Kontroller | Skill'in açıkça çağrıldığı uygulamalar |
-|---|---|---|
-| Aşamalı otomasyon önerildi | 2/2 | 2/2 |
-| ACP eşikleri mevcut ve kural ID'siyle uygulandı | Mevcut değil | Evet |
-| İnsan onay sınırı korundu | Evet | Evet |
-| Desteksiz ayrıntılar içerdi | Evet | Evet |
-
-İkinci uygulama kilitli altı IC-01 politika bulgusunun tamamını kullandı. İlk
-uygulama açık bir ACP-F01 geçişini atladı. İki uygulama yanıtı da eksik izleme
-ölçümleri veya sağlanmamış başka ayrıntılar hakkında desteksiz iddialarda bulundu.
-Ham ilk yanıtlar düzeltilmeden veya yeniden koşturulmadan korundu.
-
-Paket SHA-256:
-`40c4f763cd0ffc30a939cd7a7cda2e58780ea9731eb4a3dc3376c4864168a659`.
-
-### Kontrol kaydı
-
-[Tam boyutlu kontrol kaydını aç](../../assets/skills/investment-committee/screenshots/06-control-2-1920x1080.png)
-
-![Çalışma alanında yalnız yatırım özeti ve karar kartı bulunan Cowork kontrol yanıtı](../../assets/skills/investment-committee/screenshots/06-control-2-1920x1080.png)
-
-[Kontrol 1 ham yanıtı](../../assets/skills/investment-committee/outputs/control-1.txt) ·
-[Kontrol 2 ham yanıtı](../../assets/skills/investment-committee/outputs/control-2.txt)
-
-### Skill'in açıkça çağrıldığı uygulama kaydı
-
-[Tam boyutlu uygulama kaydını aç](../../assets/skills/investment-committee/screenshots/05-treatment-2-1920x1080.png)
-
-![Yatırım Komitesi skill'i yüklenmiş Cowork uygulama yanıtı](../../assets/skills/investment-committee/screenshots/05-treatment-2-1920x1080.png)
-
-[Uygulama 1 ham yanıtı](../../assets/skills/investment-committee/outputs/treatment-1.txt) ·
-[Uygulama 2 ham yanıtı](../../assets/skills/investment-committee/outputs/treatment-2.txt) ·
-[Koşu manifesti](../../assets/skills/investment-committee/metadata/cowork-runs.json)
-
-Manifest yolları, demo kaynak ağacındaki özgün manifest klasörüne göredir.
-Yayımlanmış ham varlıklar için yukarıdaki sayfa bağlantılarını kullanın.
-
-!!! warning "Resmî kıyaslama beklemede"
-
-    Bu dört kayıt Cowork UX gözlemidir; nedensel kanıt veya bağımsız doğrulanmış
-    kıyaslama değildir. Sabit modelli, 12 senaryolu, üç kollu değerlendirme ve
-    kör insan incelemesi beklemededir. Ön iç rubrik prova skorları performans
-    iddiası olarak sunulmaz.
-
-## Yeniden üretme
-
-Kamusal yayın; bir `.skill` dosyasını, kurgusal yatırım özetini, ayrı Cowork
-kontrol ve uygulama istemlerini, özdeş resmî değerlendirme istemini, paket
-SHA-256 değerini, kurulum ve kaldırma talimatlarını, sunum metnini, beklenen
-davranış kontrol noktalarını ve yedek kaydı içerecektir.
-
-Yayın kapıları ve ikinci demo ölçütleri için [kurumsal teslimat planına](../../ENTERPRISE-DEMO-PLAN.md)
-bakın.
-
 ## İndirmeler
 
 Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
@@ -172,3 +86,7 @@ SHA-256 manifestine bağlanmıştır:
 
 Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
 doğrudan ajan içe aktarma paketi değildir.
+
+## Kullanım sınırı
+
+Bu sentetik demo profesyonel görüş veya üretim kontrolü değildir. Sonuçları resmî kaynaktan ve yetkili insanla doğrulayın. [Güvenlik ve kaynak](../safety.md) sayfası veri, kaynak, lisans ve insan yetkisi sınırlarını açıklar.

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" role="img"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img"
      aria-label="Anatomy of a governed decision card produced by a skill">
   <style>
     .bg { fill: #ffffff }
@@ -26,7 +26,8 @@
     }
   </style>
 
-  <rect class="bg" width="960" height="320" rx="18"/>
+  <rect class="bg" width="960" height="360" rx="18"/>
+  <g transform="translate(0 20)">
   <rect class="sheet" x="16" y="16" width="560" height="288" rx="16"/>
 
   <text class="kicker" x="44" y="52">DECISION CARD</text>
@@ -67,4 +68,5 @@
   <text class="title" x="648" y="249">Authority stays human</text>
   <text class="note" x="648" y="269">Named owner and an explicit limit</text>
   <text class="note" x="648" y="287">on what the assistant may do</text>
+  </g>
 </svg>

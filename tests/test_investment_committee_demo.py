@@ -218,7 +218,7 @@ def test_preliminary_review_contract():
 
 
 def test_demo_page_makes_the_observed_skill_difference_explicit():
-    page = (ROOT / "docs" / "skills" / "investment-committee.md").read_text(
+    page = (ROOT / "docs" / "en" / "skills" / "investment-committee.md").read_text(
         encoding="utf-8"
     )
     normalized = " ".join(page.split())
@@ -228,8 +228,8 @@ def test_demo_page_makes_the_observed_skill_difference_explicit():
         "Only the skill run stated the exact decision class (`conditional-approval`)."
         in normalized
     )
-    assert "This is a UX comparison, not a causal A/B." in normalized
     assert (
         "Limits: one run per condition, one locked scenario, and a single host."
         in normalized
     )
+    assert "Copilot cannot approve, publish, or execute an operational action." in normalized

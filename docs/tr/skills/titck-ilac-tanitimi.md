@@ -1,6 +1,32 @@
 # TİTCK ilaç tanıtımı: hedef kitle ve yayın kapısı
 
-[English](../../skills/titck-ilac-tanitimi.md)
+<span class="bts-skill-kicker">İlaç ve sağlık iletişimi</span>
+
+**Medical, Regulatory, Legal ve pazarlama ekipleri** için. Ürün statüsü, hedef kitle ve kanal erişimini insan yayın incelemesine bağlar.
+
+<ul class="bts-metrics bts-metrics--compact">
+  <li><b>40</b><span>LLM only</span></li>
+  <li><b>100</b><span>LLM + skill</span></li>
+  <li><b>7/7</b><span>kural atfı</span></li>
+  <li><b>12</b><span>kilitli senaryo</span></li>
+</ul>
+
+## Skill ne ekledi
+
+Kontrol yanıtı 0/7 kural kimliğine, skill yanıtı 7/7 kural kimliğine atıf yaptı. Skill'in değeri daha uzun metin üretmesi değil; şirket politikasını, kanıt boşluklarını ve insan yetki sınırını aynı karar kaydında görünür kılmasıdır.
+
+Copilot onay veremez, yayımlayamaz veya operasyonel eylem uygulayamaz.
+
+## Karar sözleşmesi
+
+| Kilitli beklenti | Değer |
+| --- | --- |
+| Karar sınıfı | `do-not-publish` |
+| Seçenek | `professional-channel-review` |
+| Zorunlu kural | 7 kimlik |
+| İnsan rotası | Medical · Regulatory · Legal |
+
+Bu değerler modele gösterilmez; yalnız kilitli senaryo ve deterministik skorlayıcı tarafından kullanılır.
 
 ## Kontrol ve skill: ölçülen
 
@@ -48,52 +74,6 @@ Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
 | Taşınabilir skill | `demos/titck-ilac-tanitimi/skill/SKILL.md` ve beş destek dosyası |
 | Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
 
-## Ne denetlenir?
-
-- Ürün ve reçete statüsü hangi kaynağa dayanıyor?
-- Materyalin niyeti değil, fiilî hedef kitlesi ve kanal erişimi nedir?
-- Ürün adı, fayda ve çağrı iddiaları sağlanan onaylı kapsamla eşleşiyor mu?
-- Profesyonel kanal gerçek rol doğrulamasıyla sınırlı mı?
-- Medical, Regulatory, Legal incelemesi ve yayın kapısı kayıtlı mı?
-- Sürüm, kanal, insan sahibi, gözden geçirme ve kaldırma tetikleri belli mi?
-
-## Kaynak yaklaşımı
-
-Kamusal yöntem iki resmî kaynağa dayanır:
-
-- [TİTCK - Beşerî Tıbbi Ürünlerin Tanıtım Faaliyetleri Hakkında Yönetmelik](https://www.titck.gov.tr/mevzuat/beseri-tibbi-urunlerin-tanitim-faaliyetleri-hakkinda-yonetmelik-27122018172726),
-  SHA-256 `552ce8f77c365599105d387e5d9d312998f26df634131faad66201a35ad027d1`.
-- [T.C. Resmî Gazete yayımı](https://www.resmigazete.gov.tr/eskiler/2015/07/20150703-2.htm),
-  SHA-256 `c23a03d934063bec7abd0a678cf947d2044af82f63d404a59028aaa5421191cf`.
-
-Her iki kaynağın erişim tarihi `2026-08-04`tür. Dış kaynaklar yalnızca metadata
-olarak dağıtılır; skill uzun kopyalar yerine kısa ve atıflı yöntem özeti taşır.
-Güncel metin ve yeniden kullanım koşulları insan tarafından resmî kaynaklardan
-doğrulanır. Şirket politikası, ürün, kreatif, roller ve bütün kayıtlar
-sentetiktir.
-
-## İndir
-
-- [Microsoft 365 Copilot Cowork skill](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-cowork.skill)
-- [GitHub Copilot for VS Code paketi](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-vscode.zip)
-- [Scout paketi](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-scout.zip)
-- [Copilot Studio GitHub harness paketi](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-github-harness.zip)
-- [Copilot Studio classic kurulum paketi](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-classic-setup.zip)
-
-!!! warning "Copilot Studio classic kurulumu"
-
-    Classic paket doğrudan yüklenen, çalışma zamanını veya davranışı sabitleyen
-    bir skill değildir. Yönlendirmeli manuel kurulum malzemesidir; talimatlar,
-    bilgi kaynakları, bağlantılar, izinler ve yayımlama ayarları bir insan
-    tarafından hedef ortamda ayrı ayrı incelenip yapılandırılmalıdır.
-
-## Değerlendirme sözleşmesi
-
-Demo tam 12 kilitli senaryo, beş karar sınıfı, üç seçenek ve her puan düzeyi
-çapalanmış azami 14 puanlık rubrik kullanır. Donmuş prompt; ürün statüsü, tıbbi
-kanıt, kapsam, hedefleme, erişim, tarih veya yetki uydurmayı ve sohbet dışı eser,
-yayın ya da operasyonel eylem üretmeyi yasaklar.
-
 ## İndirmeler
 
 Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
@@ -107,3 +87,7 @@ SHA-256 manifestine bağlanmıştır:
 
 Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
 doğrudan ajan içe aktarma paketi değildir.
+
+## Kullanım sınırı
+
+Bu sentetik demo profesyonel görüş veya üretim kontrolü değildir. Sonuçları resmî kaynaktan ve yetkili insanla doğrulayın. [Güvenlik ve kaynak](../safety.md) sayfası veri, kaynak, lisans ve insan yetkisi sınırlarını açıklar.

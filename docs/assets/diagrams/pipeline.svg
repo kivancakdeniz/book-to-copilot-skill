@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" role="img"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img"
      aria-label="Pipeline: approved sources become one portable skill and five host packages">
   <style>
     .bg { fill: #ffffff }
@@ -26,7 +26,8 @@
     </marker>
   </defs>
 
-  <rect class="bg" width="960" height="300" rx="18"/>
+  <rect class="bg" width="960" height="360" rx="18"/>
+  <g transform="translate(0 30)">
 
   <g>
     <rect class="card" x="16" y="60" width="196" height="120" rx="14"/>
@@ -73,4 +74,5 @@
   </g>
 
   <text class="body" x="16" y="240">Raw official documents are never bundled. Every package is byte-identical on rebuild and carries its own licence and notices.</text>
+  </g>
 </svg>

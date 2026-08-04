@@ -1,13 +1,14 @@
 # Nasıl çalışır
 
-[English](../how-it-works.md){ .bts-lang }
-
 Bu katalogdaki bir skill, bir istem ya da doküman yığını değildir. Karar
 yöntemini, uygulanan şirket kurallarını, her iddianın kaynağını ve kararın
 insana geçtiği sınırı taşıyan küçük ve denetlenebilir bir pakettir.
 
-<figure markdown>
-![Onaylı rehberden beş host paketine](../assets/diagrams/pipeline.svg)
+<figure class="bts-diagram">
+<picture>
+	<source media="(max-width: 720px)" srcset="../../assets/diagrams/pipeline-mobile.svg">
+	<img src="../../assets/diagrams/pipeline.svg" alt="Onaylı rehberden beş host paketine">
+</picture>
 <figcaption>Onaylı rehber bir kez derlenir ve desteklenen her ortama aktarılır. Resmî belgelerin ham hâli hiçbir pakete konmaz.</figcaption>
 </figure>
 
@@ -46,8 +47,11 @@ Asıl mesele şemadır. Yönetişimli bir yanıt izin verilen tek karar sınıf�
 yazar, uyguladığı her kuralı izlenebilir kılar, bilinmeyeni bilinmiyor bırakır
 ve kararı adı konmuş bir insana devreder.
 
-<figure markdown>
-![Yönetişimli karar kartının anatomisi](../assets/diagrams/decision-card.svg)
+<figure class="bts-diagram">
+<picture>
+	<source media="(max-width: 720px)" srcset="../../assets/diagrams/decision-card-mobile.svg">
+	<img src="../../assets/diagrams/decision-card.svg" alt="Yönetişimli karar kartının anatomisi">
+</picture>
 <figcaption>KVKK aydınlatma kontrolü skill'inden bir karar kartı. Kural kimlikleri, eksik kanıt ve insan sahibi biçimsel bir tercih değil, zorunlu çıktının parçasıdır.</figcaption>
 </figure>
 
@@ -56,8 +60,11 @@ ve kararı adı konmuş bir insana devreder.
 Skill hakkında iddia üretmek ucuzdur; bu yüzden katalogdaki her skill aynı
 yöntemle ölçülür ve sonuç, lehimize olmadığında da yayımlanır.
 
-<figure markdown>
-![Aynı kilitli vaka iki kez yanıtlanır ve deterministik puanlanır](../assets/diagrams/evaluation.svg)
+<figure class="bts-diagram">
+<picture>
+	<source media="(max-width: 720px)" srcset="../../assets/diagrams/evaluation-mobile.svg">
+	<img src="../../assets/diagrams/evaluation.svg" alt="Aynı kilitli vaka iki kez yanıtlanır ve deterministik puanlanır">
+</picture>
 <figcaption>Kontrol ve skill çalıştırması aynı kilitli vakayı aynı istemle yanıtlar. İkisini de bir model değil, bir betik puanlar.</figcaption>
 </figure>
 
@@ -83,6 +90,5 @@ Alttaki çıkarım motoru, MIT lisanslı
 [`book-to-skill`](https://github.com/virgiliojr94/book-to-skill) projesidir. Bu
 downstream; Copilot ekosistemi paketlemesini, yönetişimli kurumsal örnekleri,
 deterministik değerlendirmeyi ve yayın fabrikasını ekler. Kaynak projenin
-yazarının bir onayı yoktur. İlişkinin tamamı için
-[proje ve kaynak](../DOWNSTREAM.md), yeniden kullanım için
-[lisanslama ve yeniden kullanım](../LICENSING-AND-REUSE.md) sayfalarına bakın.
+yazarının bir onayı yoktur. İlişki, yeniden kullanım, veri ve insan yetkisi
+sınırları için [Güvenlik ve kaynak](safety.md) sayfasına bakın.

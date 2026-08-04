@@ -160,6 +160,47 @@
   line-height: 1.35;
 }
 
+.md-typeset ul.bts-metrics--compact {
+  grid-template-columns: repeat(4, minmax(6.5rem, 1fr));
+  margin: 1.4rem 0 2rem;
+}
+
+.md-typeset ul.bts-metrics--compact li {
+  padding: 0.8rem 0.9rem;
+}
+
+.bts-skill-kicker {
+  display: inline-block;
+  color: var(--bts-ink-soft);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.bts-score {
+  display: inline-block;
+  margin-top: 0.45rem;
+  padding: 0.18rem 0.55rem;
+  border: 1px solid;
+  border-radius: 999px;
+  font-size: 0.64rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.bts-score--control {
+  border-color: var(--bts-plain);
+  background: var(--bts-plain-soft);
+  color: var(--bts-plain);
+}
+
+.bts-score--skill {
+  border-color: var(--bts-good);
+  background: var(--bts-good-soft);
+  color: var(--bts-good);
+}
+
 /* Cards ------------------------------------------------------------------- */
 
 .md-typeset .grid.cards > ul > li {
@@ -173,6 +214,10 @@
 .md-typeset .grid.cards > ul > li:hover {
   border-color: var(--md-accent-fg-color);
   transform: translateY(-2px);
+}
+
+.md-typeset .grid.cards > ul > li > p:last-child {
+  margin-bottom: 0;
 }
 
 /* Figures ----------------------------------------------------------------- */
@@ -189,6 +234,22 @@
   display: block;
   width: 100%;
   height: auto;
+}
+
+.md-typeset figure.bts-diagram {
+  width: min(100%, 48rem);
+  margin-inline: auto;
+  padding: 0.75rem;
+}
+
+.md-typeset figure.bts-diagram picture {
+  display: block;
+  width: 100%;
+}
+
+.md-typeset figure.bts-diagram img {
+  width: 100%;
+  border-radius: 0.65rem;
 }
 
 .md-typeset figcaption {
@@ -216,20 +277,22 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Language switch --------------------------------------------------------- */
+@media (max-width: 44.984375em) {
+  .md-typeset .bts-hero__title {
+    font-size: 2rem;
+  }
 
-.md-typeset a.bts-lang {
-  display: inline-block;
-  margin-bottom: 0.6rem;
-  padding: 0.12rem 0.6rem;
-  border: 1px solid var(--bts-border);
-  border-radius: 999px;
-  color: var(--bts-ink-soft);
-  font-size: 0.68rem;
-  text-decoration: none;
-}
+  .md-typeset ul.bts-metrics--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
-.md-typeset a.bts-lang:hover {
-  border-color: var(--md-accent-fg-color);
-  color: var(--md-accent-fg-color);
+  .md-typeset figure.bts-diagram {
+    margin: 1.25rem 0;
+    padding: 0.45rem;
+  }
+
+  .md-typeset figure.bts-diagram figcaption {
+    padding-inline: 0.15rem;
+    font-size: 0.68rem;
+  }
 }
