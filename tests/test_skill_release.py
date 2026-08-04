@@ -264,7 +264,7 @@ def test_bilingual_site_entrypoints_and_material_alternates_exist():
 
     nav = config.split("nav:\n", 1)[1].split("\nmarkdown_extensions:", 1)[0]
     assert len([line for line in nav.splitlines() if line.startswith("  - ")]) == 4
-    for label in ("Overview", "Skills", "Method", "Safety & source"):
+    for label in ("Overview", "Create a skill", "Examples", "Safety & reuse"):
         assert f"- {label}:" in nav
 
     for removed in (
@@ -768,8 +768,8 @@ def test_published_articles_quote_the_measured_scores():
             assert f"**{treatment} / 100**" in article, f"{path}: treatment score missing"
             assert f"{prefix}/{slug}/scorecard.json" in article
         for catalog in (catalog_en, catalog_tr):
-            assert f">LLM {control}</span>" in catalog
-            assert f">Skill {treatment}</span>" in catalog
+            assert f"LLM only **{control}/100**" in catalog
+            assert f"LLM + skill **{treatment}/100**" in catalog
 
 
 def test_scorer_matches_citations_regardless_of_case_accent_or_punctuation():
@@ -818,10 +818,24 @@ def _published_pages() -> list[Path]:
 
 def test_site_never_republishes_upstream_promotion():
     banned = ("img.shields.io", "trendshift", "star-history", "github.com/sponsors", "BACKERS")
-    for path in _published_pages():
+    for path in [ROOT / "README.md", *_published_pages()]:
         text = path.read_text(encoding="utf-8")
         for token in banned:
             assert token not in text, f"{path}: republished upstream promotion ({token})"
+
+
+def test_readme_leads_with_the_downstream_product_story():
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    for heading in (
+        "## What this repository adds",
+        "## Convert a document",
+        "## Test whether the skill helps",
+        "## 12 reusable examples",
+        "## Upstream credit",
+    ):
+        assert heading in readme
+    assert "Convert books, PDFs, regulations, and document collections" in readme
+    assert "All 60 packages are verified byte-identical" in readme
 
 
 def test_landing_pages_still_credit_the_upstream_project():
@@ -830,29 +844,19 @@ def test_landing_pages_still_credit_the_upstream_project():
         assert "github.com/virgiliojr94/book-to-skill" in text
 
 
-def test_site_ships_its_own_brand_and_diagrams():
+def test_site_uses_native_material_without_custom_taste_assets():
     assets = ROOT / "docs" / "assets"
     assert (assets / "logo.svg").is_file()
     assert not (assets / "logo.png").exists()
-    assert (assets / "theme.css").is_file()
-    for name in ("pipeline", "evaluation", "decision-card"):
-        assert (assets / "diagrams" / f"{name}.svg").is_file()
-        assert (assets / "diagrams" / f"{name}-mobile.svg").is_file()
+    assert not (assets / "theme.css").exists()
+    assert not (assets / "diagrams").exists()
 
     config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
     assert "assets/logo.svg" in config
-    assert "assets/theme.css" in config
+    assert "extra_css:" not in config
     assert "guide.md" not in config
     assert "BACKERS.md" not in config
-
-    for page, prefix in (
-        (ROOT / "docs" / "en" / "index.md", "../assets/diagrams"),
-        (ROOT / "docs" / "tr" / "index.md", "../assets/diagrams"),
-        (ROOT / "docs" / "en" / "how-it-works.md", "../assets/diagrams"),
-        (ROOT / "docs" / "tr" / "how-it-works.md", "../../assets/diagrams"),
-    ):
+    for page in (ROOT / "docs" / "en").rglob("*.md"):
         text = page.read_text(encoding="utf-8")
-        assert f"{prefix}/" in text, f"{page}: no diagram"
-        assert "<picture>" in text
-        assert 'media="(max-width: 720px)"' in text
-        assert "-mobile.svg" in text
+        assert "bts-" not in text
+        assert "<picture>" not in text

@@ -1,124 +1,97 @@
----
-hide:
-  - navigation
-  - toc
----
+# Kaynak içeriği test edilmiş, yeniden kullanılabilir Agent Skill'lere dönüştürün
 
-<div class="bts-hero" markdown>
+`book-to-copilot-skill`; kitapları, PDF'leri, mevzuatı, kurum rehberlerini ve
+doküman koleksiyonlarını yapılandırılmış Agent Skill'lere dönüştürür. Ardından
+skill'in LLM yanıtında anlamlı fark yaratıp yaratmadığını test etmeyi ve sonucu
+Microsoft Copilot ekosistemi için paketlemeyi sağlar.
 
-<span class="bts-hero__eyebrow">Yönetişimli agent skill'leri</span>
+[Kendi skill'inizi oluşturun](create-a-skill.md){ .md-button .md-button--primary }
+[12 örneği inceleyin](skills/index.md){ .md-button }
 
-# İnceleyenin denetleyebileceği kararlar { .bts-hero__title }
+## Bu proje ne yapar
 
-<p class="bts-hero__lede">
-Onaylı rehberi; izin verilen tek karar sınıfını yazan, her satırın arkasındaki
-kuralı gösteren, bilinmeyeni bilinmiyor bırakan ve kararı adı konmuş bir insana
-devreden küçük ve taşınabilir bir Agent Skill'e derleyin. On iki işlenmiş
-kurumsal karar; her biri, skill olmadan çalışan aynı modelle karşılaştırıldı.
-</p>
+### 1. Dönüştürür
 
-[12 skill'i incele](skills/index.md){ .md-button .md-button--primary }
-[Nasıl çalıştığını gör](how-it-works.md){ .md-button }
+Agent Skill'e tek dosya, birden çok dosya, klasör veya glob verin. Yerel çıkarıcı
+PDF, EPUB, DOCX, Markdown, düz metin, HTML, RTF ve MOBI/AZW destekler. Agent;
+kaynağın yapısını, çerçevelerini, kurallarını, tekniklerini ve kaçınılması gereken
+yaklaşımları bulur; tek kullanımlık özet yerine yeniden kullanılabilir bir skill
+yazar.
 
-</div>
+```text
+kitap / PDF / mevzuat / kurum dokümanı
+                    ↓
+          yapılandırılmış Agent Skill
+```
 
-<ul class="bts-metrics">
-  <li><b>12</b><span>skill, her biri 12 kilitli senaryo ile</span></li>
-  <li><b>60</b><span>byte-identical host paketi</span></li>
-  <li><b>33 &rarr; 95</b><span>ortalama iz puanı: yalnız model, sonra skill ile</span></li>
-  <li><b>24</b><span>incelemeye açık ham yanıt</span></li>
-</ul>
+### 2. Kanıtlar
 
-## Skill yüklendiğinde ne değişir
+Üretilen skill ancak yanıtı anlamlı ve yeniden üretilebilir biçimde değiştiriyorsa
+değerlidir. Depo kontrol-versus-skill değerlendirme kalıbı sunar: aynı vaka ve
+istem önce skill olmadan, sonra skill ile çalıştırılır. Deterministik skorlayıcı
+karar sınıfını, seçeneği, kural atıflarını, insan rotasını ve uygunsuz yetki
+iddialarını denetler.
 
-Katalogdaki her skill aynı yöntemle sınandı: aynı kilitli vaka, aynı istem ve
-tek fark — ikinci çalıştırmada skill kuruluydu. İki yanıtı da bir model değil,
-bir betik puanlar; bu yüzden puanlamayı herkes yeniden çalıştırıp aynı sayıları
-elde eder.
+Yayımlanan 12 örnekte:
 
-| 12 skill genelinde ölçüm | Yalnız LLM | LLM + skill |
-|---|---|---|
+| Sonuç | Yalnız LLM | LLM + skill |
+| --- | ---: | ---: |
 | Ortalama iz puanı | 33 / 100 | 95 / 100 |
-| Hiç politika kuralına atıf yapmayan skill | 12 / 12 | 0 / 12 |
-| Tam karar sınıfını yazan skill | 0 / 12 | 9 / 12 |
-| Yayımlanan ham yanıt | 12 | 12 |
+| Hiç politika kuralına atıf yapmayan örnek | 12 / 12 | 0 / 12 |
+| Tam beklenen karar sınıfı | 0 / 12 | 9 / 12 |
 
-Kontrol çalıştırmaları yetersiz değildir; çoğunlukla makul bir iş yönü bulur.
-Yapamadıkları şey, şirket kural kimliklerine atıf yapmak, izin verilen tam karar
-sınıfını yazmak ve kararı adı konmuş sahibine yönlendirmektir; çünkü skill
-olmadan bu bilgi modele hiç ulaşmaz.
+Ham yanıtlar ve skor kartları herkese açıktır. Üç skill çalıştırması kilitli
+beklentiden daha temkinli bir sınıf seçti; bu başarısızlıklar da yayımlandı.
 
-<figure class="bts-diagram">
-<picture>
-    <source media="(max-width: 720px)" srcset="../assets/diagrams/evaluation-mobile.svg">
-    <img src="../assets/diagrams/evaluation.svg" alt="Aynı kilitli vaka iki kez yanıtlanır ve deterministik puanlanır">
-</picture>
-<figcaption>Bu sitedeki her sayının arkasındaki değerlendirme yöntemi. Ham yanıtlar, skor kartları ve skorlayıcının kendisi yayımlanır.</figcaption>
-</figure>
+### 3. Paketler
 
-!!! warning "Bu neyi kanıtlar, neyi kanıtlamaz"
+Skill düz Markdown olarak kalır ve Agent Skills destekleyen ortamlarda taşınabilir.
+Yayın fabrikası her örnek için beş deterministik paket üretir:
 
-    Bu, kilitli senaryolara karşı skill başına tek çalıştırmalı bir
-    karşılaştırmadır; nedensel bir benchmark değildir. Her skill için tek host
-    üzerinde bir kontrol ve bir skill çalıştırması vardır ve skill çalıştırması,
-    kontrolün hiç görmediği şirket politikasını meşru biçimde alır. On iki skill
-    çalıştırmasının üçü kilitli beklentiden daha temkinli bir karar sınıfı seçti;
-    bu gizlenmedi, yayımlandı. İki skill ayrıca host düzeyinde Microsoft 365
-    Copilot Cowork ekran görüntüleri ve manifestleri taşır.
+- Microsoft 365 Copilot Cowork `.skill`
+- VS Code için GitHub Copilot
+- Microsoft Scout
+- Copilot Studio GitHub harness
+- Copilot Studio classic kurulum malzemeleri
 
-## Skill'ler nerede işe yarar
+12 örnek toplam 60 byte-identical paket üretir.
 
-<div class="grid cards" markdown>
+## Kendi içeriğinizi kullanın
 
--   :material-shield-account: **Mahremiyet ve ticari ileti**
+Proje, içindeki mevzuat örnekleriyle sınırlı değildir. Şunlardan skill
+oluşturabilirsiniz:
 
-    ---
+- kitap veya teknik kılavuz;
+- mevzuat ve kendi operasyon politikanız;
+- kurum içi dokümantasyon, runbook veya mimari kararlar;
+- araştırma koleksiyonu veya ilişkili makaleler;
+- kurumunuzun sahip olduğu ürün, marka veya süreç rehberi.
 
-    KVKK aydınlatma kontrolü, ETK/IYS ileti kararı ve BTK haberleşme verisi;
-    amaç, rıza ve saklama kapılarıyla sınırlanır.
+Çıkarım sırasında girdi makinenizde kalır. Agent modeli bulutta çalışıyorsa modele
+gönderilen metin sağlayıcının normal veri koşullarına tabidir.
 
--   :material-bank: **Düzenlenmiş finans**
+## 12 örnek neden var
 
-    ---
+Örnekler tüm yaşam döngüsünü incelenebilir malzemeyle gösterir: kaynak metadatası,
+sentetik politika ve vaka, üretilen skill, kilitli senaryolar, kontrol yanıtı,
+skill yanıtı, skor kartı ve host paketleri. Akışın mahremiyet, bankacılık,
+finansal suç, rekabet, iş güvenliği, sağlık, ödeme, telekom, sermaye tahsisi ve
+pazarlama incelemesinde tekrarlanabildiğini kanıtlar.
 
-    MASAK müşteri kabul, BDDK uzaktan edinim, kripto ödeme kapısı ve rekabet
-    birleşme bildirimi; kararı verecek incelemeciye yönlendirilir.
+Bunlar şablondur; dönüştürücünün sınırı değildir.
 
--   :material-hard-hat: **İş güvenliği, sağlık ve piyasa davranışı**
+## Açık kaynak ve yeniden kullanılabilir
 
-    ---
+Depo; kodu, sentetik örnekleri ve yazılmış dokümantasyonu için MIT lisansıyla
+public'tir. Klonlayın, kendi skill'inizi üretin, değerlendirme fixture'ını
+uyarlayın ve yalnız paylaşma hakkınız olan içeriği yayımlayın.
 
-    İSG risk değerlendirmesi, TİTCK ilaç tanıtımı, indirimli fiyat denetimi ve
-    reklam iddiası dayanağı; açık yayın kontrolleriyle.
+Bu proje, MIT lisanslı
+[`virgiliojr94/book-to-skill`](https://github.com/virgiliojr94/book-to-skill)
+dönüştürücüsünün bağımsız downstream'idir. Çıkarım temelini korur; Copilot
+paketleme, tekrarlanabilir değerlendirme, 12 kurumsal örnek ve yayın
+sertleştirmesi ekler. Kaynak projenin yazarı, Microsoft veya herhangi bir kamu
+otoritesi tarafından onaylanmamıştır.
 
--   :material-cube-outline: **Her Agent Skills ortamı**
-
-    ---
-
-    Cowork, VS Code'da GitHub Copilot, Microsoft Scout ve iki biçimde Copilot
-    Studio — skill başına beş deterministik paket.
-
-</div>
-
-## Bir skill nasıl kurulur
-
-<figure class="bts-diagram">
-<picture>
-    <source media="(max-width: 720px)" srcset="../assets/diagrams/pipeline-mobile.svg">
-    <img src="../assets/diagrams/pipeline.svg" alt="Onaylı rehberden beş host paketine">
-</picture>
-<figcaption>Yalnız metadata ile resmî yöntem, yayımlanmış sentetik şirket katmanı, tek derlenmiş skill ve beş host aktarımı.</figcaption>
-</figure>
-
-[Yöntemi oku](how-it-works.md){ .md-button }
-
-## Kaynak ve bağımsızlık
-
-Alttaki çıkarım motoru, MIT lisanslı
-[`book-to-skill`](https://github.com/virgiliojr94/book-to-skill) projesidir. Bu
-downstream; Copilot ekosistemi paketlemesini, yönetişimli kurumsal örnekleri,
-deterministik değerlendirmeyi ve yayın fabrikasını ekler. Bağımsız olarak
-sürdürülür; kaynak projenin yazarı, Microsoft ya da herhangi bir kamu otoritesi
-tarafından onaylanmamıştır.
-
-[Güvenlik, kaynak ve yeniden kullanım sınırları](safety.md)
+[Kendi kaynağınızla başlayın](create-a-skill.md) ·
+[Güvenlik ve yeniden kullanım sınırlarını inceleyin](safety.md)

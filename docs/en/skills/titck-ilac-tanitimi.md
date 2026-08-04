@@ -1,94 +1,75 @@
 # Pharmaceutical promotion review: audience and release gate
 
-<span class="bts-skill-kicker">Pharmaceutical and health communication</span>
+**Domain:** Pharmaceutical and health communication<br>
+**For:** Medical, regulatory, legal, and marketing teams
 
-For **Medical, regulatory, legal, and marketing teams**. Ties product status, audience, and channel reach to a human release review.
+Ties product status, audience, and channel reach to a human release review.
 
-<ul class="bts-metrics bts-metrics--compact">
-  <li><b>40</b><span>LLM only</span></li>
-  <li><b>100</b><span>LLM + skill</span></li>
-  <li><b>7/7</b><span>rule citations</span></li>
-  <li><b>12</b><span>locked scenarios</span></li>
-</ul>
+## Source converted
 
-## What the skill added
+This example combines official method sources with a synthetic company policy
+and a synthetic case. Raw official documents are not bundled.
 
-The control answer cited 0/7 rule identifiers; the skill answer cited 7/7. The value is not a longer answer. It is a decision record that exposes company policy, evidence gaps, and the human authority boundary together.
-
-Copilot cannot approve, publish, or execute an operational action.
-
-## Decision contract
-
-| Locked expectation | Value |
-| --- | --- |
-| Decision class | `do-not-publish` |
-| Option | `professional-channel-review` |
-| Required rules | 7 identifiers |
-| Human route | Medical · Regulatory · Legal |
-
-These values are never shown to the model; only the locked scenario and the deterministic scorer use them.
-
-## Control vs skill: measured
-
-Both runs answered the same locked case with the same prompt. The only
-difference is that the second run had the skill installed. Scoring is done by a
-deterministic script against the locked scenario, not by a model, so anyone can
-reproduce these numbers.
-
-| Governance gate | LLM only | LLM + skill |
+| Type | Source | Publisher / status |
 | --- | --- | --- |
+| Official source | [Beşerî Tıbbi Ürünlerin Tanıtım Faaliyetleri Hakkında Yönetmelik](https://www.titck.gov.tr/mevzuat/beseri-tibbi-urunlerin-tanitim-faaliyetleri-hakkinda-yonetmelik-27122018172726) | Türkiye İlaç ve Tıbbî Cihaz Kurumu (TİTCK) |
+| Official source | [Beşerî Tıbbi Ürünlerin Tanıtım Faaliyetleri Hakkında Yönetmelik - Resmî Gazete yayımı](https://www.resmigazete.gov.tr/eskiler/2015/07/20150703-2.htm) | T.C. Resmî Gazete |
+| Synthetic policy and case | `Published in the demo directory under the repository MIT licence` | — |
+
+## Skill generated
+
+Instead of compressing the source into one summary, the skill separates reusable
+knowledge into six files:
+
+- `SKILL.md`: when to use the skill and the workflow;
+- `public-method.md`: an independent method summary from official sources;
+- `company-policy.md`: synthetic company rules with stable identifiers;
+- `evidence-map.md`: which claims may come from which source;
+- `output-schema.md`: the expected answer structure;
+- `scenario-guide.md`: missing information, conflicts, and abstention behavior.
+
+The locked evaluation expects decision class `do-not-publish`, option
+`professional-channel-review`, and 7 rule identifiers.
+Final human route: Medical · Regulatory · Legal.
+
+## LLM only vs LLM + skill
+
+The same case and prompt were run twice. The only difference was that the skill
+was installed for the second run. A deterministic script using the locked answer
+key, not another model, scored both answers.
+
+| Check | LLM only | LLM + skill |
+| --- | ---: | ---: |
 | Policy rules cited | 0 / 7 | 7 / 7 |
-| Exact decision class stated | no | yes |
-| Named option stated | yes | yes |
-| Human approval route named | yes | yes |
-| No autonomous-authority claim | yes | yes |
+| Exact decision class | no | yes |
+| Named option | yes | yes |
+| Human route | yes | yes |
 | **Trace score** | **40 / 100** | **100 / 100** |
 
-Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Captured: 2026-08-04 · Scenario: `TTK-01`
-
-[Control answer](../../assets/skills/titck-ilac-tanitimi/outputs/control-1.txt) · [Skill answer](../../assets/skills/titck-ilac-tanitimi/outputs/treatment-1.txt) · [Scorecard](../../assets/skills/titck-ilac-tanitimi/scorecard.json)
-
-Reproduce:
+[Control answer](../../assets/skills/titck-ilac-tanitimi/outputs/control-1.txt) ·
+[Skill answer](../../assets/skills/titck-ilac-tanitimi/outputs/treatment-1.txt) ·
+[Scorecard](../../assets/skills/titck-ilac-tanitimi/scorecard.json)
 
 ```bash
 python tools/score_skill_answer.py scorecard --demo demos/titck-ilac-tanitimi
 ```
 
-The control run cited 0 of 7 policy rules and the skill run cited 7. Only the skill run stated the exact decision class (`do-not-publish`).
+This is a one-scenario, one-host comparison; it is not proof of production
+accuracy or regulatory compliance.
 
-Limits: one run per condition, one locked scenario, and a single host. This table
-is the machine-checkable subset; the 14-point human rubric lives in
-`demos/titck-ilac-tanitimi/evaluation/rubric.json`.
+## Copilot packages
 
-## From source to skill
+- [Cowork `.skill`](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-cowork.skill)
+- [GitHub Copilot for VS Code](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-vscode.zip)
+- [Microsoft Scout](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-scout.zip)
+- [Copilot Studio GitHub harness](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-github-harness.zip)
+- [Copilot Studio classic setup](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-classic-setup.zip)
 
-This chain shows exactly which content produced the skill.
+The classic package is not a direct solution import. It contains setup material
+for a human to apply in the target Copilot Studio environment.
 
-| Stage | Produced content |
-| --- | --- |
-| Official source (metadata only) | [Beşerî Tıbbi Ürünlerin Tanıtım Faaliyetleri Hakkında Yönetmelik](https://www.titck.gov.tr/mevzuat/beseri-tibbi-urunlerin-tanitim-faaliyetleri-hakkinda-yonetmelik-27122018172726) — Türkiye İlaç ve Tıbbî Cihaz Kurumu (TİTCK) |
-| Official source (metadata only) | [Beşerî Tıbbi Ürünlerin Tanıtım Faaliyetleri Hakkında Yönetmelik - Resmî Gazete yayımı](https://www.resmigazete.gov.tr/eskiler/2015/07/20150703-2.htm) — T.C. Resmî Gazete |
-| Public method summary | `demos/titck-ilac-tanitimi/skill/public-method.md` |
-| Synthetic company policy | `demos/titck-ilac-tanitimi/sources/company-policy.md` |
-| Synthetic case | `demos/titck-ilac-tanitimi/sources/case-brief.md` |
-| Locked evaluation | 12 scenarios and a 14-point rubric: `demos/titck-ilac-tanitimi/evaluation/` |
-| Portable skill | `demos/titck-ilac-tanitimi/skill/SKILL.md` plus five companions |
-| Host packages | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness and classic) |
+## Reuse this example
 
-## Downloads
-
-These packages are generated deterministically by the shared release factory
-and are bound to the SHA-256 manifest:
-
-- [Cowork skill package](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-cowork.skill)
-- [Copilot VS Code ZIP](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-vscode.zip)
-- [Scout ZIP](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-scout.zip)
-- [Copilot Studio GitHub harness ZIP](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-github-harness.zip)
-- [Copilot Studio classic setup ZIP](../../downloads/skills/titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-classic-setup.zip)
-
-The classic setup ZIP is a package of setup materials and instructions for
-Copilot Studio; it is not a direct agent import package.
-
-## Use boundary
-
-This synthetic demo is not professional advice or a production control. Verify the result against the official source and with the authorized human. [Safety & source](../safety.md) explains the data, source, licence, evaluation, and human-authority boundaries.
+The source manifest, synthetic inputs, scenarios, raw answers, and scorecard are
+public under `demos/titck-ilac-tanitimi/`. Copy the structure for your own source, but publish
+only material you have the right to share. Review [Safety & reuse](../safety.md).

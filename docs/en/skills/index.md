@@ -1,148 +1,110 @@
-# Enterprise decision skill catalog
+---
+hide:
+  - toc
+---
 
-This catalog lists 12 enterprise decision skills built by one release
-factory. Each skill ships 12 locked scenarios, a 14-point rubric, a synthetic
-company policy, and official-source metadata.
+# 12 public examples
 
-For every skill the same case was answered twice: once without the skill and
-once with it installed. The deterministic trace score averaged 33/100
-for the model alone and 95/100 with the skill. Policy-rule citations
-were zero in all 12 control runs. This is not a claim about production
-performance, ROI, or regulatory compliance.
+These examples show that the converter works with regulations and company
+guidance as well as books. Every example includes a source manifest, synthetic
+policy and case, generated skill, 12 locked scenarios, control answer, skill
+answer, scorecard, and five Copilot packages.
 
-The release contains 60 downloadable packages across five host formats.
-They are generated deterministically and verified byte-identical after a clean
-rebuild.
+Across the 12 examples, the mean trace score moved from **33/100**
+without the skill to **95/100** with it. Results are limited to
+one scenario and one host per condition.
 
-[SHA256SUMS](../../downloads/skills/SHA256SUMS) ·
-[Third-party notices](../../downloads/skills/THIRD_PARTY_NOTICES.md)
+## Examples
 
-## 12 skills
+### [KVKK privacy notice review](kvkk-aydinlatma-kontrolu.md)
 
-<div class="grid cards" markdown>
+**Domain:** Data protection<br>
+**Score:** LLM only **10/100** · LLM + skill **100/100**
 
--   **[KVKK privacy notice review](kvkk-aydinlatma-kontrolu.md)**
+Connects notice, consent, and transfer gaps to a human release gate.
 
-    <span class="bts-skill-kicker">Data protection</span>
+### [Commercial message decision (ETK/IYS)](etk-iys-ileti-karari.md)
 
-    Connects notice, consent, and transfer gaps to a human release gate.
+**Domain:** Commercial electronic messaging<br>
+**Score:** LLM only **20/100** · LLM + skill **80/100**
 
-    <span class="bts-score bts-score--control">LLM 10</span> <span class="bts-score bts-score--skill">Skill 100</span>
+Reviews a campaign audience against person-channel evidence and a suppression gate.
 
--   **[Commercial message decision (ETK/IYS)](etk-iys-ileti-karari.md)**
+### [Discount price claim review](indirimli-fiyat-denetimi.md)
 
-    <span class="bts-skill-kicker">Commercial electronic messaging</span>
+**Domain:** E-commerce and consumer law<br>
+**Score:** LLM only **20/100** · LLM + skill **100/100**
 
-    Reviews a campaign audience against person-channel evidence and a suppression gate.
+Meets price history and campaign claims in a traceable release decision.
 
-    <span class="bts-score bts-score--control">LLM 20</span> <span class="bts-score bts-score--skill">Skill 80</span>
+### [AML customer acceptance (MASAK)](masak-musteri-kabul.md)
 
--   **[Discount price claim review](indirimli-fiyat-denetimi.md)**
+**Domain:** Financial crime prevention<br>
+**Score:** LLM only **20/100** · LLM + skill **100/100**
 
-    <span class="bts-skill-kicker">E-commerce and consumer law</span>
+Routes identity, beneficial-owner, and source-of-funds gaps to human review.
 
-    Meets price history and campaign claims in a traceable release decision.
+### [Remote customer onboarding (BDDK)](bddk-uzaktan-musteri-edinimi.md)
 
-    <span class="bts-score bts-score--control">LLM 20</span> <span class="bts-score bts-score--skill">Skill 100</span>
+**Domain:** Banking<br>
+**Score:** LLM only **40/100** · LLM + skill **80/100**
 
--   **[AML customer acceptance (MASAK)](masak-musteri-kabul.md)**
+Tests a remote onboarding flow against evidence, control, and go-live gates.
 
-    <span class="bts-skill-kicker">Financial crime prevention</span>
+### [Merger notification review](rekabet-birlesme-bildirimi.md)
 
-    Routes identity, beneficial-owner, and source-of-funds gaps to human review.
+**Domain:** Mergers and acquisitions<br>
+**Score:** LLM only **40/100** · LLM + skill **100/100**
 
-    <span class="bts-score bts-score--control">LLM 20</span> <span class="bts-score bts-score--skill">Skill 100</span>
+Separates preliminary indicators from the legal notification and closing gate.
 
--   **[Remote customer onboarding (BDDK)](bddk-uzaktan-musteri-edinimi.md)**
+### [OHS risk assessment: from change to commissioning gate](isg-risk-degerlendirme.md)
 
-    <span class="bts-skill-kicker">Banking</span>
+**Domain:** Occupational health and safety<br>
+**Score:** LLM only **40/100** · LLM + skill **100/100**
 
-    Tests a remote onboarding flow against evidence, control, and go-live gates.
+Makes change risk visible through participation, control, and commissioning evidence.
 
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 80</span>
+### [Pharmaceutical promotion review: audience and release gate](titck-ilac-tanitimi.md)
 
--   **[Merger notification review](rekabet-birlesme-bildirimi.md)**
+**Domain:** Pharmaceutical and health communication<br>
+**Score:** LLM only **40/100** · LLM + skill **100/100**
 
-    <span class="bts-skill-kicker">Mergers and acquisitions</span>
+Ties product status, audience, and channel reach to a human release review.
 
-    Separates preliminary indicators from the legal notification and closing gate.
+### [Crypto payment gateway review](kripto-odeme-kapisi.md)
 
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
+**Domain:** Payment services and crypto assets<br>
+**Score:** LLM only **40/100** · LLM + skill **100/100**
 
--   **[OHS risk assessment: from change to commissioning gate](isg-risk-degerlendirme.md)**
+Reviews the role of crypto in a payment flow against product and launch gates.
 
-    <span class="bts-skill-kicker">Occupational health and safety</span>
+### [Telecom communication data review](btk-haberlesme-verisi.md)
 
-    Makes change risk visible through participation, control, and commissioning evidence.
+**Domain:** Telecom and privacy<br>
+**Score:** LLM only **40/100** · LLM + skill **80/100**
 
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
+Bounds location and traffic data use by purpose, consent, and retention gates.
 
--   **[Pharmaceutical promotion review: audience and release gate](titck-ilac-tanitimi.md)**
+### [Investment committee appraisal](investment-committee.md)
 
-    <span class="bts-skill-kicker">Pharmaceutical and health communication</span>
+**Domain:** Capital allocation<br>
+**Score:** LLM only **40/100** · LLM + skill **100/100**
 
-    Ties product status, audience, and channel reach to a human release review.
+Turns a capital brief into a gated, evidence-cited committee decision card.
 
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
+### [Marketing claims review](marketing-claims-review.md)
 
--   **[Crypto payment gateway review](kripto-odeme-kapisi.md)**
+**Domain:** Marketing and advertising compliance<br>
+**Score:** LLM only **40/100** · LLM + skill **100/100**
 
-    <span class="bts-skill-kicker">Payment services and crypto assets</span>
-
-    Reviews the role of crypto in a payment flow against product and launch gates.
-
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
-
--   **[Telecom communication data review](btk-haberlesme-verisi.md)**
-
-    <span class="bts-skill-kicker">Telecom and privacy</span>
-
-    Bounds location and traffic data use by purpose, consent, and retention gates.
-
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 80</span>
-
--   **[Investment committee appraisal](investment-committee.md)**
-
-    <span class="bts-skill-kicker">Capital allocation</span>
-
-    Turns a capital brief into a gated, evidence-cited committee decision card.
-
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
-
--   **[Marketing claims review](marketing-claims-review.md)**
-
-    <span class="bts-skill-kicker">Marketing and advertising compliance</span>
-
-    Checks advertising claims against substantiation, disclosure, and release controls.
-
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
-
-</div>
+Checks advertising claims against substantiation, disclosure, and release controls.
 
 
-## Source and license boundary
+## What you can download
 
-Official legislation, guidance, and method sources are not copied in full into
-the packages. The release carries only title, official URL, publisher, access
-date, SHA-256, and reuse warnings as metadata. A human must verify currency,
-scope, and reuse conditions at the official source. Company policies, cases, and
-operational examples are synthetic and distributed within the MIT boundary
-declared in each manifest. The skills do not provide legal, medical, or
-engineering advice; authorized humans retain final decisions and all system
-actions.
+Each example page provides Cowork, GitHub Copilot for VS Code, Scout, and two
+Copilot Studio formats. Every package is verified byte-identical after a clean
+rebuild and recorded in `downloads/skills/SHA256SUMS`.
 
-## Host packages
-
-| Package | Root contract | Use |
-|---|---|---|
-| Cowork `.skill` | `SKILL.md` + five companion files | Microsoft 365 Copilot Cowork custom-skill upload |
-| Copilot VS Code ZIP | `.github/skills/<slug>/` + `INSTALL.md` | Repository-level GitHub Copilot Agent Skill |
-| Scout ZIP | `.copilot/skills/<slug>/` + `INSTALL.md` | Scout/Copilot skill-directory installation |
-| Copilot Studio GitHub harness ZIP | Root `SKILL.md`, companion files, and `INSTALL.md` | Existing-skill ZIP upload in the GitHub Copilot harness preview |
-| Copilot Studio classic setup ZIP | `README.md`, `instructions.md`, `knowledge/`, manifest | Guided manual setup in a classic environment |
-
-The Copilot Studio GitHub harness package is directly uploadable under the
-official existing-skill ZIP contract. The classic setup package is not a direct
-agent or solution import: a human applies its instructions and knowledge files
-to the target environment. In both cases, MCP servers, tools, connections,
-identity, permissions, and publishing settings require separate configuration.
+To run the same workflow on your material, [create a skill](../create-a-skill.md).

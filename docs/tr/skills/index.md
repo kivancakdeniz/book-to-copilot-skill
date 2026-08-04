@@ -1,146 +1,109 @@
-# Kurumsal karar skill kataloğu
+---
+hide:
+  - toc
+---
 
-Bu katalog, tek bir yayın fabrikasıyla üretilen 12 kurumsal karar skill'ini
-listeler. Her skill 12 kilitli senaryo, 14 puanlık rubrik, sentetik şirket
-politikası ve resmî kaynak metadatası içerir.
+# 12 public örnek
 
-Her skill için aynı vaka iki kez yanıtlandı: bir kez skill olmadan, bir kez
-skill kurulu. Deterministik iz puanı ortalaması yalnız LLM'de 33/100,
-LLM + skill'de 95/100 oldu. Politika kuralı atfı 12 kontrol
-çalıştırmasının hepsinde sıfırdı. Bu bir üretim performansı, ROI veya uygunluk
-iddiası değildir.
+Bu örnekler dönüştürücünün yalnız kitaplarda değil, mevzuat ve kurum
+rehberlerinde de çalıştığını gösterir. Her örnekte kaynak manifesti, sentetik
+politika ve vaka, üretilen skill, 12 kilitli senaryo, kontrol yanıtı, skill
+yanıtı, skor kartı ve beş Copilot paketi bulunur.
 
-Yayın, beş host biçiminde 60 indirilebilir paket içerir. Paketler
-deterministik üretilir ve temiz yeniden derlemede byte-identical doğrulanır.
+12 örneğin ortalama iz puanı yalnız LLM'de **33/100**, skill ile
+**95/100** oldu. Sonuçlar tek senaryo ve tek host sınırındadır.
 
-[SHA256SUMS](../../downloads/skills/SHA256SUMS) ·
-[Üçüncü taraf bildirimleri](../../downloads/skills/THIRD_PARTY_NOTICES.md)
+## Örnekler
 
-## 12 skill
+### [KVKK aydınlatma kontrolü](kvkk-aydinlatma-kontrolu.md)
 
-<div class="grid cards" markdown>
+**Alan:** Veri koruma<br>
+**Puan:** LLM only **10/100** · LLM + skill **100/100**
 
--   **[KVKK aydınlatma kontrolü](kvkk-aydinlatma-kontrolu.md)**
+Aydınlatma, rıza ve aktarım boşluklarını insan yayın kapısına bağlar.
 
-    <span class="bts-skill-kicker">Veri koruma</span>
+### [ETK/IYS ileti kararı](etk-iys-ileti-karari.md)
 
-    Aydınlatma, rıza ve aktarım boşluklarını insan yayın kapısına bağlar.
+**Alan:** Ticari elektronik ileti<br>
+**Puan:** LLM only **20/100** · LLM + skill **80/100**
 
-    <span class="bts-score bts-score--control">LLM 10</span> <span class="bts-score bts-score--skill">Skill 100</span>
+Kampanya kitlesini kişi-kanal kanıtı ve bastırma kapısıyla inceler.
 
--   **[ETK/IYS ileti kararı](etk-iys-ileti-karari.md)**
+### [İndirimli fiyat denetimi](indirimli-fiyat-denetimi.md)
 
-    <span class="bts-skill-kicker">Ticari elektronik ileti</span>
+**Alan:** E-ticaret ve tüketici hukuku<br>
+**Puan:** LLM only **20/100** · LLM + skill **100/100**
 
-    Kampanya kitlesini kişi-kanal kanıtı ve bastırma kapısıyla inceler.
+Fiyat geçmişi ile kampanya iddiasını izlenebilir bir yayın kararında buluşturur.
 
-    <span class="bts-score bts-score--control">LLM 20</span> <span class="bts-score bts-score--skill">Skill 80</span>
+### [MASAK müşteri kabul](masak-musteri-kabul.md)
 
--   **[İndirimli fiyat denetimi](indirimli-fiyat-denetimi.md)**
+**Alan:** Finansal suçlarla mücadele<br>
+**Puan:** LLM only **20/100** · LLM + skill **100/100**
 
-    <span class="bts-skill-kicker">E-ticaret ve tüketici hukuku</span>
+Kimlik, nihai faydalanıcı ve fon kaynağı boşluklarını insan incelemesine yönlendirir.
 
-    Fiyat geçmişi ile kampanya iddiasını izlenebilir bir yayın kararında buluşturur.
+### [BDDK uzaktan müşteri edinimi](bddk-uzaktan-musteri-edinimi.md)
 
-    <span class="bts-score bts-score--control">LLM 20</span> <span class="bts-score bts-score--skill">Skill 100</span>
+**Alan:** Bankacılık<br>
+**Puan:** LLM only **40/100** · LLM + skill **80/100**
 
--   **[MASAK müşteri kabul](masak-musteri-kabul.md)**
+Uzaktan edinim akışını kanıt, kontrol ve canlıya geçiş kapılarıyla sınar.
 
-    <span class="bts-skill-kicker">Finansal suçlarla mücadele</span>
+### [Rekabet birleşme bildirimi](rekabet-birlesme-bildirimi.md)
 
-    Kimlik, nihai faydalanıcı ve fon kaynağı boşluklarını insan incelemesine yönlendirir.
+**Alan:** Birleşme ve devralmalar<br>
+**Puan:** LLM only **40/100** · LLM + skill **100/100**
 
-    <span class="bts-score bts-score--control">LLM 20</span> <span class="bts-score bts-score--skill">Skill 100</span>
+Ön hesaplama göstergelerini hukuki bildirim kararı ve kapanış kapısından ayırır.
 
--   **[BDDK uzaktan müşteri edinimi](bddk-uzaktan-musteri-edinimi.md)**
+### [İSG risk değerlendirmesi: değişiklikten devreye alma kapısına](isg-risk-degerlendirme.md)
 
-    <span class="bts-skill-kicker">Bankacılık</span>
+**Alan:** İş sağlığı ve güvenliği<br>
+**Puan:** LLM only **40/100** · LLM + skill **100/100**
 
-    Uzaktan edinim akışını kanıt, kontrol ve canlıya geçiş kapılarıyla sınar.
+Değişiklik risklerini katılım, kontrol ve devreye alma kanıtlarıyla görünür kılar.
 
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 80</span>
+### [TİTCK ilaç tanıtımı: hedef kitle ve yayın kapısı](titck-ilac-tanitimi.md)
 
--   **[Rekabet birleşme bildirimi](rekabet-birlesme-bildirimi.md)**
+**Alan:** İlaç ve sağlık iletişimi<br>
+**Puan:** LLM only **40/100** · LLM + skill **100/100**
 
-    <span class="bts-skill-kicker">Birleşme ve devralmalar</span>
+Ürün statüsü, hedef kitle ve kanal erişimini insan yayın incelemesine bağlar.
 
-    Ön hesaplama göstergelerini hukuki bildirim kararı ve kapanış kapısından ayırır.
+### [Kripto ödeme kapısı](kripto-odeme-kapisi.md)
 
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
+**Alan:** Ödeme hizmetleri ve kripto varlıklar<br>
+**Puan:** LLM only **40/100** · LLM + skill **100/100**
 
--   **[İSG risk değerlendirmesi: değişiklikten devreye alma kapısına](isg-risk-degerlendirme.md)**
+Kripto işlevinin ödeme akışındaki rolünü ürün sınırı ve lansman kapısıyla inceler.
 
-    <span class="bts-skill-kicker">İş sağlığı ve güvenliği</span>
+### [BTK haberleşme verisi](btk-haberlesme-verisi.md)
 
-    Değişiklik risklerini katılım, kontrol ve devreye alma kanıtlarıyla görünür kılar.
+**Alan:** Telekom ve mahremiyet<br>
+**Puan:** LLM only **40/100** · LLM + skill **80/100**
 
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
+Konum ve trafik verisi kullanımını amaç, rıza ve saklama kapılarıyla sınırlar.
 
--   **[TİTCK ilaç tanıtımı: hedef kitle ve yayın kapısı](titck-ilac-tanitimi.md)**
+### [Yatırım komitesi değerlendirmesi](investment-committee.md)
 
-    <span class="bts-skill-kicker">İlaç ve sağlık iletişimi</span>
+**Alan:** Sermaye tahsisi<br>
+**Puan:** LLM only **40/100** · LLM + skill **100/100**
 
-    Ürün statüsü, hedef kitle ve kanal erişimini insan yayın incelemesine bağlar.
+Sermaye brifingini kapılı ve kanıt atıflı bir komite karar kartına dönüştürür.
 
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
+### [Pazarlama iddiaları incelemesi](marketing-claims-review.md)
 
--   **[Kripto ödeme kapısı](kripto-odeme-kapisi.md)**
+**Alan:** Pazarlama ve reklam uyumu<br>
+**Puan:** LLM only **40/100** · LLM + skill **100/100**
 
-    <span class="bts-skill-kicker">Ödeme hizmetleri ve kripto varlıklar</span>
-
-    Kripto işlevinin ödeme akışındaki rolünü ürün sınırı ve lansman kapısıyla inceler.
-
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
-
--   **[BTK haberleşme verisi](btk-haberlesme-verisi.md)**
-
-    <span class="bts-skill-kicker">Telekom ve mahremiyet</span>
-
-    Konum ve trafik verisi kullanımını amaç, rıza ve saklama kapılarıyla sınırlar.
-
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 80</span>
-
--   **[Yatırım komitesi değerlendirmesi](investment-committee.md)**
-
-    <span class="bts-skill-kicker">Sermaye tahsisi</span>
-
-    Sermaye brifingini kapılı ve kanıt atıflı bir komite karar kartına dönüştürür.
-
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
-
--   **[Pazarlama iddiaları incelemesi](marketing-claims-review.md)**
-
-    <span class="bts-skill-kicker">Pazarlama ve reklam uyumu</span>
-
-    Reklam iddialarını dayanak, ifşa ve yayın kontrolleriyle sınar.
-
-    <span class="bts-score bts-score--control">LLM 40</span> <span class="bts-score bts-score--skill">Skill 100</span>
-
-</div>
+Reklam iddialarını dayanak, ifşa ve yayın kontrolleriyle sınar.
 
 
-## Kaynak ve lisans sınırı
+## Ne indirebilirsiniz
 
-Resmî mevzuat, kılavuz ve yöntem kaynakları paketlere tam içerik olarak alınmaz.
-Yayın yalnız başlık, resmî URL, yayıncı, erişim tarihi, SHA-256 ve yeniden
-kullanım uyarısını üst veri olarak taşır. Güncellik, kapsam ve yeniden kullanım
-koşulları resmî kaynaktan insan tarafından doğrulanır. Şirket politikaları,
-vakalar ve operasyonel örnekler sentetiktir ve manifestte belirtilen MIT sınırı
-içinde dağıtılır. Skill'ler hukuki, tıbbi veya mühendislik görüşü vermez; nihai
-karar ve bütün sistem eylemleri yetkili insanlarda kalır.
+Her örnek sayfasında Cowork, GitHub Copilot for VS Code, Scout ve iki Copilot
+Studio biçimi bulunur. Tüm paketler temiz yeniden derlemede byte-identical
+doğrulanır ve `downloads/skills/SHA256SUMS` manifestine bağlanır.
 
-## Çalışma ortamı paketleri
-
-| Paket | Kök sözleşmesi | Kullanım |
-|---|---|---|
-| Cowork `.skill` | `SKILL.md` + beş eşlikçi dosya | Microsoft 365 Copilot Cowork özel skill yüklemesi |
-| Copilot VS Code ZIP | `.github/skills/<slug>/` + `INSTALL.md` | Depo düzeyinde GitHub Copilot Agent Skill |
-| Scout ZIP | `.copilot/skills/<slug>/` + `INSTALL.md` | Scout/Copilot skill dizini kurulumu |
-| Copilot Studio GitHub harness ZIP | Kökte `SKILL.md`, eşlikçi dosyalar ve `INSTALL.md` | GitHub Copilot harness ön izlemesinde mevcut skill ZIP yüklemesi |
-| Copilot Studio Classic kurulum ZIP'i | `README.md`, `instructions.md`, `knowledge/`, manifest | Classic ortamında yönlendirmeli manuel kurulum |
-
-Copilot Studio GitHub harness paketi, resmî mevcut-skill ZIP sözleşmesine göre
-doğrudan yüklenebilen skill paketidir. Classic kurulum paketi ise doğrudan ajan
-veya çözüm içe aktarma paketi değildir: talimatlar ve bilgi dosyaları insan
-tarafından hedef ortama uygulanır. Her iki durumda da MCP sunucuları, araçlar,
-bağlantılar, kimlik, izin ve yayımlama ayarları ayrıca yapılandırılır.
+Kendi içeriğinizle aynı akışı kurmak için [Skill oluştur](../create-a-skill.md).

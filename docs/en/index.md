@@ -1,124 +1,96 @@
----
-hide:
-  - navigation
-  - toc
----
+# Turn source material into tested, reusable Agent Skills
 
-<div class="bts-hero" markdown>
+`book-to-copilot-skill` converts books, PDFs, regulations, internal guidance,
+and document collections into structured Agent Skills. It then helps you test
+whether the skill changes an LLM's answer and package the result for the
+Microsoft Copilot ecosystem.
 
-<span class="bts-hero__eyebrow">Governed agent skills</span>
+[Create your own skill](create-a-skill.md){ .md-button .md-button--primary }
+[Explore the 12 examples](skills/index.md){ .md-button }
 
-# Decisions your reviewers can audit { .bts-hero__title }
+## What this project does
 
-<p class="bts-hero__lede">
-Compile approved guidance into a small, portable Agent Skill that states one
-allowed decision class, cites the rule behind every line, keeps unknowns
-unknown, and hands the call to a named human. Twelve worked enterprise
-decisions, each one measured against the same model without the skill.
-</p>
+### 1. Convert
 
-[Browse the 12 skills](skills/index.md){ .md-button .md-button--primary }
-[See how it works](how-it-works.md){ .md-button }
+Point the Agent Skill at a file, several files, a folder, or a glob. The local
+extractor supports PDF, EPUB, DOCX, Markdown, plain text, HTML, RTF, and
+MOBI/AZW. The agent identifies the source structure, frameworks, rules,
+techniques, and anti-patterns, then writes a reusable skill instead of a one-off
+summary.
 
-</div>
+```text
+book / PDF / regulation / internal docs
+                    ↓
+       structured Agent Skill
+```
 
-<ul class="bts-metrics">
-  <li><b>12</b><span>skills, each with 12 locked scenarios</span></li>
-  <li><b>60</b><span>byte-identical host packages</span></li>
-  <li><b>33 &rarr; 95</b><span>mean trace score, model alone vs with the skill</span></li>
-  <li><b>24</b><span>raw answers published for inspection</span></li>
-</ul>
+### 2. Prove
 
-## What changes when the skill is loaded
+A generated skill is useful only if it changes the answer in a meaningful,
+repeatable way. The repository includes a control-versus-skill evaluation
+pattern: the same case and prompt are run once without the skill and once with
+it. A deterministic scorer checks decision class, selected option, rule
+citations, human routing, and unsafe authority claims.
 
-Every skill in the catalog was tested the same way: the same locked case, the
-same prompt, and one difference — the skill was installed for the second run.
-Both answers are scored by a script, not a model, so anyone can re-run the
-scoring and get the same numbers.
+Across the 12 published examples:
 
-| Measured across all 12 skills | LLM only | LLM + skill |
-|---|---|---|
+| Result | LLM only | LLM + skill |
+| --- | ---: | ---: |
 | Mean trace score | 33 / 100 | 95 / 100 |
-| Skills citing zero policy rules | 12 of 12 | 0 of 12 |
-| Skills stating the exact decision class | 0 of 12 | 9 of 12 |
-| Raw answers published | 12 | 12 |
+| Examples citing no policy rules | 12 / 12 | 0 / 12 |
+| Exact expected decision class | 0 / 12 | 9 / 12 |
 
-The control runs are not incompetent. They usually reach a sensible business
-direction. What they cannot do is cite the company rule identifiers, state the
-exact allowed decision class, and route the decision to the named owner, because
-none of that reaches the model without the skill.
+The raw answers and scorecards are public. Three skill runs selected a more
+cautious class than the locked expectation; those misses are published too.
 
-<figure class="bts-diagram">
-<picture>
-    <source media="(max-width: 720px)" srcset="../assets/diagrams/evaluation-mobile.svg">
-    <img src="../assets/diagrams/evaluation.svg" alt="One locked case answered twice and scored by a deterministic script">
-</picture>
-<figcaption>The evaluation method behind every number on this site. Raw answers, scorecards, and the scorer itself are published.</figcaption>
-</figure>
+### 3. Ship
 
-!!! warning "What this does and does not prove"
+A skill remains plain Markdown and is portable across Agent Skills hosts. The
+release factory produces five deterministic packages per example:
 
-    This is a per-skill, single-run comparison against locked scenarios, not a
-    causal benchmark. Each skill has one control run and one skill run on one
-    host, and the skill run legitimately receives the company policy that the
-    control never sees. Three of the twelve skill runs chose a more cautious
-    decision class than the locked expectation, which is published rather than
-    hidden. Two skills additionally carry Microsoft 365 Copilot Cowork
-    screenshots and manifests as host-level evidence.
+- Microsoft 365 Copilot Cowork `.skill`
+- GitHub Copilot for VS Code
+- Microsoft Scout
+- Copilot Studio GitHub harness
+- Copilot Studio classic setup materials
 
-## Where the skills apply
+The 12 examples produce 60 byte-identical packages in total.
 
-<div class="grid cards" markdown>
+## Use your own material
 
--   :material-shield-account: **Privacy and messaging**
+This project is not limited to the included regulatory examples. You can build a
+skill from:
 
-    ---
+- a book or technical manual;
+- a regulation and your own operating policy;
+- internal documentation, runbooks, or architecture decisions;
+- a research collection or several related papers;
+- product, brand, or process guidance your organization owns.
 
-    KVKK notice review, commercial message decisions, and telecom communication
-    data, each bounded by purpose, consent, and retention gates.
+The input stays on your machine during extraction. If the agent model is hosted,
+text sent to that model follows the provider's normal data terms.
 
--   :material-bank: **Regulated finance**
+## Why the 12 examples exist
 
-    ---
+The examples show the full lifecycle with inspectable material: source metadata,
+synthetic policy and case, generated skill, locked scenarios, control answer,
+skill answer, scorecard, and host packages. They are proof that the workflow can
+be repeated across privacy, banking, financial crime, competition, safety,
+health, payments, telecom, capital allocation, and marketing review.
 
-    AML customer acceptance, remote bank onboarding, crypto payment gateways,
-    and merger notification, routed to the reviewer who must decide.
+They are templates, not the limit of the converter.
 
--   :material-hard-hat: **Safety, health, and market conduct**
+## Open source and reusable
 
-    ---
+The repository is public under the MIT license for its code, synthetic examples,
+and authored documentation. Clone it, generate your own skill, adapt the
+evaluation fixture, and publish only material you have the right to share.
 
-    OHS risk assessment, pharmaceutical promotion, discount price claims, and
-    advertising substantiation with explicit release controls.
+This project is an independent downstream of the MIT-licensed
+[`virgiliojr94/book-to-skill`](https://github.com/virgiliojr94/book-to-skill)
+converter. It preserves the extraction foundation and adds Copilot packaging,
+repeatable evaluation, 12 enterprise examples, and release hardening. It is not
+endorsed by the upstream author, Microsoft, or any public authority.
 
--   :material-cube-outline: **Any Agent Skills host**
-
-    ---
-
-    Cowork, GitHub Copilot in VS Code, Microsoft Scout, and Copilot Studio in
-    two forms — five deterministic packages per skill.
-
-</div>
-
-## How a skill is built
-
-<figure class="bts-diagram">
-<picture>
-    <source media="(max-width: 720px)" srcset="../assets/diagrams/pipeline-mobile.svg">
-    <img src="../assets/diagrams/pipeline.svg" alt="From approved guidance to five host packages">
-</picture>
-<figcaption>Official method by metadata only, a published synthetic company layer, one compiled skill, and five host exports.</figcaption>
-</figure>
-
-[Read the method](how-it-works.md){ .md-button }
-
-## Source and independence
-
-The extraction engine underneath is the MIT-licensed
-[`book-to-skill`](https://github.com/virgiliojr94/book-to-skill) project. This
-downstream adds the Copilot-ecosystem packaging, the governed enterprise
-examples, the deterministic evaluation, and the release factory. It is
-independently maintained and not endorsed by the upstream author, Microsoft, or
-any public authority.
-
-[Safety, source, and reuse boundaries](safety.md)
+[Start with your own source](create-a-skill.md) ·
+[Review safety and reuse boundaries](safety.md)

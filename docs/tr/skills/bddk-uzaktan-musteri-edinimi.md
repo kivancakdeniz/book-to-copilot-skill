@@ -1,92 +1,75 @@
 # BDDK uzaktan müşteri edinimi
 
-<span class="bts-skill-kicker">Bankacılık</span>
+**Alan:** Bankacılık<br>
+**Hedef ekip:** Dijital bankacılık, güvenlik, Uyum ve Hukuk ekipleri
 
-**Dijital bankacılık, güvenlik, Uyum ve Hukuk ekipleri** için. Uzaktan edinim akışını kanıt, kontrol ve canlıya geçiş kapılarıyla sınar.
+Uzaktan edinim akışını kanıt, kontrol ve canlıya geçiş kapılarıyla sınar.
 
-<ul class="bts-metrics bts-metrics--compact">
-  <li><b>40</b><span>LLM only</span></li>
-  <li><b>80</b><span>LLM + skill</span></li>
-  <li><b>7/7</b><span>kural atfı</span></li>
-  <li><b>12</b><span>kilitli senaryo</span></li>
-</ul>
+## Dönüştürülen kaynak
 
-## Skill ne ekledi
+Bu örnek, resmî yöntem kaynaklarını sentetik kurum politikası ve sentetik vakayla
+birleştirir. Ham resmî belge pakete konmaz.
 
-Kontrol yanıtı 0/7 kural kimliğine, skill yanıtı 7/7 kural kimliğine atıf yaptı. Skill'in değeri daha uzun metin üretmesi değil; şirket politikasını, kanıt boşluklarını ve insan yetki sınırını aynı karar kaydında görünür kılmasıdır.
-
-Copilot onay veremez, yayımlayamaz veya operasyonel eylem uygulayamaz.
-
-## Karar sözleşmesi
-
-| Kilitli beklenti | Değer |
-| --- | --- |
-| Karar sınıfı | `reject-flow` |
-| Seçenek | `manual-onboarding-fallback` |
-| Zorunlu kural | 7 kimlik |
-| İnsan rotası | Güvenlik · Uyum · Hukuk |
-
-Bu değerler modele gösterilmez; yalnız kilitli senaryo ve deterministik skorlayıcı tarafından kullanılır.
-
-## Kontrol ve skill: ölçülen
-
-İki çalıştırma aynı kilitli vakayı aynı istemle yanıtladı. Tek fark, ikinci
-çalıştırmada skill'in kurulu olmasıdır. Puanlama modele değil, kilitli senaryoya
-bakan deterministik bir betiğe dayanır; sayıları herkes yeniden üretebilir.
-
-| Yönetişim kapısı | Yalnız LLM | LLM + skill |
+| Tür | Kaynak | Yayıncı / durum |
 | --- | --- | --- |
-| Atıf yapılan politika kuralı | 0 / 7 | 7 / 7 |
-| Tam karar sınıfı yazıldı | hayır | hayır |
-| Adlandırılmış seçenek yazıldı | evet | evet |
-| İnsan onay rotası adlandırıldı | evet | evet |
-| Otonom yetki iddiası yok | evet | evet |
+| Resmî kaynak | [Bankalarca Kullanılacak Uzaktan Kimlik Tespiti Yöntemlerine ve Elektronik Ortamda Sözleşme İlişkisinin Kurulmasına İlişkin Yönetmelik](https://www.resmigazete.gov.tr/eskiler/2021/04/20210401-7.htm) | Resmî Gazete |
+| Sentetik politika ve vaka | `Demo dizininde depo MIT lisansıyla yayımlanır` | — |
+
+## Üretilen skill
+
+Skill, kaynak içeriği tek bir özete sıkıştırmak yerine yeniden kullanılabilir altı
+dosyaya ayırır:
+
+- `SKILL.md`: ne zaman kullanılacağı ve işlem sırası;
+- `public-method.md`: resmî kaynaktan çıkarılan bağımsız yöntem özeti;
+- `company-policy.md`: kararlı kimlikleri olan sentetik kurum kuralları;
+- `evidence-map.md`: hangi iddianın hangi kaynaktan gelebileceği;
+- `output-schema.md`: beklenen yanıt yapısı;
+- `scenario-guide.md`: eksik bilgi, çelişki ve çekimserlik davranışı.
+
+Kilitli değerlendirme `reject-flow` karar sınıfını,
+`manual-onboarding-fallback` seçeneğini ve 7 kural
+kimliğini bekler. Nihai insan rotası: Güvenlik · Uyum · Hukuk.
+
+## LLM only ve LLM + skill
+
+Aynı vaka ve istem iki kez çalıştırıldı. Tek fark, ikinci çalıştırmada skill'in
+yüklü olmasıdır. Puanlama bir model tarafından değil, kilitli yanıt anahtarını
+okuyan deterministik betik tarafından yapılır.
+
+| Denetim | Yalnız LLM | LLM + skill |
+| --- | ---: | ---: |
+| Politika kuralı atfı | 0 / 7 | 7 / 7 |
+| Tam karar sınıfı | hayır | hayır |
+| Adlandırılmış seçenek | evet | evet |
+| İnsan rotası | evet | evet |
 | **İz puanı** | **40 / 100** | **80 / 100** |
 
-Host: GitHub Copilot coding agent (VS Code) · Model: Copilot agent default model · Tarih: 2026-08-04 · Senaryo: `BDK-01`
-
-[Kontrol yanıtı](../../assets/skills/bddk-uzaktan-musteri-edinimi/outputs/control-1.txt) · [Skill yanıtı](../../assets/skills/bddk-uzaktan-musteri-edinimi/outputs/treatment-1.txt) · [Skor kartı](../../assets/skills/bddk-uzaktan-musteri-edinimi/scorecard.json)
-
-Yeniden üretmek için:
+[Kontrol yanıtı](../../assets/skills/bddk-uzaktan-musteri-edinimi/outputs/control-1.txt) ·
+[Skill yanıtı](../../assets/skills/bddk-uzaktan-musteri-edinimi/outputs/treatment-1.txt) ·
+[Skor kartı](../../assets/skills/bddk-uzaktan-musteri-edinimi/scorecard.json)
 
 ```bash
 python tools/score_skill_answer.py scorecard --demo demos/bddk-uzaktan-musteri-edinimi
 ```
 
-Kontrol çalıştırması 7 politika kuralının 0 tanesine atıf yaptı skill çalıştırması 7 tanesine atıf yaptı. Skill çalıştırması kilitli beklenen sınıf (`reject-flow`) yerine daha temkinli bir sınıf seçti; sınıf çağrısı insan incelemesinde kalır.
+Bu tek senaryo ve tek host karşılaştırmasıdır; üretim doğruluğu veya mevzuata
+uygunluk kanıtı değildir.
 
-Sınır: koşul başına tek çalıştırma, tek kilitli senaryo ve tek host. Bu tablo
-makine ile denetlenebilir alt kümedir; 14 puanlık insan rubriği
-`demos/bddk-uzaktan-musteri-edinimi/evaluation/rubric.json` dosyasındadır.
+## Copilot paketleri
 
-## Kaynaktan skill'e
+- [Cowork `.skill`](../../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-cowork.skill)
+- [VS Code için GitHub Copilot](../../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-vscode.zip)
+- [Microsoft Scout](../../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-scout.zip)
+- [Copilot Studio GitHub harness](../../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-studio-github-harness.zip)
+- [Copilot Studio classic kurulum](../../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-studio-classic-setup.zip)
 
-Bu skill'in hangi içerikten üretildiği aşağıdaki zincirle izlenir.
+Classic paket doğrudan solution import değildir; hedef Copilot Studio ortamında
+insan tarafından uygulanacak kurulum malzemesidir.
 
-| Aşama | Üretilen içerik |
-| --- | --- |
-| Resmî kaynak (yalnız metadata) | [Bankalarca Kullanılacak Uzaktan Kimlik Tespiti Yöntemlerine ve Elektronik Ortamda Sözleşme İlişkisinin Kurulmasına İlişkin Yönetmelik](https://www.resmigazete.gov.tr/eskiler/2021/04/20210401-7.htm) — Resmî Gazete |
-| Kamuya açık yöntem özeti | `demos/bddk-uzaktan-musteri-edinimi/skill/public-method.md` |
-| Sentetik şirket politikası | `demos/bddk-uzaktan-musteri-edinimi/sources/company-policy.md` |
-| Sentetik vaka | `demos/bddk-uzaktan-musteri-edinimi/sources/case-brief.md` |
-| Kilitli değerlendirme | 12 senaryo ve 14 puanlık rubrik: `demos/bddk-uzaktan-musteri-edinimi/evaluation/` |
-| Taşınabilir skill | `demos/bddk-uzaktan-musteri-edinimi/skill/SKILL.md` ve beş destek dosyası |
-| Host paketleri | Cowork, Copilot/VS Code, Scout, Copilot Studio (harness ve classic) |
+## Yeniden kullanım
 
-## İndirmeler
-
-Aşağıdaki paketler ortak release fabrikasıyla deterministik üretilmiş ve
-SHA-256 manifestine bağlanmıştır:
-
-- [Cowork skill paketi](../../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-cowork.skill)
-- [Copilot VS Code ZIP](../../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-vscode.zip)
-- [Scout ZIP](../../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-scout.zip)
-- [Copilot Studio GitHub harness ZIP](../../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-studio-github-harness.zip)
-- [Copilot Studio classic setup ZIP](../../downloads/skills/bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-studio-classic-setup.zip)
-
-Classic setup ZIP, Copilot Studio için kurulum malzemesi ve yönerge paketidir;
-doğrudan ajan içe aktarma paketi değildir.
-
-## Kullanım sınırı
-
-Bu sentetik demo profesyonel görüş veya üretim kontrolü değildir. Sonuçları resmî kaynaktan ve yetkili insanla doğrulayın. [Güvenlik ve kaynak](../safety.md) sayfası veri, kaynak, lisans ve insan yetkisi sınırlarını açıklar.
+Kaynak manifesti, sentetik girdiler, senaryolar, ham yanıtlar ve skor kartı
+`demos/bddk-uzaktan-musteri-edinimi/` altında public'tir. Aynı yapıyı kendi kaynağınız için kopyalayın,
+ancak yalnız paylaşma hakkınız olan içeriği yayımlayın. [Güvenlik ve yeniden
+kullanım](../safety.md) sınırlarını inceleyin.

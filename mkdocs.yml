@@ -1,6 +1,8 @@
 site_name: book-to-copilot-skill
 site_description: Compile business guidance into governed, evaluated Copilot skills.
 site_url: https://kivancakdeniz.github.io/book-to-copilot-skill/
+repo_url: https://github.com/kivancakdeniz/book-to-copilot-skill
+repo_name: kivancakdeniz/book-to-copilot-skill
 edit_uri: ""
 
 theme:
@@ -13,15 +15,15 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: custom
-      accent: custom
+      primary: indigo
+      accent: teal
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: custom
-      accent: custom
+      primary: black
+      accent: teal
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
@@ -36,9 +38,6 @@ theme:
     - content.code.annotate
     - search.suggest
     - search.highlight
-
-extra_css:
-  - assets/theme.css
 
 plugins:
   - i18n:
@@ -56,16 +55,16 @@ plugins:
           site_description: Onaylı iş rehberini yönetişimli ve ölçülmüş Copilot skill'lerine derleyin.
           nav_translations:
             Overview: Genel Bakış
-            Skills: Skill'ler
-            Method: Yöntem
-            Safety & source: Güvenlik ve Kaynak
+            Create a skill: Skill Oluştur
+            Examples: Örnekler
+            Safety & reuse: Güvenlik ve Yeniden Kullanım
   - search
 
 nav:
   - Overview: index.md
-  - Skills: skills/index.md
-  - Method: how-it-works.md
-  - Safety & source: safety.md
+  - Create a skill: create-a-skill.md
+  - Examples: skills/index.md
+  - Safety & reuse: safety.md
 
 markdown_extensions:
   - admonition

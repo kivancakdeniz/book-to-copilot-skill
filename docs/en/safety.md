@@ -1,59 +1,61 @@
-# Safety & source
+# Safety & reuse
 
-This site publishes reproducible enterprise examples, not professional advice or
-a production control system. The boundaries below apply to every skill and every
-package.
+Use this project with material you are allowed to process. The converter and the
+public examples do not grant rights in source books, regulations, internal
+documents, screenshots, or model output.
+
+## Source rights
+
+- The repository ships no source book or complete official document.
+- Keep generated skills from copyrighted or confidential sources private unless
+  you have permission to share them.
+- Official sources in the 12 examples are represented by metadata and short,
+  independently written method summaries.
+- Synthetic policies, cases, evaluation fixtures, downstream code, and authored
+  documentation are released under the repository MIT license.
+
+## Data handling
+
+Extraction runs locally. Do not put credentials, tenant identifiers, customer
+data, personal data, confidential documents, or regulated records into public
+prompts, screenshots, traces, issues, or evidence. If the agent model runs in a
+hosted service, text sent to that model follows the provider's data terms.
+
+## Generated skill review
+
+Treat every input document as untrusted. Before installing a generated skill:
+
+1. inspect `SKILL.md` and every supporting file;
+2. review commands, links, paths, and frontmatter;
+3. run host compatibility and prompt-injection scans;
+4. remove source text that should not be retained or shared;
+5. verify the current official source and company policy.
+
+The scanners reduce risk; they do not certify a skill as safe or correct.
+
+## Evaluation claims
+
+The published comparison uses one frozen scenario and one run per condition on
+the named host. It checks a machine-verifiable subset of behavior. It does not
+prove production accuracy, legal compliance, safety, fairness, robustness, ROI,
+or future performance.
+
+Publish raw answers and scoring rules when claiming that a skill improved a
+model. Do not hide runs that disagree with the expected result.
 
 ## Human authority
 
-A skill may organize evidence and propose a review path. It may not approve,
+A skill can structure evidence and recommend a review path. It cannot approve,
 publish, submit, onboard, reject, suspend, transfer, send, stop, or execute an
-operational decision. The authorized human named in the output owns the
-interpretation, approval, and action.
+operational decision. An authorized human owns interpretation, approval, and
+action.
 
-Before production use, review the workflow with the relevant legal, privacy,
-security, compliance, medical, engineering, risk, records, and business owners.
-Validate permissions, provider terms, logging, monitoring, rollback, source
-updates, and the process used when the system is unavailable.
+## Project relationship
 
-## Data boundary
-
-The demos use synthetic organizations, policies, cases, people, and evidence.
-Do not put credentials, tenant identifiers, customer data, personal data,
-confidential documents, or regulated records into prompts, screenshots, traces,
-issues, or published evidence. Use approved, minimum-necessary, synthetic or
-properly de-identified data.
-
-## Source boundary
-
-Official legislation and guidance are referenced by metadata: title, publisher,
-official URL, retrieval date, version or SHA-256, and an independently written
-method summary. Raw official snapshots are not included in the public packages.
-Always verify jurisdiction, scope, effective date, amendments, and current text
-at the official source before relying on a result.
-
-The synthetic company policies, cases, evaluation fixtures, downstream code, and
-authored documentation are released under the repository MIT license. Rights in
-third-party sources, product interfaces, trademarks, screenshots, and model
-outputs remain with their owners. Generating a skill does not transfer rights in
-its input documents.
-
-## Evaluation boundary
-
-The published scores cover one frozen scenario and one run per condition on the
-named host. They show whether the answer carried the locked decision class,
-option, policy-rule citations, human route, and authority boundary. They do not
-establish production accuracy, legal compliance, safety, fairness, robustness,
-ROI, or future performance.
-
-## Project source
-
-The extraction engine is adapted from the MIT-licensed
+This is an independent downstream of the MIT-licensed
 [`virgiliojr94/book-to-skill`](https://github.com/virgiliojr94/book-to-skill)
-project. This downstream adds the Copilot ecosystem packages, the 12 governed
-enterprise examples, deterministic evaluation, and release hardening. It is
-independently maintained and is not endorsed by the upstream author, Microsoft,
-GitHub, any model provider, or any public authority.
+project. It is not endorsed by the upstream author, Microsoft, GitHub, model
+providers, or any public authority.
 
-Security issues should be reported through the repository's private
-vulnerability-reporting flow rather than a public issue.
+Report security issues through the repository's private vulnerability-reporting
+flow, not a public issue.

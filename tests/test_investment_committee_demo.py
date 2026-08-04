@@ -222,14 +222,13 @@ def test_demo_page_makes_the_observed_skill_difference_explicit():
         encoding="utf-8"
     )
     normalized = " ".join(page.split())
-    assert "## Control vs skill: measured" in normalized
-    assert "The control run cited 0 of 6 policy rules and the skill run cited 6." in normalized
+    assert "## Source converted" in normalized
+    assert "## Skill generated" in normalized
+    assert "## LLM only vs LLM + skill" in normalized
+    assert "## Copilot packages" in normalized
+    assert "| Policy rules cited | 0 / 6 | 6 / 6 |" in normalized
     assert (
-        "Only the skill run stated the exact decision class (`conditional-approval`)."
+        "The locked evaluation expects decision class `conditional-approval`"
         in normalized
     )
-    assert (
-        "Limits: one run per condition, one locked scenario, and a single host."
-        in normalized
-    )
-    assert "Copilot cannot approve, publish, or execute an operational action." in normalized
+    assert "This is a one-scenario, one-host comparison" in normalized
