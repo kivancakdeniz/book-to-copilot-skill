@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" role="img"
+     aria-label="Pipeline: approved sources become one portable skill and five host packages">
+  <style>
+    .bg { fill: #ffffff }
+    .card { fill: #ffffff; stroke: #d7dced; stroke-width: 1.5 }
+    .card-accent { fill: #f4f6ff; stroke: #b9c4ef; stroke-width: 1.5 }
+    .card-final { fill: #eef9f4; stroke: #9dd8be; stroke-width: 1.5 }
+    .title { font: 600 15px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif; fill: #17203a }
+    .body { font: 13px/1.35 system-ui, -apple-system, "Segoe UI", sans-serif; fill: #4a5573 }
+    .kicker { font: 700 11px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #6b76a0; letter-spacing: .08em }
+    .flow { stroke: #9aa6cc; stroke-width: 2; fill: none; marker-end: url(#arrow) }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #131828 }
+      .card { fill: #161b2e; stroke: #2c3550 }
+      .card-accent { fill: #1a2140; stroke: #3a4573 }
+      .card-final { fill: #12261f; stroke: #2f5f49 }
+      .title { fill: #eef1fa }
+      .body { fill: #a9b3d0 }
+      .kicker { fill: #8b96c4 }
+      .flow { stroke: #6a769e }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa6cc"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="960" height="300" rx="18"/>
+
+  <g>
+    <rect class="card" x="16" y="60" width="196" height="120" rx="14"/>
+    <text class="kicker" x="36" y="90">1 · SOURCE</text>
+    <text class="title" x="36" y="115">Approved guidance</text>
+    <text class="body" x="36" y="139">Official method, cited by</text>
+    <text class="body" x="36" y="156">metadata only</text>
+    <text class="body" x="36" y="173">Synthetic company policy</text>
+  </g>
+
+  <path class="flow" d="M216 120 H252"/>
+
+  <g>
+    <rect class="card-accent" x="256" y="60" width="196" height="120" rx="14"/>
+    <text class="kicker" x="276" y="90">2 · COMPILE</text>
+    <text class="title" x="276" y="115">Portable skill</text>
+    <text class="body" x="276" y="139">SKILL.md and five</text>
+    <text class="body" x="276" y="156">companions: policy,</text>
+    <text class="body" x="276" y="173">method, evidence, schema</text>
+  </g>
+
+  <path class="flow" d="M456 120 H492"/>
+
+  <g>
+    <rect class="card-accent" x="496" y="60" width="196" height="120" rx="14"/>
+    <text class="kicker" x="516" y="90">3 · PROVE</text>
+    <text class="title" x="516" y="115">Two runs, one scorer</text>
+    <text class="body" x="516" y="139">Same case, same prompt,</text>
+    <text class="body" x="516" y="156">skill on or off; scored</text>
+    <text class="body" x="516" y="173">deterministically</text>
+  </g>
+
+  <path class="flow" d="M696 120 H732"/>
+
+  <g>
+    <rect class="card-final" x="736" y="36" width="208" height="168" rx="14"/>
+    <text class="kicker" x="756" y="66">4 · EXPORT</text>
+    <text class="title" x="756" y="91">Five host packages</text>
+    <text class="body" x="756" y="115">Copilot Cowork</text>
+    <text class="body" x="756" y="133">GitHub Copilot in VS Code</text>
+    <text class="body" x="756" y="151">Microsoft Scout</text>
+    <text class="body" x="756" y="169">Copilot Studio harness</text>
+    <text class="body" x="756" y="187">Copilot Studio classic setup</text>
+  </g>
+
+  <text class="body" x="16" y="240">Raw official documents are never bundled. Every package is byte-identical on rebuild and carries its own licence and notices.</text>
+</svg>

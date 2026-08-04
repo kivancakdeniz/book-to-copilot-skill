@@ -764,3 +764,58 @@ def test_scorer_matches_citations_regardless_of_case_accent_or_punctuation():
     )
     assert breached["gates"]["forbiddenClaims"]["passed"] is False
     assert breached["traceScore"] == 90
+
+
+GENERATED_DOC_COPIES = {
+    "CHANGELOG.md",
+    "DOWNSTREAM.md",
+    "LICENSE.md",
+    "NOTICE.md",
+    "SECURITY.md",
+    "THIRD_PARTY_NOTICES.md",
+}
+
+
+def _published_pages() -> list[Path]:
+    return [
+        path
+        for path in sorted((ROOT / "docs").rglob("*.md"))
+        if "downloads" not in path.parts and path.name not in GENERATED_DOC_COPIES
+    ]
+
+
+def test_site_never_republishes_upstream_promotion():
+    banned = ("img.shields.io", "trendshift", "star-history", "github.com/sponsors", "BACKERS")
+    for path in _published_pages():
+        text = path.read_text(encoding="utf-8")
+        for token in banned:
+            assert token not in text, f"{path}: republished upstream promotion ({token})"
+
+
+def test_landing_pages_still_credit_the_upstream_project():
+    for page in (ROOT / "docs" / "index.md", ROOT / "docs" / "tr" / "index.md"):
+        text = page.read_text(encoding="utf-8")
+        assert "github.com/virgiliojr94/book-to-skill" in text
+
+
+def test_site_ships_its_own_brand_and_diagrams():
+    assets = ROOT / "docs" / "assets"
+    assert (assets / "logo.svg").is_file()
+    assert not (assets / "logo.png").exists()
+    assert (assets / "theme.css").is_file()
+    for name in ("pipeline", "evaluation", "decision-card"):
+        assert (assets / "diagrams" / f"{name}.svg").is_file()
+
+    config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
+    assert "assets/logo.svg" in config
+    assert "assets/theme.css" in config
+    assert "guide.md" not in config
+    assert "BACKERS.md" not in config
+
+    for page, prefix in (
+        (ROOT / "docs" / "index.md", "assets/diagrams"),
+        (ROOT / "docs" / "tr" / "index.md", "../assets/diagrams"),
+        (ROOT / "docs" / "how-it-works.md", "assets/diagrams"),
+        (ROOT / "docs" / "tr" / "nasil-calisir.md", "../assets/diagrams"),
+    ):
+        assert f"{prefix}/" in page.read_text(encoding="utf-8"), f"{page}: no diagram"

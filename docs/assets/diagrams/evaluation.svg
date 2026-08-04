@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img"
+     aria-label="Evaluation method: one locked case answered twice and scored by a deterministic script">
+  <style>
+    .bg { fill: #ffffff }
+    .card { fill: #ffffff; stroke: #d7dced; stroke-width: 1.5 }
+    .control { fill: #fff6f3; stroke: #f0bda8; stroke-width: 1.5 }
+    .treatment { fill: #eef9f4; stroke: #9dd8be; stroke-width: 1.5 }
+    .scorer { fill: #f4f6ff; stroke: #b9c4ef; stroke-width: 1.5 }
+    .title { font: 600 15px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #17203a }
+    .body { font: 13px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #4a5573 }
+    .kicker { font: 700 11px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #6b76a0; letter-spacing: .08em }
+    .score { font: 700 26px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #17203a }
+    .flow { stroke: #9aa6cc; stroke-width: 2; fill: none; marker-end: url(#a2) }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #131828 }
+      .card { fill: #161b2e; stroke: #2c3550 }
+      .control { fill: #2a1c18; stroke: #6b4636 }
+      .treatment { fill: #12261f; stroke: #2f5f49 }
+      .scorer { fill: #1a2140; stroke: #3a4573 }
+      .title, .score { fill: #eef1fa }
+      .body { fill: #a9b3d0 }
+      .kicker { fill: #8b96c4 }
+      .flow { stroke: #6a769e }
+    }
+  </style>
+  <defs>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa6cc"/>
+    </marker>
+  </defs>
+
+  <g>
+    <rect class="bg" width="960" height="360" rx="18"/>
+    <rect class="card" x="16" y="120" width="200" height="112" rx="14"/>
+    <text class="kicker" x="36" y="150">LOCKED INPUT</text>
+    <text class="title" x="36" y="175">One case, one prompt</text>
+    <text class="body" x="36" y="199">The expected answer is</text>
+    <text class="body" x="36" y="216">never shown to the model</text>
+  </g>
+
+  <path class="flow" d="M220 160 C248 160 248 84 276 84"/>
+  <path class="flow" d="M220 192 C248 192 248 268 276 268"/>
+
+  <g>
+    <rect class="control" x="280" y="36" width="236" height="96" rx="14"/>
+    <text class="kicker" x="300" y="64">CONTROL</text>
+    <text class="title" x="300" y="89">Model only</text>
+    <text class="body" x="300" y="112">No company policy reaches it</text>
+  </g>
+
+  <g>
+    <rect class="treatment" x="280" y="220" width="236" height="96" rx="14"/>
+    <text class="kicker" x="300" y="248">TREATMENT</text>
+    <text class="title" x="300" y="273">Model plus skill</text>
+    <text class="body" x="300" y="296">Policy, method, and schema load</text>
+  </g>
+
+  <path class="flow" d="M520 84 C556 84 556 160 592 160"/>
+  <path class="flow" d="M520 268 C556 268 556 192 592 192"/>
+
+  <g>
+    <rect class="scorer" x="596" y="112" width="200" height="128" rx="14"/>
+    <text class="kicker" x="616" y="142">DETERMINISTIC</text>
+    <text class="title" x="616" y="167">Scorer, not a judge</text>
+    <text class="body" x="616" y="191">Rule citations, decision</text>
+    <text class="body" x="616" y="208">class, option, human route,</text>
+    <text class="body" x="616" y="225">forbidden claims</text>
+  </g>
+
+  <path class="flow" d="M800 176 H836"/>
+
+  <g>
+    <rect class="card" x="840" y="112" width="104" height="128" rx="14"/>
+    <text class="kicker" x="860" y="142">RESULT</text>
+    <text class="score" x="860" y="180">33</text>
+    <text class="body" x="860" y="198">control</text>
+    <text class="score" x="860" y="228">95</text>
+  </g>
+  <text class="body" x="860" y="246">skill</text>
+
+  <text class="body" x="16" y="336">Mean trace score across the 12 published skills. Every raw answer and scorecard is downloadable, and the scorer can be re-run by anyone.</text>
+</svg>

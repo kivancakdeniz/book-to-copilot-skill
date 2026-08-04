@@ -4,58 +4,37 @@ hide:
   - toc
 ---
 
-# book-to-copilot-skill
+<div class="bts-hero" markdown>
 
-[English](../index.md)
+<span class="bts-hero__eyebrow">Yönetişimli agent skill'leri</span>
 
-<p style="font-size: 1.25rem; max-width: 42rem;">
-Onaylı iş rehberlerini yönetişimli ve değerlendirilebilir Copilot skill'lerine
-dönüştürün: karar yöntemleri, kurumsal kurallar, kaynak izi ve insan onay
-sınırları. <strong>Bir başka bağlam yığını değil, belgelerden kararlara giden
-bir yapı.</strong>
+# İnceleyenin denetleyebileceği kararlar { .bts-hero__title }
+
+<p class="bts-hero__lede">
+Onaylı rehberi; izin verilen tek karar sınıfını yazan, her satırın arkasındaki
+kuralı gösteren, bilinmeyeni bilinmiyor bırakan ve kararı adı konmuş bir insana
+devreden küçük ve taşınabilir bir Agent Skill'e derleyin. On iki işlenmiş
+kurumsal karar; her biri, skill olmadan çalışan aynı modelle karşılaştırıldı.
 </p>
 
-[Başlangıç rehberi](../guide.md){ .md-button .md-button--primary }
-[12 skill'lik katalog](skills/index.md){ .md-button }
-[Skill'ler nasıl kanıtlandı](#kontrol-ve-skill-12-skillde-olculdu){ .md-button }
+[12 skill'i incele](skills/index.md){ .md-button .md-button--primary }
+[Nasıl çalıştığını gör](nasil-calisir.md){ .md-button }
 
-## Bu proje ne için var
+</div>
 
-Bu downstream tek bir soruyu kanıtla yanıtlamak için var: **onaylı kurum
-rehberini bir Agent Skill'e derlemek, gerçek bir kurumsal kararda asistanın
-ürettiği çıktıyı gerçekten değiştiriyor mu?**
+<ul class="bts-metrics">
+  <li><b>12</b><span>skill, her biri 12 kilitli senaryo ile</span></li>
+  <li><b>60</b><span>byte-identical host paketi</span></li>
+  <li><b>33 &rarr; 95</b><span>ortalama iz puanı: yalnız model, sonra skill ile</span></li>
+  <li><b>24</b><span>incelemeye açık ham yanıt</span></li>
+</ul>
 
-Yanıt için proje, Türkiye mevzuatı ile kurumsal operasyonun kesişiminde on iki
-işlenmiş karar sunar, her birini iki kez çalıştırır, iki çalıştırmayı da
-deterministik bir betikle puanlar ve sonucu Microsoft 365 Copilot Cowork, GitHub
-Copilot, Microsoft Scout ve Copilot Studio'ya aktarılabilir paketler hâline
-getirir.
+## Skill yüklendiğinde ne değişir
 
-## Kaynak proje ve bağımsızlık
-
-Bu proje, [`virgiliojr94/book-to-skill`](https://github.com/virgiliojr94/book-to-skill)
-projesinin [MIT Lisansı](https://github.com/virgiliojr94/book-to-skill/blob/main/LICENSE.md)
-altında yeniden kullanılan bağımsız bir alt sürümüdür. Kaynak proje ve
-bakımcıları bu alt sürümü desteklediğini veya onayladığını beyan
-etmemiştir. Bu sürüm GitHub Copilot uyumluluğu, yönetişimli kurumsal örnekler,
-deterministik paketler ve değerlendirme malzemeleri ekler.
-
-## Rehber neden skill'e derlenir
-
-- Kaynaklar hash'lerle ve biçime özel geri dönüşlerle yerel olarak çıkarılır.
-- Kamusal yöntemler, şirket politikası, vaka olguları ve insan yetkisi ayrı ve
-  izlenebilir kalır.
-- Agent Skills çalışma ortamları önce çekirdek iş akışını, yalnız gerektiğinde destek
-  kaynaklarını yükler.
-- Çıktı daha büyük bir istem değil; açık kapıları, kaynak izi ve insan onay
-  sınırları olan bir karar kaydıdır.
-
-## Kontrol ve skill: 12 skill'de ölçüldü
-
-Katalogdaki her skill aynı yöntemle sınandı. Aynı kilitli vaka, aynı istem ve tek
-fark: ikinci çalıştırmada skill kuruluydu. İki yanıt da `tools/score_skill_answer.py`
-ile puanlanır; betik yanıtı kilitli senaryoya göre denetler. Sonucu bir model
-değerlendirmez, bu yüzden puanlamayı herkes yeniden çalıştırıp aynı sayıları alır.
+Katalogdaki her skill aynı yöntemle sınandı: aynı kilitli vaka, aynı istem ve
+tek fark — ikinci çalıştırmada skill kuruluydu. İki yanıtı da bir model değil,
+bir betik puanlar; bu yüzden puanlamayı herkes yeniden çalıştırıp aynı sayıları
+elde eder.
 
 | 12 skill genelinde ölçüm | Yalnız LLM | LLM + skill |
 |---|---|---|
@@ -66,33 +45,76 @@ değerlendirmez, bu yüzden puanlamayı herkes yeniden çalıştırıp aynı say
 
 Kontrol çalıştırmaları yetersiz değildir; çoğunlukla makul bir iş yönü bulur.
 Yapamadıkları şey, şirket kural kimliklerine atıf yapmak, izin verilen tam karar
-sınıfını yazmak ve kararı adı konmuş insan sahibine yönlendirmektir; çünkü skill
+sınıfını yazmak ve kararı adı konmuş sahibine yönlendirmektir; çünkü skill
 olmadan bu bilgi modele hiç ulaşmaz.
+
+<figure markdown>
+![Aynı kilitli vaka iki kez yanıtlanır ve deterministik puanlanır](../assets/diagrams/evaluation.svg)
+<figcaption>Bu sitedeki her sayının arkasındaki değerlendirme yöntemi. Ham yanıtlar, skor kartları ve skorlayıcının kendisi yayımlanır.</figcaption>
+</figure>
 
 !!! warning "Bu neyi kanıtlar, neyi kanıtlamaz"
 
-    Bu, kilitli senaryolara karşı skill başına tek çalıştırmalı bir karşılaştırmadır;
-    nedensel bir benchmark değildir. Her skill için tek host üzerinde bir kontrol ve
-    bir skill çalıştırması vardır ve skill çalıştırması, kontrolün hiç görmediği
-    şirket politikasını meşru biçimde alır. On iki skill çalıştırmasının üçü kilitli
-    beklentiden daha temkinli bir karar sınıfı seçti; bu gizlenmedi, yayımlandı. İlk
-    iki demo ayrıca host düzeyinde Microsoft 365 Copilot Cowork ekran görüntüleri ve
-    manifestleri taşır.
+    Bu, kilitli senaryolara karşı skill başına tek çalıştırmalı bir
+    karşılaştırmadır; nedensel bir benchmark değildir. Her skill için tek host
+    üzerinde bir kontrol ve bir skill çalıştırması vardır ve skill çalıştırması,
+    kontrolün hiç görmediği şirket politikasını meşru biçimde alır. On iki skill
+    çalıştırmasının üçü kilitli beklentiden daha temkinli bir karar sınıfı seçti;
+    bu gizlenmedi, yayımlandı. İki skill ayrıca host düzeyinde Microsoft 365
+    Copilot Cowork ekran görüntüleri ve manifestleri taşır.
 
-## Katalog durumu
+## Skill'ler nerede işe yarar
 
-[Katalog](skills/index.md); mahremiyet, ticari ileti, e-ticaret, finansal suç,
-bankacılık, rekabet, iş güvenliği, sağlık, ödeme, telekom, sermaye tahsisi ve
-reklam incelemesi alanlarında **12 skill** içerir. Her biri 12 kilitli senaryo,
-14 puanlık rubrik, sentetik şirket politikası, resmî kaynak metadatası, ham
-kontrol yanıtı, ham skill yanıtı ve deterministik skor kartı ile gelir.
+<div class="grid cards" markdown>
 
-**60 host paketi yayımlandı**: Cowork, VS Code'da GitHub Copilot, Microsoft Scout
-ve Copilot Studio (GitHub harness ve classic setup) için skill başına beş
-deterministik, byte-identical biçim.
+-   :material-shield-account: **Mahremiyet ve ticari ileti**
 
-## Başvuru
+    ---
 
-[Mimari](../ARCHITECTURE.md) · [Performans](../PERFORMANCE.md) ·
-[Skill referansı](../skill-reference.md) ·
-[Kurumsal demo planı](../ENTERPRISE-DEMO-PLAN.md)
+    KVKK aydınlatma kontrolü, ETK/IYS ileti kararı ve BTK haberleşme verisi;
+    amaç, rıza ve saklama kapılarıyla sınırlanır.
+
+-   :material-bank: **Düzenlenmiş finans**
+
+    ---
+
+    MASAK müşteri kabul, BDDK uzaktan edinim, kripto ödeme kapısı ve rekabet
+    birleşme bildirimi; kararı verecek incelemeciye yönlendirilir.
+
+-   :material-hard-hat: **İş güvenliği, sağlık ve piyasa davranışı**
+
+    ---
+
+    İSG risk değerlendirmesi, TİTCK ilaç tanıtımı, indirimli fiyat denetimi ve
+    reklam iddiası dayanağı; açık yayın kontrolleriyle.
+
+-   :material-cube-outline: **Her Agent Skills ortamı**
+
+    ---
+
+    Cowork, VS Code'da GitHub Copilot, Microsoft Scout ve iki biçimde Copilot
+    Studio — skill başına beş deterministik paket.
+
+</div>
+
+## Bir skill nasıl kurulur
+
+<figure markdown>
+![Onaylı rehberden beş host paketine](../assets/diagrams/pipeline.svg)
+<figcaption>Yalnız metadata ile resmî yöntem, yayımlanmış sentetik şirket katmanı, tek derlenmiş skill ve beş host aktarımı.</figcaption>
+</figure>
+
+[Yöntemi oku](nasil-calisir.md){ .md-button }
+
+## Kaynak ve bağımsızlık
+
+Alttaki çıkarım motoru, MIT lisanslı
+[`book-to-skill`](https://github.com/virgiliojr94/book-to-skill) projesidir. Bu
+downstream; Copilot ekosistemi paketlemesini, yönetişimli kurumsal örnekleri,
+deterministik değerlendirmeyi ve yayın fabrikasını ekler. Bağımsız olarak
+sürdürülür; kaynak projenin yazarı, Microsoft ya da herhangi bir kamu otoritesi
+tarafından onaylanmamıştır.
+
+[Proje ve kaynak](../DOWNSTREAM.md) ·
+[Lisanslama ve yeniden kullanım](../LICENSING-AND-REUSE.md) ·
+[Sorumlu kullanım](../RESPONSIBLE-USE.md)

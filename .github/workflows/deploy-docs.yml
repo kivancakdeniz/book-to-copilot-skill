@@ -77,23 +77,10 @@ jobs:
           set -euo pipefail
           python -m pytest tests/test_skill_release.py -q
       - name: Assemble docs sources
-        # Single-source: the Guide and Skill Reference pages are the repo-root
-        # README.md / SKILL.md, copied in (never committed under docs/). The
-        # landing page docs/index.md is committed and curated separately.
+        # The site never mirrors the repository README. Only legal and release
+        # notices are copied in; every published page is authored for the site.
         run: |
           set -euo pipefail
-          cp README.md docs/guide.md
-          sed -i \
-            -e 's|src="docs/assets/|src="assets/|g' \
-            -e 's|href="#-|href="#|g' \
-            -e 's|](#-|](#|g' \
-            -e 's|href="docs/PERFORMANCE.md"|href="PERFORMANCE.md"|g' \
-            -e 's|href="docs/ARCHITECTURE.md"|href="ARCHITECTURE.md"|g' \
-            -e 's|](docs/LICENSING-AND-REUSE.md)|](LICENSING-AND-REUSE.md)|g' \
-            -e 's|](docs/RESPONSIBLE-USE.md)|](RESPONSIBLE-USE.md)|g' \
-            docs/guide.md
-          cp SKILL.md docs/skill-reference.md
-          cp BACKERS.md docs/BACKERS.md
           cp CHANGELOG.md docs/CHANGELOG.md
           cp DOWNSTREAM.md docs/DOWNSTREAM.md
           cp LICENSE.md docs/LICENSE.md
@@ -135,18 +122,6 @@ jobs:
       - name: Assemble docs sources
         run: |
           set -euo pipefail
-          cp README.md docs/guide.md
-          sed -i \
-            -e 's|src="docs/assets/|src="assets/|g' \
-            -e 's|href="#-|href="#|g' \
-            -e 's|](#-|](#|g' \
-            -e 's|href="docs/PERFORMANCE.md"|href="PERFORMANCE.md"|g' \
-            -e 's|href="docs/ARCHITECTURE.md"|href="ARCHITECTURE.md"|g' \
-            -e 's|](docs/LICENSING-AND-REUSE.md)|](LICENSING-AND-REUSE.md)|g' \
-            -e 's|](docs/RESPONSIBLE-USE.md)|](RESPONSIBLE-USE.md)|g' \
-            docs/guide.md
-          cp SKILL.md docs/skill-reference.md
-          cp BACKERS.md docs/BACKERS.md
           cp CHANGELOG.md docs/CHANGELOG.md
           cp DOWNSTREAM.md docs/DOWNSTREAM.md
           cp LICENSE.md docs/LICENSE.md

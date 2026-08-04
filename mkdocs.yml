@@ -10,28 +10,29 @@ edit_uri: ""
 theme:
   name: material
   language: en
-  logo: assets/logo.png
-  favicon: assets/logo.png
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
   icon:
     repo: fontawesome/brands/github
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: deep purple
-      accent: deep purple
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: deep purple
-      accent: deep purple
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
   features:
     - navigation.tabs
     - navigation.sections
+    - navigation.indexes
     - navigation.instant
     - navigation.top
     - navigation.footer
@@ -40,6 +41,9 @@ theme:
     - content.code.annotate
     - search.suggest
     - search.highlight
+
+extra_css:
+  - assets/theme.css
 
 plugins:
   - search:
@@ -74,9 +78,13 @@ nav:
       - Marketing Claims Review: skills/marketing-claims-review.md
       - Third-party Notices: downloads/skills/THIRD_PARTY_NOTICES.md
   - Method:
+      - How it works: how-it-works.md
       - Delivery Plan: ENTERPRISE-DEMO-PLAN.md
+      - Architecture: ARCHITECTURE.md
+      - Performance: PERFORMANCE.md
   - Türkçe:
       - Ana Sayfa: tr/index.md
+      - Nasıl çalışır: tr/nasil-calisir.md
       - Skill Kataloğu: tr/skills/index.md
       - KVKK Aydınlatma: tr/skills/kvkk-aydinlatma-kontrolu.md
       - ETK / IYS İleti: tr/skills/etk-iys-ileti-karari.md
@@ -90,19 +98,15 @@ nav:
       - BTK Haberleşme Verisi: tr/skills/btk-haberlesme-verisi.md
       - Yatırım Komitesi: tr/skills/investment-committee.md
       - Pazarlama İddiaları: tr/skills/marketing-claims-review.md
-  - Guide: guide.md
-  - Downstream: DOWNSTREAM.md
-  - Architecture: ARCHITECTURE.md
-  - Performance: PERFORMANCE.md
-  - Skill Reference: skill-reference.md
-  - Backers: BACKERS.md
-  - Changelog: CHANGELOG.md
-  - Licensing and Reuse: LICENSING-AND-REUSE.md
-  - Responsible Use: RESPONSIBLE-USE.md
-  - License: LICENSE.md
-  - Security: SECURITY.md
-  - Notice: NOTICE.md
-  - Global Third-party Notices: THIRD_PARTY_NOTICES.md
+  - About:
+      - Project and source: DOWNSTREAM.md
+      - Changelog: CHANGELOG.md
+      - Licensing and reuse: LICENSING-AND-REUSE.md
+      - Responsible use: RESPONSIBLE-USE.md
+      - License: LICENSE.md
+      - Security: SECURITY.md
+      - Notice: NOTICE.md
+      - Third-party notices: THIRD_PARTY_NOTICES.md
 
 markdown_extensions:
   - admonition

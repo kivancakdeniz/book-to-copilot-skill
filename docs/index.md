@@ -4,56 +4,36 @@ hide:
   - toc
 ---
 
-# book-to-copilot-skill
+<div class="bts-hero" markdown>
 
-[Türkçe](tr/index.md)
+<span class="bts-hero__eyebrow">Governed agent skills</span>
 
-<p style="font-size: 1.25rem; max-width: 42rem;">
-Compile approved business guidance into governed, evaluated Copilot skills:
-decision methods, enterprise rules, provenance, and human approval boundaries.
-<strong>From documents to decisions, not another context dump.</strong>
+# Decisions your reviewers can audit { .bts-hero__title }
+
+<p class="bts-hero__lede">
+Compile approved guidance into a small, portable Agent Skill that states one
+allowed decision class, cites the rule behind every line, keeps unknowns
+unknown, and hands the call to a named human. Twelve worked enterprise
+decisions, each one measured against the same model without the skill.
 </p>
 
-[Get started](guide.md){ .md-button .md-button--primary }
-[12-skill catalog](skills/index.md){ .md-button }
-[How the skills are proved](#control-vs-skill-measured-on-12-skills){ .md-button }
+[Browse the 12 skills](skills/index.md){ .md-button .md-button--primary }
+[See how it works](how-it-works.md){ .md-button }
 
-## What this project is for
+</div>
 
-This downstream exists to answer one question with evidence: **does compiling
-approved guidance into an Agent Skill actually change what an assistant produces
-on a real enterprise decision?**
+<ul class="bts-metrics">
+  <li><b>12</b><span>skills, each with 12 locked scenarios</span></li>
+  <li><b>60</b><span>byte-identical host packages</span></li>
+  <li><b>33 &rarr; 95</b><span>mean trace score, model alone vs with the skill</span></li>
+  <li><b>24</b><span>raw answers published for inspection</span></li>
+</ul>
 
-To answer it, the project ships twelve worked decisions at the intersection of
-Türkiye regulation and enterprise operations, runs each one twice, scores both
-runs with a deterministic script, and exports the result to Microsoft 365 Copilot
-Cowork, GitHub Copilot, Microsoft Scout, and Copilot Studio.
+## What changes when the skill is loaded
 
-## Upstream and independence
-
-This project is an independent downstream of
-[`virgiliojr94/book-to-skill`](https://github.com/virgiliojr94/book-to-skill),
-reused under its [MIT License](https://github.com/virgiliojr94/book-to-skill/blob/main/LICENSE.md).
-The upstream project and its maintainers have not endorsed this downstream.
-This edition adds GitHub Copilot compatibility, governed enterprise examples,
-deterministic packages, and evaluation materials.
-
-## Why compile guidance into a skill
-
-- Sources are extracted locally with hashes and format-specific fallbacks.
-- Public methods, company policy, case facts, and human authority stay separate
-  and traceable.
-- Agent Skills hosts load the core workflow first and supporting references only
-  when needed.
-- The output is a decision record with explicit gates, provenance, and human
-  approval boundaries, not a larger prompt.
-
-## Control vs skill, measured on 12 skills
-
-Every skill in the catalog was tested the same way. The same locked case, the
-same prompt, one difference: the skill was installed for the second run. Both
-answers are scored by `tools/score_skill_answer.py`, which checks the answer
-against the locked scenario. No model grades the result, so anyone can rerun the
+Every skill in the catalog was tested the same way: the same locked case, the
+same prompt, and one difference — the skill was installed for the second run.
+Both answers are scored by a script, not a model, so anyone can re-run the
 scoring and get the same numbers.
 
 | Measured across all 12 skills | LLM only | LLM + skill |
@@ -65,34 +45,75 @@ scoring and get the same numbers.
 
 The control runs are not incompetent. They usually reach a sensible business
 direction. What they cannot do is cite the company rule identifiers, state the
-exact allowed decision class, and route the decision to the named human owner,
-because none of that reaches the model without the skill.
+exact allowed decision class, and route the decision to the named owner, because
+none of that reaches the model without the skill.
+
+<figure markdown>
+![One locked case answered twice and scored by a deterministic script](assets/diagrams/evaluation.svg)
+<figcaption>The evaluation method behind every number on this site. Raw answers, scorecards, and the scorer itself are published.</figcaption>
+</figure>
 
 !!! warning "What this does and does not prove"
 
     This is a per-skill, single-run comparison against locked scenarios, not a
     causal benchmark. Each skill has one control run and one skill run on one
-    host, and the treatment run legitimately receives the company policy that
-    the control never sees. Three of the twelve skill runs chose a more cautious
+    host, and the skill run legitimately receives the company policy that the
+    control never sees. Three of the twelve skill runs chose a more cautious
     decision class than the locked expectation, which is published rather than
-    hidden. The two founding demos additionally carry Microsoft 365 Copilot
-    Cowork screenshots and manifests as host-level UX evidence.
+    hidden. Two skills additionally carry Microsoft 365 Copilot Cowork
+    screenshots and manifests as host-level evidence.
 
-## Catalog status
+## Where the skills apply
 
-The [catalog](skills/index.md) contains **12 skills** across privacy, messaging,
-e-commerce, financial crime, banking, competition, safety, health, payments,
-telecom, capital allocation, and advertising review. Each ships 12 locked
-scenarios, a 14-point rubric, a synthetic company policy, official-source
-metadata, a raw control answer, a raw skill answer, and a deterministic
-scorecard.
+<div class="grid cards" markdown>
 
-**60 host packages are published**: five deterministic, byte-identical formats
-per skill for Cowork, GitHub Copilot in VS Code, Microsoft Scout, and Copilot
-Studio (GitHub harness and classic setup).
+-   :material-shield-account: **Privacy and messaging**
 
-## Reference
+    ---
 
-[Architecture](ARCHITECTURE.md) · [Performance](PERFORMANCE.md) ·
-[Skill reference](skill-reference.md) ·
-[Enterprise demo plan](ENTERPRISE-DEMO-PLAN.md)
+    KVKK notice review, commercial message decisions, and telecom communication
+    data, each bounded by purpose, consent, and retention gates.
+
+-   :material-bank: **Regulated finance**
+
+    ---
+
+    AML customer acceptance, remote bank onboarding, crypto payment gateways,
+    and merger notification, routed to the reviewer who must decide.
+
+-   :material-hard-hat: **Safety, health, and market conduct**
+
+    ---
+
+    OHS risk assessment, pharmaceutical promotion, discount price claims, and
+    advertising substantiation with explicit release controls.
+
+-   :material-cube-outline: **Any Agent Skills host**
+
+    ---
+
+    Cowork, GitHub Copilot in VS Code, Microsoft Scout, and Copilot Studio in
+    two forms — five deterministic packages per skill.
+
+</div>
+
+## How a skill is built
+
+<figure markdown>
+![From approved guidance to five host packages](assets/diagrams/pipeline.svg)
+<figcaption>Official method by metadata only, a published synthetic company layer, one compiled skill, and five host exports.</figcaption>
+</figure>
+
+[Read the method](how-it-works.md){ .md-button }
+
+## Source and independence
+
+The extraction engine underneath is the MIT-licensed
+[`book-to-skill`](https://github.com/virgiliojr94/book-to-skill) project. This
+downstream adds the Copilot-ecosystem packaging, the governed enterprise
+examples, the deterministic evaluation, and the release factory. It is
+independently maintained and not endorsed by the upstream author, Microsoft, or
+any public authority.
+
+[Project and source](DOWNSTREAM.md) · [Licensing and reuse](LICENSING-AND-REUSE.md) ·
+[Responsible use](RESPONSIBLE-USE.md)
