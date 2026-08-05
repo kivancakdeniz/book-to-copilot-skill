@@ -22,6 +22,14 @@ release = importlib.util.module_from_spec(spec)
 sys.modules["build_skill_release"] = release
 spec.loader.exec_module(release)
 
+renderer_spec = importlib.util.spec_from_file_location(
+    "render_evidence_sections",
+    TOOLS / "render_evidence_sections.py",
+)
+renderer = importlib.util.module_from_spec(renderer_spec)
+sys.modules["render_evidence_sections"] = renderer
+renderer_spec.loader.exec_module(renderer)
+
 from score_skill_answer import score_text  # noqa: E402
 
 
@@ -262,7 +270,7 @@ def test_bilingual_site_entrypoints_and_material_alternates_exist():
     }
     assert english_pages == turkish_pages
 
-    nav = config.split("nav:\n", 1)[1].split("\nmarkdown_extensions:", 1)[0]
+    nav = config.split("nav:\n", 1)[1].split("\nextra_css:", 1)[0]
     assert len([line for line in nav.splitlines() if line.startswith("  - ")]) == 4
     for label in ("Overview", "Create a skill", "Examples", "Safety & reuse"):
         assert f"- {label}:" in nav
@@ -767,9 +775,36 @@ def test_published_articles_quote_the_measured_scores():
             assert f"**{control} / 100**" in article, f"{path}: control score missing"
             assert f"**{treatment} / 100**" in article, f"{path}: treatment score missing"
             assert f"{prefix}/{slug}/scorecard.json" in article
-        for catalog in (catalog_en, catalog_tr):
-            assert f"LLM only **{control}/100**" in catalog
-            assert f"LLM + skill **{treatment}/100**" in catalog
+        for catalog, control_label, treatment_label in (
+            (catalog_en, "LLM only", "LLM + skill"),
+            (catalog_tr, "Yalnızca LLM", "LLM + Agent Skill"),
+        ):
+            assert f"{control_label} **{control}/100**" in catalog
+            assert f"{treatment_label} **{treatment}/100**" in catalog
+
+
+def test_generated_articles_and_catalogs_match_renderer():
+    catalog = _json(ROOT / "demos" / "catalog.json")
+    scorecards = {}
+    for entry in catalog["entries"]:
+        slug = entry["id"]
+        demo = ROOT / "demos" / slug
+        scorecard = _json(demo / "evidence" / "scorecard.json")
+        scorecards[slug] = scorecard
+        manifest = _json(demo / "sources" / "source-manifest.json")
+        key = _json(demo / "evaluation" / "answer-key.json")
+        for locale, field in (("en", "article"), ("tr", "articleTr")):
+            expected = renderer.render_article(
+                locale, slug, entry, manifest, scorecard, key
+            )
+            assert (ROOT / entry[field]).read_text(encoding="utf-8") == expected
+
+    for locale in ("en", "tr"):
+        expected = renderer.render_catalog(locale, catalog["entries"], scorecards)
+        actual = (ROOT / "docs" / locale / "skills" / "index.md").read_text(
+            encoding="utf-8"
+        )
+        assert actual == expected
 
 
 def test_scorer_matches_citations_regardless_of_case_accent_or_punctuation():
@@ -844,7 +879,7 @@ def test_landing_pages_still_credit_the_upstream_project():
         assert "github.com/virgiliojr94/book-to-skill" in text
 
 
-def test_site_uses_native_material_without_custom_taste_assets():
+def test_site_uses_native_material_with_only_bounded_mobile_header_css():
     assets = ROOT / "docs" / "assets"
     assert (assets / "logo.svg").is_file()
     assert not (assets / "logo.png").exists()
@@ -853,9 +888,25 @@ def test_site_uses_native_material_without_custom_taste_assets():
 
     config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
     assert "assets/logo.svg" in config
-    assert "extra_css:" not in config
+    assert "extra_css:\n  - assets/site.css" in config
+    assert "extra_javascript:\n  - assets/site.js" in config
     assert "guide.md" not in config
     assert "BACKERS.md" not in config
+
+    site_css = (assets / "site.css").read_text(encoding="utf-8")
+    assert len(site_css) < 500
+    assert '.md-header .md-header__title' in site_css
+    assert '.md-header__option[data-md-component="palette"]' in site_css
+    for prohibited in ("background", "gradient", "border-radius", "box-shadow", "bts-"):
+        assert prohibited not in site_css
+
+    site_js = (assets / "site.js").read_text(encoding="utf-8")
+    assert len(site_js) < 1500
+    assert 'document.documentElement.lang === "tr"' in site_js
+    for required in ("Koyu moda geç", "Açık moda geç", "Kalıcı bağlantı", "ile oluşturuldu"):
+        assert required in site_js
+    for prohibited in ("innerHTML", "eval(", "fetch(", "localStorage"):
+        assert prohibited not in site_js
     for page in (ROOT / "docs" / "en").rglob("*.md"):
         text = page.read_text(encoding="utf-8")
         assert "bts-" not in text

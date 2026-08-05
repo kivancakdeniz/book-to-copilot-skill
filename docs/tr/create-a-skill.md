@@ -1,13 +1,13 @@
-# Kendi kaynağınızdan skill oluşturun
+# Kendi kaynağınızdan Agent Skill oluşturun
 
-Bir agent'ın içeriği çıkarmasını, analiz etmesini ve skill'i yazmasını
-istiyorsanız deponun tamamını Agent Skill olarak kullanın. Yalnız yerel metin
-çıkarma motoruna ihtiyacınız varsa standalone CLI'yi kullanın.
+Bir yapay zekâ aracısının içeriği çıkarmasını, analiz etmesini ve Agent Skill'i yazmasını
+istiyorsanız deponun tamamını Agent Skill olarak kullanın. Yalnızca yerel metin
+çıkarma aracına ihtiyacınız varsa bağımsız CLI'yi kullanın.
 
-## Agent Skill'i kurun
+## Depoyu Agent Skill olarak kurun
 
-Bu public downstream'i desteklenen bir skill dizinine klonlayın. GitHub Copilot
-CLI için:
+Herkese açık bu türev depoyu desteklenen bir Agent Skill dizinine klonlayın.
+GitHub Copilot CLI için:
 
 ```bash
 git clone https://github.com/kivancakdeniz/book-to-copilot-skill.git \
@@ -21,10 +21,11 @@ depoyu inceleyin.
 
 ## Bir kaynağı dönüştürün
 
-Kurulu skill'i bir veya birden çok yol ve isteğe bağlı çıktı slug'ıyla çağırın:
+Kurulu Agent Skill'i bir veya birden çok yol ve isteğe bağlı kısa bir çıktı
+adıyla (slug) çağırın:
 
 ```text
-/book-to-skill <yol-veya-glob>... [skill-adı]
+/book-to-skill <yol-veya-dosya-kalıbı>... [skill-adı]
 ```
 
 Örnekler:
@@ -33,30 +34,30 @@ Kurulu skill'i bir veya birden çok yol ve isteğe bağlı çıktı slug'ıyla �
 # Tek PDF
 /book-to-skill ~/kitaplar/operasyon-modeli.pdf operasyon-modeli
 
-# Birden çok kaynağı tek skill'de birleştir
+# Birden çok kaynağı tek Agent Skill içinde birleştir
 /book-to-skill ~/politika/mevzuat.pdf ~/politika/kurum-politikasi.docx uyum-rehberi
 
 # Klasördeki desteklenen bütün belgeler
-/book-to-skill ~/workspace/runbooks/ operasyon-runbook
+/book-to-skill ~/workspace/runbooks/ operasyon-kilavuzu
 
 # İlişkili araştırma dosyaları
 /book-to-skill "~/makaleler/*.pdf" arastirma-yontemleri
 ```
 
-Tam Agent Skill, içeriğin teknik mi metin ağırlıklı mı olduğunu sorar, uygun
-çıkarıcıyı seçer, yapıyı analiz eder ve üretilen skill'i host ile uyumlu skill
-dizinine yazar.
+Tam Agent Skill, içeriğin teknik mi yoksa metin ağırlıklı mı olduğunu sorar,
+uygun metin çıkarma yöntemini seçer, yapıyı analiz eder ve üretilen Agent Skill'i
+hedef ortamla uyumlu dizine yazar.
 
 ## Desteklenen girdiler
 
-| Girdi | Çıkarım yolu |
+| Girdi | Metin çıkarma yöntemi |
 | --- | --- |
 | PDF, metin ağırlıklı | `pdftotext`, sonra `pypdf` veya `pdfminer.six` |
 | PDF, teknik | Tablo ve kod blokları için Docling |
-| EPUB | `ebooklib`, standart kütüphane fallback'i ile |
-| DOCX | `python-docx`, ZIP/XML fallback'i ile |
-| HTML | Beautiful Soup, standart kütüphane fallback'i ile |
-| RTF | `striprtf`, regex fallback'i ile |
+| EPUB | `ebooklib`, çalışmazsa standart kütüphane |
+| DOCX | `python-docx`, çalışmazsa ZIP/XML yöntemi |
+| HTML | Beautiful Soup, çalışmazsa standart kütüphane |
+| RTF | `striprtf`, çalışmazsa düzenli ifade yöntemi |
 | MOBI / AZW / AZW3 | Calibre `ebook-convert` |
 | Markdown, TXT, reStructuredText, AsciiDoc | Dahili |
 
@@ -79,15 +80,15 @@ Tam kitap dönüşümü normalde şunu üretir:
 └── cheatsheet.md
 ```
 
-Kök `SKILL.md` mental modelleri ve konu indeksini taşır. Destek dosyaları yalnız
-istek gerektirdiğinde yüklenir. Bu depodaki regüle karar örneklerinde kullanılan
-altı dosyalı şablon ise kamu yöntemini, şirket politikasını, kanıt haritasını,
-çıktı şemasını ve senaryo rehberini ayrı tutar.
+Kök `SKILL.md` zihinsel modelleri ve konu dizinini taşır. Destek dosyaları yalnız
+istek gerektirdiğinde yüklenir. Bu depodaki düzenlemeye tabi karar örneklerinde
+kullanılan altı dosyalı şablon ise herkese açık yöntemi, kurum politikasını,
+kanıt haritasını, çıktı şemasını ve senaryo rehberini ayrı tutar.
 
 ## Sonucu doğrulayın
 
-Üretilen skill'i kurmadan veya paylaşmadan önce host uyumluluğu ve prompt
-injection denetimlerini çalıştırın:
+Üretilen Agent Skill'i kurmadan veya paylaşmadan önce hedef ortam uyumluluğu ve
+istem enjeksiyonu denetimlerini çalıştırın:
 
 ```bash
 python tools/validate_skill.py --lens copilot path/to/skill/SKILL.md
@@ -95,40 +96,41 @@ python tools/validate_skill.py --lens claude path/to/skill/SKILL.md
 python tools/scan_generated_skill.py path/to/skill
 ```
 
-Kaynağı güvenilmeyen girdi olarak değerlendirin. Skill'i bir agent'a yüklemeden
-önce üretilen komutları, bağlantıları, frontmatter'ı ve iddiaları inceleyin.
+Kaynağı güvenilmeyen girdi olarak değerlendirin. Agent Skill'i bir yapay zekâ aracısına
+yüklemeden önce üretilen komutları, bağlantıları, YAML üstbilgisini (frontmatter) ve iddiaları
+inceleyin.
 
 ## Fayda sağlayıp sağlamadığını test edin
 
 Aynı vaka ve istemi iki kez kullanın:
 
-1. Modeli üretilen skill olmadan çalıştırın.
-2. Skill'i kurup aynı isteği tekrarlayın.
+1. Modeli üretilen Agent Skill olmadan çalıştırın.
+2. Agent Skill'i kurup aynı isteği tekrarlayın.
 3. İki yanıtı okumadan önce beklenen davranışı tanımlayın.
 4. Doğruluk, kural kullanımı, kanıt, eksikler ve uygunsuz yetkiyi karşılaştırın.
 5. Performans iddiası yapıyorsanız ham yanıtları ve puanlama yöntemini yayımlayın.
 
 Bu depodaki 12 örnek, `demos/<slug>/evaluation/` altında yeniden kullanılabilir
-fixture'lar ve `demos/<slug>/evidence/` altında yeniden hesaplanabilir skor
+test düzenekleri ve `demos/<slug>/evidence/` altında yeniden hesaplanabilir puan
 kartları içerir.
 
 ## Cowork için paketleyin
 
-`SKILL.md` içeren herhangi bir skill dizininden deterministik Microsoft 365
-Copilot Cowork arşivi üretin:
+`SKILL.md` içeren herhangi bir Agent Skill dizininden deterministik Microsoft
+365 Copilot Cowork arşivi üretin:
 
 ```bash
 python tools/package_cowork_skill.py path/to/skill dist/my-skill.skill
 ```
 
-GitHub Copilot veya Scout için incelenmiş skill'i host'un beklediği skill dizinine
-yerleştirin. 12 örnek, Copilot Studio için GitHub harness ve classic kurulum
-biçimlerini de gösterir.
+GitHub Copilot veya Scout için incelenmiş Agent Skill'i hedef ortamın beklediği
+dizine yerleştirin. 12 örnek, Copilot Studio için GitHub bağlantı paketi ve klasik
+kurulum biçimlerini de gösterir.
 
-## Standalone çıkarıcı
+## Bağımsız metin çıkarma aracı
 
-Agent destekli skill üretimi olmadan yalnız çıkarım gerekiyorsa klondan yerel
-CLI'yi kurun:
+Agent destekli Agent Skill üretimi olmadan yalnızca metin çıkarma gerekiyorsa
+klonladığınız depodan yerel CLI'yi kurun:
 
 ```bash
 python3 -m venv .venv
@@ -136,10 +138,11 @@ python3 -m venv .venv
 .venv/bin/book-to-skill ~/kitaplar/kaynak.pdf --mode text
 ```
 
-CLI metin ve metadata çıkarır. `/book-to-skill` Agent Skill'ini kaydetmez ve son
-skill'i tek başına yazmaz.
+CLI metni ve üstveriyi çıkarır. `/book-to-skill` Agent Skill'ini kaydetmez ve son
+Agent Skill'i tek başına yazmaz.
 
 ## Sonraki adım
 
-Kaynak manifestlerini, kontrol ve skill yanıtlarını, skor kartlarını ve hazır
-Copilot paketlerini görmek için [public örnekleri inceleyin](skills/index.md).
+Kaynak bildirim dosyalarını, yalnızca LLM ile alınan yanıtları, Agent Skill destekli
+yanıtları, puan kartlarını ve hazır Copilot paketlerini görmek için [herkese açık
+örnekleri inceleyin](skills/index.md).

@@ -2,6 +2,7 @@
 __pycache__/
 .venv/
 .local/
+.DS_Store
 
 # Secrets and local provider state
 .env

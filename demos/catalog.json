@@ -15,9 +15,9 @@
       },
       "tr": {
         "title": "KVKK aydınlatma kontrolü",
-        "sector": "Veri koruma",
-        "audience": "Privacy, Compliance ve ürün ekipleri",
-        "oneLineValue": "Aydınlatma, rıza ve aktarım boşluklarını insan yayın kapısına bağlar."
+        "sector": "Kişisel verilerin korunması",
+        "audience": "Kişisel verilerin korunması, uyum ve ürün ekipleri",
+        "oneLineValue": "Aydınlatma, rıza ve aktarım eksiklerini yayımlamadan önce yetkili incelemesine sunar."
       }
     },
     {
@@ -32,10 +32,10 @@
         "oneLineValue": "Reviews a campaign audience against person-channel evidence and a suppression gate."
       },
       "tr": {
-        "title": "ETK/IYS ileti kararı",
+        "title": "ETK/İYS ileti kararı",
         "sector": "Ticari elektronik ileti",
-        "audience": "CRM, Compliance ve Legal ekipleri",
-        "oneLineValue": "Kampanya kitlesini kişi-kanal kanıtı ve bastırma kapısıyla inceler."
+        "audience": "CRM, uyum ve hukuk ekipleri",
+        "oneLineValue": "Kampanya kitlesini kişi ve kanal bazındaki kanıtlar ile gönderim engeli denetimine göre inceler."
       }
     },
     {
@@ -52,8 +52,8 @@
       "tr": {
         "title": "İndirimli fiyat denetimi",
         "sector": "E-ticaret ve tüketici hukuku",
-        "audience": "E-ticaret, fiyatlandırma ve Compliance ekipleri",
-        "oneLineValue": "Fiyat geçmişi ile kampanya iddiasını izlenebilir bir yayın kararında buluşturur."
+        "audience": "E-ticaret, fiyatlandırma ve uyum ekipleri",
+        "oneLineValue": "Fiyat geçmişi ile kampanya iddiasını birlikte inceleyerek izlenebilir bir yayımlama kararı oluşturur."
       }
     },
     {
@@ -68,10 +68,10 @@
         "oneLineValue": "Routes identity, beneficial-owner, and source-of-funds gaps to human review."
       },
       "tr": {
-        "title": "MASAK müşteri kabul",
+        "title": "MASAK müşteri kabulü",
         "sector": "Finansal suçlarla mücadele",
-        "audience": "AML, Compliance ve müşteri kabul ekipleri",
-        "oneLineValue": "Kimlik, nihai faydalanıcı ve fon kaynağı boşluklarını insan incelemesine yönlendirir."
+        "audience": "AML, uyum ve müşteri kabul ekipleri",
+        "oneLineValue": "Kimlik, nihai faydalanıcı ve fon kaynağı eksiklerini yetkili incelemesine yönlendirir."
       }
     },
     {
@@ -88,8 +88,8 @@
       "tr": {
         "title": "BDDK uzaktan müşteri edinimi",
         "sector": "Bankacılık",
-        "audience": "Dijital bankacılık, güvenlik, Uyum ve Hukuk ekipleri",
-        "oneLineValue": "Uzaktan edinim akışını kanıt, kontrol ve canlıya geçiş kapılarıyla sınar."
+        "audience": "Dijital bankacılık, güvenlik, uyum ve hukuk ekipleri",
+        "oneLineValue": "Uzaktan müşteri edinimi akışını kanıt, kontrol ve kullanıma alma koşullarına göre değerlendirir."
       }
     },
     {
@@ -104,10 +104,10 @@
         "oneLineValue": "Separates preliminary indicators from the legal notification and closing gate."
       },
       "tr": {
-        "title": "Rekabet birleşme bildirimi",
+        "title": "Birleşme bildirimi incelemesi",
         "sector": "Birleşme ve devralmalar",
-        "audience": "M&A, Finans ve Rekabet Hukuku ekipleri",
-        "oneLineValue": "Ön hesaplama göstergelerini hukuki bildirim kararı ve kapanış kapısından ayırır."
+        "audience": "M&A, finans ve rekabet hukuku ekipleri",
+        "oneLineValue": "Ön değerlendirme bulgularını hukuki bildirim incelemesinden ve işlemin kapanış onayından ayrı ele alır."
       }
     },
     {
@@ -122,7 +122,7 @@
         "oneLineValue": "Makes change risk visible through participation, control, and commissioning evidence."
       },
       "tr": {
-        "title": "İSG risk değerlendirmesi: değişiklikten devreye alma kapısına",
+        "title": "İSG risk değerlendirmesi: değişiklikten devreye alma onayına",
         "sector": "İş sağlığı ve güvenliği",
         "audience": "İSG, operasyon, bakım ve mühendislik ekipleri",
         "oneLineValue": "Değişiklik risklerini katılım, kontrol ve devreye alma kanıtlarıyla görünür kılar."
@@ -140,10 +140,10 @@
         "oneLineValue": "Ties product status, audience, and channel reach to a human release review."
       },
       "tr": {
-        "title": "TİTCK ilaç tanıtımı: hedef kitle ve yayın kapısı",
+        "title": "TİTCK ilaç tanıtımı: hedef kitle ve yayımlama öncesi inceleme",
         "sector": "İlaç ve sağlık iletişimi",
-        "audience": "Medical, Regulatory, Legal ve pazarlama ekipleri",
-        "oneLineValue": "Ürün statüsü, hedef kitle ve kanal erişimini insan yayın incelemesine bağlar."
+        "audience": "Medikal, ruhsatlandırma, hukuk ve pazarlama ekipleri",
+        "oneLineValue": "Ürün statüsü, hedef kitle ve kanal erişimini yayımlamadan önce yetkili incelemesine sunar."
       }
     },
     {
@@ -158,10 +158,10 @@
         "oneLineValue": "Reviews the role of crypto in a payment flow against product and launch gates."
       },
       "tr": {
-        "title": "Kripto ödeme kapısı",
+        "title": "Kripto ödeme geçidi incelemesi",
         "sector": "Ödeme hizmetleri ve kripto varlıklar",
-        "audience": "Payments, Compliance, Legal ve ürün ekipleri",
-        "oneLineValue": "Kripto işlevinin ödeme akışındaki rolünü ürün sınırı ve lansman kapısıyla inceler."
+        "audience": "Ödeme, uyum, hukuk ve ürün ekipleri",
+        "oneLineValue": "Kripto işlevinin ödeme akışındaki rolünü ürün kapsamı ve kullanıma alma koşulları açısından inceler."
       }
     },
     {
@@ -177,9 +177,9 @@
       },
       "tr": {
         "title": "BTK haberleşme verisi",
-        "sector": "Telekom ve mahremiyet",
-        "audience": "Telekom Compliance, Privacy, DPO ve CRM ekipleri",
-        "oneLineValue": "Konum ve trafik verisi kullanımını amaç, rıza ve saklama kapılarıyla sınırlar."
+        "sector": "Telekom ve kişisel verilerin korunması",
+        "audience": "Telekom uyumu, kişisel verilerin korunması, DPO ve CRM ekipleri",
+        "oneLineValue": "Konum ve trafik verisi kullanımını amaç, rıza ve saklama koşullarına göre sınırlar."
       }
     },
     {
@@ -197,7 +197,7 @@
         "title": "Yatırım komitesi değerlendirmesi",
         "sector": "Sermaye tahsisi",
         "audience": "CFO, COO, CIO ve yatırım komitesi üyeleri",
-        "oneLineValue": "Sermaye brifingini kapılı ve kanıt atıflı bir komite karar kartına dönüştürür."
+        "oneLineValue": "Yatırım teklifini, onay adımlarını ve kanıt kaynaklarını gösteren bir komite değerlendirme özetine dönüştürür."
       }
     },
     {
@@ -214,8 +214,8 @@
       "tr": {
         "title": "Pazarlama iddiaları incelemesi",
         "sector": "Pazarlama ve reklam uyumu",
-        "audience": "Pazarlama, Legal ve Compliance ekipleri",
-        "oneLineValue": "Reklam iddialarını dayanak, ifşa ve yayın kontrolleriyle sınar."
+        "audience": "Pazarlama, hukuk ve uyum ekipleri",
+        "oneLineValue": "Reklam iddialarını dayanakları, gerekli açıklamalar ve yayımlama öncesi denetimler açısından değerlendirir."
       }
     }
   ]

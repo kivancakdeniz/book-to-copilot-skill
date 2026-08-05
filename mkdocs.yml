@@ -52,12 +52,12 @@ plugins:
         - locale: tr
           name: Türkçe
           build: true
-          site_description: Onaylı iş rehberini yönetişimli ve ölçülmüş Copilot skill'lerine derleyin.
+          site_description: Kurumsal rehberleri denetlenebilir ve değerlendirilmiş Agent Skill'lere dönüştürün.
           nav_translations:
-            Overview: Genel Bakış
-            Create a skill: Skill Oluştur
+            Overview: Genel bakış
+            Create a skill: Agent Skill oluştur
             Examples: Örnekler
-            Safety & reuse: Güvenlik ve Yeniden Kullanım
+            Safety & reuse: Güvenlik ve yeniden kullanım
   - search
 
 nav:
@@ -65,6 +65,12 @@ nav:
   - Create a skill: create-a-skill.md
   - Examples: skills/index.md
   - Safety & reuse: safety.md
+
+extra_css:
+  - assets/site.css
+
+extra_javascript:
+  - assets/site.js
 
 markdown_extensions:
   - admonition

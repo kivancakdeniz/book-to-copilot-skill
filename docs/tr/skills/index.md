@@ -3,107 +3,110 @@ hide:
   - toc
 ---
 
-# 12 public örnek
+# Herkese açık 12 örnek
 
 Bu örnekler dönüştürücünün yalnız kitaplarda değil, mevzuat ve kurum
-rehberlerinde de çalıştığını gösterir. Her örnekte kaynak manifesti, sentetik
-politika ve vaka, üretilen skill, 12 kilitli senaryo, kontrol yanıtı, skill
-yanıtı, skor kartı ve beş Copilot paketi bulunur.
+rehberlerinde de çalıştığını gösterir. Her örnekte kaynak bildirim dosyası, sentetik
+politika ve vaka, üretilen Agent Skill, önceden belirlenmiş 12 senaryo,
+yalnızca LLM ile alınan yanıt, Agent Skill destekli yanıt, puan kartı ve
+beş Copilot paketi bulunur.
 
-12 örneğin ortalama iz puanı yalnız LLM'de **33/100**, skill ile
-**95/100** oldu. Sonuçlar tek senaryo ve tek host sınırındadır.
+12 örneğin ortalama karar izlenebilirliği puanı yalnızca LLM ile **33/100**,
+Agent Skill desteğiyle **95/100** oldu. Sonuçlar her koşul için
+tek senaryo ve tek ortamla sınırlıdır.
 
 ## Örnekler
 
 ### [KVKK aydınlatma kontrolü](kvkk-aydinlatma-kontrolu.md)
 
-**Alan:** Veri koruma<br>
-**Puan:** LLM only **10/100** · LLM + skill **100/100**
+**Alan:** Kişisel verilerin korunması<br>
+**Puan:** Yalnızca LLM **10/100** · LLM + Agent Skill **100/100**
 
-Aydınlatma, rıza ve aktarım boşluklarını insan yayın kapısına bağlar.
+Aydınlatma, rıza ve aktarım eksiklerini yayımlamadan önce yetkili incelemesine sunar.
 
-### [ETK/IYS ileti kararı](etk-iys-ileti-karari.md)
+### [ETK/İYS ileti kararı](etk-iys-ileti-karari.md)
 
 **Alan:** Ticari elektronik ileti<br>
-**Puan:** LLM only **20/100** · LLM + skill **80/100**
+**Puan:** Yalnızca LLM **20/100** · LLM + Agent Skill **80/100**
 
-Kampanya kitlesini kişi-kanal kanıtı ve bastırma kapısıyla inceler.
+Kampanya kitlesini kişi ve kanal bazındaki kanıtlar ile gönderim engeli denetimine göre inceler.
 
 ### [İndirimli fiyat denetimi](indirimli-fiyat-denetimi.md)
 
 **Alan:** E-ticaret ve tüketici hukuku<br>
-**Puan:** LLM only **20/100** · LLM + skill **100/100**
+**Puan:** Yalnızca LLM **20/100** · LLM + Agent Skill **100/100**
 
-Fiyat geçmişi ile kampanya iddiasını izlenebilir bir yayın kararında buluşturur.
+Fiyat geçmişi ile kampanya iddiasını birlikte inceleyerek izlenebilir bir yayımlama kararı oluşturur.
 
-### [MASAK müşteri kabul](masak-musteri-kabul.md)
+### [MASAK müşteri kabulü](masak-musteri-kabul.md)
 
 **Alan:** Finansal suçlarla mücadele<br>
-**Puan:** LLM only **20/100** · LLM + skill **100/100**
+**Puan:** Yalnızca LLM **20/100** · LLM + Agent Skill **100/100**
 
-Kimlik, nihai faydalanıcı ve fon kaynağı boşluklarını insan incelemesine yönlendirir.
+Kimlik, nihai faydalanıcı ve fon kaynağı eksiklerini yetkili incelemesine yönlendirir.
 
 ### [BDDK uzaktan müşteri edinimi](bddk-uzaktan-musteri-edinimi.md)
 
 **Alan:** Bankacılık<br>
-**Puan:** LLM only **40/100** · LLM + skill **80/100**
+**Puan:** Yalnızca LLM **40/100** · LLM + Agent Skill **80/100**
 
-Uzaktan edinim akışını kanıt, kontrol ve canlıya geçiş kapılarıyla sınar.
+Uzaktan müşteri edinimi akışını kanıt, kontrol ve kullanıma alma koşullarına göre değerlendirir.
 
-### [Rekabet birleşme bildirimi](rekabet-birlesme-bildirimi.md)
+### [Birleşme bildirimi incelemesi](rekabet-birlesme-bildirimi.md)
 
 **Alan:** Birleşme ve devralmalar<br>
-**Puan:** LLM only **40/100** · LLM + skill **100/100**
+**Puan:** Yalnızca LLM **40/100** · LLM + Agent Skill **100/100**
 
-Ön hesaplama göstergelerini hukuki bildirim kararı ve kapanış kapısından ayırır.
+Ön değerlendirme bulgularını hukuki bildirim incelemesinden ve işlemin kapanış onayından ayrı ele alır.
 
-### [İSG risk değerlendirmesi: değişiklikten devreye alma kapısına](isg-risk-degerlendirme.md)
+### [İSG risk değerlendirmesi: değişiklikten devreye alma onayına](isg-risk-degerlendirme.md)
 
 **Alan:** İş sağlığı ve güvenliği<br>
-**Puan:** LLM only **40/100** · LLM + skill **100/100**
+**Puan:** Yalnızca LLM **40/100** · LLM + Agent Skill **100/100**
 
 Değişiklik risklerini katılım, kontrol ve devreye alma kanıtlarıyla görünür kılar.
 
-### [TİTCK ilaç tanıtımı: hedef kitle ve yayın kapısı](titck-ilac-tanitimi.md)
+### [TİTCK ilaç tanıtımı: hedef kitle ve yayımlama öncesi inceleme](titck-ilac-tanitimi.md)
 
 **Alan:** İlaç ve sağlık iletişimi<br>
-**Puan:** LLM only **40/100** · LLM + skill **100/100**
+**Puan:** Yalnızca LLM **40/100** · LLM + Agent Skill **100/100**
 
-Ürün statüsü, hedef kitle ve kanal erişimini insan yayın incelemesine bağlar.
+Ürün statüsü, hedef kitle ve kanal erişimini yayımlamadan önce yetkili incelemesine sunar.
 
-### [Kripto ödeme kapısı](kripto-odeme-kapisi.md)
+### [Kripto ödeme geçidi incelemesi](kripto-odeme-kapisi.md)
 
 **Alan:** Ödeme hizmetleri ve kripto varlıklar<br>
-**Puan:** LLM only **40/100** · LLM + skill **100/100**
+**Puan:** Yalnızca LLM **40/100** · LLM + Agent Skill **100/100**
 
-Kripto işlevinin ödeme akışındaki rolünü ürün sınırı ve lansman kapısıyla inceler.
+Kripto işlevinin ödeme akışındaki rolünü ürün kapsamı ve kullanıma alma koşulları açısından inceler.
 
 ### [BTK haberleşme verisi](btk-haberlesme-verisi.md)
 
-**Alan:** Telekom ve mahremiyet<br>
-**Puan:** LLM only **40/100** · LLM + skill **80/100**
+**Alan:** Telekom ve kişisel verilerin korunması<br>
+**Puan:** Yalnızca LLM **40/100** · LLM + Agent Skill **80/100**
 
-Konum ve trafik verisi kullanımını amaç, rıza ve saklama kapılarıyla sınırlar.
+Konum ve trafik verisi kullanımını amaç, rıza ve saklama koşullarına göre sınırlar.
 
 ### [Yatırım komitesi değerlendirmesi](investment-committee.md)
 
 **Alan:** Sermaye tahsisi<br>
-**Puan:** LLM only **40/100** · LLM + skill **100/100**
+**Puan:** Yalnızca LLM **40/100** · LLM + Agent Skill **100/100**
 
-Sermaye brifingini kapılı ve kanıt atıflı bir komite karar kartına dönüştürür.
+Yatırım teklifini, onay adımlarını ve kanıt kaynaklarını gösteren bir komite değerlendirme özetine dönüştürür.
 
 ### [Pazarlama iddiaları incelemesi](marketing-claims-review.md)
 
 **Alan:** Pazarlama ve reklam uyumu<br>
-**Puan:** LLM only **40/100** · LLM + skill **100/100**
+**Puan:** Yalnızca LLM **40/100** · LLM + Agent Skill **100/100**
 
-Reklam iddialarını dayanak, ifşa ve yayın kontrolleriyle sınar.
+Reklam iddialarını dayanakları, gerekli açıklamalar ve yayımlama öncesi denetimler açısından değerlendirir.
 
 
 ## Ne indirebilirsiniz
 
-Her örnek sayfasında Cowork, GitHub Copilot for VS Code, Scout ve iki Copilot
-Studio biçimi bulunur. Tüm paketler temiz yeniden derlemede byte-identical
-doğrulanır ve `downloads/skills/SHA256SUMS` manifestine bağlanır.
+Her örnek sayfasında Cowork, VS Code için GitHub Copilot, Scout ve iki Copilot
+Studio biçimi bulunur. Temiz bir yeniden derlemede bütün paketlerin bayt
+düzeyinde birebir aynı olduğu doğrulanır ve sonuçlar
+`downloads/skills/SHA256SUMS` sağlama toplamı listesine kaydedilir.
 
-Kendi içeriğinizle aynı akışı kurmak için [Skill oluştur](../create-a-skill.md).
+Kendi içeriğinizle aynı akışı kurmak için [Agent Skill oluşturun](../create-a-skill.md).

@@ -20,10 +20,64 @@ PACKAGE_LABELS = {
         ("Cowork `.skill`", "cowork.skill"),
         ("VS Code için GitHub Copilot", "copilot-vscode.zip"),
         ("Microsoft Scout", "scout.zip"),
-        ("Copilot Studio GitHub harness", "copilot-studio-github-harness.zip"),
-        ("Copilot Studio classic kurulum", "copilot-studio-classic-setup.zip"),
+        ("Copilot Studio GitHub bağlantı paketi", "copilot-studio-github-harness.zip"),
+        ("Copilot Studio klasik kurulum paketi", "copilot-studio-classic-setup.zip"),
     ),
 }
+
+TR_DISPLAY_LABELS = {
+    "AML Officer": "AML yetkilisi",
+    "CRM Owner": "CRM sorumlusu",
+    "Compliance": "Uyum",
+    "Data Protection/Compliance": "Kişisel verilerin korunması ve uyum",
+    "E-commerce Owner": "E-ticaret sorumlusu",
+    "Investment Committee": "Yatırım komitesi",
+    "Legal": "Hukuk",
+    "Medical": "Medikal",
+    "Payments Counsel": "Ödeme hizmetleri hukuk danışmanı",
+    "Pricing Owner": "Fiyatlandırma sorumlusu",
+    "Privacy Counsel": "Kişisel verilerin korunması hukuk danışmanı",
+    "Product": "Ürün",
+    "Product Owner": "Ürün sorumlusu",
+    "Regulatory": "Ruhsatlandırma ve mevzuat",
+    "Sponsor": "Proje sponsoru",
+    "Telecom Compliance": "Telekom uyumu",
+    "advertise-25-percent": "yüzde 25 indirim iddiasını kullan",
+    "approve-with-edits": "düzeltmelerle onayla",
+    "conditional-approval": "koşullu onay",
+    "consent-first-redesign": "rıza sürecini önceleyen yeniden tasarım",
+    "do-not-publish": "yayımlanmamalı",
+    "do-not-send": "gönderilmemeli",
+    "enhanced-review": "ayrıntılı inceleme",
+    "evidence-bounded-campaign": "yalnızca kanıtlanabilir iddiaları kullanan kampanya",
+    "hold-closing": "işlemin kapanışını beklet",
+    "hold-commissioning": "devreye almayı beklet",
+    "hold-onboarding": "müşteri edinimini beklet",
+    "legal-notification-review": "hukuki bildirim incelemesi",
+    "manual-onboarding-fallback": "elle müşteri edinimine geç",
+    "phased-automation": "aşamalı otomasyon",
+    "professional-channel-review": "mesleki kanallara uygunluk incelemesi",
+    "reject-flow": "akışı reddet",
+    "reject-payment-flow": "ödeme akışını reddet",
+    "remove-crypto-checkout": "kripto ödeme seçeneğini kaldır",
+    "renew-assessment": "değerlendirmeyi yenile",
+    "revise-before-launch": "kullanıma sunmadan önce düzelt",
+    "revise-price-claim": "fiyat iddiasını düzelt",
+    "separate-notice-and-consent": "aydınlatma ile rızayı ayır",
+    "stop-processing": "işlemeyi durdur",
+    "suppress-unverified-audience": "doğrulanmamış kitleyi gönderimden çıkar",
+}
+
+
+def display_label(locale: str, value: str) -> str:
+    return TR_DISPLAY_LABELS.get(value, value) if locale == "tr" else value
+
+
+def traced_label(locale: str, value: str) -> str:
+    label = display_label(locale, value)
+    if locale == "tr" and label != value:
+        return f"`{value}` ({label})"
+    return f"`{value}`"
 
 
 def load(path: Path) -> Any:
@@ -54,9 +108,10 @@ def source_rows(locale: str, manifest: Mapping[str, Any]) -> list[str]:
     synthetic_value = (
         "Published in the demo directory under the repository MIT licence"
         if locale == "en"
-        else "Demo dizininde depo MIT lisansıyla yayımlanır"
+        else "Sentetik politika ve vaka, demo dizininde MIT lisansıyla yayımlanır"
     )
-    rows.append(f"| {synthetic_type} | `{synthetic_value}` | — |")
+    rendered_value = f"`{synthetic_value}`" if locale == "en" else synthetic_value
+    rows.append(f"| {synthetic_type} | {rendered_value} | — |")
     return rows
 
 
@@ -64,7 +119,16 @@ def comparison_table(locale: str, control: Mapping[str, Any], treatment: Mapping
     yes, no = (("yes", "no") if locale == "en" else ("evet", "hayır"))
     labels = {
         "en": ("Check", "LLM only", "LLM + skill", "Policy rules cited", "Exact decision class", "Named option", "Human route", "Trace score"),
-        "tr": ("Denetim", "Yalnız LLM", "LLM + skill", "Politika kuralı atfı", "Tam karar sınıfı", "Adlandırılmış seçenek", "İnsan rotası", "İz puanı"),
+        "tr": (
+            "Denetim",
+            "Yalnızca LLM",
+            "LLM + Agent Skill",
+            "Politika kuralı atfı",
+            "Beklenen karar sınıfıyla tam eşleşme",
+            "Önerilen seçenek",
+            "Yetkili incelemeye yönlendirme",
+            "Karar izlenebilirliği puanı",
+        ),
     }[locale]
     passed = lambda run, gate: yes if run["gates"][gate]["passed"] else no
     lines = [
@@ -99,7 +163,10 @@ def render_article(
     control = best_run(scorecard, "control")
     treatment = best_run(scorecard, "treatment")
     asset = f"../../assets/skills/{slug}"
-    routes = " · ".join(key["humanRoute"])
+    routes = " · ".join(
+        traced_label(locale, route) if locale == "tr" else route
+        for route in key["humanRoute"]
+    )
     sources = "\n".join(source_rows(locale, manifest))
     packages = "\n".join(package_lines(locale, slug))
     control_file = Path(control["outputPath"]).stem
@@ -122,54 +189,57 @@ birleştirir. Ham resmî belge pakete konmaz.
 | --- | --- | --- |
 {sources}
 
-## Üretilen skill
+## Üretilen Agent Skill
 
-Skill, kaynak içeriği tek bir özete sıkıştırmak yerine yeniden kullanılabilir altı
+Agent Skill, kaynak içeriği tek bir özete sıkıştırmak yerine yeniden kullanılabilir altı
 dosyaya ayırır:
 
-- `SKILL.md`: ne zaman kullanılacağı ve işlem sırası;
+- `SKILL.md`: ne zaman kullanılacağı ve çalışma sırası;
 - `public-method.md`: resmî kaynaktan çıkarılan bağımsız yöntem özeti;
-- `company-policy.md`: kararlı kimlikleri olan sentetik kurum kuralları;
+- `company-policy.md`: değişmeyen kimliklere sahip sentetik kurum kuralları;
 - `evidence-map.md`: hangi iddianın hangi kaynaktan gelebileceği;
 - `output-schema.md`: beklenen yanıt yapısı;
-- `scenario-guide.md`: eksik bilgi, çelişki ve çekimserlik davranışı.
+- `scenario-guide.md`: eksik bilgi, çelişki ve yanıt vermekten kaçınma davranışı.
 
-Kilitli değerlendirme `{key['decisionClass']}` karar sınıfını,
-`{key['recommendedOption']}` seçeneğini ve {len(key['requiredRuleIds'])} kural
-kimliğini bekler. Nihai insan rotası: {routes}.
+Önceden belirlenen değerlendirmede karar sınıfı olarak
+{traced_label(locale, key['decisionClass'])}, önerilen seçenek olarak
+{traced_label(locale, key['recommendedOption'])} ve {len(key['requiredRuleIds'])}
+kural kimliğinin kullanılması beklenir. Nihai
+incelemeden sorumlu roller:
+{routes}.
 
-## LLM only ve LLM + skill
+## Yalnızca LLM ve LLM + Agent Skill
 
-Aynı vaka ve istem iki kez çalıştırıldı. Tek fark, ikinci çalıştırmada skill'in
-yüklü olmasıdır. Puanlama bir model tarafından değil, kilitli yanıt anahtarını
-okuyan deterministik betik tarafından yapılır.
+Aynı vaka ve istem iki kez çalıştırıldı. İkinci çalıştırmada ayrıca Agent Skill
+yüklüdür. Her iki yanıtı da başka bir model değil, önceden belirlenmiş yanıt
+anahtarını kullanan deterministik bir betik puanlar.
 
 {comparison_table(locale, control, treatment)}
 
 [Kontrol yanıtı]({asset}/outputs/{control_file}.txt) ·
 [Skill yanıtı]({asset}/outputs/{treatment_file}.txt) ·
-[Skor kartı]({asset}/scorecard.json)
+[Puan kartı]({asset}/scorecard.json)
 
 ```bash
 python tools/score_skill_answer.py scorecard --demo demos/{slug}
 ```
 
-Bu tek senaryo ve tek host karşılaştırmasıdır; üretim doğruluğu veya mevzuata
-uygunluk kanıtı değildir.
+Bu karşılaştırmada her koşulda tek senaryo ve tek çalıştırma ortamı kullanılmıştır;
+sonuçlar üretim doğruluğunun veya mevzuata uygunluğun kanıtı değildir.
 
 ## Copilot paketleri
 
 {packages}
 
-Classic paket doğrudan solution import değildir; hedef Copilot Studio ortamında
-insan tarafından uygulanacak kurulum malzemesidir.
+Klasik paket doğrudan içe aktarılabilen bir Copilot Studio çözümü değildir; hedef
+ortamda elle uygulanacak kurulum dosyaları ve yönergeleri içerir.
 
 ## Yeniden kullanım
 
-Kaynak manifesti, sentetik girdiler, senaryolar, ham yanıtlar ve skor kartı
-`demos/{slug}/` altında public'tir. Aynı yapıyı kendi kaynağınız için kopyalayın,
-ancak yalnız paylaşma hakkınız olan içeriği yayımlayın. [Güvenlik ve yeniden
-kullanım](../safety.md) sınırlarını inceleyin.
+Kaynak bildirim dosyası, sentetik girdiler, senaryolar, ham yanıtlar ve puan kartı
+`demos/{slug}/` altında herkese açıktır. Aynı yapıyı kendi kaynağınız için
+kopyalayın; ancak yalnızca paylaşma hakkınız olan içeriği yayımlayın. [Güvenlik
+ve yeniden kullanım](../safety.md) sınırlarını inceleyin.
 """
 
     return f"""# {item['title']}
@@ -250,15 +320,17 @@ def render_catalog(locale: str, entries: Sequence[Mapping[str, Any]], scorecards
             "  - toc",
             "---",
             "",
-            "# 12 public örnek",
+            "# Herkese açık 12 örnek",
             "",
             "Bu örnekler dönüştürücünün yalnız kitaplarda değil, mevzuat ve kurum",
-            "rehberlerinde de çalıştığını gösterir. Her örnekte kaynak manifesti, sentetik",
-            "politika ve vaka, üretilen skill, 12 kilitli senaryo, kontrol yanıtı, skill",
-            "yanıtı, skor kartı ve beş Copilot paketi bulunur.",
+            "rehberlerinde de çalıştığını gösterir. Her örnekte kaynak bildirim dosyası, sentetik",
+            "politika ve vaka, üretilen Agent Skill, önceden belirlenmiş 12 senaryo,",
+            "yalnızca LLM ile alınan yanıt, Agent Skill destekli yanıt, puan kartı ve",
+            "beş Copilot paketi bulunur.",
             "",
-            f"12 örneğin ortalama iz puanı yalnız LLM'de **{mean_control}/100**, skill ile",
-            f"**{mean_treatment}/100** oldu. Sonuçlar tek senaryo ve tek host sınırındadır.",
+            f"12 örneğin ortalama karar izlenebilirliği puanı yalnızca LLM ile **{mean_control}/100**,",
+            f"Agent Skill desteğiyle **{mean_treatment}/100** oldu. Sonuçlar her koşul için",
+            "tek senaryo ve tek ortamla sınırlıdır.",
             "",
             "## Örnekler",
             "",
@@ -271,8 +343,8 @@ def render_catalog(locale: str, entries: Sequence[Mapping[str, Any]], scorecards
                     f"### [{item['title']}]({entry['id']}.md)",
                     "",
                     f"**Alan:** {item['sector']}<br>",
-                    f"**Puan:** LLM only **{best_run(card, 'control')['traceScore']}/100** · "
-                    f"LLM + skill **{best_run(card, 'treatment')['traceScore']}/100**",
+                    f"**Puan:** Yalnızca LLM **{best_run(card, 'control')['traceScore']}/100** · "
+                    f"LLM + Agent Skill **{best_run(card, 'treatment')['traceScore']}/100**",
                     "",
                     item["oneLineValue"],
                     "",
@@ -282,11 +354,12 @@ def render_catalog(locale: str, entries: Sequence[Mapping[str, Any]], scorecards
             "",
             "## Ne indirebilirsiniz",
             "",
-            "Her örnek sayfasında Cowork, GitHub Copilot for VS Code, Scout ve iki Copilot",
-            "Studio biçimi bulunur. Tüm paketler temiz yeniden derlemede byte-identical",
-            "doğrulanır ve `downloads/skills/SHA256SUMS` manifestine bağlanır.",
+            "Her örnek sayfasında Cowork, VS Code için GitHub Copilot, Scout ve iki Copilot",
+            "Studio biçimi bulunur. Temiz bir yeniden derlemede bütün paketlerin bayt",
+            "düzeyinde birebir aynı olduğu doğrulanır ve sonuçlar",
+            "`downloads/skills/SHA256SUMS` sağlama toplamı listesine kaydedilir.",
             "",
-            "Kendi içeriğinizle aynı akışı kurmak için [Skill oluştur](../create-a-skill.md).",
+            "Kendi içeriğinizle aynı akışı kurmak için [Agent Skill oluşturun](../create-a-skill.md).",
         ))
     else:
         lines = [
