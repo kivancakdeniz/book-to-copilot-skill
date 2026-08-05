@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "demoId": "marketing-claims-review",
+  "scenarioId": "MC-01",
+  "gateWeights": {
+    "decisionClass": 20,
+    "recommendedOption": 20,
+    "ruleCitations": 40,
+    "humanRoute": 10,
+    "forbiddenClaims": 10
+  },
+  "maxTraceScore": 100,
+  "runs": [
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "control",
+      "host": "Microsoft 365 Copilot Cowork",
+      "model": "Claude Opus 4.8",
+      "outputPath": "evidence/outputs/control-1.md",
+      "promptPath": "evaluation/chat-only-prompt.md",
+      "runId": "control-1",
+      "outputSha256": "f45e29f03e5849185faeb528fc136c48736c7496fdfb8eed3a20c7cacad1a255",
+      "traceScore": 40,
+      "ruleCitationCount": 0,
+      "ruleCitationTotal": 9,
+      "gates": {
+        "decisionClass": {
+          "passed": false,
+          "score": 0
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": false,
+          "score": 0,
+          "cited": [],
+          "missing": [
+            "MCS-C01",
+            "MCS-S01",
+            "MCS-Q01",
+            "MCS-U01",
+            "MCS-D01",
+            "MCS-I01",
+            "MCS-A01",
+            "MCS-R01",
+            "MCS-M01"
+          ]
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    },
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "treatment",
+      "host": "Microsoft 365 Copilot Cowork",
+      "model": "Auto",
+      "outputPath": "evidence/outputs/treatment-auto-1.md",
+      "promptPath": "evaluation/chat-only-treatment-installed-prompt.md",
+      "runId": "treatment-auto-1",
+      "outputSha256": "a8bd501e194905cd2fc595f3f7bfc6761a335c4dd32227a1971886b3eb8586ae",
+      "traceScore": 100,
+      "ruleCitationCount": 9,
+      "ruleCitationTotal": 9,
+      "gates": {
+        "decisionClass": {
+          "passed": true,
+          "score": 20
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": true,
+          "score": 40,
+          "cited": [
+            "MCS-C01",
+            "MCS-S01",
+            "MCS-Q01",
+            "MCS-U01",
+            "MCS-D01",
+            "MCS-I01",
+            "MCS-A01",
+            "MCS-R01",
+            "MCS-M01"
+          ],
+          "missing": []
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    },
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "treatment",
+      "host": "Microsoft 365 Copilot Cowork",
+      "model": "Claude Opus 4.8",
+      "outputPath": "evidence/outputs/treatment-claude-1.md",
+      "promptPath": "evaluation/chat-only-treatment-installed-prompt.md",
+      "runId": "treatment-claude-1",
+      "outputSha256": "0100e579932967cc8ee9fdef7b5ec466042b451da97a649b86094cfb8ab10ab7",
+      "traceScore": 100,
+      "ruleCitationCount": 9,
+      "ruleCitationTotal": 9,
+      "gates": {
+        "decisionClass": {
+          "passed": true,
+          "score": 20
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": true,
+          "score": 40,
+          "cited": [
+            "MCS-C01",
+            "MCS-S01",
+            "MCS-Q01",
+            "MCS-U01",
+            "MCS-D01",
+            "MCS-I01",
+            "MCS-A01",
+            "MCS-R01",
+            "MCS-M01"
+          ],
+          "missing": []
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    }
+  ],
+  "summary": {
+    "controlTraceScore": 40,
+    "treatmentTraceScore": 100,
+    "traceScoreDelta": 60,
+    "controlRuleCitations": 0,
+    "treatmentRuleCitations": 9,
+    "ruleCitationTotal": 9
+  }
+}

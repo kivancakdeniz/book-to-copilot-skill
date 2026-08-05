@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "demoId": "masak-musteri-kabul",
+  "scenarioId": "AML-01",
+  "gateWeights": {
+    "decisionClass": 20,
+    "recommendedOption": 20,
+    "ruleCitations": 40,
+    "humanRoute": 10,
+    "forbiddenClaims": 10
+  },
+  "maxTraceScore": 100,
+  "runs": [
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "control",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "outputPath": "evidence/outputs/control-1.md",
+      "promptPath": "evaluation/control-prompt.md",
+      "runId": "control-1",
+      "outputSha256": "0e9e3e4ec798b11b83f439831470454379af631a46f31bc3e47bc9d933933348",
+      "traceScore": 20,
+      "ruleCitationCount": 0,
+      "ruleCitationTotal": 8,
+      "gates": {
+        "decisionClass": {
+          "passed": false,
+          "score": 0
+        },
+        "recommendedOption": {
+          "passed": false,
+          "score": 0
+        },
+        "ruleCitations": {
+          "passed": false,
+          "score": 0,
+          "cited": [],
+          "missing": [
+            "AML-C01",
+            "AML-R01",
+            "AML-E01",
+            "AML-F01",
+            "AML-S01",
+            "AML-A01",
+            "AML-G01",
+            "AML-M01"
+          ]
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    },
+    {
+      "capturedAt": "2026-08-04",
+      "condition": "treatment",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "outputPath": "evidence/outputs/treatment-1.md",
+      "promptPath": "evaluation/treatment-prompt.md",
+      "runId": "treatment-1",
+      "outputSha256": "450a25b1d6b3667262a9474669240d350f17c3d5a9f9aa48fd113b0cf8e10ae6",
+      "traceScore": 100,
+      "ruleCitationCount": 8,
+      "ruleCitationTotal": 8,
+      "gates": {
+        "decisionClass": {
+          "passed": true,
+          "score": 20
+        },
+        "recommendedOption": {
+          "passed": true,
+          "score": 20
+        },
+        "ruleCitations": {
+          "passed": true,
+          "score": 40,
+          "cited": [
+            "AML-C01",
+            "AML-R01",
+            "AML-E01",
+            "AML-F01",
+            "AML-S01",
+            "AML-A01",
+            "AML-G01",
+            "AML-M01"
+          ],
+          "missing": []
+        },
+        "humanRoute": {
+          "passed": true,
+          "score": 10
+        },
+        "forbiddenClaims": {
+          "passed": true,
+          "score": 10,
+          "hits": []
+        }
+      }
+    }
+  ],
+  "summary": {
+    "controlTraceScore": 20,
+    "treatmentTraceScore": 100,
+    "traceScoreDelta": 80,
+    "controlRuleCitations": 0,
+    "treatmentRuleCitations": 8,
+    "ruleCitationTotal": 8
+  }
+}

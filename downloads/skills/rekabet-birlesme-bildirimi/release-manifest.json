@@ -1,0 +1,80 @@
+{
+  "archives": [
+    {
+      "fileCount": 8,
+      "host": "cowork",
+      "path": "rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-cowork.skill",
+      "sha256": "223a343b2c799732877285cc098bd7d49265f5cc6c05c48631846b6a4c2239be",
+      "size": 8804
+    },
+    {
+      "fileCount": 9,
+      "host": "github-copilot-vscode",
+      "path": "rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-vscode.zip",
+      "sha256": "a1a86579f2848af1fb4600c445add98d8047f6a2b857521541365355fb2c33e9",
+      "size": 9654
+    },
+    {
+      "fileCount": 9,
+      "host": "scout",
+      "path": "rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-scout.zip",
+      "sha256": "1841c84649885056ea4cf6b735557736a953e8125b5f9e6b5f4be08336a8dd4f",
+      "size": 9626
+    },
+    {
+      "fileCount": 9,
+      "host": "copilot-studio-github-harness",
+      "path": "rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-studio-github-harness.zip",
+      "sha256": "7494389d245efea74a3bab0f0357088d1c94d7f7662ca04747d00628fc12fa97",
+      "size": 9300
+    },
+    {
+      "fileCount": 10,
+      "host": "copilot-studio-classic",
+      "path": "rekabet-birlesme-bildirimi/rekabet-birlesme-bildirimi-copilot-studio-classic-setup.zip",
+      "sha256": "0474358b77be0690dca646c6b48402e46f07e1a19b4a32907357cab280392c63",
+      "size": 10572
+    }
+  ],
+  "catalogVersion": "1.0.0",
+  "disclaimer": "This package supports training and governance design. It is not legal, medical, engineering, or regulatory advice. Final decisions and all system actions remain with authorized humans. — Bu paket eğitim ve yönetişim tasarımı içindir; hukuki, tıbbi, mühendislik veya mevzuata uygunluk görüşü değildir. Nihai kararlar ve bütün sistem eylemleri yetkili insanlarda kalır.",
+  "evaluationEvidence": {
+    "controlRuleCitations": 0,
+    "controlTraceScore": 40,
+    "ruleCitationTotal": 7,
+    "traceScoreDelta": 60,
+    "treatmentRuleCitations": 7,
+    "treatmentTraceScore": 100
+  },
+  "id": "rekabet-birlesme-bildirimi",
+  "officialSources": [
+    {
+      "id": "rekabet-kontrol-kavrami-kilavuzu",
+      "publisher": "Rekabet Kurumu",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseCaveat": "Kılavuz bu depoda yeniden dağıtılmaz. Güncellik, kapsam, değişiklik ve yeniden kullanım koşulları yetkili bir insan tarafından kaynak URL'de doğrulanmalıdır.",
+      "role": "Kontrol değişikliği olgularını envanterlemek için dış kaynak metadata'sı; şirket politikası veya hukuki karar değildir",
+      "sha256": "0859bad82a22b768f154b1dfabc57c362800c72144f22f522eba2ef8cc3f6b1b",
+      "title": "Birleşme ve Devralma Sayılan Haller ve Kontrol Kavramı Hakkında Kılavuz",
+      "tracked": false,
+      "url": "https://www.rekabet.gov.tr/Dosya/kilavuzlar/birlesme-ve-devralma-sayilan-haller-ve-kontrol-kavrami-hakkinda-kilavuz.pdf"
+    },
+    {
+      "id": "rekabet-ciro-kilavuzu-2026",
+      "publisher": "Rekabet Kurumu",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseCaveat": "Kılavuz bu depoda yeniden dağıtılmaz. Güncellik, kapsam, değişiklik ve yeniden kullanım koşulları yetkili bir insan tarafından kaynak URL'de doğrulanmalıdır.",
+      "role": "Finans'ın precomputed sonucunun kapsam ve sürüm sorularını düzenlemek için dış kaynak metadata'sı; asistan hesaplama yapmaz",
+      "sha256": "da76a6fa9ce9512acc694fcb33e437f3e226b0b0364e2925a6ef3978ed03b2ea",
+      "title": "Birleşme ve Devralma İşlemlerinde Ciro Hesaplanmasına İlişkin Kılavuz",
+      "tracked": false,
+      "url": "https://www.rekabet.gov.tr/Dosya/bd-ciro-kilavuzu-20260504120128549.pdf"
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceSkillTreeSha256": "d9d25b2849401df3c43786ef294cf1c4056fc7d8f91a7c1f8243413755bbc081",
+  "title": "Merger notification review",
+  "titleTr": "Birleşme bildirimi incelemesi"
+}

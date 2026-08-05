@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "demoId": "investment-committee",
+  "scenarioId": "IC-01",
+  "runs": [
+    {
+      "runId": "control-1",
+      "condition": "control",
+      "host": "Microsoft 365 Copilot Cowork",
+      "model": "Claude Opus 4.8",
+      "capturedAt": "2026-08-04",
+      "promptPath": "evaluation/chat-only-prompt.md",
+      "outputPath": "evidence/outputs/control-1.md"
+    },
+    {
+      "runId": "control-2",
+      "condition": "control",
+      "host": "Microsoft 365 Copilot Cowork",
+      "model": "Claude Opus 4.8",
+      "capturedAt": "2026-08-04",
+      "promptPath": "evaluation/chat-only-prompt.md",
+      "outputPath": "evidence/outputs/control-2.md"
+    },
+    {
+      "runId": "treatment-1",
+      "condition": "treatment",
+      "host": "Microsoft 365 Copilot Cowork",
+      "model": "Claude Opus 4.8",
+      "capturedAt": "2026-08-04",
+      "promptPath": "evaluation/chat-only-treatment-prompt.md",
+      "outputPath": "evidence/outputs/treatment-1.md"
+    },
+    {
+      "runId": "treatment-2",
+      "condition": "treatment",
+      "host": "Microsoft 365 Copilot Cowork",
+      "model": "Claude Opus 4.8",
+      "capturedAt": "2026-08-04",
+      "promptPath": "evaluation/chat-only-treatment-prompt.md",
+      "outputPath": "evidence/outputs/treatment-2.md"
+    }
+  ]
+}

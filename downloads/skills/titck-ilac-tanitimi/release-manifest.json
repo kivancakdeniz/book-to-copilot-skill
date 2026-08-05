@@ -1,0 +1,82 @@
+{
+  "archives": [
+    {
+      "fileCount": 8,
+      "host": "cowork",
+      "path": "titck-ilac-tanitimi/titck-ilac-tanitimi-cowork.skill",
+      "sha256": "4184fb572090be05dae1294f34a85751f51eabe6cb01f7692faa6f3617440122",
+      "size": 8810
+    },
+    {
+      "fileCount": 9,
+      "host": "github-copilot-vscode",
+      "path": "titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-vscode.zip",
+      "sha256": "f4bac50e24205a1ceddb31589acf60209a5cd2441b242d0d78fd573e1d5bfda3",
+      "size": 9574
+    },
+    {
+      "fileCount": 9,
+      "host": "scout",
+      "path": "titck-ilac-tanitimi/titck-ilac-tanitimi-scout.zip",
+      "sha256": "eaf49aca5f21b5afe52f38cc25950a1100c1ef654575d6cb8099fa8545b916ae",
+      "size": 9545
+    },
+    {
+      "fileCount": 9,
+      "host": "copilot-studio-github-harness",
+      "path": "titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-github-harness.zip",
+      "sha256": "d2f1509c406d2190cf238d6f98327654a55c425855310ea058c93589c34bfceb",
+      "size": 9304
+    },
+    {
+      "fileCount": 10,
+      "host": "copilot-studio-classic",
+      "path": "titck-ilac-tanitimi/titck-ilac-tanitimi-copilot-studio-classic-setup.zip",
+      "sha256": "0b519f210b2ee237ed5ecba5b427052e2d414b0c90e9f815d0edf0afeb60e7a1",
+      "size": 10659
+    }
+  ],
+  "catalogVersion": "1.0.0",
+  "disclaimer": "This package supports training and governance design. It is not legal, medical, engineering, or regulatory advice. Final decisions and all system actions remain with authorized humans. — Bu paket eğitim ve yönetişim tasarımı içindir; hukuki, tıbbi, mühendislik veya mevzuata uygunluk görüşü değildir. Nihai kararlar ve bütün sistem eylemleri yetkili insanlarda kalır.",
+  "evaluationEvidence": {
+    "controlRuleCitations": 0,
+    "controlTraceScore": 40,
+    "ruleCitationTotal": 7,
+    "traceScoreDelta": 60,
+    "treatmentRuleCitations": 7,
+    "treatmentTraceScore": 100
+  },
+  "id": "titck-ilac-tanitimi",
+  "officialSources": [
+    {
+      "id": "titck-tanitim-yonetmeligi-sayfasi",
+      "publisher": "Türkiye İlaç ve Tıbbî Cihaz Kurumu (TİTCK)",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuse": "Resmî dış kaynak yalnızca doğrulama metadatası ve kısa atıflı yöntem özetiyle kullanılır; yeniden kullanım koşulları ile güncel metin insan tarafından kaynaktan doğrulanmalıdır.",
+      "reuseCaveat": "Resmî dış kaynak bu depoda yeniden dağıtılmaz. Güncel metin, kapsam, değişiklik ve yeniden kullanım koşulları yetkili bir insan tarafından kaynak URL'den doğrulanmalıdır.",
+      "role": "Kısa ve atıflı ilaç tanıtımı inceleme yöntemi için TİTCK dış kaynak metadatası; şirket politikası, hukuki veya tıbbi tavsiye değildir",
+      "sha256": "552ce8f77c365599105d387e5d9d312998f26df634131faad66201a35ad027d1",
+      "title": "Beşerî Tıbbi Ürünlerin Tanıtım Faaliyetleri Hakkında Yönetmelik",
+      "tracked": false,
+      "url": "https://www.titck.gov.tr/mevzuat/beseri-tibbi-urunlerin-tanitim-faaliyetleri-hakkinda-yonetmelik-27122018172726"
+    },
+    {
+      "id": "resmi-gazete-tanitim-yonetmeligi-2015",
+      "publisher": "T.C. Resmî Gazete",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuse": "Resmî dış kaynak yalnızca doğrulama metadatası ve kısa atıflı yöntem özetiyle kullanılır; yeniden kullanım koşulları ile güncel metin insan tarafından kaynaktan doğrulanmalıdır.",
+      "reuseCaveat": "Resmî dış kaynak bu depoda yeniden dağıtılmaz. Güncel metin, kapsam, değişiklik ve yeniden kullanım koşulları yetkili bir insan tarafından kaynak URL'den doğrulanmalıdır.",
+      "role": "Kısa ve atıflı ilaç tanıtımı inceleme yöntemi için Resmî Gazete dış kaynak metadatası; şirket politikası, hukuki veya tıbbi tavsiye değildir",
+      "sha256": "c23a03d934063bec7abd0a678cf947d2044af82f63d404a59028aaa5421191cf",
+      "title": "Beşerî Tıbbi Ürünlerin Tanıtım Faaliyetleri Hakkında Yönetmelik - Resmî Gazete yayımı",
+      "tracked": false,
+      "url": "https://www.resmigazete.gov.tr/eskiler/2015/07/20150703-2.htm"
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceSkillTreeSha256": "9a176af8b2cc492193b1093f601682cbb04a971e046027f3d9d8ec281c38064f",
+  "title": "Pharmaceutical promotion review: audience and release gate",
+  "titleTr": "TİTCK ilaç tanıtımı: hedef kitle ve yayımlama öncesi inceleme"
+}

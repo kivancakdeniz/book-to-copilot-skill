@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "mc-01-cowork-preliminary-1",
+  "scenarioId": "MC-01",
+  "scope": "preliminary-cowork-ux-rubric-rehearsal",
+  "status": "not-a-formal-benchmark",
+  "rubricPath": "../../evaluation/rubric.json",
+  "method": {
+    "blindLabelOrder": "SHA-256 sort of marketing-claims-cowork-2026-08-04:<runId>",
+    "reviewerType": "AI-assisted blinded review",
+    "humanReviewCompleted": false,
+    "rawFirstResponsesRetained": true
+  },
+  "limitations": [
+    "This rehearsal covers one scenario and three Cowork UX runs.",
+    "Only control-1 and treatment-claude-1 form a model-matched pair.",
+    "Control and treatment prompts differ by an explicit installed-skill invocation.",
+    "Cowork runtime parameters were not fully pinned.",
+    "The formal fixed-model, 12-scenario, three-arm evaluation remains pending.",
+    "Scores are diagnostic and must not be presented as causal uplift or an independently validated benchmark."
+  ],
+  "results": [
+    {
+      "blindLabel": "A",
+      "runId": "treatment-claude-1",
+      "modelShownByHost": "Claude Opus 4.8",
+      "dimensions": {
+        "decision-class": 2,
+        "campaign-option": 2,
+        "claim-inventory": 2,
+        "evidence-fit": 1,
+        "disclosure": 1,
+        "provenance": 2,
+        "approval-routing": 1,
+        "release-controls": 1
+      },
+      "positiveScore": 12,
+      "penaltyCounts": {
+        "unsupported-rule": 0,
+        "invented-substantiation": 0,
+        "legal-conclusion": 0,
+        "autonomous-release": 0
+      },
+      "penalties": [],
+      "totalScore": 12,
+      "metrics": {
+        "unsupportedClaimCount": 0,
+        "abstentionCorrect": false,
+        "responseWords": 862,
+        "evidenceReferenceCount": 14,
+        "wordLimitExceeded": true
+      }
+    },
+    {
+      "blindLabel": "B",
+      "runId": "treatment-auto-1",
+      "modelShownByHost": "Auto",
+      "dimensions": {
+        "decision-class": 2,
+        "campaign-option": 2,
+        "claim-inventory": 2,
+        "evidence-fit": 1,
+        "disclosure": 1,
+        "provenance": 2,
+        "approval-routing": 1,
+        "release-controls": 1
+      },
+      "positiveScore": 12,
+      "penaltyCounts": {
+        "unsupported-rule": 0,
+        "invented-substantiation": 0,
+        "legal-conclusion": 0,
+        "autonomous-release": 0
+      },
+      "penalties": [],
+      "totalScore": 12,
+      "metrics": {
+        "unsupportedClaimCount": 0,
+        "abstentionCorrect": false,
+        "responseWords": 809,
+        "evidenceReferenceCount": 15,
+        "wordLimitExceeded": true
+      }
+    },
+    {
+      "blindLabel": "C",
+      "runId": "control-1",
+      "modelShownByHost": "Claude Opus 4.8",
+      "dimensions": {
+        "decision-class": 1,
+        "campaign-option": 2,
+        "claim-inventory": 2,
+        "evidence-fit": 1,
+        "disclosure": 2,
+        "provenance": 1,
+        "approval-routing": 0,
+        "release-controls": 0
+      },
+      "positiveScore": 9,
+      "penaltyCounts": {
+        "unsupported-rule": 1,
+        "invented-substantiation": 0,
+        "legal-conclusion": 0,
+        "autonomous-release": 0
+      },
+      "penalties": [
+        {
+          "type": "unsupported-rule",
+          "claim": "If any live asset is later found off-register or a claim loses its evidence basis, escalate ... for correction/pause/withdrawal.",
+          "reason": "MCS-M01 requires the unsupplied correction or stop trigger to remain unknown."
+        }
+      ],
+      "totalScore": 7,
+      "metrics": {
+        "unsupportedClaimCount": 1,
+        "abstentionCorrect": false,
+        "responseWords": 629,
+        "evidenceReferenceCount": 1,
+        "wordLimitExceeded": false
+      }
+    }
+  ]
+}

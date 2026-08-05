@@ -1,0 +1,80 @@
+{
+  "archives": [
+    {
+      "fileCount": 8,
+      "host": "cowork",
+      "path": "etk-iys-ileti-karari/etk-iys-ileti-karari-cowork.skill",
+      "sha256": "a092de2e2db5066026f0f9b36e9788c3d7d7a3486b914a12d4ee6c932a208cf1",
+      "size": 6208
+    },
+    {
+      "fileCount": 9,
+      "host": "github-copilot-vscode",
+      "path": "etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-vscode.zip",
+      "sha256": "2dbe5f569927f86c6d38617971637abe295ae11bc3e391ae07d52e2074b7cd5f",
+      "size": 6983
+    },
+    {
+      "fileCount": 9,
+      "host": "scout",
+      "path": "etk-iys-ileti-karari/etk-iys-ileti-karari-scout.zip",
+      "sha256": "e83b0fabe16342459fbecf62fd8c303d0a2dbdeb372b934d28d8338d1e9ac5ae",
+      "size": 6955
+    },
+    {
+      "fileCount": 9,
+      "host": "copilot-studio-github-harness",
+      "path": "etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-studio-github-harness.zip",
+      "sha256": "3ad87ce63c3ec8fc12acf4042a28da8d4291db5dfc81ac489b0689a1bd3588d1",
+      "size": 6703
+    },
+    {
+      "fileCount": 10,
+      "host": "copilot-studio-classic",
+      "path": "etk-iys-ileti-karari/etk-iys-ileti-karari-copilot-studio-classic-setup.zip",
+      "sha256": "087cf028d82d68da378195a6273ba475a75a84684af14619b95aab4289c1270a",
+      "size": 7883
+    }
+  ],
+  "catalogVersion": "1.0.0",
+  "disclaimer": "This package supports training and governance design. It is not legal, medical, engineering, or regulatory advice. Final decisions and all system actions remain with authorized humans. — Bu paket eğitim ve yönetişim tasarımı içindir; hukuki, tıbbi, mühendislik veya mevzuata uygunluk görüşü değildir. Nihai kararlar ve bütün sistem eylemleri yetkili insanlarda kalır.",
+  "evaluationEvidence": {
+    "controlRuleCitations": 0,
+    "controlTraceScore": 20,
+    "ruleCitationTotal": 4,
+    "traceScoreDelta": 60,
+    "treatmentRuleCitations": 4,
+    "treatmentTraceScore": 80
+  },
+  "id": "etk-iys-ileti-karari",
+  "officialSources": [
+    {
+      "id": "ETK-6563",
+      "publisher": "Mevzuat Bilgi Sistemi",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseBasis": "Kamuya açık resmî mevzuat, ticari ileti karar yöntemini çıkarmak için başvuru kaynağıdır.",
+      "reuseCaveat": "Yalnız kaynak metadatası ve kısa atıflı yöntem özeti yeniden kullanılır; uzun pasajlar kopyalanmaz, güncellik ve resmî metin insan Legal tarafından doğrulanır.",
+      "sha256": "694e91667476fad13303b41295fbd6936c3c23d879ba50a8717a5961da9eb539",
+      "title": "6563 sayılı Elektronik Ticaretin Düzenlenmesi Hakkında Kanun",
+      "type": "external-method",
+      "url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6563.pdf"
+    },
+    {
+      "id": "ETK-TICARI-ILETISIM-YONETMELIGI",
+      "publisher": "Resmî Gazete",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseBasis": "Kamuya açık resmî yönetmelik, ileti ve kanıt kontrol yöntemini çıkarmak için başvuru kaynağıdır.",
+      "reuseCaveat": "Yalnız kaynak metadatası ve kısa atıflı yöntem özeti yeniden kullanılır; uzun pasajlar kopyalanmaz, güncellik ve resmî metin insan Legal tarafından doğrulanır.",
+      "sha256": "94ba383d2b7a5392d20677f6a5a5e6da23fc3b8942f323085e2b543edeae6292",
+      "title": "Ticari İletişim ve Ticari Elektronik İletiler Hakkında Yönetmelik",
+      "type": "external-method",
+      "url": "https://www.resmigazete.gov.tr/eskiler/2015/07/20150715-4.htm"
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceSkillTreeSha256": "48a38062a7b4141b22f91a30a0038f13d7c7ef7bab8deab2073cea25abd57642",
+  "title": "Commercial message decision (ETK/IYS)",
+  "titleTr": "ETK/İYS ileti kararı"
+}

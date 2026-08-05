@@ -1,0 +1,80 @@
+{
+  "archives": [
+    {
+      "fileCount": 8,
+      "host": "cowork",
+      "path": "kvkk-aydinlatma-kontrolu/kvkk-aydinlatma-kontrolu-cowork.skill",
+      "sha256": "dd56789c01e7628f1c4cfbd5b12116144bb8bfa797ac679813d3e64ecf1d2d52",
+      "size": 6335
+    },
+    {
+      "fileCount": 9,
+      "host": "github-copilot-vscode",
+      "path": "kvkk-aydinlatma-kontrolu/kvkk-aydinlatma-kontrolu-copilot-vscode.zip",
+      "sha256": "07c748b4eccc4c6743d7093609df9d4ae7ce8075b695b42067a811acef6f65df",
+      "size": 7162
+    },
+    {
+      "fileCount": 9,
+      "host": "scout",
+      "path": "kvkk-aydinlatma-kontrolu/kvkk-aydinlatma-kontrolu-scout.zip",
+      "sha256": "073216dfc58bd8216c1dcff60f7790a917ad1863b371c3397337f8c59b80957c",
+      "size": 7133
+    },
+    {
+      "fileCount": 9,
+      "host": "copilot-studio-github-harness",
+      "path": "kvkk-aydinlatma-kontrolu/kvkk-aydinlatma-kontrolu-copilot-studio-github-harness.zip",
+      "sha256": "41667de7ac6e17bb3cd5462800a1a9e7e1def47dd8dc89cb8360e81a504c5aee",
+      "size": 6833
+    },
+    {
+      "fileCount": 10,
+      "host": "copilot-studio-classic",
+      "path": "kvkk-aydinlatma-kontrolu/kvkk-aydinlatma-kontrolu-copilot-studio-classic-setup.zip",
+      "sha256": "26fc203a907f81456f566232b1214b2f33be6f01cf7adaba92efcd4edf60cbfa",
+      "size": 8027
+    }
+  ],
+  "catalogVersion": "1.0.0",
+  "disclaimer": "This package supports training and governance design. It is not legal, medical, engineering, or regulatory advice. Final decisions and all system actions remain with authorized humans. — Bu paket eğitim ve yönetişim tasarımı içindir; hukuki, tıbbi, mühendislik veya mevzuata uygunluk görüşü değildir. Nihai kararlar ve bütün sistem eylemleri yetkili insanlarda kalır.",
+  "evaluationEvidence": {
+    "controlRuleCitations": 0,
+    "controlTraceScore": 10,
+    "ruleCitationTotal": 5,
+    "traceScoreDelta": 90,
+    "treatmentRuleCitations": 5,
+    "treatmentTraceScore": 100
+  },
+  "id": "kvkk-aydinlatma-kontrolu",
+  "officialSources": [
+    {
+      "id": "KVKK-6698",
+      "publisher": "Mevzuat Bilgi Sistemi",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseBasis": "Kamuya açık resmî mevzuat, karar yöntemini çıkarmak için başvuru kaynağıdır.",
+      "reuseCaveat": "Yalnız kaynak metadatası ve kısa atıflı yöntem özeti yeniden kullanılır; uzun pasajlar kopyalanmaz, güncellik ve resmî metin insan Legal tarafından doğrulanır.",
+      "sha256": "1ad27253b0068d4c3d991b92b68c6bc1104439430160f4350a3f04fbb211f2b5",
+      "title": "6698 sayılı Kişisel Verilerin Korunması Kanunu",
+      "type": "external-method",
+      "url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6698.pdf"
+    },
+    {
+      "id": "KVKK-AYDINLATMA-TEBLIGI",
+      "publisher": "Resmî Gazete",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseBasis": "Kamuya açık resmî tebliğ, aydınlatma kontrol yöntemini çıkarmak için başvuru kaynağıdır.",
+      "reuseCaveat": "Yalnız kaynak metadatası ve kısa atıflı yöntem özeti yeniden kullanılır; uzun pasajlar kopyalanmaz, güncellik ve resmî metin insan Legal tarafından doğrulanır.",
+      "sha256": "f40c0e9df0eb9ccbc3476284b34dcaa718ac9157b32781dc1a83a36badf286d9",
+      "title": "Aydınlatma Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ",
+      "type": "external-method",
+      "url": "https://www.resmigazete.gov.tr/eskiler/2018/03/20180310-5.htm"
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceSkillTreeSha256": "4a30e2ceb1a3ed2ea080b3f853cc759b361cde42530846adf8cda1be87ee3bd4",
+  "title": "KVKK privacy notice review",
+  "titleTr": "KVKK aydınlatma kontrolü"
+}

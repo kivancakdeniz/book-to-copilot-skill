@@ -1,0 +1,68 @@
+{
+  "archives": [
+    {
+      "fileCount": 8,
+      "host": "cowork",
+      "path": "bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-cowork.skill",
+      "sha256": "adbd24bd1f725d15c98eeac771cb578cb3b99ff5b5322942f43f333d074caad4",
+      "size": 8556
+    },
+    {
+      "fileCount": 9,
+      "host": "github-copilot-vscode",
+      "path": "bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-vscode.zip",
+      "sha256": "451b9bf46982479d04101f23e089e94bc6eb1407d1b0302b31c6609726d0ec99",
+      "size": 9434
+    },
+    {
+      "fileCount": 9,
+      "host": "scout",
+      "path": "bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-scout.zip",
+      "sha256": "7b9676eac155be563f712bbbfbb20805edd3103468b6fee897314018782483ce",
+      "size": 9406
+    },
+    {
+      "fileCount": 9,
+      "host": "copilot-studio-github-harness",
+      "path": "bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-studio-github-harness.zip",
+      "sha256": "a09b427c76d3437ada42e3c0243d3d294dba6c5b34c1bfd9762be49044b9781b",
+      "size": 9056
+    },
+    {
+      "fileCount": 10,
+      "host": "copilot-studio-classic",
+      "path": "bddk-uzaktan-musteri-edinimi/bddk-uzaktan-musteri-edinimi-copilot-studio-classic-setup.zip",
+      "sha256": "a1101ce299c3fe2de808058c9eb3ee94a738d87e0c56305f468257d9eb92d3ce",
+      "size": 10195
+    }
+  ],
+  "catalogVersion": "1.0.0",
+  "disclaimer": "This package supports training and governance design. It is not legal, medical, engineering, or regulatory advice. Final decisions and all system actions remain with authorized humans. — Bu paket eğitim ve yönetişim tasarımı içindir; hukuki, tıbbi, mühendislik veya mevzuata uygunluk görüşü değildir. Nihai kararlar ve bütün sistem eylemleri yetkili insanlarda kalır.",
+  "evaluationEvidence": {
+    "controlRuleCitations": 0,
+    "controlTraceScore": 40,
+    "ruleCitationTotal": 7,
+    "traceScoreDelta": 40,
+    "treatmentRuleCitations": 7,
+    "treatmentTraceScore": 80
+  },
+  "id": "bddk-uzaktan-musteri-edinimi",
+  "officialSources": [
+    {
+      "id": "resmi-gazete-uzaktan-kimlik-2021",
+      "publisher": "Resmî Gazete",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseCaveat": "Resmî metin bu depoda yeniden dağıtılmaz. Kullanımdan önce kaynak URL, güncellik, kapsam, değişiklik ve yeniden kullanım koşulları yetkili bir insan tarafından doğrulanmalıdır.",
+      "role": "Kısa ve atıflı inceleme yöntemi için dış kaynak metadata'sı; şirket politikası, hukuki tavsiye veya teknik sertifika değildir",
+      "sha256": "1a0b58decd14454d8cbf7e6cb3cf3902cedbac8b7bcaf9644004429915ce15bf",
+      "title": "Bankalarca Kullanılacak Uzaktan Kimlik Tespiti Yöntemlerine ve Elektronik Ortamda Sözleşme İlişkisinin Kurulmasına İlişkin Yönetmelik",
+      "tracked": false,
+      "url": "https://www.resmigazete.gov.tr/eskiler/2021/04/20210401-7.htm"
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceSkillTreeSha256": "349f9d9a8d8cc1403dfcf200aabafd58e8dd4aade0a6bc54abec35d32b58bc21",
+  "title": "Remote customer onboarding (BDDK)",
+  "titleTr": "BDDK uzaktan müşteri edinimi"
+}

@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "ic-01-cowork-preliminary-1",
+  "scenarioId": "IC-01",
+  "scope": "preliminary-cowork-ux-rubric-rehearsal",
+  "status": "not-a-formal-benchmark",
+  "scorecardPath": "../../evaluation/ic-01-scorecard.json",
+  "rubricPath": "../../evaluation/rubric.json",
+  "method": {
+    "blindLabelOrder": "SHA-256 sort of investment-committee-cowork-2026-08-04:<runId>",
+    "reviewerType": "AI-assisted blinded review with blinded adjudication",
+    "humanReviewCompleted": false,
+    "rawFirstResponsesRetained": true
+  },
+  "limitations": [
+    "This rehearsal covers one scenario and four Cowork UX runs.",
+    "The formal fixed-model, 12-scenario, three-arm evaluation remains pending.",
+    "Control and treatment prompts differ by an explicit skill invocation.",
+    "Cowork runtime parameters were not fully pinned.",
+    "Scores are diagnostic and must not be presented as causal uplift or an independently validated benchmark."
+  ],
+  "results": [
+    {
+      "blindLabel": "A",
+      "runId": "treatment-2",
+      "dimensions": {
+        "decision-class": 2,
+        "recommended-option": 2,
+        "policy-gates": 2,
+        "missing-information": 1,
+        "evidence": 2,
+        "approval-routing": 1,
+        "conditions-monitoring": 2
+      },
+      "positiveScore": 12,
+      "penaltyCounts": {
+        "unsupported-rule": 2,
+        "false-precision": 0,
+        "autonomous-approval": 0
+      },
+      "penalties": [
+        {
+          "type": "unsupported-rule",
+          "claim": "Full-automation 72% supplier mitigation plan — absent",
+          "reason": "The supplied facts do not state whether a mitigation plan exists."
+        },
+        {
+          "type": "unsupported-rule",
+          "claim": "measures ... not supplied",
+          "reason": "The source states that benefit owners and measures are assigned; the missing items are the measure details, baselines, targets, review dates, and stop conditions."
+        }
+      ],
+      "totalScore": 8,
+      "metrics": {
+        "unsupportedClaimCount": 2,
+        "abstentionCorrect": false,
+        "responseWords": 657,
+        "evidenceReferenceCount": 15,
+        "wordLimitExceeded": false
+      }
+    },
+    {
+      "blindLabel": "B",
+      "runId": "control-1",
+      "dimensions": {
+        "decision-class": 1,
+        "recommended-option": 2,
+        "policy-gates": 0,
+        "missing-information": 1,
+        "evidence": 1,
+        "approval-routing": 0,
+        "conditions-monitoring": 1
+      },
+      "positiveScore": 6,
+      "penaltyCounts": {
+        "unsupported-rule": 3,
+        "false-precision": 0,
+        "autonomous-approval": 0
+      },
+      "penalties": [
+        {
+          "type": "unsupported-rule",
+          "claim": "Cyber-security evidence ... Fail — absent",
+          "reason": "Missing mandatory evidence should be unknown or insufficient-evidence, not fail."
+        },
+        {
+          "type": "unsupported-rule",
+          "claim": "approved policy exception for removing manual fallback",
+          "reason": "ACP-R01 defines no fallback-removal exception route."
+        },
+        {
+          "type": "unsupported-rule",
+          "claim": "Phased is the only option that both clears every stated gate",
+          "reason": "ACP-R01 remains conditional and ACP-M01 detail is incomplete."
+        }
+      ],
+      "totalScore": 0,
+      "metrics": {
+        "unsupportedClaimCount": 3,
+        "abstentionCorrect": false,
+        "responseWords": 547,
+        "evidenceReferenceCount": 1,
+        "wordLimitExceeded": false
+      }
+    },
+    {
+      "blindLabel": "C",
+      "runId": "control-2",
+      "dimensions": {
+        "decision-class": 1,
+        "recommended-option": 2,
+        "policy-gates": 0,
+        "missing-information": 1,
+        "evidence": 1,
+        "approval-routing": 0,
+        "conditions-monitoring": 1
+      },
+      "positiveScore": 6,
+      "penaltyCounts": {
+        "unsupported-rule": 4,
+        "false-precision": 0,
+        "autonomous-approval": 0
+      },
+      "penalties": [
+        {
+          "type": "unsupported-rule",
+          "claim": "Cyber assessment ... Fail (absent)",
+          "reason": "Missing mandatory evidence should be unknown or insufficient-evidence, not fail."
+        },
+        {
+          "type": "unsupported-rule",
+          "claim": "hold it pending evidence rather than reject",
+          "reason": "ACP-F02 and ACP-F03 are reject grounds without an approved strategic exception."
+        },
+        {
+          "type": "unsupported-rule",
+          "claim": "approved policy exception for removing manual fallback",
+          "reason": "ACP-R01 defines no fallback-removal exception route."
+        },
+        {
+          "type": "unsupported-rule",
+          "claim": "a tested fallback or explicitly accepted risk",
+          "reason": "ACP-R01 does not define accepted risk as a substitute for a continuity plan."
+        }
+      ],
+      "totalScore": -2,
+      "metrics": {
+        "unsupportedClaimCount": 4,
+        "abstentionCorrect": false,
+        "responseWords": 537,
+        "evidenceReferenceCount": 1,
+        "wordLimitExceeded": false
+      }
+    },
+    {
+      "blindLabel": "D",
+      "runId": "treatment-1",
+      "dimensions": {
+        "decision-class": 2,
+        "recommended-option": 2,
+        "policy-gates": 1,
+        "missing-information": 1,
+        "evidence": 2,
+        "approval-routing": 1,
+        "conditions-monitoring": 2
+      },
+      "positiveScore": 11,
+      "penaltyCounts": {
+        "unsupported-rule": 4,
+        "false-precision": 0,
+        "autonomous-approval": 0
+      },
+      "penalties": [
+        {
+          "type": "unsupported-rule",
+          "claim": "measures ... not supplied",
+          "reason": "The source states that benefit owners and measures are assigned."
+        },
+        {
+          "type": "unsupported-rule",
+          "claim": "manual-fallback plan ... absent",
+          "reason": "The source states only that no tested manual fallback exists."
+        },
+        {
+          "type": "unsupported-rule",
+          "claim": "Legal not triggered ... standard terms",
+          "reason": "The supplied facts do not state whether contract terms are standard."
+        },
+        {
+          "type": "unsupported-rule",
+          "claim": "only the Committee/Board may authorise any exception",
+          "reason": "The authority matrix does not define a general Committee or Board exception-approval rule."
+        }
+      ],
+      "totalScore": 3,
+      "metrics": {
+        "unsupportedClaimCount": 4,
+        "abstentionCorrect": false,
+        "responseWords": 710,
+        "evidenceReferenceCount": 14,
+        "wordLimitExceeded": true
+      }
+    }
+  ]
+}

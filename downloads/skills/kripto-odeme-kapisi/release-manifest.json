@@ -1,0 +1,67 @@
+{
+  "archives": [
+    {
+      "fileCount": 8,
+      "host": "cowork",
+      "path": "kripto-odeme-kapisi/kripto-odeme-kapisi-cowork.skill",
+      "sha256": "13a2e7b98ff03fd722e7057b202b4f85d578d110208d69e0059a48083547a66f",
+      "size": 8094
+    },
+    {
+      "fileCount": 9,
+      "host": "github-copilot-vscode",
+      "path": "kripto-odeme-kapisi/kripto-odeme-kapisi-copilot-vscode.zip",
+      "sha256": "b2e51c856124fbda1cb93c6b8ddf4d1a147048243d39251131ec160239998440",
+      "size": 8858
+    },
+    {
+      "fileCount": 9,
+      "host": "scout",
+      "path": "kripto-odeme-kapisi/kripto-odeme-kapisi-scout.zip",
+      "sha256": "11dcf966f017e2ad6ac5cf97d0f8c6dd728da963d90a50e87177d55b99dfc710",
+      "size": 8829
+    },
+    {
+      "fileCount": 9,
+      "host": "copilot-studio-github-harness",
+      "path": "kripto-odeme-kapisi/kripto-odeme-kapisi-copilot-studio-github-harness.zip",
+      "sha256": "500c0681c5d83b087874f2acdafaa0d29dc51588a8600ebdc1e597ca70417dd7",
+      "size": 8589
+    },
+    {
+      "fileCount": 10,
+      "host": "copilot-studio-classic",
+      "path": "kripto-odeme-kapisi/kripto-odeme-kapisi-copilot-studio-classic-setup.zip",
+      "sha256": "ec37c670d782aee5ab6e66f111e6508322ab62ce596488195ce3b55d6f45df37",
+      "size": 9564
+    }
+  ],
+  "catalogVersion": "1.0.0",
+  "disclaimer": "This package supports training and governance design. It is not legal, medical, engineering, or regulatory advice. Final decisions and all system actions remain with authorized humans. — Bu paket eğitim ve yönetişim tasarımı içindir; hukuki, tıbbi, mühendislik veya mevzuata uygunluk görüşü değildir. Nihai kararlar ve bütün sistem eylemleri yetkili insanlarda kalır.",
+  "evaluationEvidence": {
+    "controlRuleCitations": 0,
+    "controlTraceScore": 40,
+    "ruleCitationTotal": 6,
+    "traceScoreDelta": 60,
+    "treatmentRuleCitations": 6,
+    "treatmentTraceScore": 100
+  },
+  "id": "kripto-odeme-kapisi",
+  "officialSources": [
+    {
+      "id": "tcmb-kripto-odeme-yonetmeligi-2021",
+      "officialUrl": "https://www.resmigazete.gov.tr/eskiler/2021/04/20210416-4.htm",
+      "publisher": "Türkiye Cumhuriyet Merkez Bankası / T.C. Resmî Gazete",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseCaveat": "Resmi içerik pakete alınmaz; güncellik, kapsam ve yeniden kullanım koşulları resmi sayfadan insan tarafından doğrulanmalıdır. Kısa yöntem kaynağıdır, şirket kararı veya hukuki tavsiye değildir.",
+      "sha256": "d16a7f69a0254d0838e0c06999c4308030ad93f3b0e5bf6fde448f72861447e8",
+      "title": "Ödemelerde Kripto Varlıkların Kullanılmamasına Dair Yönetmelik",
+      "type": "external-method"
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceSkillTreeSha256": "351295dc2e76017fd13c169b02e1820440f523ae7d29eee7f420a7ef570e5877",
+  "title": "Crypto payment gateway review",
+  "titleTr": "Kripto ödeme geçidi incelemesi"
+}

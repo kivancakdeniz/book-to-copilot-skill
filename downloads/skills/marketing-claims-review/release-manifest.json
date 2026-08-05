@@ -1,0 +1,99 @@
+{
+  "archives": [
+    {
+      "fileCount": 8,
+      "host": "cowork",
+      "path": "marketing-claims-review/marketing-claims-review-cowork.skill",
+      "sha256": "b725a8e4e9f0b1fe476be829910493fe949e618458f5f7d28b8d35487d7c54ea",
+      "size": 11721
+    },
+    {
+      "fileCount": 9,
+      "host": "github-copilot-vscode",
+      "path": "marketing-claims-review/marketing-claims-review-copilot-vscode.zip",
+      "sha256": "d6e09e115486823e370e1a0c48f62b00cf85c4d35ea10157fb8b5e298de79dc9",
+      "size": 12536
+    },
+    {
+      "fileCount": 9,
+      "host": "scout",
+      "path": "marketing-claims-review/marketing-claims-review-scout.zip",
+      "sha256": "67c2778971993183e6705c9a788b8c0a3ae9f4e8113f24e3e1087bcba7e9b451",
+      "size": 12507
+    },
+    {
+      "fileCount": 9,
+      "host": "copilot-studio-github-harness",
+      "path": "marketing-claims-review/marketing-claims-review-copilot-studio-github-harness.zip",
+      "sha256": "2bca69790acc8fac65bbe2c6ac74b00697025050f23e17fd7ce1c0ea6e0a5ab2",
+      "size": 12215
+    },
+    {
+      "fileCount": 10,
+      "host": "copilot-studio-classic",
+      "path": "marketing-claims-review/marketing-claims-review-copilot-studio-classic-setup.zip",
+      "sha256": "15f9c772b92cfce0ed54a8e4a9fdb198827e64132f6d878516eae75170975549",
+      "size": 13662
+    }
+  ],
+  "catalogVersion": "1.0.0",
+  "disclaimer": "This package supports training and governance design. It is not legal, medical, engineering, or regulatory advice. Final decisions and all system actions remain with authorized humans. — Bu paket eğitim ve yönetişim tasarımı içindir; hukuki, tıbbi, mühendislik veya mevzuata uygunluk görüşü değildir. Nihai kararlar ve bütün sistem eylemleri yetkili insanlarda kalır.",
+  "evaluationEvidence": {
+    "controlRuleCitations": 0,
+    "controlTraceScore": 40,
+    "ruleCitationTotal": 9,
+    "traceScoreDelta": 60,
+    "treatmentRuleCitations": 9,
+    "treatmentTraceScore": 100
+  },
+  "id": "marketing-claims-review",
+  "officialSources": [
+    {
+      "id": "ftc-rules-road-pdf",
+      "pages": 16,
+      "publisher": "U.S. Federal Trade Commission",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseBasis": "United States federal government works are generally not subject to domestic copyright (17 U.S.C. 105).",
+      "reuseCaveat": "U.S. federal government works are generally not copyrightable under 17 U.S.C. 105; third-party material and assets must be checked separately.",
+      "role": "Public advertising-method source; not Lumena policy or legal advice",
+      "sha256": "d000f004d9c28b66dd81a590e6ecdacc5f9d08caf7b6af626407436abebe336a",
+      "title": "Advertising and Marketing on the Internet: Rules of the Road",
+      "type": "external-method",
+      "url": "https://www.ftc.gov/system/files/ftc_gov/pdf/bus28-rulesroad-2023_508.pdf"
+    },
+    {
+      "id": "ftc-dot-com-disclosures-2013",
+      "pages": 53,
+      "publishedDate": "2013-03",
+      "publisher": "U.S. Federal Trade Commission",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseBasis": "United States federal government works are generally not subject to domestic copyright (17 U.S.C. 105).",
+      "reuseCaveat": "U.S. federal government works are generally not copyrightable under 17 U.S.C. 105; third-party material and assets must be checked separately.",
+      "role": "Public digital-disclosure method; not Lumena policy or legal advice",
+      "sha256": "b189fd2c01b21309021c9cba5ae2d5cb8abb55a555bde412e11f124c420a142e",
+      "title": ".com Disclosures: How to Make Effective Disclosures in Digital Advertising",
+      "type": "external-method",
+      "url": "https://www.ftc.gov/system/files/documents/plain-language/bus41-dot-com-disclosures-information-about-online-advertising.pdf"
+    },
+    {
+      "id": "ftc-endorsement-guides-2023-07-26",
+      "publishedDate": "2023-07-26",
+      "publisher": "Electronic Code of Federal Regulations",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseBasis": "United States federal government works are generally not subject to domestic copyright (17 U.S.C. 105).",
+      "reuseCaveat": "U.S. federal government works are generally not copyrightable under 17 U.S.C. 105; third-party material and assets must be checked separately.",
+      "role": "Date-pinned official FTC endorsement-guides source; not Lumena policy or legal advice",
+      "sha256": "feb1c8cfee82158c16c4210ef320bc93ffb2f414aa2bdce6e6772a77064180ea",
+      "title": "Guides Concerning the Use of Endorsements and Testimonials in Advertising (16 CFR Part 255)",
+      "type": "external-method",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2023-07-26/title-16.xml?part=255"
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceSkillTreeSha256": "5a1660a53bd1b239256203f27fc02028a460176e933aff0ec4569f81e8a0bdf4",
+  "title": "Marketing claims review",
+  "titleTr": "Pazarlama iddiaları incelemesi"
+}

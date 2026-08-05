@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "demoId": "isg-risk-degerlendirme",
+  "scenarioId": "ISG-01",
+  "runs": [
+    {
+      "runId": "control-1",
+      "condition": "control",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "capturedAt": "2026-08-04",
+      "promptPath": "evaluation/control-prompt.md",
+      "outputPath": "evidence/outputs/control-1.md"
+    },
+    {
+      "runId": "treatment-1",
+      "condition": "treatment",
+      "host": "GitHub Copilot coding agent (VS Code)",
+      "model": "Copilot agent default model",
+      "capturedAt": "2026-08-04",
+      "promptPath": "evaluation/treatment-prompt.md",
+      "outputPath": "evidence/outputs/treatment-1.md"
+    }
+  ]
+}

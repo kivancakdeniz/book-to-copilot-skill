@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "name": "marketing-claims-review-copilot",
+  "sourcePath": "skill",
+  "archiveName": "marketing-claims-review-copilot.skill",
+  "sha256": "35e0642d1fdf63f3698419d5b014acab4755d9c50c8dad812d459ac86f902e9b",
+  "compressedBytes": 9766,
+  "uncompressedBytes": 19393,
+  "fileCount": 6,
+  "promptFiles": {
+    "control": {
+      "path": "../evaluation/chat-only-prompt.md",
+      "sha256": "a2b809d682a0fa27a2317a61785bbb7148ce3f696ac4b245715d0c809c8ea021"
+    },
+    "treatment": {
+      "path": "../evaluation/chat-only-treatment-prompt.md",
+      "sha256": "09f946e2027e38d79fb16907c581dadb8cd8b499bf10e7758dc647be0ea9dcd6"
+    },
+    "installedTreatment": {
+      "path": "../evaluation/chat-only-treatment-installed-prompt.md",
+      "sha256": "27d62f8488e9073c65a5e3fa4fb1afeaca45f94c731e44076f6055628291deeb"
+    },
+    "formal": {
+      "path": "../evaluation/frozen-prompt.md",
+      "sha256": "07ff26417ca9975533d6eac9ade617e2ac637b105c4f750e48165a6f2fbd3a69"
+    }
+  }
+}

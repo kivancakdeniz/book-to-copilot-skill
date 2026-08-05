@@ -1,0 +1,67 @@
+{
+  "archives": [
+    {
+      "fileCount": 8,
+      "host": "cowork",
+      "path": "indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-cowork.skill",
+      "sha256": "d770d347058d083aaa83c2a68b9efd15d4ca85a2eaf8848f2ebe0d4e32a3531c",
+      "size": 6378
+    },
+    {
+      "fileCount": 9,
+      "host": "github-copilot-vscode",
+      "path": "indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-vscode.zip",
+      "sha256": "6e27e085a00899eb7f4b4952c2090da8ac1e6432843ee734e47a114906112053",
+      "size": 7205
+    },
+    {
+      "fileCount": 9,
+      "host": "scout",
+      "path": "indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-scout.zip",
+      "sha256": "0797f9ee9ad34fd40a185ce02eef00fe501e4a24bf82550d30be644f46082593",
+      "size": 7176
+    },
+    {
+      "fileCount": 9,
+      "host": "copilot-studio-github-harness",
+      "path": "indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-studio-github-harness.zip",
+      "sha256": "99c4c2369ca38c30e160f78a8be113c3472ce88f6d89f0448b227189c8ae0220",
+      "size": 6875
+    },
+    {
+      "fileCount": 10,
+      "host": "copilot-studio-classic",
+      "path": "indirimli-fiyat-denetimi/indirimli-fiyat-denetimi-copilot-studio-classic-setup.zip",
+      "sha256": "d5623812b85e97e2be81d39060c4cd3589878b24042c941c6c64e1ce8e0b3555",
+      "size": 7804
+    }
+  ],
+  "catalogVersion": "1.0.0",
+  "disclaimer": "This package supports training and governance design. It is not legal, medical, engineering, or regulatory advice. Final decisions and all system actions remain with authorized humans. — Bu paket eğitim ve yönetişim tasarımı içindir; hukuki, tıbbi, mühendislik veya mevzuata uygunluk görüşü değildir. Nihai kararlar ve bütün sistem eylemleri yetkili insanlarda kalır.",
+  "evaluationEvidence": {
+    "controlRuleCitations": 0,
+    "controlTraceScore": 20,
+    "ruleCitationTotal": 7,
+    "traceScoreDelta": 80,
+    "treatmentRuleCitations": 7,
+    "treatmentTraceScore": 100
+  },
+  "id": "indirimli-fiyat-denetimi",
+  "officialSources": [
+    {
+      "id": "ticaret-bakanligi-fiyat-reklamlari-kilavuzu-2024",
+      "publisher": "Ticaret Bakanlığı",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseCaveat": "Resmi içerik pakete alınmaz; güncellik, kapsam ve yeniden kullanım koşulları resmi sayfadan insan tarafından doğrulanmalıdır. Yöntem kaynağıdır, şirket kararı değildir.",
+      "sha256": "b7068660822b5184cd7f100760105d8567e9f99ad6b3639da30082f2b0e05c14",
+      "title": "Fiyat bilgisi içeren reklamlar ile indirimli satış reklamları ve ticari uygulamaları hakkında kılavuz",
+      "type": "external-method",
+      "url": "https://tuketici.ticaret.gov.tr/haberler/fiyat-bilgisi-iceren-reklamlar-ile-indirimli-satis-reklamlari-ve-ticari-uygulamalari-hakkinda-kilavuz-guncellendi"
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceSkillTreeSha256": "55378dbfdc6d3494d1589bade807d9d3b61017b6a2f42a68321a6210b436b088",
+  "title": "Discount price claim review",
+  "titleTr": "İndirimli fiyat denetimi"
+}

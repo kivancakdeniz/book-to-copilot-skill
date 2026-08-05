@@ -1,0 +1,67 @@
+{
+  "archives": [
+    {
+      "fileCount": 8,
+      "host": "cowork",
+      "path": "btk-haberlesme-verisi/btk-haberlesme-verisi-cowork.skill",
+      "sha256": "cc1fa7ab96f0da5ed965c41497e7dfce08bd3e1f25ac0d9254112088e73111ff",
+      "size": 8386
+    },
+    {
+      "fileCount": 9,
+      "host": "github-copilot-vscode",
+      "path": "btk-haberlesme-verisi/btk-haberlesme-verisi-copilot-vscode.zip",
+      "sha256": "2160d6c076ff7786a4560d3b6f23ff4f6722c356fbe93759bb4225ee69cfc016",
+      "size": 9175
+    },
+    {
+      "fileCount": 9,
+      "host": "scout",
+      "path": "btk-haberlesme-verisi/btk-haberlesme-verisi-scout.zip",
+      "sha256": "c20fc3b25ab201d212d816a9104723c2d2be847b876533e0559906e4a1450c03",
+      "size": 9145
+    },
+    {
+      "fileCount": 9,
+      "host": "copilot-studio-github-harness",
+      "path": "btk-haberlesme-verisi/btk-haberlesme-verisi-copilot-studio-github-harness.zip",
+      "sha256": "39cc3a8cf3bb5d0cecd4cf8961af56fc96b3e7a0a61d0f59658cbfbbb3e33f99",
+      "size": 8882
+    },
+    {
+      "fileCount": 10,
+      "host": "copilot-studio-classic",
+      "path": "btk-haberlesme-verisi/btk-haberlesme-verisi-copilot-studio-classic-setup.zip",
+      "sha256": "492d9ef43a0a9fc692d42d86e8b7669b769e363e7e95cc480d4e5ab0066a9227",
+      "size": 9928
+    }
+  ],
+  "catalogVersion": "1.0.0",
+  "disclaimer": "This package supports training and governance design. It is not legal, medical, engineering, or regulatory advice. Final decisions and all system actions remain with authorized humans. — Bu paket eğitim ve yönetişim tasarımı içindir; hukuki, tıbbi, mühendislik veya mevzuata uygunluk görüşü değildir. Nihai kararlar ve bütün sistem eylemleri yetkili insanlarda kalır.",
+  "evaluationEvidence": {
+    "controlRuleCitations": 0,
+    "controlTraceScore": 40,
+    "ruleCitationTotal": 7,
+    "traceScoreDelta": 40,
+    "treatmentRuleCitations": 7,
+    "treatmentTraceScore": 80
+  },
+  "id": "btk-haberlesme-verisi",
+  "officialSources": [
+    {
+      "id": "btk-haberlesme-verileri-yonetmeligi-2020",
+      "officialUrl": "https://www.resmigazete.gov.tr/eskiler/2020/12/20201204-13.htm",
+      "publisher": "Bilgi Teknolojileri ve İletişim Kurumu / T.C. Resmî Gazete",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseCaveat": "Resmi içerik pakete alınmaz; güncellik, kapsam ve yeniden kullanım koşulları resmi sayfadan insan tarafından doğrulanmalıdır. Kısa yöntem kaynağıdır, şirket kararı veya hukuki tavsiye değildir; tek başına tüm mahremiyet hukukunu çözmez.",
+      "sha256": "8fc09febf358035b94bbdd43a7e3c14b598634797d5248a602be55fbd7ad957b",
+      "title": "Elektronik Haberleşme Sektöründe Kişisel Verilerin İşlenmesi ve Gizliliğin Korunmasına İlişkin Yönetmelik",
+      "type": "external-method"
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceSkillTreeSha256": "033a443906fe909d91dd904fdeaa62b02fb1ceb43b2e7fff82555bce2452b44d",
+  "title": "Telecom communication data review",
+  "titleTr": "BTK haberleşme verisi"
+}

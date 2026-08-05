@@ -1,0 +1,75 @@
+{
+  "archives": [
+    {
+      "fileCount": 8,
+      "host": "cowork",
+      "path": "investment-committee/investment-committee-cowork.skill",
+      "sha256": "0be3f4f18c09343f104cfc4c177bbcd652999237f06188f3b577ae83c10f16ad",
+      "size": 13275
+    },
+    {
+      "fileCount": 9,
+      "host": "github-copilot-vscode",
+      "path": "investment-committee/investment-committee-copilot-vscode.zip",
+      "sha256": "c531dc8634d9be0650b1a59e98c4d1a3fa9651a3cf9b9ed04f048cd0ca097c3e",
+      "size": 14052
+    },
+    {
+      "fileCount": 9,
+      "host": "scout",
+      "path": "investment-committee/investment-committee-scout.zip",
+      "sha256": "39334b78b8d563a362638abd72516eededa0c95ea8cc4dda36d868ae69274cd5",
+      "size": 14023
+    },
+    {
+      "fileCount": 9,
+      "host": "copilot-studio-github-harness",
+      "path": "investment-committee/investment-committee-copilot-studio-github-harness.zip",
+      "sha256": "c4ed5f4085ff4601c87b522201c0de3e5c2daa7a6e289496c9b24f6116f2af1d",
+      "size": 13770
+    },
+    {
+      "fileCount": 10,
+      "host": "copilot-studio-classic",
+      "path": "investment-committee/investment-committee-copilot-studio-classic-setup.zip",
+      "sha256": "0af7f00ec36b3d8f003939ea484d74262c0787393ab070d9412c6db371f83be0",
+      "size": 14935
+    }
+  ],
+  "catalogVersion": "1.0.0",
+  "disclaimer": "This package supports training and governance design. It is not legal, medical, engineering, or regulatory advice. Final decisions and all system actions remain with authorized humans. — Bu paket eğitim ve yönetişim tasarımı içindir; hukuki, tıbbi, mühendislik veya mevzuata uygunluk görüşü değildir. Nihai kararlar ve bütün sistem eylemleri yetkili insanlarda kalır.",
+  "evaluationEvidence": {
+    "controlRuleCitations": 0,
+    "controlTraceScore": 40,
+    "ruleCitationTotal": 6,
+    "traceScoreDelta": 60,
+    "treatmentRuleCitations": 6,
+    "treatmentTraceScore": 100
+  },
+  "id": "investment-committee",
+  "officialSources": [
+    {
+      "attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+      "id": "green-book-2026",
+      "landingPage": "https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government",
+      "license": "Open Government Licence v3.0",
+      "licenseUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "pages": 88,
+      "publishedDate": "2026-02-05",
+      "publisher": "HM Treasury and Government Finance Function",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseBasis": "Open Government Licence v3.0 permits reuse with the required attribution.",
+      "reuseCaveat": "Only source metadata and a short attributed method summary are reused; verify the current official text and any third-party material named in the source.",
+      "role": "Public appraisal method; not Asteria policy",
+      "sha256": "275602acb918e4d32e46c59e5d0596bebcfc5e2820ec86f489a8651c523ccc37",
+      "title": "The Green Book - UK government guidance on appraisal",
+      "type": "external-method",
+      "url": "https://assets.publishing.service.gov.uk/media/698dbcd17da91680ad7f4308/The_Green_Book_2026.pdf"
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceSkillTreeSha256": "e95a395fccbe7c95cc88093aa950f0d1aa23e42e5361e15bfef6c03a87c051bb",
+  "title": "Investment committee appraisal",
+  "titleTr": "Yatırım komitesi değerlendirmesi"
+}

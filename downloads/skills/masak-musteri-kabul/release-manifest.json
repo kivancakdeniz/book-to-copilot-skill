@@ -1,0 +1,67 @@
+{
+  "archives": [
+    {
+      "fileCount": 8,
+      "host": "cowork",
+      "path": "masak-musteri-kabul/masak-musteri-kabul-cowork.skill",
+      "sha256": "3a6e3a406719eee519da075f8b82389504cba9c9f151df681524ea1f7af248f4",
+      "size": 6489
+    },
+    {
+      "fileCount": 9,
+      "host": "github-copilot-vscode",
+      "path": "masak-musteri-kabul/masak-musteri-kabul-copilot-vscode.zip",
+      "sha256": "71e92405065e6dcfda8ad070d3f695253cd9265dad6df2c5f0cad59ad008770a",
+      "size": 7253
+    },
+    {
+      "fileCount": 9,
+      "host": "scout",
+      "path": "masak-musteri-kabul/masak-musteri-kabul-scout.zip",
+      "sha256": "dea6fc3721e52e4ef4e9d9d80a7f6b202eebc6ea87a5b2d1c92813e411f8d46e",
+      "size": 7224
+    },
+    {
+      "fileCount": 9,
+      "host": "copilot-studio-github-harness",
+      "path": "masak-musteri-kabul/masak-musteri-kabul-copilot-studio-github-harness.zip",
+      "sha256": "7b9d5a8648d2f9c84fbe7588d4a0d0ece2d4e451904e500e0973e89f9e56dbb9",
+      "size": 6983
+    },
+    {
+      "fileCount": 10,
+      "host": "copilot-studio-classic",
+      "path": "masak-musteri-kabul/masak-musteri-kabul-copilot-studio-classic-setup.zip",
+      "sha256": "0f2a45645b5748fb930966039d61980a7f7cceb8a9a6101855eb730763035c13",
+      "size": 7920
+    }
+  ],
+  "catalogVersion": "1.0.0",
+  "disclaimer": "This package supports training and governance design. It is not legal, medical, engineering, or regulatory advice. Final decisions and all system actions remain with authorized humans. — Bu paket eğitim ve yönetişim tasarımı içindir; hukuki, tıbbi, mühendislik veya mevzuata uygunluk görüşü değildir. Nihai kararlar ve bütün sistem eylemleri yetkili insanlarda kalır.",
+  "evaluationEvidence": {
+    "controlRuleCitations": 0,
+    "controlTraceScore": 20,
+    "ruleCitationTotal": 8,
+    "traceScoreDelta": 80,
+    "treatmentRuleCitations": 8,
+    "treatmentTraceScore": 100
+  },
+  "id": "masak-musteri-kabul",
+  "officialSources": [
+    {
+      "id": "masak-tedbirler-yonetmeligi",
+      "publisher": "MASAK",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuseCaveat": "Resmi içerik pakete alınmaz; güncellik, kapsam ve yeniden kullanım koşulları resmi sayfadan insan tarafından doğrulanmalıdır. Yöntem kaynağıdır, şirket kararı veya SİB/STR sonucu değildir.",
+      "sha256": "242cbc47fdd7359f0312fbe59308e1e68ca97b697b0b22b7e5ff62cef6d77f6c",
+      "title": "Suç gelirlerinin aklanmasının ve terörün finansmanının önlenmesine dair tedbirler hakkında yönetmelik",
+      "type": "external-method",
+      "url": "https://masak.hmb.gov.tr/suc-gelirlerinin-aklanmasinin-ve-terorun-finansmaninin-onlenmesine-dair-tedbirler-hakkinda-yonetmelik-3/"
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceSkillTreeSha256": "78ecd348c928b477e0acc699bdd35c2f9c70e59f089f5a560115b49d8b81577f",
+  "title": "AML customer acceptance (MASAK)",
+  "titleTr": "MASAK müşteri kabulü"
+}

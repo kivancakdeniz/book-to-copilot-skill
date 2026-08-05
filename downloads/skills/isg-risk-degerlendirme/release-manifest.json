@@ -1,0 +1,69 @@
+{
+  "archives": [
+    {
+      "fileCount": 8,
+      "host": "cowork",
+      "path": "isg-risk-degerlendirme/isg-risk-degerlendirme-cowork.skill",
+      "sha256": "7c66b2e4e9994484a3bdff4408ee5321c82d86fc238019ccd94957d7b180351b",
+      "size": 8174
+    },
+    {
+      "fileCount": 9,
+      "host": "github-copilot-vscode",
+      "path": "isg-risk-degerlendirme/isg-risk-degerlendirme-copilot-vscode.zip",
+      "sha256": "e9806918586e49a111e2d9aba4726a5ba3b6300834a0300371318e7ff1fc6c89",
+      "size": 8975
+    },
+    {
+      "fileCount": 9,
+      "host": "scout",
+      "path": "isg-risk-degerlendirme/isg-risk-degerlendirme-scout.zip",
+      "sha256": "ddaf94793e25500cebad62a85b42521e602643fb33cf21e51a347126a0be48e6",
+      "size": 8947
+    },
+    {
+      "fileCount": 9,
+      "host": "copilot-studio-github-harness",
+      "path": "isg-risk-degerlendirme/isg-risk-degerlendirme-copilot-studio-github-harness.zip",
+      "sha256": "2c1d75b19dfa45015c82b89662b603b50d7644df58a3eadba571b851f0420308",
+      "size": 8669
+    },
+    {
+      "fileCount": 10,
+      "host": "copilot-studio-classic",
+      "path": "isg-risk-degerlendirme/isg-risk-degerlendirme-copilot-studio-classic-setup.zip",
+      "sha256": "d1d50f68b54936352d037a47482e7bfd01afb7bf78ba987ce8b068d7866aac35",
+      "size": 9845
+    }
+  ],
+  "catalogVersion": "1.0.0",
+  "disclaimer": "This package supports training and governance design. It is not legal, medical, engineering, or regulatory advice. Final decisions and all system actions remain with authorized humans. — Bu paket eğitim ve yönetişim tasarımı içindir; hukuki, tıbbi, mühendislik veya mevzuata uygunluk görüşü değildir. Nihai kararlar ve bütün sistem eylemleri yetkili insanlarda kalır.",
+  "evaluationEvidence": {
+    "controlRuleCitations": 0,
+    "controlTraceScore": 40,
+    "ruleCitationTotal": 7,
+    "traceScoreDelta": 60,
+    "treatmentRuleCitations": 7,
+    "treatmentTraceScore": 100
+  },
+  "id": "isg-risk-degerlendirme",
+  "officialSources": [
+    {
+      "id": "isg-risk-degerlendirmesi-yonetmeligi-2012",
+      "publisher": "T.C. Resmî Gazete",
+      "redistribution": "metadata-only",
+      "retrievedAt": "2026-08-04",
+      "reuse": "Resmî dış kaynak yalnızca doğrulama metadatası ve kısa atıflı yöntem özetiyle kullanılır; yeniden kullanım koşulları ile güncel metin insan tarafından kaynaktan doğrulanmalıdır.",
+      "reuseCaveat": "Resmî dış kaynak bu depoda yeniden dağıtılmaz. Güncel metin, kapsam, değişiklik ve yeniden kullanım koşulları yetkili bir insan tarafından kaynak URL'den doğrulanmalıdır.",
+      "role": "Kısa ve atıflı İSG inceleme yöntemi için dış kaynak metadatası; şirket politikası, hukuki veya mühendislik tavsiyesi ya da sertifikasyon değildir",
+      "sha256": "a1ab5bfc1ea7c305393d7fa75f33d7a7debaf97fe3a6e46cc5d4dfb9276a31dc",
+      "title": "İş Sağlığı ve Güvenliği Risk Değerlendirmesi Yönetmeliği",
+      "tracked": false,
+      "url": "https://www.resmigazete.gov.tr/eskiler/2012/12/20121229-13.htm"
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceSkillTreeSha256": "86fa0eb36e93146049ca1ea566c43cf2aa43f7353176ef9c615185ff3b1eb697",
+  "title": "OHS risk assessment: from change to commissioning gate",
+  "titleTr": "İSG risk değerlendirmesi: değişiklikten devreye alma onayına"
+}
